@@ -1,0 +1,26 @@
+{% if themeServices.navigation|length %}
+<nav class="uk-navbar uk-navbar-attached" id="main-navigation" data-active-node="{{ node.id }}">
+
+    {#
+     #  Home with a node
+     #}
+    {% if home %}
+        <a href="{{ home.handler.url }}" class="uk-navbar-brand">{{ meta.siteName }}</a>
+    {% endif %}
+
+    {#
+     # Main navigation
+     #}
+	<ul class="uk-navbar-nav ">
+		{% for cnode in themeServices.navigation %}
+			{% set source = cnode.nodeSources.first %}
+			{% include 'modules/navigationElement.html.twig' with {
+                "source" : source,
+                "activeId" : node.id,
+                'securityContext':securityContext,
+                'themeServices':themeServices
+            } only %}
+		{% endfor %}
+	</ul>
+</nav>
+{% endif %}

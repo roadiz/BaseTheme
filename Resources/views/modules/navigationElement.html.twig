@@ -1,0 +1,24 @@
+{% if source.title %}
+	{% set title = source.title %}
+{% else %}
+	{% set title = source.node.nodeName %}
+{% endif %}
+{% set children = source.handler.children(null, null, securityContext) %}
+<li data-node-id="{{ source.node.id }}"
+	class="{% if source.node.id == activeId %}active uk-active{% endif %} {% if children|length %}uk-parent{% endif %}"
+	{% if children|length %}data-uk-dropdown{% endif %}>
+	<a href="{{ source.handler.url }}">{{ title }}</a>
+	{% if children|length %}
+	<div class="uk-dropdown uk-dropdown-navbar">
+		<ul class="uk-nav uk-nav-navbar">
+			{% for subsource in children %}
+			{% include 'modules/navigationElement.html.twig' with {
+				"source" : subsource,
+				"activeId" : activeId,
+                'securityContext':securityContext
+			} only %}
+			{% endfor %}
+		</ul>
+	</div>
+	{% endif %}
+</li>

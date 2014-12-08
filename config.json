@@ -1,0 +1,20 @@
+{
+    "name": "RZ Base theme",
+    "author": "REZO ZERO",
+    "copyright": "REZO ZERO",
+    "themeDir": "BaseTheme",
+
+    "supportedLocale": ["en","fr"],
+
+    "versionRequire": "0.1.0",
+
+    "importFiles": {
+        "roles": [],
+        "groups": [],
+        "settings": [],
+        "nodetypes": ["Resources/import/nodetype/Page.rzt",
+                      "Resources/import/nodetype/Neutral.rzt"],
+        "tags": [],
+        "nodes": []
+    }
+}
