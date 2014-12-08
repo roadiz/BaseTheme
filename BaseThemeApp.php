@@ -113,12 +113,20 @@ class BaseThemeApp extends FrontendController
         $this->themeContainer['imageFormats'] = function ($c)
         {
             $array = array();
+
             /*
              * Common image format for pages headers
              */
-            $array ['headerImage'] = array(
+            $array['headerImage'] = array(
                 'width'=>1024,
                 'crop'=>'1024x200'
+            );
+
+            $array['thumbnail'] = array(
+                "width" => 600,
+                "crop" => "16x9",
+                "controls" => true,
+                "embed" => true
             );
 
             return $array;
