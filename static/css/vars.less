@@ -1,0 +1,32 @@
+/*------------------------------------*\
+   VARS
+\*------------------------------------*/
+
+
+/*
+ * Common vars (fonts, colors, etc.)
+ */
+
+
+// --- Matrix icon --- //
+
+@icon-size : 40px;
+@icons-picture : @icon-size*17 @icon-size*15;
+
+.matrix-icon(@x:0, @y:0) {
+    background-image:   url(../img/matrix@2x.png);
+    background-repeat:  no-repeat;
+    background-size:    @icons-picture;
+    background-position: @x @y;
+    .keep-image-aspect();
+}
+
+
+// --- Fonts --- //
+
+@font :     'font', Helvetica, Arial, sans-serif;
+
+
+// --- Colors --- //
+
+@color :     #fff;

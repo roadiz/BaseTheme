@@ -4,35 +4,91 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
+
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>{{ pageMeta.title }}</title>
         <meta name="description" content="{{ pageMeta.description }}" />
+        <meta name="keywords" content="{{ pageMeta.keywords }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        {# --- Favicons --- #}
+        <link rel="apple-touch-icon" sizes="57x57" href="{{ head.resourcesUrl }}img/favicons/apple-touch-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="{{ head.resourcesUrl }}img/favicons/apple-touch-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="{{ head.resourcesUrl }}img/favicons/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="{{ head.resourcesUrl }}img/favicons/apple-touch-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="{{ head.resourcesUrl }}img/favicons/apple-touch-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="{{ head.resourcesUrl }}img/favicons/apple-touch-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="{{ head.resourcesUrl }}img/favicons/apple-touch-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="{{ head.resourcesUrl }}img/favicons/apple-touch-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ head.resourcesUrl }}img/favicons/apple-touch-icon-180x180.png">
+        <link rel="icon" type="image/png" href="{{ head.resourcesUrl }}img/favicons/favicon-192x192.png" sizes="192x192">
+        <link rel="icon" type="image/png" href="{{ head.resourcesUrl }}img/favicons/favicon-160x160.png" sizes="160x160">
+        <link rel="icon" type="image/png" href="{{ head.resourcesUrl }}img/favicons/favicon-96x96.png" sizes="96x96">
+        <link rel="icon" type="image/png" href="{{ head.resourcesUrl }}img/favicons/favicon-16x16.png" sizes="16x16">
+        <link rel="icon" type="image/png" href="{{ head.resourcesUrl }}img/favicons/favicon-32x32.png" sizes="32x32">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="{{ head.resourcesUrl }}img/favicons/mstile-144x144.png">
 
-        <!-- <link rel="stylesheet" href="{{ head.resourcesUrl }}css/uikit.gradient.min.css" /> -->
-        <!-- <link rel="stylesheet" href="{{ head.resourcesUrl }}css/addons/uikit.addons.min.css" /> -->
+        {# --- Share metas --- #}
+        {# Facebook #}
+        <meta property="og:title" content="{{ pageMeta.title }}" />
+        <meta property="og:site_name" content="{{ meta.siteName }}" />
+        <meta property="og:description" content="{{ pageMeta.description }}" />
+        <meta property="og:url" content="{{ request.uri }}" />
+        <meta property="og:image" content="{{ head.baseUrl }}{{ head.resourcesUrl }}img/share.png" />
+        <meta property="og:type" content="website" />
+        {# Google plus #}
+        <meta itemprop="name" content="{{ pageMeta.title }}" />
+        <meta itemprop="description" content="{{ pageMeta.description }}" />
+        <meta itemprop="image" content="{{ head.baseUrl }}{{ head.resourcesUrl }}img/share.png" />
+        {# Twitter #}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="{{ pageMeta.title }}" />
+        <meta name="twitter:description" content="{{ pageMeta.description }}" />
+        <meta name="twitter:site" content="@roadiz_cms" />
+        <meta name="twitter:creator" content="@roadiz_cms" />
+        <meta name="twitter:url" content="{{ request.uri }}" />
+        <meta name="twitter:image" content="{{ head.baseUrl }}{{ head.resourcesUrl }}img/share.png" />
+        
+        {# --- Styles --- #}
+        <!-- <link rel="stylesheet" href="{{ head.resourcesUrl }}css/vendors/uikit/uikit.gradient.min.css" /> 
+        <link rel="stylesheet" href="{{ head.resourcesUrl }}css/vendors/uikit/addons/uikit.addons.min.css" /> -->
         <link rel="stylesheet" href="{{ head.resourcesUrl }}public{{ themeServices.grunt.staticAssets.global.css[0] }}" />
         <link rel="stylesheet" href="{{ path('FontFaceCSS', {"token": head.fontToken}) }}" />
+
+        {# --- Modernizr --- #}
         <script src="{{ head.resourcesUrl }}js/vendor/modernizr-2.6.2.min.js"></script>
+
     </head>
     <body {% block body_attributes %}{% if node %}class="{{ node.nodeType.name }} {{ node.nodeName }}" id="{{ node.nodeName }}"{% endif %}{% endblock %}>
+        
         <!--[if lt IE 8]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+
         {% block header %}{% endblock %}
 
         {% include 'modules/navigation.html.twig' %}
 
-        <!-- Add your site or application content here -->
+        {# Add your site or application content here #}
         {% block content %}{% endblock %}
-
+            
+        {# Scripts #}
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script src="{{ head.resourcesUrl }}js/vendor/TweenMax.min.js"></script>
-        <script src="{{ head.resourcesUrl }}js/vendor/uikit.min.js"></script>
         <script>window.jQuery || document.write('<script src="{{ head.resourcesUrl }}js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+
+        {% if head.useCdn %}        
+            <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
+            <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/plugins/ScrollToPlugin.min.js"></script>
+            <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/history.js/1.8/bundled/html4+html5/jquery.history.min.js"></script> -->
+        {% else %}
+            <script src="{{ head.resourcesUrl }}js/vendor/TweenMax.min.js"></script>
+            <script src="{{ head.resourcesUrl }}js/vendor/ScrollToPlugin.js"></script>
+            <!-- <script src="{{ head.resourcesUrl }}js/vendor/jquery.history.js"></script> -->
+        {% endif %}
+
+        <!-- <script src="{{ head.resourcesUrl }}js/vendor/uikit.min.js"></script> -->
 
         {% if head.devMode %}
             <script src="{{ head.resourcesUrl }}js/plugins.js"></script>
@@ -42,7 +98,14 @@
             <script src="{{ head.resourcesUrl }}public{{ themeServices.grunt.staticAssets.global.js[0] }}"></script>
         {% endif %}
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script type="text/javascript">
+            var temp = {};
+            temp.baseUrl = "{{ head.baseUrl }}";
+            temp.ajaxToken = "{{ head.ajaxToken }}";
+        </script>
+
+        {# Google Analytics: change UA-XXXXX-X to be your site's ID. #}
+        {% if head.universalAnalyticsId %}
         <script>
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
             function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
@@ -51,5 +114,7 @@
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X');ga('send','pageview');
         </script>
+        {% endif %}
+
     </body>
 </html>

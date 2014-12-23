@@ -1,13 +1,13 @@
 /*
  * ============================================================================
- * DefaultTheme entry point
+ * BaseTheme entry point
  * ============================================================================
  */
 
-var DefaultTheme = {};
+var BaseTheme = {};
 
-DefaultTheme.$window = null;
-DefaultTheme.$body = null;
+BaseTheme.$window = null;
+BaseTheme.$body = null;
 
 
 /**
@@ -15,10 +15,15 @@ DefaultTheme.$body = null;
  * @param  {[type]} event [description]
  * @return {[type]}       [description]
  */
-DefaultTheme.onDocumentReady = function( event ) {
+BaseTheme.onDocumentReady = function(e) {
     var _this = _this;
 
-    DefaultTheme.init();
+    // Store temp configuration
+    for( var index in temp ){
+        BaseTheme[index] = temp[index];
+    }
+
+    BaseTheme.init();
 };
 
 
@@ -26,7 +31,7 @@ DefaultTheme.onDocumentReady = function( event ) {
  * Init
  * @return {[type]} [description]
  */
-DefaultTheme.init = function(){
+BaseTheme.init = function(){
     var _this = this;
 
     // Selectors  
@@ -43,7 +48,7 @@ DefaultTheme.init = function(){
  * Resize
  * @return {[type]} [description]
  */
-DefaultTheme.resize = function(){
+BaseTheme.resize = function(){
     var _this = this;
 
     
@@ -55,4 +60,4 @@ DefaultTheme.resize = function(){
  * Plug into jQuery standard events
  * ============================================================================
  */
-$(document).ready(DefaultTheme.onDocumentReady);
+$(document).ready(BaseTheme.onDocumentReady);
