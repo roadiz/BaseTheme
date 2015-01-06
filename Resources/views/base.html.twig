@@ -9,10 +9,10 @@
         <meta charset="utf-8">
 
         <title>{{ pageMeta.title }}</title>
-        
+
         <meta name="description" content="{{ pageMeta.description }}" />
         <meta name="keywords" content="{{ pageMeta.keywords }}" />
-        <meta name="author" content="Rezo Zero" /> 
+        <meta name="author" content="Rezo Zero" />
         <meta name="generator" content="Roadiz {{ head.cmsVersion }} {{ head.cmsVersionNumber }}" />
 
         <!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
@@ -55,9 +55,9 @@
         <meta name="twitter:creator" content="@roadiz_cms" />
         <meta name="twitter:url" content="{{ request.uri }}" />
         <meta name="twitter:image" content="{{ head.baseUrl }}{{ head.resourcesUrl }}img/share.png" />
-        
+
         {# --- Styles --- #}
-        <!-- <link rel="stylesheet" href="{{ head.resourcesUrl }}css/vendors/uikit/uikit.gradient.min.css" /> 
+        <!-- <link rel="stylesheet" href="{{ head.resourcesUrl }}css/vendors/uikit/uikit.gradient.min.css" />
         <link rel="stylesheet" href="{{ head.resourcesUrl }}css/vendors/uikit/addons/uikit.addons.min.css" /> -->
         <link rel="stylesheet" href="{{ head.resourcesUrl }}public{{ themeServices.grunt.staticAssets.global.css[0] }}" />
         <link rel="stylesheet" href="{{ path('FontFaceCSS', {"token": head.fontToken}) }}" />
@@ -67,7 +67,7 @@
 
     </head>
     <body {% block body_attributes %}{% if node %}class="{{ node.nodeType.name }} {{ node.nodeName }}" id="{{ node.nodeName }}"{% endif %}{% endblock %}>
-        
+
         <!--[if lt IE 8]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -78,12 +78,12 @@
 
         {# Add your site or application content here #}
         {% block content %}{% endblock %}
-            
+
         {# Scripts #}
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="{{ head.resourcesUrl }}js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
 
-        {% if head.useCdn %}        
+        {% if head.useCdn %}
             <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
             <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/plugins/ScrollToPlugin.min.js"></script>
             <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/history.js/1.8/bundled/html4+html5/jquery.history.min.js"></script> -->
@@ -109,19 +109,18 @@
             temp.ajaxToken = "{{ head.ajaxToken }}";
         </script>
 
-        {# Google Analytics: change UA-XXXXX-X to be your site's ID. #}
+        <noscript><section id="no-js-message">JavaScript est désactivé sur votre navigateur ou celui-ci ne supporte pas cette technologie. Veuillez l'activez ou mettre à jour votre navigateur pour une meilleure expérience de navigation.</section></noscript>
+
         {% if head.universalAnalyticsId %}
+        {# Google Analytics: change {{ head.universalAnalyticsId }} to be your site's ID.  #}
         <script>
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
             function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
             e=o.createElement(i);r=o.getElementsByTagName(i)[0];
             e.src='//www.google-analytics.com/analytics.js';
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X');ga('send','pageview');
+            ga('create','{{ head.universalAnalyticsId }}');ga('send','pageview');
         </script>
         {% endif %}
-
-        <noscript><section id="no-js-message">JavaScript est désactivé sur votre navigateur ou celui-ci ne supporte pas cette technologie. Veuillez l'activez ou mettre à jour votre navigateur pour une meilleure expérience de navigation.</section></noscript>
-
     </body>
 </html>
