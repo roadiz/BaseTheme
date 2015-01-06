@@ -105,7 +105,7 @@ class BaseThemeApp extends FrontendController
         };
 
         $this->themeContainer['node.home'] = function($c) {
-            $this->getService('em')
+            return $this->getService('em')
                  ->getRepository('RZ\Roadiz\Core\Entities\Node')
                  ->findHomeWithTranslation($translation);
         };
