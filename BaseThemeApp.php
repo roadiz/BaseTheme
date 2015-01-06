@@ -92,22 +92,20 @@ class BaseThemeApp extends FrontendController
      */
     protected function prepareThemeAssignation(Node $node = null, Translation $translation = null)
     {
-        $this->storeNodeAndTranslation($node, $translation);
+        parent::prepareThemeAssignation($node, $translation);
 
-        $this->themeContainer['navigation'] = function ($c)
-        {
+        $this->themeContainer['navigation'] = function ($c) {
             return $this->assignMainNavigation();
         };
 
-        $this->themeContainer['grunt'] = function ($c)
-        {
+        $this->themeContainer['grunt'] = function ($c) {
             return include(dirname(__FILE__).'/static/public/config/assets.config.php');
         };
 
         $this->themeContainer['node.home'] = function($c) {
             return $this->getService('em')
                  ->getRepository('RZ\Roadiz\Core\Entities\Node')
-                 ->findHomeWithTranslation($translation);
+                 ->findHomeWithTranslation($this->translation);
         };
 
         $this->themeContainer['imageFormats'] = function ($c)
@@ -148,10 +146,7 @@ class BaseThemeApp extends FrontendController
                 );
         }
 
-        $parent = $this->getService('nodeApi')
-                        ->getOneBy(
-                            array('nodeName' => 'site')
-                        );
+        $parent = $this->themeContainer['node.home'];
 
         if ($parent !== null) {
             return $this->getService('nodeApi')
