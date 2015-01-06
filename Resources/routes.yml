@@ -1,20 +1,20 @@
 # This route is required!
 homePage:
     path:     /
-    defaults: { _controller: Themes\RoadizTheme\RoadizThemeApp::homeAction }
+    defaults: { _controller: Themes\BaseTheme\BaseThemeApp::homeAction }
 homePageLocale:
     path:     /{_locale}
-    defaults: { _controller: Themes\RoadizTheme\RoadizThemeApp::homeAction }
+    defaults: { _controller: Themes\BaseTheme\BaseThemeApp::homeAction }
     requirements:
         # Use every 2 letter codes (quick and dirty)
         _locale: "[a-z]{2}"
 
 sitemap:
     path:     /sitemap.xml
-    defaults: { _controller: Themes\RoadizTheme\Controllers\SitemapController::indexAction }
+    defaults: { _controller: Themes\BaseTheme\Controllers\SitemapController::indexAction }
 defaultRemoveTrailingSlash:
     path: /{url}
-    defaults: { _controller: Themes\RoadizTheme\RoadizThemeApp::removeTrailingSlashAction }
+    defaults: { _controller: Themes\BaseTheme\BaseThemeApp::removeTrailingSlashAction }
     requirements:
         url: .*/$
     methods: [GET]
