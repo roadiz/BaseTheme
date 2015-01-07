@@ -16,7 +16,7 @@
 			{% set source = cnode.nodeSources.first %}
 			{% include 'modules/navigationElement.html.twig' with {
                 "source" : source,
-                "activeId" : node.id,
+                "active" : node,
                 'securityContext':securityContext,
                 'themeServices':themeServices
             } only %}
