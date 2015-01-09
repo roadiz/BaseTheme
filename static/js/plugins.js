@@ -44,6 +44,36 @@ var isset = function(element) {
 
 
 /**
+ * Request animation frame polyfill
+ */
+window.requestAnimFrame = function(){
+    return (
+        window.requestAnimationFrame       || 
+        window.webkitRequestAnimationFrame || 
+        window.mozRequestAnimationFrame    || 
+        window.oRequestAnimationFrame      || 
+        window.msRequestAnimationFrame     || 
+        function(/* function */ callback){
+            window.setTimeout(callback, 1000 / 60); // 60fps
+        }
+    );
+}();
+
+window.cancelAnimFrame = function(){
+    return (
+        window.cancelAnimationFrame       || 
+        window.webkitCancelAnimationFrame || 
+        window.mozCancelAnimationFrame    || 
+        window.oCancelAnimationFrame      || 
+        window.msCancelAnimationFrame     || 
+        function(id){
+            window.clearTimeout(id);
+        }
+    );
+}();
+
+
+/**
  * Add class custom.
  * @param  {[object]} el                [dom element]
  * @param  {[string]} classToAdd        [class to add]
