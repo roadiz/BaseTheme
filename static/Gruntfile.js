@@ -45,7 +45,8 @@ module.exports = function(grunt) {
 					'js/*.js',
 					'!js/<%= pkg.name %>.js',
 					'!js/<%= pkg.name %>.min.js',
-					'css/**/*.less'
+					'css/**/*.less',					
+					'src-img/**/*.{png,jpg,gif}',
 				],
 				tasks: ['less', 'jshint', 'concat','uglify'],
 				options: {
