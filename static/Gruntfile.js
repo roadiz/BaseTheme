@@ -42,7 +42,7 @@ module.exports = function(grunt) {
 		watch: {
 			scripts: {
 				files: [
-					'js/*.js',
+					'js/**/*.js',
 					'!js/<%= pkg.name %>.js',
 					'!js/<%= pkg.name %>.min.js',
 					'css/**/*.less',					
