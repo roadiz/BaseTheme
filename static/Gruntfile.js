@@ -62,7 +62,7 @@ module.exports = function(grunt) {
 					'css/**/*.less',
 					'src-img/**/*.{png,jpg,gif}',
 				],
-				tasks: ['less', 'jshint', 'concat','uglify'],
+				tasks: ['less:development', 'jshint', 'concat','uglify'],
 				options: {
 					event: ['added', 'deleted', 'changed'],
 				},
@@ -141,13 +141,6 @@ module.exports = function(grunt) {
 			grunt.config('watch.scripts.tasks', ['imagemin']);
 		}
 	});
-
-	// grunt.loadNpmTasks('grunt-contrib-jshint');
-	// grunt.loadNpmTasks('grunt-contrib-watch');
-	// grunt.loadNpmTasks('grunt-contrib-less');
-	// grunt.loadNpmTasks('grunt-contrib-concat');
-	// grunt.loadNpmTasks('grunt-contrib-uglify');
-	// grunt.loadNpmTasks('grunt-contrib-imagemin');
 
 	// Default task(s).
 	grunt.registerTask('default', ['clean', 'jshint', 'concat', 'uglify', 'less:production', 'imagemin', 'versioning']);
