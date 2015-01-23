@@ -14,24 +14,21 @@ namespace Themes\BaseTheme;
 use RZ\Roadiz\CMS\Controllers\FrontendController;
 use RZ\Roadiz\Core\Entities\Node;
 use RZ\Roadiz\Core\Entities\Translation;
-
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use RZ\Roadiz\Core\Kernel;
 
 /**
-* BaseThemeApp class
-*/
+ * BaseThemeApp class
+ */
 class BaseThemeApp extends FrontendController
 {
     /**
      * {@inheritdoc}
      */
-    protected static $themeName =      'RZ Base theme';
+    protected static $themeName = 'RZ Base theme';
     /**
      * {@inheritdoc}
      */
-    protected static $themeAuthor =    'REZO ZERO';
+    protected static $themeAuthor = 'REZO ZERO';
     /**
      * {@inheritdoc}
      */
@@ -39,11 +36,11 @@ class BaseThemeApp extends FrontendController
     /**
      * {@inheritdoc}
      */
-    protected static $themeDir =       'BaseTheme';
+    protected static $themeDir = 'BaseTheme';
     /**
      * {@inheritdoc}
      */
-    protected static $backendTheme =    false;
+    protected static $backendTheme = false;
 
     /**
      * {@inheritdoc}
@@ -99,32 +96,31 @@ class BaseThemeApp extends FrontendController
         };
 
         $this->themeContainer['grunt'] = function ($c) {
-            return include(dirname(__FILE__).'/static/public/config/assets.config.php');
+            return include dirname(__FILE__) . '/static/public/config/assets.config.php';
         };
 
-        $this->themeContainer['node.home'] = function($c) {
+        $this->themeContainer['node.home'] = function ($c) {
             return $this->getService('em')
                  ->getRepository('RZ\Roadiz\Core\Entities\Node')
                  ->findHomeWithTranslation($this->translation);
         };
 
-        $this->themeContainer['imageFormats'] = function ($c)
-        {
+        $this->themeContainer['imageFormats'] = function ($c) {
             $array = array();
 
             /*
              * Common image format for pages headers
              */
             $array['headerImage'] = array(
-                'width'=>1024,
-                'crop'=>'1024x200'
+                'width' => 1024,
+                'crop' => '1024x200',
             );
 
             $array['thumbnail'] = array(
                 "width" => 600,
                 "crop" => "16x9",
                 "controls" => true,
-                "embed" => true
+                "embed" => true,
             );
 
             return $array;
@@ -140,10 +136,8 @@ class BaseThemeApp extends FrontendController
     {
         if ($this->translation === null) {
             $this->translation = $this->getService('em')
-                ->getRepository('RZ\Roadiz\Core\Entities\Translation')
-                ->findOneBy(
-                    array('defaultTranslation'=>true)
-                );
+                 ->getRepository('RZ\Roadiz\Core\Entities\Translation')
+                 ->findDefault();
         }
 
         $parent = $this->themeContainer['node.home'];
@@ -152,7 +146,7 @@ class BaseThemeApp extends FrontendController
             return $this->getService('nodeApi')
                         ->getBy(
                             array('parent' => $parent),
-                            array('position'=>'ASC')
+                            array('position' => 'ASC')
                         );
         }
 

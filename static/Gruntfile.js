@@ -29,14 +29,28 @@ module.exports = function(grunt) {
 		  }
 		},
 		less: {
-			options: {
-				compress: true,
-				yuicompress: true,
-				optimization: 3
+			development: {
+				options: {
+					compress: false,
+					yuicompress: false,
+					cleancss: false,
+					sourceMap: true
+				},
+				files: {
+					"css/style.css": "css/style.less"
+				}
 			},
-			files: {
-				src : "css/style.less",
-				dest : "css/style.min.css"
+			production: {
+				options: {
+					compress: true,
+					yuicompress: true,
+					optimization: 3,
+					cleancss: true,
+					sourceMap: false
+				},
+				files: {
+					"css/style.css": "css/style.less"
+				}
 			}
 		},
 		watch: {
@@ -45,7 +59,7 @@ module.exports = function(grunt) {
 					'js/**/*.js',
 					'!js/<%= pkg.name %>.js',
 					'!js/<%= pkg.name %>.min.js',
-					'css/**/*.less',					
+					'css/**/*.less',
 					'src-img/**/*.{png,jpg,gif}',
 				],
 				tasks: ['less', 'jshint', 'concat','uglify'],
@@ -67,8 +81,8 @@ module.exports = function(grunt) {
 				'!js/<%= pkg.name %>.min.js'
 			]
 		},
-		imagemin: {   
-			dynamic: {  
+		imagemin: {
+			dynamic: {
 				options: {                       // Target options
 					optimizationLevel: 4,
 				},                       // Another target
@@ -91,16 +105,16 @@ module.exports = function(grunt) {
 					assets: [{
 			            src: [ 'js/<%= pkg.name %>.min.js' ],
 			            dest: 'js/<%= pkg.name %>.min.js'
-			        }], 
+			        }],
 					key: 'global',
 					dest: '',
 					type: 'js',
 					ext: '.min.js'
 				}, {
 					assets: [{
-			            src: [ 'css/style.min.css' ],
-			            dest: 'css/style.min.css'
-			        }], 
+			            src: [ 'css/style.css' ],
+			            dest: 'css/style.css'
+			        }],
 					key: 'global',
 					dest: '',
 					type: 'css',
@@ -110,7 +124,7 @@ module.exports = function(grunt) {
 		},
 		clean: ["public"]
 	});
-	
+
 	/*
 	 * Watch differently LESS, JS & imagemin
 	 */
@@ -119,7 +133,7 @@ module.exports = function(grunt) {
 			grunt.config('watch.scripts.tasks', ['clean','jshint', 'concat','uglify','versioning']);
 		}
 		else if(filepath.indexOf('.less') > -1 ){
-			grunt.config('watch.scripts.tasks', ['clean','less','versioning']);
+			grunt.config('watch.scripts.tasks', ['clean','less:development','versioning']);
 		}
 		else if( filepath.indexOf('.png') > -1  ||
 			filepath.indexOf('.jpg') > -1  ||
@@ -136,5 +150,5 @@ module.exports = function(grunt) {
 	// grunt.loadNpmTasks('grunt-contrib-imagemin');
 
 	// Default task(s).
-	grunt.registerTask('default', ['clean', 'jshint', 'concat', 'uglify', 'less', 'imagemin', 'versioning']);
+	grunt.registerTask('default', ['clean', 'jshint', 'concat', 'uglify', 'less:production', 'imagemin', 'versioning']);
 };
