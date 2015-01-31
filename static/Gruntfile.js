@@ -11,6 +11,7 @@ module.exports = function(grunt) {
 			},
 			dist: {
 				src: [
+					"js/vendor/cookiechoices.js",
 					"js/plugins.js",
             		"js/roadiz-carrousel.class.js",
             		"js/roadiz-discover.class.js",

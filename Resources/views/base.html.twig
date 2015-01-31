@@ -90,12 +90,13 @@
         {% else %}
             <script src="{{ head.resourcesUrl }}js/vendor/TweenMax.min.js"></script>
             <script src="{{ head.resourcesUrl }}js/vendor/ScrollToPlugin.js"></script>
-            <!-- <script src="{{ head.resourcesUrl }}js/vendor/jquery.history.js"></script> -->
+            {# <script src="{{ head.resourcesUrl }}js/vendor/jquery.history.js"></script> #}
         {% endif %}
 
-        <!-- <script src="{{ head.resourcesUrl }}js/vendor/uikit.min.js"></script> -->
+        {# <script src="{{ head.resourcesUrl }}js/vendor/uikit.min.js"></script> #}
 
         {% if head.devMode %}
+            <script src="{{ head.resourcesUrl }}js/vendor/cookiechoices.js"></script>
             <script src="{{ head.resourcesUrl }}js/plugins.js"></script>
             <!-- <script src="{{ head.resourcesUrl }}js/base-theme-page.class.js"></script> -->
             <script src="{{ head.resourcesUrl }}js/main.js"></script>
@@ -107,6 +108,15 @@
             var temp = {};
             temp.baseUrl = "{{ head.baseUrl }}";
             temp.ajaxToken = "{{ head.ajaxToken }}";
+
+            document.addEventListener('DOMContentLoaded', function(event) {
+                cookieChoices.showCookieConsentBar(
+                    'En poursuivant votre navigation sur ce site, vous acceptez l’utilisation de cookies pour réaliser des mesures d’audience.',
+                    'Fermer', // OK link title
+                    'En savoir plus', // Link title
+                    '/mentions-legales' // set legals page here to read full cookie usage explainations.
+                );
+            });
         </script>
 
         <noscript><section id="no-js-message">JavaScript est désactivé sur votre navigateur ou celui-ci ne supporte pas cette technologie. Veuillez l'activez ou mettre à jour votre navigateur pour une meilleure expérience de navigation.</section></noscript>
