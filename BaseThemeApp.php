@@ -21,30 +21,13 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class BaseThemeApp extends FrontendController
 {
-    /**
-     * {@inheritdoc}
-     */
-    protected static $themeName = 'RZ Base theme';
-    /**
-     * {@inheritdoc}
-     */
-    protected static $themeAuthor = 'REZO ZERO';
-    /**
-     * {@inheritdoc}
-     */
-    protected static $themeCopyright = 'REZO ZERO';
-    /**
-     * {@inheritdoc}
-     */
-    protected static $themeDir = 'BaseTheme';
-    /**
-     * {@inheritdoc}
-     */
-    protected static $backendTheme = false;
+    const VERSION = '1.0.1';
 
-    /**
-     * {@inheritdoc}
-     */
+    protected static $themeName =      'RZ Base theme';
+    protected static $themeAuthor =    'REZO ZERO';
+    protected static $themeCopyright = 'REZO ZERO';
+    protected static $themeDir =       'BaseTheme';
+    protected static $backendTheme =   false;
     protected static $specificNodesControllers = array(
         // Put here your nodes which need a specific controller
         // instead of a node-type controller
@@ -127,6 +110,18 @@ class BaseThemeApp extends FrontendController
         };
 
         $this->assignation['themeServices'] = $this->themeContainer;
+
+        $this->assignation['head']['facebookUrl']       = SettingsBag::get('facebook_url');
+        $this->assignation['head']['facebookClientId']  = SettingsBag::get('facebook_client_id');
+        $this->assignation['head']['instagramUrl']      = SettingsBag::get('instagram_url');
+        $this->assignation['head']['twitterUrl']        = SettingsBag::get('twitter_url');
+        $this->assignation['head']['googleplusUrl']     = SettingsBag::get('googleplus_url');
+        $this->assignation['head']['googleClientId']    = SettingsBag::get('google_client_id');
+        $this->assignation['head']['maps_style']        = SettingsBag::get('maps_style');
+        $this->assignation['head']['themeVersion']      = static::VERSION;
+
+        // Get session messages
+        $this->assignation['session']['messages'] = $this->getService('session')->getFlashBag()->all();
     }
 
     /**

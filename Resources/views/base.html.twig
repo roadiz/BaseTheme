@@ -7,13 +7,10 @@
     <head>
 
         <meta charset="utf-8">
-
         <title>{{ pageMeta.title }}</title>
-
-        <meta name="description" content="{{ pageMeta.description }}" />
-        <meta name="keywords" content="{{ pageMeta.keywords }}" />
-        <meta name="author" content="Rezo Zero" />
-        <meta name="generator" content="Roadiz {{ head.cmsVersion }} {{ head.cmsVersionNumber }}" />
+        {% if pageMeta.description %}<meta name="description" content="{{ pageMeta.description }}" />{% endif %}
+        {% if pageMeta.keywords %}<meta name="keywords" content="{{ pageMeta.keywords }}" />{% endif %}
+        <meta name="generator" content="Roadiz {{ head.cmsVersion }} {{ head.cmsVersionNumber }} - BaseTheme v{{ head.themeVersion }}" />
 
         <!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
 
