@@ -12,6 +12,7 @@
 namespace Themes\BaseTheme;
 
 use RZ\Roadiz\CMS\Controllers\FrontendController;
+use RZ\Roadiz\Core\Bags\SettingsBag;
 use RZ\Roadiz\Core\Entities\Node;
 use RZ\Roadiz\Core\Entities\Translation;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,11 +24,11 @@ class BaseThemeApp extends FrontendController
 {
     const VERSION = '1.0.1';
 
-    protected static $themeName =      'RZ Base theme';
-    protected static $themeAuthor =    'REZO ZERO';
+    protected static $themeName = 'RZ Base theme';
+    protected static $themeAuthor = 'REZO ZERO';
     protected static $themeCopyright = 'REZO ZERO';
-    protected static $themeDir =       'BaseTheme';
-    protected static $backendTheme =   false;
+    protected static $themeDir = 'BaseTheme';
+    protected static $backendTheme = false;
     protected static $specificNodesControllers = array(
         // Put here your nodes which need a specific controller
         // instead of a node-type controller
@@ -111,14 +112,14 @@ class BaseThemeApp extends FrontendController
 
         $this->assignation['themeServices'] = $this->themeContainer;
 
-        $this->assignation['head']['facebookUrl']       = SettingsBag::get('facebook_url');
-        $this->assignation['head']['facebookClientId']  = SettingsBag::get('facebook_client_id');
-        $this->assignation['head']['instagramUrl']      = SettingsBag::get('instagram_url');
-        $this->assignation['head']['twitterUrl']        = SettingsBag::get('twitter_url');
-        $this->assignation['head']['googleplusUrl']     = SettingsBag::get('googleplus_url');
-        $this->assignation['head']['googleClientId']    = SettingsBag::get('google_client_id');
-        $this->assignation['head']['maps_style']        = SettingsBag::get('maps_style');
-        $this->assignation['head']['themeVersion']      = static::VERSION;
+        $this->assignation['head']['facebookUrl'] = SettingsBag::get('facebook_url');
+        $this->assignation['head']['facebookClientId'] = SettingsBag::get('facebook_client_id');
+        $this->assignation['head']['instagramUrl'] = SettingsBag::get('instagram_url');
+        $this->assignation['head']['twitterUrl'] = SettingsBag::get('twitter_url');
+        $this->assignation['head']['googleplusUrl'] = SettingsBag::get('googleplus_url');
+        $this->assignation['head']['googleClientId'] = SettingsBag::get('google_client_id');
+        $this->assignation['head']['maps_style'] = SettingsBag::get('maps_style');
+        $this->assignation['head']['themeVersion'] = static::VERSION;
 
         // Get session messages
         $this->assignation['session']['messages'] = $this->getService('session')->getFlashBag()->all();
