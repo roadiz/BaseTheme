@@ -13,8 +13,6 @@ module.exports = function(grunt) {
 				src: [
 					"js/vendor/cookiechoices.js",
 					"js/plugins.js",
-            		"js/roadiz-carrousel.class.js",
-            		"js/roadiz-discover.class.js",
 					"js/main.js"
 				],
 				dest: 'js/<%= pkg.name %>.js',
