@@ -9,6 +9,11 @@ var BaseTheme = {};
 BaseTheme.$window = null;
 BaseTheme.$body = null;
 
+BaseTheme.isMobile = false;
+
+BaseTheme.windowWidth = 1920;
+BaseTheme.windowHeight = 1280;
+
 
 /**
  * On document ready
@@ -37,10 +42,14 @@ BaseTheme.init = function(){
     // Selectors  
     _this.$window = $(window);
     _this.$body = $('body');
+
+    // isMobile test
+    _this.isMobile = (isMobile.any() === null) ? false : true;
+    if(_this.isMobile) addClass(_this.$body[0],'is-mobile');
     
     // Events
-    // _this.$window.on('resize', $.proxy(_this.resize, _this));
-    // _this.$window.trigger('resize');
+    _this.$window.on('resize', $.proxy(_this.resize, _this));
+    _this.$window.trigger('resize');
 };
 
 
@@ -51,7 +60,8 @@ BaseTheme.init = function(){
 BaseTheme.resize = function(){
     var _this = this;
 
-    
+    _this.windowWidth = _this.$window.innerWidth();
+    _this.windowHeight = _this.$window.innerHeight();
 };
 
 
