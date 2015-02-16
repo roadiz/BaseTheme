@@ -31,15 +31,8 @@ class ExampleController extends BaseThemeApp
         Node $node = null,
         Translation $translation = null
     ) {
-
         $this->prepareThemeAssignation($node, $translation);
-
-
         $this->getService('stopwatch')->start('twigRender');
-        return new Response(
-            $this->getTwig()->render('types/example.html.twig', $this->assignation),
-            Response::HTTP_OK,
-            array('content-type' => 'text/html')
-        );
+        return $this->render('types/example.html.twig', $this->assignation);
     }
 }
