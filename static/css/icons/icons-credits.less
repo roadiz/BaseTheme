@@ -1,4 +1,11 @@
-@charset "UTF-8";
+/*------------------------------------*\
+  ICONS CREDITS
+\*------------------------------------*/
+
+
+/*
+ * Font icon for credits (Rezo Zero / Roadiz)
+ */
 
 @font-face {
   font-family: "basethemecredits";
@@ -9,38 +16,33 @@
     url("../fonts/basethemecredits.svg#basethemecredits") format("svg");
   font-weight: normal;
   font-style: normal;
+}
 
+.credits-icon(){
+  font-family: "basethemecredits" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 [data-icon]:before {
-  font-family: "basethemecredits" !important;
-  content: attr(data-icon);
-  font-style: normal !important;
-  font-weight: normal !important;
-  font-variant: normal !important;
-  text-transform: none !important;
-  speak: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  .credits-icon();
 }
 
-[class^="icon-"]:before,
-[class*=" icon-"]:before {
-  font-family: "basethemecredits" !important;
-  font-style: normal !important;
-  font-weight: normal !important;
-  font-variant: normal !important;
-  text-transform: none !important;
-  speak: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+[class^="credits-icon-"]:before,
+[class*=" credits-icon-"]:before {
+  .credits-icon();  
 }
 
-.icon-rezozero:before {
+
+.credits-icon-rezozero:before {
   content: "a";
 }
-.icon-roadiz:before {
+.credits-icon-roadiz:before {
   content: "b";
 }
