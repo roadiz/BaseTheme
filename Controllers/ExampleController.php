@@ -11,12 +11,10 @@
 
 namespace Themes\BaseTheme\Controllers;
 
-use Themes\BaseTheme\BaseThemeApp;
 use RZ\Roadiz\Core\Entities\Node;
 use RZ\Roadiz\Core\Entities\Translation;
-
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Themes\BaseTheme\BaseThemeApp;
 
 /**
  * ExampleController class
@@ -33,6 +31,7 @@ class ExampleController extends BaseThemeApp
     ) {
         $this->prepareThemeAssignation($node, $translation);
         $this->getService('stopwatch')->start('twigRender');
+
         return $this->render('types/example.html.twig', $this->assignation);
     }
 }
