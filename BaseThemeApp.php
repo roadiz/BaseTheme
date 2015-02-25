@@ -84,9 +84,7 @@ class BaseThemeApp extends FrontendController
         };
 
         $this->themeContainer['node.home'] = function ($c) {
-            return $this->getService('em')
-                 ->getRepository('RZ\Roadiz\Core\Entities\Node')
-                 ->findHomeWithTranslation($this->translation);
+            return $this->getHome($this->translation);
         };
 
         $this->themeContainer['imageFormats'] = function ($c) {
@@ -144,7 +142,7 @@ class BaseThemeApp extends FrontendController
                         ->getBy(
                             [
                                 // Get children nodes from Homepage
-                                // use parent => null to get root nodes instead
+                                // use parent => $this->getRoot() to get root nodes instead
                                 'parent' => $parent,
                                 'translation' => $this->translation
                             ],
