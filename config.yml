@@ -1,0 +1,16 @@
+---
+name: "RZ Base theme"
+author: "REZO ZERO"
+copyright: "REZO ZERO"
+themeDir: "BaseTheme"
+supportedLocale:
+    - "en"
+    - "fr"
+versionRequire: "0.5.0"
+importFiles:
+    roles: []
+    groups: []
+    settings: []
+    nodetypes: []
+    tags: []
+    nodes: []

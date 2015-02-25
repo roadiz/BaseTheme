@@ -142,8 +142,13 @@ class BaseThemeApp extends FrontendController
         if ($parent !== null) {
             return $this->getService('nodeApi')
                         ->getBy(
-                            array('parent' => $parent),
-                            array('position' => 'ASC')
+                            [
+                                // Get children nodes from Homepage
+                                // use parent => null to get root nodes instead
+                                'parent' => $parent,
+                                'translation' => $this->translation
+                            ],
+                            ['position' => 'ASC']
                         );
         }
 
