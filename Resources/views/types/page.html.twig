@@ -5,7 +5,7 @@
 <header>
 	{% for headerImage in headerImages %}
 	<figure>
-		<img alt="{{ nodeSource.title }}" src="{{ headerImage.viewer.documentUrlByArray(themeServices.imageFormats.headerImage) }}" />
+		<img alt="{{ nodeSource.title }}" src="{{ headerImage|url(themeServices.imageFormats.headerImage) }}" />
 	</figure>
 	{% endfor %}
 </header>
@@ -19,7 +19,7 @@
 
 		{% set imageMetas = document.documentTranslations.first %}
 		<figure class="uk-thumbnail">
-			{{ document.viewer.documentByArray(themeServices.imageFormats.thumbnail)|raw }}
+			{{ document|display(themeServices.imageFormats.thumbnail) }}
 			<figcaption>{{ imageMetas.name }} — {{ imageMetas.copyright }}</figcaption>
 		</figure>
 	{% endfor %}
