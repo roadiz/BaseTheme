@@ -1,14 +1,14 @@
 <?php
 /*
- * Copyright REZO ZERO 2014
+ * Copyright REZO ZERO 2015
  *
- * Description
+ * BaseTheme main class.
+ * Entry point for your theme logic and inheritance.
  *
  * @file BaseThemeApp.php
- * @copyright REZO ZERO 2014
+ * @copyright REZO ZERO 2015
  * @author Ambroise Maupate
  */
-
 namespace Themes\BaseTheme;
 
 use RZ\Roadiz\CMS\Controllers\FrontendController;
@@ -53,6 +53,9 @@ class BaseThemeApp extends FrontendController
                      ->findHomeWithTranslation($translation);
 
         $this->prepareThemeAssignation($home, $translation);
+        /*
+         * Use home page node-type to render it.
+         */
         return $this->handle($request);
 
         /*
@@ -142,9 +145,9 @@ class BaseThemeApp extends FrontendController
                         ->getBy(
                             [
                                 // Get children nodes from Homepage
-                                // use parent => $this->getRoot() to get root nodes instead
-                                'parent' => $parent,
-                                'translation' => $this->translation
+                    // use parent => $this->getRoot() to get root nodes instead
+                    'parent' => $parent,
+                                'translation' => $this->translation,
                             ],
                             ['position' => 'ASC']
                         );

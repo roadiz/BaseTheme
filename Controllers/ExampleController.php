@@ -1,11 +1,10 @@
 <?php
 /*
- * Copyright REZO ZERO 2014
+ * Copyright REZO ZERO 2015
  *
- * Description
  *
  * @file ExampleController.php
- * @copyright REZO ZERO 2014
+ * @copyright REZO ZERO 2015
  * @author Ambroise Maupate
  */
 
