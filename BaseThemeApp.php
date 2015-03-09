@@ -22,7 +22,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class BaseThemeApp extends FrontendController
 {
-    const VERSION = '0.0.1';
+    const VERSION = '0.6.0';
 
     protected static $themeName = 'RZ Base theme';
     protected static $themeAuthor = 'REZO ZERO';
