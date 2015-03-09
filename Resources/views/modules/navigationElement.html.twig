@@ -3,12 +3,12 @@
 {% else %}
 	{% set title = source.node.nodeName %}
 {% endif %}
-{% set children = source.handler.children(null, null, securityContext) %}
+{% set children = source|children %}
 
 <li data-node-id="{{ source.node.id }}"
 	class="nav-item{% if source.node.id == active.id or source.node.id == active.parent.id %} active{% endif %}{% if children|length %} has-children{% endif %}">
 
-	<a class="nav-link" id="nav-link-{{ source.node.nodeName }}" href="{{ source.handler.url }}">{{ title }}</a>
+	<a class="nav-link" id="nav-link-{{ source.node.nodeName }}" href="{{ source|url }}">{{ title }}</a>
 
 	{% if children|length %}
 	<ul class="nav-children">

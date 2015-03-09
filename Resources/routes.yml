@@ -11,7 +11,7 @@ homePageLocale:
 
 sitemap:
     path:     /sitemap.xml
-    defaults: { _controller: Themes\BaseTheme\Controllers\SitemapController::indexAction }
+    defaults: { _controller: Themes\BaseTheme\Controllers\SitemapController::sitemapAction }
 defaultRemoveTrailingSlash:
     path: /{url}
     defaults: { _controller: Themes\BaseTheme\BaseThemeApp::removeTrailingSlashAction }

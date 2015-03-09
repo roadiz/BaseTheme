@@ -1,0 +1,5 @@
+<url>
+    <loc>{{ element|url({absolute:true}) }}</loc>
+    <lastmod>{{ element.node.updatedAt|date('Y-m-d') }}</lastmod>
+    <priority>{{ element.node.priority }}</priority>
+</url>
