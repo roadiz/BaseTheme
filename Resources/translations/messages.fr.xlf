@@ -32,6 +32,10 @@
                 <source>cookie_choice.find_out_more_message</source>
                 <target>En savoir plus</target>
             </trans-unit>
+            <trans-unit id="no_javascript_message">
+                <source>no_javascript_message</source>
+                <target>JavaScript est désactivé sur votre navigateur ou celui-ci ne supporte pas cette technologie. Veuillez l'activez ou mettre à jour votre navigateur pour une meilleure expérience de navigation.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
