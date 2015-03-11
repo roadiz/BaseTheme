@@ -1,20 +1,38 @@
 <?xml version='1.0' encoding='utf-8'?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
- <file original="none" source-language="en-US" datatype="plaintext">
-  <body>
-   <trans-unit id="hello.world">
-    <source>hello.world</source>
-    <target>Hello world!</target>
-   </trans-unit>
-   <!-- This is node : %name% -->
-   <trans-unit id="nodeName">
-    <source>node.name.is.%name%</source>
-    <target>This is “%name%” node</target>
-   </trans-unit>
-   <trans-unit id="translationName">
-    <source>translation.is.%name%</source>
-    <target>This is “%name%” translation</target>
-   </trans-unit>
-  </body>
- </file>
+    <file original="none" source-language="en-US" datatype="plaintext">
+        <body>
+            <trans-unit id="hello.world">
+                <source>hello.world</source>
+                <target>Hello world!</target>
+            </trans-unit>
+            <!-- This is node : %name% -->
+            <trans-unit id="nodeName">
+                <source>node.name.is.%name%</source>
+                <target>This is “%name%” node</target>
+            </trans-unit>
+            <trans-unit id="translationName">
+                <source>translation.is.%name%</source>
+                <target>This is “%name%” translation</target>
+            </trans-unit>
+
+            <trans-unit id="cookie_choice.consent_message">
+                <source>cookie_choice.consent_message</source>
+                <target>We use cookies to make your experience of our website better. Continuing on our website, you give us your consent to set these cookies.</target>
+            </trans-unit>
+            <trans-unit id="cookie_choice.close_message">
+                <source>cookie_choice.close_message</source>
+                <target>That’s OK</target>
+            </trans-unit>
+            <trans-unit id="cookie_choice.find_out_more_message">
+                <source>cookie_choice.find_out_more_message</source>
+                <target>Find out more</target>
+            </trans-unit>
+
+            <trans-unit id="no_javascript_message">
+                <source>no_javascript_message</source>
+                <target>JavaScript is disabled on your browser or it does not support this technology. Please enable or update your browser to get a better browsing experience.</target>
+            </trans-unit>
+        </body>
+    </file>
 </xliff>
