@@ -118,10 +118,10 @@
 
             document.addEventListener('DOMContentLoaded', function(event) {
                 cookieChoices.showCookieConsentBar(
-                    'En poursuivant votre navigation sur ce site, vous acceptez l’utilisation de cookies pour réaliser des mesures d’audience.',
-                    'Fermer', // OK link title
-                    'En savoir plus', // Link title
-                    '/mentions-legales' // set legals page here to read full cookie usage explainations.
+                    '{% trans %}cookie_choice.consent_message{% endtrans %}',
+                    '{% trans %}cookie_choice.close_message{% endtrans %}', // OK link title
+                    '{% trans %}cookie_choice.find_out_more_message{% endtrans %}', // Link title
+                    '/legals' // set legals page here to read full cookie usage explainations.
                 );
             });
         </script>
