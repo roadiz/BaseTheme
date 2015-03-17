@@ -15,7 +15,6 @@
                 <source>translation.is.%name%</source>
                 <target>This is “%name%” translation</target>
             </trans-unit>
-
             <trans-unit id="cookie_choice.consent_message">
                 <source>cookie_choice.consent_message</source>
                 <target>We use cookies to make your experience of our website better. Continuing on our website, you give us your consent to set these cookies.</target>
@@ -28,7 +27,6 @@
                 <source>cookie_choice.find_out_more_message</source>
                 <target>Find out more</target>
             </trans-unit>
-
             <trans-unit id="no_javascript_message">
                 <source>no_javascript_message</source>
                 <target>JavaScript is disabled on your browser or it does not support this technology. Please enable or update your browser to get a better browsing experience.</target>
