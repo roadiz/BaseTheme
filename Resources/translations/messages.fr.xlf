@@ -14,12 +14,6 @@
                 <source>translation.is.%name%</source>
                 <target>On est en « %name% »</target>
             </trans-unit>
-            <trans-unit id="translationName">
-                <source>translation.is.%name%</source>
-                <target>On est en « %name% »</target>
-            </trans-unit>
-
-
             <trans-unit id="cookie_choice.consent_message">
                 <source>cookie_choice.consent_message</source>
                 <target>En poursuivant votre navigation sur ce site, vous acceptez l’utilisation de cookies à des fins de mesures d’audience.</target>
