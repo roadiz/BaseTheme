@@ -15,7 +15,7 @@ module.exports = function(grunt) {
 					"js/plugins.js",
 					"js/main.js"
 				],
-				dest: 'js/<%= pkg.name %>.js',
+				dest: 'dist/<%= pkg.name %>.js',
 			},
 		},
 		uglify: {
@@ -23,8 +23,8 @@ module.exports = function(grunt) {
 			banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd HH:MM:ss") %> */\n'
 		  },
 		  build: {
-			src: 'js/<%= pkg.name %>.js',
-			dest: 'js/<%= pkg.name %>.min.js'
+			src: 'dist/<%= pkg.name %>.js',
+			dest: 'dist/<%= pkg.name %>.min.js'
 		  }
 		},
 		less: {
@@ -73,6 +73,7 @@ module.exports = function(grunt) {
 				'js/*.js',
 				'js/*/*.js',
 		    	'!js/*.min.js',
+		    	'!dist/*.js',
 				'!js/plugins.js',
 				'!js/vendor/*.js',
 				'!js/addons/*.js',
@@ -102,8 +103,8 @@ module.exports = function(grunt) {
 			dist: {
 				files: [{
 					assets: [{
-			            src: [ 'js/<%= pkg.name %>.min.js' ],
-			            dest: 'js/<%= pkg.name %>.min.js'
+			            src: [ 'dist/<%= pkg.name %>.min.js' ],
+			            dest: 'dist/<%= pkg.name %>.min.js'
 			        }],
 					key: 'global',
 					dest: '',
