@@ -6,7 +6,6 @@
                 <source>hello.world</source>
                 <target>Hello world!</target>
             </trans-unit>
-            <!-- This is node : %name% -->
             <trans-unit id="nodeName">
                 <source>node.name.is.%name%</source>
                 <target>This is “%name%” node</target>

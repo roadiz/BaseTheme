@@ -42,17 +42,32 @@ var isset = function(element) {
     return false;
 };
 
+/**
+ * Match CSS media queries and JavaScript window width.
+ *
+ * @see http://stackoverflow.com/a/11310353
+ * @return Object
+ */
+var getViewportSize = function() {
+    var e = window, a = 'inner';
+    if (!('innerWidth' in window )) {
+        a = 'client';
+        e = document.documentElement || document.body;
+    }
+    return { width : e[ a+'Width' ] , height : e[ a+'Height' ] };
+};
+
 
 /**
  * Request animation frame polyfill
  */
 window.requestAnimFrame = function(){
     return (
-        window.requestAnimationFrame       || 
-        window.webkitRequestAnimationFrame || 
-        window.mozRequestAnimationFrame    || 
-        window.oRequestAnimationFrame      || 
-        window.msRequestAnimationFrame     || 
+        window.requestAnimationFrame       ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame    ||
+        window.oRequestAnimationFrame      ||
+        window.msRequestAnimationFrame     ||
         function(/* function */ callback){
             window.setTimeout(callback, 1000 / 60); // 60fps
         }
@@ -61,11 +76,11 @@ window.requestAnimFrame = function(){
 
 window.cancelAnimFrame = function(){
     return (
-        window.cancelAnimationFrame       || 
-        window.webkitCancelAnimationFrame || 
-        window.mozCancelAnimationFrame    || 
-        window.oCancelAnimationFrame      || 
-        window.msCancelAnimationFrame     || 
+        window.cancelAnimationFrame       ||
+        window.webkitCancelAnimationFrame ||
+        window.mozCancelAnimationFrame    ||
+        window.oCancelAnimationFrame      ||
+        window.msCancelAnimationFrame     ||
         function(id){
             window.clearTimeout(id);
         }
@@ -97,10 +112,10 @@ var removeClass = function(el, classToRemove){
     if(el.classList) el.classList.remove(classToRemove);
     else{
         el.className = el.className.replace(new RegExp('(^|\\b)' + classToRemove.split(' ').join('|') + '(\\b|$)', 'gi'), '');
-    
+
         var posLastCar = el.className.length-1;
         if(el.className[posLastCar] == ' ') el.className = el.className.substring(0, posLastCar);
-    }    
+    }
 };
 
 
@@ -133,7 +148,7 @@ function getRandomInt(min, max) {
 var replacePlaceholder = function() {
 
     if(!Modernizr.input.placeholder){
-        
+
         $('[placeholder]').focus(function() {
           var input = $(this);
           if (input.val() == input.attr('placeholder')) {
