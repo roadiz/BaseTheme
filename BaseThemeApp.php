@@ -69,6 +69,27 @@ class BaseThemeApp extends FrontendController
     }
 
     /**
+     * Return a Response with default backend 404 error page.
+     *
+     * @param string $message Additionnal message to describe 404 error.
+     *
+     * @return Symfony\Component\HttpFoundation\Response
+     */
+    public function throw404($message = '')
+    {
+        $this->prepareThemeAssignation(null, null);
+
+        $this->assignation['errorMessage'] = $message;
+
+        $this->getService('stopwatch')->start('twigRender');
+        return new Response(
+            $this->getTwig()->render('404.html.twig', $this->assignation),
+            Response::HTTP_NOT_FOUND,
+            array('content-type' => 'text/html')
+        );
+    }
+
+    /**
      * @param RZ\Roadiz\Core\Entities\Node        $node
      * @param RZ\Roadiz\Core\Entities\Translation $translation
      *
