@@ -17,8 +17,7 @@ BaseTheme.windowSize = {
 
 
 /**
- * On document ready.
- *
+ * On document ready
  * @param event
  */
 BaseTheme.onDocumentReady = function(e) {
@@ -34,7 +33,8 @@ BaseTheme.onDocumentReady = function(e) {
 
 
 /**
- * Init.
+ * Init
+ * @return {[type]} [description]
  */
 BaseTheme.init = function(){
     var _this = this;
@@ -48,18 +48,37 @@ BaseTheme.init = function(){
     if(_this.isMobile) addClass(_this.$body[0],'is-mobile');
 
     // Events
-    _this.$window.on('resize', $.proxy(_this.resize, _this));
+    _this.$window.on('resize', $.proxy(_this.windowResize, _this));
     _this.$window.trigger('resize');
 };
 
 
 /**
- * Main resize method.
+ * Window resize event
+ * @return {[type]} [description]
+ */
+BaseTheme.windowResize = function(e){
+    var _this = this;
+
+    requestAnimFrame($.proxy(_this.resize, _this));
+};
+
+
+/**
+ * Resize
+ * @return {[type]} [description]
  */
 BaseTheme.resize = function(){
     var _this = this;
 
-    _this.windowSize = getViewportSize();
+    // Check is sizes has changed
+    var viewport = getViewportSize();
+
+    if(viewport.width !== windowSize.width || windowSize.height !== windowSize.height){
+
+        _this.windowSize = getViewportSize();
+    }
+
 };
 
 
