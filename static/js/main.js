@@ -55,17 +55,10 @@ BaseTheme.init = function(){
 
 /**
  * Main resize method.
- *
- *
  */
 BaseTheme.resize = function(){
     var _this = this;
 
-    /*
-     * Match CSS media queries and JavaScript window width.
-     *
-     * @see http://stackoverflow.com/a/11310353
-     */
     _this.windowSize = getViewportSize();
 };
 
