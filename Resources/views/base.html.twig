@@ -116,10 +116,13 @@
             {% endfor %}
         {% endif %}
 
+        <noscript><section id="no-js-message">{% trans %}no_javascript_message{% endtrans %}</section></noscript>
         <script type="text/javascript">
             var temp = {};
             temp.baseUrl = "{{ head.baseUrl }}";
             temp.ajaxToken = "{{ head.ajaxToken }}";
+            temp.domain = temp.baseUrl.split('://');
+            temp.domain = temp.domain[1];
 
             document.addEventListener('DOMContentLoaded', function(event) {
                 cookieChoices.showCookieConsentBar(
@@ -129,20 +132,16 @@
                     '/legals' // set legals page here to read full cookie usage explainations.
                 );
             });
-        </script>
 
-        <noscript><div id="no-js-message">{% trans %}no_javascript_message{% endtrans %}</div></noscript>
-
-        {% if head.universalAnalyticsId %}
-        {# Google Analytics: change {{ head.universalAnalyticsId }} to be your site's ID.  #}
-        <script>
+            {% if head.universalAnalyticsId %}
+            {# Google Analytics: change {{ head.universalAnalyticsId }} to be your site's ID.  #}
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
             function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
             e=o.createElement(i);r=o.getElementsByTagName(i)[0];
             e.src='//www.google-analytics.com/analytics.js';
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','{{ head.universalAnalyticsId }}');ga('send','pageview');
+            ga('create','{{ head.universalAnalyticsId }}', temp.domain);ga('send','pageview');
+            {% endif %}
         </script>
-        {% endif %}
     </body>
 </html>
