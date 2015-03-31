@@ -49,6 +49,7 @@ BaseTheme.init = function(){
 
     // Events
     _this.$window.on('resize', $.proxy(_this.windowResize, _this));
+    _this.$window.on('orientationchange', $.proxy(_this.windowResize, _this));
     _this.$window.trigger('resize');
 };
 
