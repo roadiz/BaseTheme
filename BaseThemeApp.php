@@ -16,13 +16,14 @@ use RZ\Roadiz\Core\Bags\SettingsBag;
 use RZ\Roadiz\Core\Entities\Node;
 use RZ\Roadiz\Core\Entities\Translation;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * BaseThemeApp class
  */
 class BaseThemeApp extends FrontendController
 {
-    const VERSION = '0.6.2';
+    const VERSION = '0.7.0';
 
     protected static $themeName = 'RZ Base theme';
     protected static $themeAuthor = 'REZO ZERO';
@@ -66,6 +67,27 @@ class BaseThemeApp extends FrontendController
         //     Response::HTTP_OK,
         //     array('content-type' => 'text/html')
         // );
+    }
+
+    /**
+     * Return a Response with default backend 404 error page.
+     *
+     * @param string $message Additionnal message to describe 404 error.
+     *
+     * @return Symfony\Component\HttpFoundation\Response
+     */
+    public function throw404($message = '')
+    {
+        $this->prepareThemeAssignation(null, null);
+
+        $this->assignation['errorMessage'] = $message;
+
+        $this->getService('stopwatch')->start('twigRender');
+        return new Response(
+            $this->getTwig()->render('404.html.twig', $this->assignation),
+            Response::HTTP_NOT_FOUND,
+            array('content-type' => 'text/html')
+        );
     }
 
     /**
