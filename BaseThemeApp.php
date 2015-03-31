@@ -23,7 +23,7 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class BaseThemeApp extends FrontendController
 {
-    const VERSION = '0.6.2';
+    const VERSION = '0.7.0';
 
     protected static $themeName = 'RZ Base theme';
     protected static $themeAuthor = 'REZO ZERO';
