@@ -9,11 +9,15 @@ var BaseTheme = {};
 BaseTheme.$window = null;
 BaseTheme.$body = null;
 
-BaseTheme.isMobile = false;
 BaseTheme.windowSize = {
     width: 1920,
     height: 1280
 };
+
+BaseTheme.firstResize = true;
+
+BaseTheme.isMobile = false;
+BaseTheme.isIE = false;
 
 
 /**
@@ -39,13 +43,27 @@ BaseTheme.onDocumentReady = function(e) {
 BaseTheme.init = function(){
     var _this = this;
 
+    // Set default TweenLite ease
+    TweenLite.defaultEase = Expo.easeOut;
+
     // Selectors
     _this.$window = $(window);
     _this.$body = $('body');
 
+    var viewport = getViewportSize();
+
+    _this.windowWidth = viewport.width;
+    _this.windowHeight = viewport.height;
+
     // isMobile test
     _this.isMobile = (isMobile.any() === null) ? false : true;
     if(_this.isMobile) addClass(_this.$body[0],'is-mobile');
+
+    // IE Test
+    if(navigator.userAgent.indexOf('MSIE') >= 0 || navigator.userAgent.indexOf('Trident') >= 0){
+        _this.isIE = true;
+        addClass(_this.$body[0],'ie');
+    }
 
     // Events
     _this.$window.on('resize', $.proxy(_this.windowResize, _this));
@@ -75,9 +93,11 @@ BaseTheme.resize = function(){
     // Check is sizes has changed
     var viewport = getViewportSize();
 
-    if(viewport.width !== windowSize.width || windowSize.height !== windowSize.height){
+    if(viewport.width !== windowSize.width || windowSize.height !== windowSize.height || _this.firstResize){
 
         _this.windowSize = getViewportSize();
+
+        if(_this.firstResize) _this.firstResize = false;
     }
 
 };
