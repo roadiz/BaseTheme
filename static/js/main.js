@@ -64,10 +64,7 @@ BaseTheme.init = function(){
     if(_this.isMobile) addClass(_this.$body[0],'is-mobile');
 
     // IE Test
-    if(navigator.userAgent.indexOf('MSIE') >= 0 || navigator.userAgent.indexOf('Trident') >= 0){
-        _this.isIE = true;
-        addClass(_this.$body[0],'ie');
-    }
+    if(_this.$body[0].className.indexOf('ie') >= 0) _this.isIE = true;
 
     // Events
     _this.$window.on('resize', $.proxy(_this.windowResize, _this));
