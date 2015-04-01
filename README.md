@@ -17,8 +17,10 @@ This blank theme uses *Grunt* to manage your LESS, JS and CSS files. When setup,
 generate versioned CSS and JS files to be properly served over browser caches.
 
 * Install *NodeJS* - http://nodejs.org/
+* Install *Bower* - http://bower.io/
 * Install *grunt-cli* - http://gruntjs.com/getting-started#installing-the-cli
-* Install theme dependencies `npm install`
+* Install theme development tools `npm install`
+* Install bower theme dependancies `bower install` 
 
 Then you can launch *Grunt* in background to listen every file update: this command will
 generate development CSS file (with source-map and not-minified)

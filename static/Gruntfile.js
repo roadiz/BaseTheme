@@ -3,40 +3,75 @@ module.exports = function(grunt) {
 	{
 		versioning: 'grunt-static-versioning'
 	});
+
+	function objectify(array){
+		var objectArray = [];
+		for(var i in array){
+			objectArray[i] = {
+				'src':[array[i]],
+				'dest':array[i]
+			};
+		}
+
+		return objectArray;
+	}
+
+	var vendorFiles = [
+		"bower_components/gsap/src/minified/TweenMax.min.js",
+		"bower_components/gsap/src/minified/plugins/ScrollToPlugin.min.js",					
+		"bower_components/jquery.actual/jquery.actual.min.js",
+		"bower_components/isMobile/isMobile.min.js"
+	];
+
+	var vendorFilesObject = objectify(vendorFiles);
+
+	var distFiles = [
+		"js/vendor/cookiechoices.js",
+		"js/plugins.js",
+		"js/main.js"
+	];
+
+	var distFilesObject = objectify(distFiles);
+
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 		concat: {
 			options: {
-			  separator: ';',
+				separator: ';',
+			},
+			vendor: {
+				src: vendorFiles,
+				dest: 'dist/<%= pkg.name %>-vendor.js',
 			},
 			dist: {
-				src: [
-					"js/vendor/cookiechoices.js",
-					"js/plugins.js",
-					"js/main.js"
-				],
+				src: distFiles,
 				dest: 'dist/<%= pkg.name %>.js',
 			},
 		},
 		uglify: {
-		  options: {
-			banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd HH:MM:ss") %> */\n'
-		  },
-		  build: {
-			src: 'dist/<%= pkg.name %>.js',
-			dest: 'dist/<%= pkg.name %>.min.js'
-		  }
+			options: {
+				banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd HH:MM:ss") %> */\n'
+			},
+			vendor: {
+				src: 'dist/<%= pkg.name %>-vendor.js',
+				dest: 'dist/<%= pkg.name %>-vendor.min.js'
+			},
+			build: {
+				src: 'dist/<%= pkg.name %>.js',
+				dest: 'dist/<%= pkg.name %>.min.js'
+			}
 		},
 		less: {
 			development: {
 				options: {
 					compress: false,
 					yuicompress: false,
-					cleancss: false,
 					sourceMap: true
 				},
-				files: {
-					"css/style.css": "css/style.less"
+				files:
+				{
+					"dist/vendor.min.css" : "css/vendor.less",
+				 	"dist/style.min.css" : "css/style.less"
 				}
 			},
 			production: {
@@ -44,11 +79,12 @@ module.exports = function(grunt) {
 					compress: true,
 					yuicompress: true,
 					optimization: 3,
-					cleancss: true,
 					sourceMap: false
 				},
-				files: {
-					"css/style.css": "css/style.less"
+				files:
+				{
+					"dist/vendor.min.css" : "css/vendor.less",
+				 	"dist/style.min.css" : "css/style.less"
 				}
 			}
 		},
@@ -72,25 +108,21 @@ module.exports = function(grunt) {
 				'Gruntfile.js',
 				'js/*.js',
 				'js/*/*.js',
-		    	'!js/*.min.js',
 		    	'!dist/*.js',
 				'!js/plugins.js',
-				'!js/vendor/*.js',
-				'!js/addons/*.js',
-				'!js/<%= pkg.name %>.js',
-				'!js/<%= pkg.name %>.min.js'
+				'!js/vendor/*.js'
 			]
 		},
 		imagemin: {
 			dynamic: {
-				options: {                       // Target options
+				options: {                       	// Target options
 					optimizationLevel: 4,
-				},                       // Another target
+				},                       			// Another target
 				files: [{
-					expand: true,                  // Enable dynamic expansion
-					cwd: 'src-img/',                   // Src matches are relative to this path
-					src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match
-					dest: 'img/'                  // Destination path prefix
+					expand: true,                  	// Enable dynamic expansion
+					cwd: 'src-img/',               	// Src matches are relative to this path
+					src: ['**/*.{png,jpg,gif}'],   	// Actual patterns to match
+					dest: 'img/'                  	// Destination path prefix
 				}]
 			}
 		},
@@ -100,20 +132,83 @@ module.exports = function(grunt) {
 				outputConfigDir: 'public/config',
 				output: 'php'
 			},
-			dist: {
+			development: {
+				files: [
+					{
+						assets: vendorFilesObject,
+						key: 'global',
+						dest: '',
+						type: 'js',
+						ext: '.min.js'
+					}, 
+					{
+						assets: distFilesObject,
+						key: 'global',
+						dest: '',
+						type: 'js',
+						ext: '.min.js'
+					},
+					{
+						assets: [
+							{
+								src:['dist/style.min.css'],
+								dest:'dist/style.min.css'
+							}
+						],
+						key: 'global',
+						dest: '',
+						type: 'css',
+						ext: '.css'
+					},
+					{
+						assets: [
+							{
+								src:['dist/vendor.min.css'],
+								dest:'dist/vendor.min.css'
+							}
+						],
+						key: 'global',
+						dest: '',
+						type: 'css',
+						ext: '.css'
+					}
+				]
+			},
+			production: {
 				files: [{
 					assets: [{
 			            src: [ 'dist/<%= pkg.name %>.min.js' ],
-			            dest: 'dist/<%= pkg.name %>.min.js'
+			            dest:'dist/<%= pkg.name %>.min.js' 
 			        }],
 					key: 'global',
 					dest: '',
 					type: 'js',
 					ext: '.min.js'
-				}, {
+				}, 
+				{
 					assets: [{
-			            src: [ 'css/style.css' ],
-			            dest: 'css/style.css'
+			            src: [ 'dist/<%= pkg.name %>-vendor.min.js' ],
+			            dest:'dist/<%= pkg.name %>-vendor.min.js' 
+			        }],
+					key: 'global',
+					dest: '',
+					type: 'js',
+					ext: '.min.js'
+				},
+				{
+					assets: [{
+			            src: [ 'dist/style.min.css' ],
+			            dest:'dist/style.min.css' 
+			        }],
+					key: 'global',
+					dest: '',
+					type: 'css',
+					ext: '.css'
+				},
+				{
+					assets: [{
+			            src: [ 'dist/vendor.min.css' ],
+			            dest:'dist/vendor.min.css' 
 			        }],
 					key: 'global',
 					dest: '',
@@ -130,10 +225,10 @@ module.exports = function(grunt) {
 	 */
 	grunt.event.on('watch', function(action, filepath) {
 		if (filepath.indexOf('.js') > -1 ) {
-			grunt.config('watch.scripts.tasks', ['clean','jshint', 'concat','uglify','versioning']);
+			grunt.config('watch.scripts.tasks', ['clean','jshint','versioning:development']);
 		}
 		else if(filepath.indexOf('.less') > -1 ){
-			grunt.config('watch.scripts.tasks', ['clean','less:development','versioning']);
+			grunt.config('watch.scripts.tasks', ['clean','less:development','versioning:development']);
 		}
 		else if( filepath.indexOf('.png') > -1  ||
 			filepath.indexOf('.jpg') > -1  ||
@@ -143,5 +238,5 @@ module.exports = function(grunt) {
 	});
 
 	// Default task(s).
-	grunt.registerTask('default', ['clean', 'jshint', 'concat', 'uglify', 'less:production', 'imagemin', 'versioning']);
+	grunt.registerTask('default', ['clean', 'jshint', 'concat', 'uglify', 'less:production', 'imagemin', 'versioning:production']);
 };

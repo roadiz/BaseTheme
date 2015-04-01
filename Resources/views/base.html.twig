@@ -78,7 +78,7 @@
 
         {% block header %}{% endblock %}
 
-        {% include 'modules/navigation.html.twig' %}
+        {% include 'modules/nav.html.twig' %}
 
         {# Add your site or application content here #}
         {% block content %}{% endblock %}
@@ -94,29 +94,16 @@
         <script>window.jQuery || document.write('<script src="{{ head.resourcesUrl }}js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
         {% if head.useCdn %}
-            <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenMax.min.js"></script>
-            <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/plugins/ScrollToPlugin.min.js"></script>
         {% else %}
-            <script src="{{ head.resourcesUrl }}js/vendor/TweenMax.min.js"></script>
-            <script src="{{ head.resourcesUrl }}js/vendor/ScrollToPlugin.js"></script>
         {% endif %}
 
-        {# This will enable UI KIT #}
-        {# <script src="{{ head.resourcesUrl }}js/vendor/uikit.min.js"></script> #}
+        
+        {# Import Grunt generated javascripts #}
+        {% for jsMin in themeServices.grunt.staticAssets.global.js %}
+        <script src="{{ head.resourcesUrl }}public{{ jsMin }}"></script>
+        {% endfor %}
 
-        {% if head.devMode %}
-            {# This script list must be the same as Gruntfile.js concat section #}
-            <script src="{{ head.resourcesUrl }}js/vendor/cookiechoices.js"></script>
-            <script src="{{ head.resourcesUrl }}js/plugins.js"></script>
-            <script src="{{ head.resourcesUrl }}js/main.js"></script>
-        {% else %}
-            {# Import Grunt generated javascripts #}
-            {% for jsMin in themeServices.grunt.staticAssets.global.js %}
-            <script src="{{ head.resourcesUrl }}public{{ jsMin }}"></script>
-            {% endfor %}
-        {% endif %}
-
-        <noscript><section id="no-js-message">{% trans %}no_javascript_message{% endtrans %}</section></noscript>
+        <noscript><div id="no-js-message">{% trans %}no_javascript_message{% endtrans %}</div></noscript>
         <script type="text/javascript">
             var temp = {};
             temp.baseUrl = "{{ head.baseUrl }}";
