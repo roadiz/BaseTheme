@@ -7,9 +7,9 @@ This theme is meant to get a **fresh start** to create a theme.
 * Rename `BaseThemeApp.php` and this folder according to your theme name
 * Do not forget to `npm install` in your `static` folder.
 
-To begin with dynamic routing, create a node-type in your back-office. Then duplicate
-our `Controllers/ExampleController.php` file. Rename it (file + classname + extends).
-You can repeat this process for every node-types you create.
+A common node-type called 'Page' will be installed with this theme, his controller is located 
+in `Controllers/ExampleController.php` and his twig template in `Resources/views/types/page.html.twig`.
+If you need others node-type, duplicate theses files and rename them.
 
 ## JS + LESS
 
@@ -17,7 +17,7 @@ Blank theme uses *Grunt* and *Bower* to deal with front development files.
 
 ### Grunt
 
-This blank theme uses *Grunt* to manage your LESS, JS and CSS files. When you setup it, Grunt will
+This blank theme uses *Grunt* to manage your LESS, JS and CSS files. When you set it up, Grunt will
 generate versioned CSS and JS files to be properly served over browser caches.
 
 * Install *NodeJS* - http://nodejs.org/

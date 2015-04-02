@@ -2,10 +2,10 @@
 /*
  * Copyright REZO ZERO 2014
  *
- * Description
+ * Page
  *
- * @file ExampleController.php
- * @copyright REZO ZERO 2014
+ * @file PageController.php
+ * @copyright REZO ZERO 2015
  * @author Ambroise Maupate
  */
 

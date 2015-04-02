@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Themes\BaseTheme\BaseThemeApp;
 
 /**
- * SitemapController.
+ * SitemapController class
  */
 class SitemapController extends BaseThemeApp
 {
