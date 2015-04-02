@@ -5,8 +5,10 @@
 var BaseThemeNav = function(){
     var _this = this;
 
+    console.log('-> Nav');
+
     // Selectors
-    _this.$el = $('#el');
+    _this.$cont = $('#nav');
 
     // Methods
     _this.init();
@@ -33,6 +35,7 @@ BaseThemeNav.prototype.init = function(){
 BaseThemeNav.prototype.initEvents = function(){
     var _this = this;
 
+    BaseTheme.$window.on('resize', debounce($.proxy(_this.resize, _this), 50, false));
 };
 
 
@@ -43,6 +46,8 @@ BaseThemeNav.prototype.initEvents = function(){
 BaseThemeNav.prototype.destroyEvents = function(){
     var _this = this;
 
+
+    BaseTheme.$window.off('resize', debounce($.proxy(_this.resize, _this), 50, false));
 };
 
 
@@ -65,5 +70,7 @@ BaseThemeNav.prototype.destroy = function(){
  */
 BaseThemeNav.prototype.resize = function(){
     var _this = this;
+
+    console.log('Nav - resize');
 
 };

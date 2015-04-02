@@ -16,6 +16,9 @@ BaseTheme.windowSize = {
 
 BaseTheme.firstResize = true;
 
+BaseTheme.$nav = null;
+BaseTheme.nav = null;
+
 BaseTheme.isMobile = false;
 BaseTheme.isIE = false;
 
@@ -59,6 +62,9 @@ BaseTheme.init = function(){
         height : viewport.height
     };
 
+    _this.$nav = $('#nav');
+    if(_this.$nav.length) _this.nav = new BaseThemeNav();
+
     // isMobile test
     _this.isMobile = (isMobile.any === null) ? false : true;
     if(_this.isMobile) addClass(_this.$body[0],'is-mobile');
@@ -80,7 +86,7 @@ BaseTheme.init = function(){
 BaseTheme.windowResize = function(e){
     var _this = this;
 
-    requestAnimFrame($.proxy(_this.resize, _this));
+    debounce($.proxy(_this.resize, _this), 50, false);
 };
 
 
