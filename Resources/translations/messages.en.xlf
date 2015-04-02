@@ -30,6 +30,14 @@
                 <source>no_javascript_message</source>
                 <target>JavaScript is disabled on your browser or it does not support this technology. Please enable or update your browser to get a better browsing experience.</target>
             </trans-unit>
+            <trans-unit id="browser_update.message">
+                <source>browser_update.message</source>
+                <target>Your browser is out of date. It has some security failures et could not show properly some features of this website.</target>
+            </trans-unit>
+            <trans-unit id="browser_update.link">
+                <source>browser_update.link</source>
+                <target>See how to update your browser</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

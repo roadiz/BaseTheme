@@ -30,6 +30,14 @@
                 <source>no_javascript_message</source>
                 <target>JavaScript est désactivé sur votre navigateur ou celui-ci ne supporte pas cette technologie. Veuillez l'activez ou mettre à jour votre navigateur pour une meilleure expérience de navigation.</target>
             </trans-unit>
+            <trans-unit id="browser_update.message">
+                <source>browser_update.message</source>
+                <target>Votre navigateur est périmé. Il contient des failles de sécurité et pourrait ne pas afficher certaines fonctionalités de ce site internet.</target>
+            </trans-unit>
+            <trans-unit id="browser_update.link">
+                <source>browser_update.link</source>
+                <target>Découvrez comment mettre votre navigateur à jour</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

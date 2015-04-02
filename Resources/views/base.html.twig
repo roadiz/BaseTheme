@@ -102,6 +102,7 @@
             temp.domain = temp.baseUrl.split('://');
             temp.domain = temp.domain[1];
 
+            // Cookies choices
             document.addEventListener('DOMContentLoaded', function(event) {
                 cookieChoices.showCookieConsentBar(
                     '{% trans %}cookie_choice.consent_message{% endtrans %}',
@@ -111,6 +112,20 @@
                 );
             });
 
+            // Browser update
+            var $buoop = {
+                vs:{i:9,f:15,o:12.1,s:5.1,c:2},
+                text:'{% trans %}browser_update.message{% endtrans %} <a href="http://browser-update.org/update-browser.html">{% trans %}browser_update.link{% endtrans %}</a>'
+            }; 
+            function $buo_f(){ 
+                var e = document.createElement("script"); 
+                e.src = "//browser-update.org/update.js"; 
+                document.body.appendChild(e);
+            };
+            try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
+            catch(e){window.attachEvent("onload", $buo_f)}    
+
+            // Analytics
             {% if head.universalAnalyticsId %}
             {# Google Analytics: change {{ head.universalAnalyticsId }} to be your site's ID.  #}
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=

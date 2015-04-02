@@ -22,7 +22,7 @@ class NodeServiceProvider implements ServiceProviderInterface
     protected $translation;
     protected $coreServices;
 
-    public function __construct(Container $coreServices, Translation $translation)
+    public function __construct(Container $coreServices, Translation $translation = null)
     {
         $this->coreServices = $coreServices;
         $this->translation = $translation;
@@ -36,7 +36,7 @@ class NodeServiceProvider implements ServiceProviderInterface
         $container['nodeHome'] = function ($c) {
 
             if ($this->translation === null) {
-                $this->translation = $this->getService('em')
+                $this->translation = $this->coreServices['em']
                      ->getRepository('RZ\Roadiz\Core\Entities\Translation')
                      ->findDefault();
             }
