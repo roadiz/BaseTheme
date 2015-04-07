@@ -1,13 +1,24 @@
 
 /**
- * Page
+ * Abstract page
  * @param {[type]} id      [identifier]
  * @param {[type]} context ["static" or "ajax"]
  */
-var BaseThemePage = function(id, context){
+var BaseThemeAbstractPage = function(id, context){
     var _this = this;
 
     console.log('Page - '+id);
+
+    _this.init(id, context);
+};
+
+
+/**
+ * Init
+ * @return {[type]} [description]
+ */
+BaseThemeAbstractPage.prototype.init = function(id, context){
+    var _this = this;
 
     _this.id = id;
     _this.context = context;
@@ -23,15 +34,6 @@ var BaseThemePage = function(id, context){
 
     // --- Methods --- //
     if(_this.context == 'static' && _this.$cont.length) _this.init();
-};
-
-
-/**
- * Init
- * @return {[type]} [description]
- */
-BaseThemePage.prototype.init = function(){
-    var _this = this;
 
     // First loading
     if(_this.context == 'static'){
@@ -55,7 +57,7 @@ BaseThemePage.prototype.init = function(){
  * Init events
  * @return {[type]} [description]
  */
-BaseThemePage.prototype.initEvents = function(){
+BaseThemeAbstractPage.prototype.initEvents = function(){
     var _this = this;
 
     BaseTheme.$window.on('resize', debounce($.proxy(_this.resize, _this), 100, false));
@@ -66,7 +68,7 @@ BaseThemePage.prototype.initEvents = function(){
  * Destroy
  * @return {[type]} [description]
  */
-BaseThemePage.prototype.destroy = function(){
+BaseThemeAbstractPage.prototype.destroy = function(){
     var _this = this;
 
     // --- Fade & remove --- //
@@ -91,7 +93,7 @@ BaseThemePage.prototype.destroy = function(){
  * Destroy events
  * @return {[type]} [description]
  */
-BaseThemePage.prototype.destroyEvents = function(){
+BaseThemeAbstractPage.prototype.destroyEvents = function(){
     var _this = this;
 
     BaseTheme.$window.off('resize', debounce($.proxy(_this.resize, _this), 100, false));
@@ -102,7 +104,7 @@ BaseThemePage.prototype.destroyEvents = function(){
  * Init ajax
  * @return {[type]} [description]
  */
-BaseThemePage.prototype.initAjax = function(){
+BaseThemeAbstractPage.prototype.initAjax = function(){
     var _this = this;
 
     // --- Change title --- //
@@ -115,7 +117,7 @@ BaseThemePage.prototype.initAjax = function(){
  * Init blocks
  * @return {[type]} [description]
  */
-BaseThemePage.prototype.initBlocks = function(){
+BaseThemeAbstractPage.prototype.initBlocks = function(){
     var _this = this;
 
     for(var blockIndex = 0; blockIndex < _this.blockLength; blockIndex++) {
@@ -128,7 +130,7 @@ BaseThemePage.prototype.initBlocks = function(){
  * Resize
  * @return {[type]} [description]
  */
-BaseThemePage.prototype.resize = function(){
+BaseThemeAbstractPage.prototype.resize = function(){
     var _this = this;
 
     console.log('-> Page resize');

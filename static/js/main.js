@@ -25,6 +25,12 @@ BaseTheme.isIE = false;
 BaseTheme.page = null;
 BaseTheme.pageFuture = null;
 
+BaseTheme.discriminatorMap = {
+    'page' : 'BaseThemePage',
+    'project' : 'BaseThemeProject',
+    'block-basic' : 'BaseThemeBlockBasic'
+};
+
 BaseTheme.$ajaxContainer = null;
 BaseTheme.ajaxEnabled = false;
 
@@ -79,7 +85,15 @@ BaseTheme.init = function(){
     if(_this.$nav.length) _this.nav = new BaseThemeNav();
 
     // Page 
-    _this.page = new BaseThemePage(_this.$body[0].id, 'static');
+    var nodeType = _this.$body[0].getAttribute('data-node-type');
+    if(nodeType){
+        console.log(_this.discriminatorMap[nodeType]);
+        _this.page = new window[_this.discriminatorMap[nodeType]](_this.$body[0].id, 'static');
+    }
+    // Static pages
+    else{
+        _this.page = new BaseThemeAbstractPage(_this.$body[0].id, 'static');
+    }
 
     // Events
     _this.$window.on('resize', debounce($.proxy(_this.resize, _this), 50, false));
