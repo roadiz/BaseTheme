@@ -56,7 +56,7 @@ BaseThemeHistory.prototype.onPopState = function(e) {
 BaseThemeHistory.prototype.boot = function(nodeType, id, context){
     var _this = this;
 
-    console.log('Boot '+nodeType+' - '+id);
+    // console.log('Boot '+nodeType+' - '+id);
 
     // Page 
     if(nodeType){
@@ -88,7 +88,7 @@ BaseThemeHistory.prototype.linkClick = function(e){
 
     e.preventDefault();
 
-    console.log('-> Link click');
+    // console.log('-> Link click');
 
     var linkClassName = e.currentTarget.className;
 
@@ -140,8 +140,6 @@ BaseThemeHistory.prototype.loadPage = function(e, state){
             // console.log('-> History page loaded');
 
             BaseTheme.$ajaxContainer.append(data);
-
-            // Update selectors
 
             // Disappear & destroy page
             BaseTheme.formerPage = BaseTheme.page;
