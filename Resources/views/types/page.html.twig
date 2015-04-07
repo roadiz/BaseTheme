@@ -18,6 +18,22 @@
              data-meta-title="{{ pageMeta.title }}">
 		<h1>{{ nodeSource.title }}</h1>
 		<div>{{ nodeSource.content|markdown }}</div>
+		
+		<div class="page-blocks">
+			
+			{# Page blocks pattern implementation #}
+	        {% set blocks = nodeSource|children %}
+	        {% for singleBlock in blocks %}
+
+	        	<article class="page-block page-block-{{ singleBlock.node.nodeType.name|lower }}" id="block-{{ singleBlock.node.nodeName }}" 
+	        	         data-index="{{ loop.index0 }}" data-node-type="{{ singleBlock.node.nodeType.name|lower }}">
+
+	         	</article>
+	            
+	        {% endfor %}
+	        
+		</div>
+
 		<div class="image">
 			{% for document in nodeSource.images %}
 

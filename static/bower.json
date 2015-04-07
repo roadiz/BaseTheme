@@ -22,6 +22,7 @@
   "devDependencies": {
     "normalize.css": "~3.0.3",
     "jquery.actual": "~1.0.16",
-    "isMobile": "~0.3.6"
+    "isMobile": "~0.3.6",
+    "waitForImages": "~2.0.0"
   }
 }

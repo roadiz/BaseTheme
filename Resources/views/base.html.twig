@@ -3,7 +3,7 @@
 <!--[if IE 7]>         <html itemscope itemtype="http://schema.org/Article" class="no-js lt-ie9 lt-ie8" lang="{{ request.locale }}"> <![endif]-->
 <!--[if IE 8]>         <html itemscope itemtype="http://schema.org/Article" class="no-js lt-ie9" lang="{{ request.locale }}"> <![endif]-->
 <!--[if IE 9]>         <html itemscope itemtype="http://schema.org/Article" class="no-js ie9" lang="{{ request.locale }}"> <![endif]-->
-<!--[if gt IE 9]><!--> <html itemscope itemtype="http://schema.org/Article" class="no-js ie" lang="{{ request.locale }}"> <!--<![endif]-->
+<!--[if gt IE 9]><!--> <html itemscope itemtype="http://schema.org/Article" class="no-js" lang="{{ request.locale }}"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
         <title>{{ pageMeta.title }}</title>
@@ -76,8 +76,14 @@
         {% include 'modules/nav.html.twig' %}
 
         {# Add your site or application content here #}
-        {% block content %}{% endblock %}
+        <div id="main-container">
 
+            {% block content %}{% endblock %}
+
+            <div id="ajax-container"></div>
+        </div>
+        
+        {% include 'modules/footer.html.twig' %}
 
         {# Scripts #}
         

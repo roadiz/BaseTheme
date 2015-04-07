@@ -20,7 +20,8 @@ module.exports = function(grunt) {
 		"bower_components/gsap/src/minified/TweenMax.min.js",
 		"bower_components/gsap/src/minified/plugins/ScrollToPlugin.min.js",					
 		"bower_components/jquery.actual/jquery.actual.min.js",
-		"bower_components/isMobile/isMobile.min.js"
+		"bower_components/isMobile/isMobile.min.js",
+		"bower_components/waitForImages/dist/jquery.waitforimages.min.js"
 	];
 
 	var vendorFilesObject = objectify(vendorFiles);
@@ -31,6 +32,7 @@ module.exports = function(grunt) {
 		"js/pages/base-theme-abstract-page.class.js",
 		"js/pages/base-theme-page.class.js",
 		"js/pages/base-theme-project.class.js",
+		"js/blocks/base-theme-abstract-block.class.js",
 		"js/blocks/base-theme-block.class.js",
 		"js/history.class.js",		
 		"js/nav.class.js",

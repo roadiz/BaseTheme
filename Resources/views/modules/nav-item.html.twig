@@ -1,0 +1,30 @@
+{% if source.title %}
+	{% set title = source.title %}
+{% else %}
+	{% set title = source.node.nodeName %}
+{% endif %}
+{% set children = source|children %}
+
+<li class="nav-item{% if source.node.id == active.id or source.node.id == active.parent.id %} active{% endif %}{% if children|length %} has-children{% endif %}"
+	id="nav-item-{{ source.node.nodeName }}"
+	data-node-id="{{ source.node.id }}">
+
+	<a class="nav-link" id="nav-link-{{ source.node.nodeName }}" href="{{ source|url }}"
+	   data-node-type="{{ source.node.nodeType.name|lower }}" 
+       data-node-name="{{ source.node.nodeName }}"
+       data-content="{{ title }}"
+       data-title="{{ source.handler.seo.title }}">{{ title }}</a>
+
+	{% if children|length %}
+	<ul class="nav-children">
+		{% for subsource in children %}
+			{% include 'modules/nav-item.html.twig' with {
+				'source' : subsource,
+				'active' : active,
+	            'securityContext' : securityContext
+			} only %}
+		{% endfor %}
+	</ul>
+	{% endif %}
+
+</li>
