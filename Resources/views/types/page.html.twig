@@ -12,16 +12,21 @@
 {% endblock %}
 
 {% block content %}
-<h1>{{ nodeSource.title }}</h1>
-<div>{{ nodeSource.content|markdown }}</div>
-<div class="image">
-	{% for document in nodeSource.images %}
+	<section class="page-content{% if node.home %} home-content{% endif %}{% if head.ajax %} page-content-ajax{% endif %}" id="page-content-{{ node.nodeName }}"
+             data-title="{{ title }}"
+             data-node-type="{{ node.nodeType.name|lower }}"
+             data-meta-title="{{ pageMeta.title }}">
+		<h1>{{ nodeSource.title }}</h1>
+		<div>{{ nodeSource.content|markdown }}</div>
+		<div class="image">
+			{% for document in nodeSource.images %}
 
-		{% set imageMetas = document.documentTranslations.first %}
-		<figure class="uk-thumbnail">
-			{{ document|display(themeServices.imageFormats.thumbnail) }}
-			<figcaption>{{ imageMetas.name }} — {{ imageMetas.copyright }}</figcaption>
-		</figure>
-	{% endfor %}
-</div>
+				{% set imageMetas = document.documentTranslations.first %}
+				<figure class="uk-thumbnail">
+					{{ document|display(themeServices.imageFormats.thumbnail) }}
+					<figcaption>{{ imageMetas.name }} — {{ imageMetas.copyright }}</figcaption>
+				</figure>
+			{% endfor %}
+		</div>
+	</section>
 {% endblock %}
