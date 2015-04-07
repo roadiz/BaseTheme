@@ -60,7 +60,7 @@ BaseThemeHistory.prototype.boot = function(nodeType, id, context){
 
     // Page 
     if(nodeType){
-        BaseTheme.page = new window[BaseTheme.discriminatorMap[nodeType]](id, context);
+        BaseTheme.page = new window[BaseTheme.nodeTypesClasses[nodeType]](id, context);
     }
     // Static pages
     else BaseTheme.page = new BaseThemeAbstractPage(id, context);

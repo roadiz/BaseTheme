@@ -98,6 +98,8 @@ BaseTheme.init = function(){
     _this.$window.on('resize', debounce($.proxy(_this.resize, _this), 50, false));
     _this.$window.on('orientationchange', debounce($.proxy(_this.resize, _this), 50, false));
     _this.$window.trigger('resize');
+
+    gaTrackErrors();
 };
 
 
