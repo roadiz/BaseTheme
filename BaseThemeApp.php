@@ -23,7 +23,7 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class BaseThemeApp extends FrontendController
 {
-    const VERSION = '0.7.0';
+    const VERSION = '0.7.1';
 
     protected static $themeName = 'RZ Base theme';
     protected static $themeAuthor = 'REZO ZERO';
@@ -49,9 +49,7 @@ class BaseThemeApp extends FrontendController
          * Get language from static route
          */
         $translation = $this->bindLocaleFromRoute($request, $_locale);
-        $home = $this->getService('em')
-                     ->getRepository('RZ\Roadiz\Core\Entities\Node')
-                     ->findHomeWithTranslation($translation);
+        $home = $this->getHome($translation);
 
         $this->prepareThemeAssignation($home, $translation);
         /*
@@ -84,7 +82,7 @@ class BaseThemeApp extends FrontendController
 
         $this->getService('stopwatch')->start('twigRender');
         return new Response(
-            $this->getTwig()->render('404.html.twig', $this->assignation),
+            $this->getTwig()->render('@'.static::getThemeDir().'/404.html.twig', $this->assignation),
             Response::HTTP_NOT_FOUND,
             array('content-type' => 'text/html')
         );

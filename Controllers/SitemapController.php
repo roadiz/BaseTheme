@@ -41,7 +41,7 @@ class SitemapController extends BaseThemeApp
         */
 
         return new Response(
-            $this->getTwig()->render('sitemap.xml.twig', $this->assignation),
+            $this->getTwig()->render('@'.static::getThemeDir().'/sitemap.xml.twig', $this->assignation),
             Response::HTTP_OK,
             array('content-type' => 'application/xml')
         );
