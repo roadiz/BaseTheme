@@ -1,13 +1,12 @@
 # Blank Roadiz theme
 
 This theme is meant to get a **fresh start** to create a theme.
-*No node-type will be shipped and no node too.*
 
 * **Find and replace** `BaseTheme` over this folder using your own theme name
 * Rename `BaseThemeApp.php`, javascript files (`static/js/pages/` & `static/js/pages/blocks/`) and this folder according to your theme name
 * Do not forget to `npm install` in your `static` folder.
 
-A common node-type called 'Page' will be installed with this theme, his controller is located 
+A common node-type called *Page* will be installed with this theme, his controller is located 
 in `Controllers/PageController.php` and his twig template in `Resources/views/types/page.html.twig`.
 We also created a LESS (`static/css/pages/page.less`) and a javascript file (`static/js/pages/base-theme-page.class.js`) for this node-type.
 
