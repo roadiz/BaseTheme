@@ -11,6 +11,7 @@ importFiles:
     roles: []
     groups: []
     settings: []
-    nodetypes: []
+    nodetypes:
+        - "Resources/import/nodetype/Page.rzt"
     tags: []
     nodes: []

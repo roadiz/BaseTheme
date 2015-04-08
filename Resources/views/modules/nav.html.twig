@@ -14,9 +14,9 @@
 	<ul id="nav-list">
 		{% for cnode in themeServices.navigation %}
 			{% set source = cnode.nodeSources.first %}
-			{% include '@BaseTheme/modules/navigationElement.html.twig' with {
-				"source" : source,
-				"active" : node,
+			{% include '@BaseTheme/modules/nav-item.html.twig' with {
+				'source' : source,
+				'active' : node,
 				'securityContext':securityContext,
 				'themeServices':themeServices
 			} only %}

@@ -16,8 +16,23 @@ BaseTheme.windowSize = {
 
 BaseTheme.firstResize = true;
 
+BaseTheme.$nav = null;
+BaseTheme.nav = null;
+
 BaseTheme.isMobile = false;
 BaseTheme.isIE = false;
+
+BaseTheme.page = null;
+BaseTheme.formerPage = null;
+
+BaseTheme.nodeTypesClasses = {
+    'page' : 'BaseThemePage',
+    'project' : 'BaseThemeProject',
+    'blockbasic' : 'BaseThemeBlockBasic'
+};
+
+BaseTheme.$ajaxContainer = null;
+BaseTheme.ajaxEnabled = true;
 
 
 /**
@@ -50,13 +65,18 @@ BaseTheme.init = function(){
     _this.$window = $(window);
     _this.$body = $('body');
 
+    _this.$ajaxContainer = $('#ajax-container');
+
+    // Set first window size
     var viewport = getViewportSize();
 
-    _this.windowWidth = viewport.width;
-    _this.windowHeight = viewport.height;
+    _this.windowSize = {
+        width : viewport.width,
+        height : viewport.height
+    };
 
     // isMobile test
-    _this.isMobile = (isMobile.any() === null) ? false : true;
+    _this.isMobile = (isMobile.any === false) ? false : true;
     if(_this.isMobile) addClass(_this.$body[0],'is-mobile');
 
     // IE Test
@@ -65,21 +85,21 @@ BaseTheme.init = function(){
         addClass(_this.$body[0],'ie');
     }
 
+    // History
+    _this.history = new BaseThemeHistory();
+    _this.history.boot(_this.$body[0].getAttribute('data-node-type'), _this.$body[0].id, 'static');
+
+    // Nav
+    _this.$nav = $('#nav');
+    if(_this.$nav.length) _this.nav = new BaseThemeNav();
+
+
     // Events
-    _this.$window.on('resize', $.proxy(_this.windowResize, _this));
-    _this.$window.on('orientationchange', $.proxy(_this.windowResize, _this));
+    _this.$window.on('resize', debounce($.proxy(_this.resize, _this), 50, false));
+    _this.$window.on('orientationchange', debounce($.proxy(_this.resize, _this), 50, false));
     _this.$window.trigger('resize');
-};
 
-
-/**
- * Window resize event
- * @return {[type]} [description]
- */
-BaseTheme.windowResize = function(e){
-    var _this = this;
-
-    requestAnimFrame($.proxy(_this.resize, _this));
+    gaTrackErrors();
 };
 
 
@@ -90,16 +110,20 @@ BaseTheme.windowResize = function(e){
 BaseTheme.resize = function(){
     var _this = this;
 
+    console.log('-> Resize');
+
     // Check is sizes has changed
     var viewport = getViewportSize();
 
-    if(viewport.width !== windowSize.width || windowSize.height !== windowSize.height || _this.firstResize){
+    if(viewport.width !== _this.windowSize.width || viewport.height !== _this.windowSize.height || _this.firstResize){
 
         _this.windowSize = getViewportSize();
 
+        console.log('ww : '+_this.windowSize.width);
+        console.log('wh : '+_this.windowSize.height);
+
         if(_this.firstResize) _this.firstResize = false;
     }
-
 };
 
 
