@@ -31,6 +31,6 @@ class ExampleController extends BaseThemeApp
         $this->prepareThemeAssignation($node, $translation);
         $this->getService('stopwatch')->start('twigRender');
 
-        return $this->render('types/example.html.twig', $this->assignation, static::getThemeDir());
+        return $this->render('types/example.html.twig', $this->assignation, null, static::getThemeDir());
     }
 }
