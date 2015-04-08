@@ -70,7 +70,7 @@
         <script src="{{ head.resourcesUrl }}js/vendor/modernizr.custom.71331.js"></script>
 
     </head>
-    <body {% block body_attributes %}{% if node %}class="{{ node.nodeType.name }} {{ node.nodeName }}" id="{{ node.nodeName }}"{% endif %}{% endblock %}>
+    <body {% block body_attributes %}{% if node %}class="{{ node.nodeType.name }} {{ node.nodeName }} {{ nodeSource.translation.locale }}" id="{{ node.nodeName }}"{% endif %}{% endblock %}>
 
         <!--[if lt IE 8]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
