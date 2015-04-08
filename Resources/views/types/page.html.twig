@@ -1,4 +1,4 @@
-{% extends head.ajax ? 'base.ajax.twig' : 'base.html.twig' %}
+{% extends head.ajax ? '@BaseTheme/base.ajax.twig' : '@BaseTheme/base.html.twig' %}
 
 {% set headerImages = nodeSource.headerImage %}
 {% block header %}

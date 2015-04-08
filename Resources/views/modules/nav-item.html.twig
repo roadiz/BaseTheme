@@ -18,7 +18,7 @@
 	{% if children|length %}
 	<ul class="nav-children">
 		{% for subsource in children %}
-			{% include 'modules/nav-item.html.twig' with {
+			{% include '@BaseTheme/modules/nav-item.html.twig' with {
 				'source' : subsource,
 				'active' : active,
 	            'securityContext' : securityContext

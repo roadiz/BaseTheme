@@ -69,11 +69,11 @@
         <script src="{{ head.resourcesUrl }}js/vendor/modernizr.custom.71331.js"></script>
 
     </head>
-    <body {% block body_attributes %}{% if node %}class="{{ node.nodeType.name|lower }} {{ node.nodeName }}" id="{{ node.nodeName }}" data-node-type="{{ node.nodeType.name|lower }}"{% endif %}{% endblock %}>
+    <body {% block body_attributes %}{% if node %}class="{{ node.nodeType.name|lower }} {{ node.nodeName }} {{ nodeSource.translation.locale }}" id="{{ node.nodeName }}" data-node-type="{{ node.nodeType.name|lower }}"{% endif %}{% endblock %}>
 
         {% block header %}{% endblock %}
 
-        {% include 'modules/nav.html.twig' %}
+        {% include '@BaseTheme/modules/nav.html.twig' %}
 
         {# Add your site or application content here #}
         <div id="main-container">
@@ -83,7 +83,7 @@
             <div id="ajax-container"></div>
         </div>
         
-        {% include 'modules/footer.html.twig' %}
+        {% include '@BaseTheme/modules/footer.html.twig' %}
 
         {# Scripts #}
         
