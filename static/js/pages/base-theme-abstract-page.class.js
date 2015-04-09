@@ -84,7 +84,7 @@ BaseThemeAbstractPage.prototype.initEvents = function(){
         waitForAll: true
     });
 
-    if(_this.$link !== null) _this.$link.on('click', $.proxy(BaseTheme.history.linkClick, BaseTheme.history));
+    if(_this.$link !== null && BaseTheme.ajaxEnabled) _this.$link.on('click', $.proxy(BaseTheme.history.linkClick, BaseTheme.history));
 
     BaseTheme.$window.on('resize', debounce($.proxy(_this.onResize, _this), 100, false));
 };
@@ -97,7 +97,7 @@ BaseThemeAbstractPage.prototype.initEvents = function(){
 BaseThemeAbstractPage.prototype.destroyEvents = function(){
     var _this = this;
 
-    if(_this.$link !== null) _this.$link.off('click', $.proxy(BaseTheme.history.linkClick, BaseTheme.history));
+    if(_this.$link !== null && BaseTheme.ajaxEnabled) _this.$link.off('click', $.proxy(BaseTheme.history.linkClick, BaseTheme.history));
 
     BaseTheme.$window.off('resize', debounce($.proxy(_this.onResize, _this), 100, false));
 };
