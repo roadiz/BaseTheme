@@ -63,7 +63,9 @@
         {% for cssMin in themeServices.grunt.staticAssets.global.css %}
         <link rel="stylesheet" href="{{ head.resourcesUrl }}public{{ cssMin }}" />
         {% endfor %}
-        <link rel="stylesheet" href="{{ path('FontFaceCSS', {"token": head.fontToken}) }}" />
+        <link rel="stylesheet" href="{{ path('FontFaceCSS', {"token": head.fontToken}) }}" /> 
+        {# Dynamic styles - uncomment next line to activate it #}       
+        {#  <link rel="stylesheet" href="{{ path('CssDynamicStyles') }}"> #}  
 
         {# --- Modernizr --- #}
         <script src="{{ head.resourcesUrl }}js/vendor/modernizr.custom.71331.js"></script>
