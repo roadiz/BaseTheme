@@ -37,7 +37,7 @@ BaseThemeNav.prototype.init = function(){
 BaseThemeNav.prototype.initEvents = function(){
     var _this = this;
 
-    _this.$link.on('click', $.proxy(BaseTheme.history.linkClick, BaseTheme.history));
+    if(_this.$link.length && BaseTheme.ajaxEnabled) _this.$link.on('click', $.proxy(BaseTheme.history.linkClick, BaseTheme.history));
 
     BaseTheme.$window.on('resize', debounce($.proxy(_this.resize, _this), 100, false));
 };
@@ -50,7 +50,7 @@ BaseThemeNav.prototype.initEvents = function(){
 BaseThemeNav.prototype.destroyEvents = function(){
     var _this = this;
 
-    _this.$link.off('click', $.proxy(BaseTheme.history.linkClick, BaseTheme.history));
+    if(_this.$link.length && BaseTheme.ajaxEnabled) _this.$link.off('click', $.proxy(BaseTheme.history.linkClick, BaseTheme.history));
 
     BaseTheme.$window.off('resize', debounce($.proxy(_this.resize, _this), 100, false));
 };
