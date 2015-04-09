@@ -79,7 +79,7 @@ module.exports = function(grunt) {
 				files:
 				{
 					"dist/vendor.min.css" : "css/vendor.less",
-				 	"dist/style.min.css" : "css/style.less"
+					"dist/style.min.css" : "css/style.less"
 				}
 			},
 			production: {
@@ -92,7 +92,7 @@ module.exports = function(grunt) {
 				files:
 				{
 					"dist/vendor.min.css" : "css/vendor.less",
-				 	"dist/style.min.css" : "css/style.less"
+					"dist/style.min.css" : "css/style.less"
 				}
 			}
 		},
@@ -116,7 +116,7 @@ module.exports = function(grunt) {
 				'Gruntfile.js',
 				'js/*.js',
 				'js/*/*.js',
-		    	'!dist/*.js',
+				'!dist/*.js',
 				'!js/plugins.js',
 				'!js/vendor/*.js'
 			]
@@ -159,8 +159,8 @@ module.exports = function(grunt) {
 					{
 						assets: [
 							{
-								src:['dist/style.min.css'],
-								dest:'dist/style.min.css'
+								src:['dist/vendor.min.css'],
+								dest:'dist/vendor.min.css'
 							}
 						],
 						key: 'global',
@@ -171,8 +171,8 @@ module.exports = function(grunt) {
 					{
 						assets: [
 							{
-								src:['dist/vendor.min.css'],
-								dest:'dist/vendor.min.css'
+								src:['dist/style.min.css'],
+								dest:'dist/style.min.css'
 							}
 						],
 						key: 'global',
@@ -185,19 +185,18 @@ module.exports = function(grunt) {
 			production: {
 				files: [{
 					assets: [{
-			            src: [ 'dist/<%= pkg.name %>.min.js' ],
-			            dest:'dist/<%= pkg.name %>.min.js' 
-			        }],
+						src: [ 'dist/<%= pkg.name %>-vendor.min.js' ],
+						dest:'dist/<%= pkg.name %>-vendor.min.js' 
+					}],
 					key: 'global',
 					dest: '',
 					type: 'js',
 					ext: '.min.js'
-				}, 
-				{
+				},{
 					assets: [{
-			            src: [ 'dist/<%= pkg.name %>-vendor.min.js' ],
-			            dest:'dist/<%= pkg.name %>-vendor.min.js' 
-			        }],
+						src: [ 'dist/<%= pkg.name %>.min.js' ],
+						dest:'dist/<%= pkg.name %>.min.js' 
+					}],
 					key: 'global',
 					dest: '',
 					type: 'js',
@@ -205,19 +204,18 @@ module.exports = function(grunt) {
 				},
 				{
 					assets: [{
-			            src: [ 'dist/style.min.css' ],
-			            dest:'dist/style.min.css' 
-			        }],
+						src: [ 'dist/vendor.min.css' ],
+						dest:'dist/vendor.min.css' 
+					}],
 					key: 'global',
 					dest: '',
 					type: 'css',
 					ext: '.css'
-				},
-				{
+				},{
 					assets: [{
-			            src: [ 'dist/vendor.min.css' ],
-			            dest:'dist/vendor.min.css' 
-			        }],
+						src: [ 'dist/style.min.css' ],
+						dest:'dist/style.min.css' 
+					}],
 					key: 'global',
 					dest: '',
 					type: 'css',
