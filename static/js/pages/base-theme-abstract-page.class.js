@@ -29,6 +29,7 @@ BaseThemeAbstractPage.prototype.init = function(id, context){
     _this.$cont = $('#page-content-'+_this.id);
 
     if(_this.$cont.length) _this.$link = _this.$cont.find('a').not('[target="_blank"]');
+    else _this.$link = null;
 
     // Blocks
     _this.blocks = [];
@@ -83,7 +84,7 @@ BaseThemeAbstractPage.prototype.initEvents = function(){
         waitForAll: true
     });
 
-    _this.$link.on('click', $.proxy(BaseTheme.history.linkClick, BaseTheme.history));
+    if(_this.$link !== null) _this.$link.on('click', $.proxy(BaseTheme.history.linkClick, BaseTheme.history));
 
     BaseTheme.$window.on('resize', debounce($.proxy(_this.onResize, _this), 100, false));
 };
@@ -96,7 +97,7 @@ BaseThemeAbstractPage.prototype.initEvents = function(){
 BaseThemeAbstractPage.prototype.destroyEvents = function(){
     var _this = this;
 
-    _this.$link.off('click', $.proxy(BaseTheme.history.linkClick, BaseTheme.history));
+    if(_this.$link !== null) _this.$link.off('click', $.proxy(BaseTheme.history.linkClick, BaseTheme.history));
 
     BaseTheme.$window.off('resize', debounce($.proxy(_this.onResize, _this), 100, false));
 };
@@ -136,7 +137,7 @@ BaseThemeAbstractPage.prototype.show = function(callback){
 
     // Animate
     TweenLite.to(_this.$cont, 0.6, {opacity:1, onComplete:function(){
-         BaseTheme.history.transition = false;
+        BaseTheme.history.transition = false;
 
         if(typeof callback !== 'undefined'){
             callback();
