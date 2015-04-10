@@ -51,15 +51,15 @@ class BaseThemeApp extends FrontendController
         $translation = $this->bindLocaleFromRoute($request, $_locale);
         $home = $this->getHome($translation);
 
-        $this->prepareThemeAssignation($home, $translation);
         /*
          * Use home page node-type to render it.
          */
-        return $this->handle($request);
+        return $this->handle($request, $home, $translation);
 
         /*
          * Render Homepage manually
          */
+        // $this->prepareThemeAssignation($home, $translation);
         // return new Response(
         //     $this->getTwig()->render('home.html.twig', $this->assignation),
         //     Response::HTTP_OK,
@@ -107,7 +107,7 @@ class BaseThemeApp extends FrontendController
 
         $this->themeContainer['grunt'] = function ($c) {
             return include dirname(__FILE__) . '/static/public/config/assets.config.php';
-        };        
+        };
 
         $this->assignation['themeServices'] = $this->themeContainer;
 
