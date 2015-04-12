@@ -77,7 +77,7 @@ class BaseThemeApp extends FrontendController
     public function throw404($message = '')
     {
         $this->prepareThemeAssignation(null, null);
-
+        $this->getService('logger')->error($message);
         $this->assignation['errorMessage'] = $message;
 
         $this->getService('stopwatch')->start('twigRender');
