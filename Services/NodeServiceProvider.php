@@ -37,15 +37,14 @@ class NodeServiceProvider implements ServiceProviderInterface
 
             if ($this->translation === null) {
                 $this->translation = $this->coreServices['em']
-                     ->getRepository('RZ\Roadiz\Core\Entities\Translation')
-                     ->findDefault();
+                ->getRepository('RZ\Roadiz\Core\Entities\Translation')
+                ->findDefault();
             }
-            
+
             return $this->coreServices['em']
             ->getRepository('RZ\Roadiz\Core\Entities\Node')
             ->findHomeWithTranslation($this->translation);
         };
-
 
         /*
          * Register Main navigation

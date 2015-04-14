@@ -82,7 +82,7 @@ class BaseThemeApp extends FrontendController
 
         $this->getService('stopwatch')->start('twigRender');
         return new Response(
-            $this->getTwig()->render('@'.static::getThemeDir().'/404.html.twig', $this->assignation),
+            $this->getTwig()->render('@' . static::getThemeDir() . '/404.html.twig', $this->assignation),
             Response::HTTP_NOT_FOUND,
             array('content-type' => 'text/html')
         );
@@ -101,7 +101,7 @@ class BaseThemeApp extends FrontendController
         /*
          * Register services
          */
-        $this->themeContainer->register(new \Themes\BaseTheme\Services\NodeServiceProvider($this->getService(), $this->translation));
+        $this->themeContainer->register(new \Themes\BaseTheme\Services\NodeServiceProvider($this->getContainer(), $this->translation));
         $this->themeContainer->register(new \Themes\BaseTheme\Services\NodeTypeServiceProvider($this->getService('nodeTypeApi')));
         $this->themeContainer->register(new \Themes\BaseTheme\Services\SLIRServiceProvider());
 

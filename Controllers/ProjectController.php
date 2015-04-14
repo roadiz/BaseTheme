@@ -11,12 +11,10 @@
 
 namespace Themes\BaseTheme\Controllers;
 
-use Themes\BaseTheme\BaseThemeApp;
 use RZ\Roadiz\Core\Entities\Node;
 use RZ\Roadiz\Core\Entities\Translation;
-
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Themes\BaseTheme\BaseThemeApp;
 
 /**
  * ProjectController class
