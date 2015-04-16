@@ -76,7 +76,11 @@ class BaseThemeApp extends FrontendController
      */
     public function throw404($message = '')
     {
-        $this->prepareThemeAssignation(null, null);
+        $this->translation = $this->getService('em')
+                            ->getRepository('RZ\Roadiz\Core\Entities\Translation')
+                            ->findDefault();
+
+        $this->prepareThemeAssignation(null, $this->translation);
         $this->getService('logger')->error($message);
         $this->assignation['errorMessage'] = $message;
 
