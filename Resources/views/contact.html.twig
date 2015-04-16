@@ -10,17 +10,17 @@
     {% if session.messages|length %}
         {% for type, msgs in session.messages %}
             {% for msg in msgs %}
-                <div data-uk-alert class="uk-alert uk-alert-{% if type == "confirm" %}success{% elseif type == "warning" %}warning{% else %}danger{% endif %}">
-                    <a href="" class="uk-alert-close uk-close"></a>
+                <div class="alert alert-{% if type == "confirm" %}success{% elseif type == "warning" %}warning{% else %}danger{% endif %}">
+                    <a href="" class="alert-close close"></a>
                     <p>{{ msg }}</p>
                 </div>
             {% endfor %}
         {% endfor %}
     {% endif %}
     {#
-     # Display contact form
+     # Display contact form with default symfony bootstrap theme
      #}
-    {% form_theme contactForm '@BaseTheme/forms.html.twig' %}
+    {% form_theme contactForm 'bootstrap_3_layout.html.twig' %}
     {{ form(contactForm) }}
 </article>
 
