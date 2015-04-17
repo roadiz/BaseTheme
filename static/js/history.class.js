@@ -59,7 +59,7 @@ BaseThemeHistory.prototype.boot = function(nodeType, id, context){
     // console.log('Boot '+nodeType+' - '+id);
 
     // Page 
-    if(nodeType){
+    if(nodeType && typeof BaseTheme.nodeTypesClasses[nodeType] !== 'undefined'){
         BaseTheme.page = new window[BaseTheme.nodeTypesClasses[nodeType]](id, context);
     }
     // Static pages
