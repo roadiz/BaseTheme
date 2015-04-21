@@ -142,10 +142,6 @@
   .transform(rotate(@deg));
 }
 
-// .perspective(@perspective:500px){
-//   .transform(perspective(@perspective));
-// }
-
 .scale(@ratio:1.5){
   .transform(scale(@ratio));
 }
@@ -172,15 +168,6 @@
   -o-transition:      @arguments;
   transition:         @arguments;
 }
-
-/* BAD to transition over ALL propeties !
-.transition(@duration:0.2s, @ease:ease-in-out) {
-  -webkit-transition: all @duration @ease;
-  -moz-transition: all @duration @ease;
-  -o-transition: all @duration @ease;
-  transition: all @duration @ease;
-}
-*/
 
 .transition-duration(@duration: 0.2s) {
   -moz-transition-duration:    @duration;
@@ -289,6 +276,13 @@
   -webkit-background-size: @type;
   background-size: @type;
   -ms-behavior: url(/backgroundsize.min.htc);
+}
+
+.flex() {
+  display: -ms-flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: flex;
 }
 
 .default-appearence() {
