@@ -14,6 +14,16 @@
         {# This will enable mobile viewports #}
         <!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
 
+        {#
+           HrefLang alternate url (Google suggestion), to activate ONLY if there
+           are more than 1 translation for your website
+        #}
+        {% if translation %}
+        {% for id, key in translation.viewer.translationMenuAssignation(request, true) %}
+        <link rel="alternate" href="{{ key.url }}" hreflang="{{ id }}" />
+        {% endfor %}
+        {% endif %}
+
         {# --- Favicons --- #}
         <link rel="apple-touch-icon" sizes="57x57" href="{{ head.resourcesUrl }}img/favicons/apple-touch-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="{{ head.resourcesUrl }}img/favicons/apple-touch-icon-60x60.png">
