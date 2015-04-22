@@ -152,6 +152,9 @@ BaseThemeHistory.prototype.loadPage = function(e, state){
             // Update nav
             BaseTheme.nav.update(state);
 
+            // Update body id
+            Jaa.$body[0].id = state.nodeName;
+
             // Analytics
             if(typeof ga !== "undefined") ga('send', 'pageview', {'page':state.href, 'title':document.title});
         }
