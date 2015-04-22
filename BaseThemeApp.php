@@ -23,17 +23,17 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class BaseThemeApp extends FrontendController
 {
-    const VERSION = '0.7.0';
+    const VERSION = '0.7.1';
 
     protected static $themeName = 'RZ Base theme';
     protected static $themeAuthor = 'REZO ZERO';
     protected static $themeCopyright = 'REZO ZERO';
     protected static $themeDir = 'BaseTheme';
     protected static $backendTheme = false;
-    protected static $specificNodesControllers = array(
+    protected static $specificNodesControllers = [
         // Put here your nodes which need a specific controller
         // instead of a node-type controller
-    );
+    ];
 
     /**
      * {@inheritdoc}
@@ -49,19 +49,17 @@ class BaseThemeApp extends FrontendController
          * Get language from static route
          */
         $translation = $this->bindLocaleFromRoute($request, $_locale);
-        $home = $this->getService('em')
-                     ->getRepository('RZ\Roadiz\Core\Entities\Node')
-                     ->findHomeWithTranslation($translation);
+        $home = $this->getHome($translation);
 
-        $this->prepareThemeAssignation($home, $translation);
         /*
          * Use home page node-type to render it.
          */
-        return $this->handle($request);
+        return $this->handle($request, $home, $translation);
 
         /*
          * Render Homepage manually
          */
+        // $this->prepareThemeAssignation($home, $translation);
         // return new Response(
         //     $this->getTwig()->render('home.html.twig', $this->assignation),
         //     Response::HTTP_OK,
@@ -78,13 +76,17 @@ class BaseThemeApp extends FrontendController
      */
     public function throw404($message = '')
     {
-        $this->prepareThemeAssignation(null, null);
+        $this->translation = $this->getService('em')
+                            ->getRepository('RZ\Roadiz\Core\Entities\Translation')
+                            ->findDefault();
 
+        $this->prepareThemeAssignation(null, $this->translation);
+        $this->getService('logger')->error($message);
         $this->assignation['errorMessage'] = $message;
 
         $this->getService('stopwatch')->start('twigRender');
         return new Response(
-            $this->getTwig()->render('404.html.twig', $this->assignation),
+            $this->getTwig()->render('@' . static::getThemeDir() . '/404.html.twig', $this->assignation),
             Response::HTTP_NOT_FOUND,
             array('content-type' => 'text/html')
         );
@@ -100,37 +102,15 @@ class BaseThemeApp extends FrontendController
     {
         parent::prepareThemeAssignation($node, $translation);
 
-        $this->themeContainer['navigation'] = function ($c) {
-            return $this->assignMainNavigation();
-        };
+        /*
+         * Register services
+         */
+        $this->themeContainer->register(new \Themes\BaseTheme\Services\NodeServiceProvider($this->getContainer(), $this->translation));
+        $this->themeContainer->register(new \Themes\BaseTheme\Services\NodeTypeServiceProvider($this->getService('nodeTypeApi')));
+        $this->themeContainer->register(new \Themes\BaseTheme\Services\SLIRServiceProvider());
 
         $this->themeContainer['grunt'] = function ($c) {
             return include dirname(__FILE__) . '/static/public/config/assets.config.php';
-        };
-
-        $this->themeContainer['node.home'] = function ($c) {
-            return $this->getHome($this->translation);
-        };
-
-        $this->themeContainer['imageFormats'] = function ($c) {
-            $array = array();
-
-            /*
-             * Common image format for pages headers
-             */
-            $array['headerImage'] = array(
-                'width' => 1024,
-                'crop' => '1024x200',
-            );
-
-            $array['thumbnail'] = array(
-                "width" => 600,
-                "crop" => "16x9",
-                "controls" => true,
-                "embed" => true,
-            );
-
-            return $array;
         };
 
         $this->assignation['themeServices'] = $this->themeContainer;
@@ -147,34 +127,5 @@ class BaseThemeApp extends FrontendController
 
         // Get session messages
         $this->assignation['session']['messages'] = $this->getService('session')->getFlashBag()->all();
-    }
-
-    /**
-     * @return RZ\Roadiz\Core\Entities\Node
-     */
-    protected function assignMainNavigation()
-    {
-        if ($this->translation === null) {
-            $this->translation = $this->getService('em')
-                 ->getRepository('RZ\Roadiz\Core\Entities\Translation')
-                 ->findDefault();
-        }
-
-        $parent = $this->themeContainer['node.home'];
-
-        if ($parent !== null) {
-            return $this->getService('nodeApi')
-                        ->getBy(
-                            [
-                                // Get children nodes from Homepage
-                    // use parent => $this->getRoot() to get root nodes instead
-                    'parent' => $parent,
-                                'translation' => $this->translation,
-                            ],
-                            ['position' => 'ASC']
-                        );
-        }
-
-        return null;
     }
 }

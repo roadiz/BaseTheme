@@ -1,0 +1,43 @@
+/*------------------------------------*\
+   BROWSER UPDATE
+\*------------------------------------*/
+
+
+/*
+ * Styles for browser update bar
+ */
+
+@browserUpdateBgColor : #EEEEEE;
+@browserUpdateColorLink : @color;
+
+body .buorg {
+    position:fixed;
+    top:0; right:0; left:0;
+    border-bottom:none;
+    background: @browserUpdateBgColor;
+    color: @color;
+    font-size:14px; line-height:16px;
+    text-align:center;
+    cursor:default;
+
+    div{
+        padding:12px 20px;
+    }
+
+    a, a:visited{
+        color:@browserUpdateColorLink;
+        text-decoration: none;
+        border-bottom:1px dashed @browserUpdateColorLink;
+
+        &:hover{
+            border-bottom:none;
+        }
+    }
+}
+
+body #buorgclose {
+    position: absolute;
+    top:50%; right: 20px;
+    margin-top:-7px;
+    cursor: pointer;
+}

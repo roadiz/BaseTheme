@@ -11,9 +11,12 @@
 // --- Base --- //
 
 @import "base/elements.less";
-@import "base/normalize.less";
 @import "base/easing.less";
-@import "base/boilerplate.less";
+
+
+// --- Bootstrap --- //
+
+@import "../bower_components/bootstrap/less/variables.less";
 
 
 // --- Common --- //
@@ -38,15 +41,9 @@
 
 // --- Widgets --- //
 
-@import "widgets/debugpanel.less";
-
-
-// --- Responsive --- //
-
-/* Width < 1024 */
-// @media screen and (max-width: 1024px) {
-//     @import url("responsive/max-1024.less");
-// }
+@import "widgets/debug-panel.less";
+@import "widgets/cookies-choices.less";
+@import "widgets/browser-update.less";
 
 
 // --- Alternative --- //

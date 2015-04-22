@@ -1,22 +1,22 @@
 {% if themeServices.navigation|length %}
-<nav id="nav" data-active-node="{{ node.id }}">
+<nav class="navbar navbar-default" id="nav" data-active-node="{{ node.id }}">
 
 	{#
 	 #  Home with a node
 	 #}
 	{% if home %}
-		<a href="{{ home.handler.url }}" class="nav-link" id="nav-home">{{ meta.siteName }}</a>
+	<a href="{{ home|url }}" class="navbar-brand nav-link" id="nav-home">{{ meta.siteName }}</a>
 	{% endif %}
 
 	{#
 	 # Main navigation
 	 #}
-	<ul id="nav-list">
+	<ul class="nav navbar-nav" id="nav-list">
 		{% for cnode in themeServices.navigation %}
 			{% set source = cnode.nodeSources.first %}
-			{% include 'modules/navigationElement.html.twig' with {
-				"source" : source,
-				"active" : node,
+			{% include '@BaseTheme/modules/nav-item.html.twig' with {
+				'source' : source,
+				'active' : node,
 				'securityContext':securityContext,
 				'themeServices':themeServices
 			} only %}

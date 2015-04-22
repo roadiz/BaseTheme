@@ -9,6 +9,10 @@ homePageLocale:
         # Use every 2 letter codes (quick and dirty)
         _locale: "[a-z]{2}"
 
+CssDynamicStyles:
+    path:     /css/dynamic-styles.css
+    defaults: { _controller: Themes\BaseTheme\Controllers\CssController::stylesAction }
+
 sitemap:
     path:     /sitemap.xml
     defaults: { _controller: Themes\BaseTheme\Controllers\SitemapController::sitemapAction }

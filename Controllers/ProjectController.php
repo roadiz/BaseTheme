@@ -1,9 +1,10 @@
 <?php
 /*
- * Copyright REZO ZERO 2015
+ * Copyright REZO ZERO 2014
  *
+ * Project
  *
- * @file ExampleController.php
+ * @file ProjectController.php
  * @copyright REZO ZERO 2015
  * @author Ambroise Maupate
  */
@@ -16,9 +17,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Themes\BaseTheme\BaseThemeApp;
 
 /**
- * ExampleController class
+ * ProjectController class
  */
-class ExampleController extends BaseThemeApp
+class ProjectController extends BaseThemeApp
 {
     /**
      * {@inheritdoc}
@@ -28,9 +29,11 @@ class ExampleController extends BaseThemeApp
         Node $node = null,
         Translation $translation = null
     ) {
+
         $this->prepareThemeAssignation($node, $translation);
+
         $this->getService('stopwatch')->start('twigRender');
 
-        return $this->render('types/example.html.twig', $this->assignation);
+        return $this->render('types/page.html.twig', $this->assignation);
     }
 }

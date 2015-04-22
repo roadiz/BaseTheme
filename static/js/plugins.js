@@ -4,31 +4,6 @@
  * ============================================================================
  */
 
-/**
- * Check if device is mobile or not.
- * @type {Object}
- */
-var isMobile = {
-    Android: function() {
-        return navigator.userAgent.match(/Android/i);
-    },
-    BlackBerry: function() {
-        return navigator.userAgent.match(/BlackBerry/i);
-    },
-    iOS: function() {
-        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-    },
-    Opera: function() {
-        return navigator.userAgent.match(/Opera Mini/i);
-    },
-    Windows: function() {
-        return navigator.userAgent.match(/IEMobile/i);
-    },
-    any: function() {
-        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
-    }
-};
-
 
 /**
  * Check if an element is set.
@@ -41,6 +16,37 @@ var isset = function(element) {
     }
     return false;
 };
+
+
+/**
+ * Debounce 
+ * Returns a function, that, as long as it continues to be invoked, will not
+ * be triggered. The function will be called after it stops being called for
+ * N milliseconds. If `immediate` is passed, trigger the function on the
+ * leading edge, instead of the trailing.
+ *
+ * http://davidwalsh.name/javascript-debounce-function
+ * 
+ * @param  {[function]} func     [function to debounce]
+ * @param  {[Number]} wait       [time to wait]
+ * @param  {[boolean]} immediate []
+ * @return {[type]}           [description]
+ */
+function debounce(func, wait, immediate) {
+    var timeout;
+    return function() {
+        var context = this, args = arguments;
+        var later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+};
+
 
 /**
  * Match CSS media queries and JavaScript window width.
@@ -204,19 +210,67 @@ var replacePlaceholder = function() {
 
 
 /**
+ * Tracks errors with Analytics
+ * http://blog.gospodarets.com/track_javascript_angularjs_and_jquery_errors_with_google_analytics/
+ * @return {[type]} [description]
+ */
+var gaTrackErrors = function(){
+
+    if(typeof ga !== 'undefined'){
+
+        // Pure JavaScript errors handler
+        window.addEventListener('error', function (err) {
+            var lineAndColumnInfo = err.colno ? ' line:' + err.lineno +', column:'+ err.colno : ' line:' + err.lineno;
+            ga(
+                'send',
+                'event',
+                'JavaScript Error',
+                err.message,
+                err.filename + lineAndColumnInfo + ' -> ' +  navigator.userAgent,
+                0,
+                true
+            );
+        });
+
+        // jQuery errors handler (jQuery API)
+        jQuery.error = function (message) {
+            ga(
+                'send',
+                'event',
+                'jQuery Error',
+                message,
+                navigator.userAgent,
+                0,
+                true
+            );
+        }
+
+        // jQuery AJAX errors handler (jQuery API)
+        $(document).ajaxError(function (event, request, settings) {
+            ga(
+                'send',
+                'event',
+                'jQuery Ajax Error',
+                settings.url,
+                JSON.stringify({
+                    result: event.result,
+                    status: request.status,
+                    statusText: request.statusText,
+                    crossDomain: settings.crossDomain,
+                    dataType: settings.dataType
+                }),
+                0,
+                true
+            );
+        });
+    }
+};
+
+
+/**
  * JS / jQuery helper & plugins
  */
 
 // --- jQuery Spamless --- //
 (function($){$.fn.dcSpamless=function(options){var defaults={reverse:true,splitDomain:'[dot]',splitName:'[at]',mailto:true};var options=$.extend(defaults,options);return this.each(function(options){var domain=defaults.splitDomain,name=defaults.splitName;var email=$(this).is('a')?$(this).attr('href').replace('mailto:','').replace(domain,'.').replace(name,'@'):$(this).text().replace(domain,'.').replace(name,'@');email=defaults.reverse == true?email.split('').reverse().join(''):email;if($(this).is('a')){$(this).attr('href','mailto:'+email)}else{if(defaults.mailto===true){email='<a href="mailto:'+email+'">'+email+'</a>'}$(this).html(email)}})}})(jQuery);
-
-
-// Actual
-(function(a){a.fn.addBack=a.fn.addBack||a.fn.andSelf;
-a.fn.extend({actual:function(b,l){if(!this[b]){throw'$.actual => The jQuery method "'+b+'" you called does not exist';}var f={absolute:false,clone:false,includeMargin:false};
-var i=a.extend(f,l);var e=this.eq(0);var h,j;if(i.clone===true){h=function(){var m="position: absolute !important; top: -1000 !important; ";e=e.clone().attr("style",m).appendTo("body");
-};j=function(){e.remove();};}else{var g=[];var d="";var c;h=function(){c=e.parents().addBack().filter(":hidden");d+="visibility: hidden !important; display: block !important; ";
-if(i.absolute===true){d+="position: absolute !important; ";}c.each(function(){var m=a(this);var n=m.attr("style");g.push(n);m.attr("style",n?n+";"+d:d);
-});};j=function(){c.each(function(m){var o=a(this);var n=g[m];if(n===undefined){o.removeAttr("style");}else{o.attr("style",n);}});};}h();var k=/(outer)/.test(b)?e[b](i.includeMargin):e[b]();
-j();return k;}});})(jQuery);
 
