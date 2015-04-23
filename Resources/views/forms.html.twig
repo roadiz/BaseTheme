@@ -33,12 +33,13 @@
         {% if label is empty -%}
             {% set label = name|humanize %}
         {%- endif -%}
-        <label class="uk-form-label"{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label>
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' uk-form-label')|trim}) %}
+        <label {% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label>
     {%- endif %}
 {%- endblock form_label %}
 
 {% block form_widget_compound -%}
-    <div class="data-uk-margin" {{ block('widget_container_attributes') }}>
+    <div class="data-uk-margin">
         {%- if form.parent is empty -%}
             {{ form_errors(form) }}
         {%- endif -%}
