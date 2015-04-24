@@ -21,7 +21,8 @@ module.exports = function(grunt) {
         "bower_components/gsap/src/minified/plugins/ScrollToPlugin.min.js",
         "bower_components/jquery.actual/jquery.actual.min.js",
         "bower_components/isMobile/isMobile.min.js",
-        "bower_components/waitForImages/dist/jquery.waitforimages.min.js"
+        "bower_components/waitForImages/dist/jquery.waitforimages.min.js",
+        "bower_components/bootstrap/js/collapse.js"
     ];
 
     var vendorFilesObject = objectify(vendorFiles);

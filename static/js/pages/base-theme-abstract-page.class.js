@@ -119,7 +119,7 @@ BaseThemeAbstractPage.prototype.onLoad = function(e){
 
     // Hide loading
     setTimeout(function(){
-        
+
     }, delay);
 
     // Show
@@ -141,7 +141,7 @@ BaseThemeAbstractPage.prototype.show = function(callback){
 
         if(typeof callback !== 'undefined'){
             callback();
-        } 
+        }
     }});
 };
 
@@ -187,7 +187,9 @@ BaseThemeAbstractPage.prototype.initBlocks = function(){
     for(var blockIndex = 0; blockIndex < _this.blockLength; blockIndex++) {
         var nodeType = _this.$block[blockIndex].getAttribute('data-node-type'),
             id = _this.$block[blockIndex].id;
-        _this.blocks[blockIndex] = new window[BaseTheme.nodeTypesClasses[nodeType]](id);
+        if (typeof BaseTheme.nodeTypesClasses[nodeType] !== "undefined") {
+            _this.blocks[blockIndex] = new window[BaseTheme.nodeTypesClasses[nodeType]](id);
+        }
     }
 };
 
