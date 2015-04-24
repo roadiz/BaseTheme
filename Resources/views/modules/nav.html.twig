@@ -5,18 +5,19 @@
 	 #  Home with a node
 	 #}
 	{% if home %}
-	<a href="{{ home|url }}" class="navbar-brand nav-link" id="nav-home">{{ meta.siteName }}</a>
+	{% set homeSource = home.nodeSources.first %}
+	<a href="{{ homeSource|url }}" class="navbar-brand nav-link" id="nav-home">{{ homeSource.title }}</a>
 	{% endif %}
 
 	{#
 	 # Main navigation
 	 #}
 	<ul class="nav navbar-nav" id="nav-list">
-		{% for cnode in themeServices.navigation %}
-			{% set source = cnode.nodeSources.first %}
+		{% for source in themeServices.navigation %}
 			{% include '@BaseTheme/modules/nav-item.html.twig' with {
 				'source' : source,
 				'active' : node,
+				'home' : home,
 				'securityContext':securityContext,
 				'themeServices':themeServices
 			} only %}

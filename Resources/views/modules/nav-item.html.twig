@@ -5,6 +5,7 @@
 {% endif %}
 {% set children = source|children %}
 
+{% if source.node != home %}
 <li class="nav-item{% if source.node.id == active.id or source.node.id == active.parent.id %} active{% endif %}{% if children|length %} dropdown has-children{% endif %}"
 	id="nav-item-{{ source.node.nodeName }}"
 	data-node-id="{{ source.node.id }}">
@@ -21,10 +22,11 @@
 			{% include '@BaseTheme/modules/nav-item.html.twig' with {
 				'source' : subsource,
 				'active' : active,
+				'home' : home,
 	            'securityContext' : securityContext
 			} only %}
 		{% endfor %}
 	</ul>
 	{% endif %}
-
 </li>
+{% endif %}
