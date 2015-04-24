@@ -176,9 +176,20 @@ var replacePlaceholder = function() {
             }
           });
         });
-
     }
+};
 
+
+/**
+ * Strip Trailing slash
+ * @param  {[type]} str [description]
+ * @return {[type]}     [description]
+ */
+var stripTrailingSlash = function(str) {
+    if(str.substr(-1) == '/') {
+        return str.substr(0, str.length - 1);
+    }
+    return str;
 };
 
 

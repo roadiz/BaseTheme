@@ -39,7 +39,7 @@ BaseThemeHistory.prototype.init = function(){
 BaseThemeHistory.prototype.onPopState = function(e) {
     var _this = this;
 
-    if (typeof e.state !== "undefined") {
+    if (typeof e.state !== "undefined" && e.state !== null) {
         // console.log('------------');
         // console.log('-> Pop state');
         // console.log(event.state);
