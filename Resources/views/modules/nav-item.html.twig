@@ -5,8 +5,16 @@
 {% endif %}
 {% set children = source|children %}
 
+{% set classes = ['nav-item'] %}
+{% if source.node.id == active.id or source.node.id == active.parent.id %}
+{% set classes = classes|merge(['active']) %}
+{% endif %}
+{% if children|length %}
+{% set classes = classes|merge(['dropdown', 'has-children']) %}
+{% endif %}
+
 {% if source.node != home %}
-<li class="nav-item{% if source.node.id == active.id or source.node.id == active.parent.id %} active{% endif %}{% if children|length %} dropdown has-children{% endif %}"
+<li class="{% for class in classes %}{{ class }} {% endfor %}"
 	id="nav-item-{{ source.node.nodeName }}"
 	data-node-id="{{ source.node.id }}">
 
