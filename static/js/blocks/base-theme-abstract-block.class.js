@@ -5,7 +5,7 @@
 var BaseThemeAbstractBlock = function(id){
     var _this = this;
 
-    _this.init(id);    
+    console.log('=> Abstract block - '+id);    
 };
 
 
@@ -13,14 +13,17 @@ var BaseThemeAbstractBlock = function(id){
  * Init
  * @return {[type]} [description]
  */
-BaseThemeAbstractBlock.prototype.init = function(id){
+BaseThemeAbstractBlock.prototype.init = function(id, type){
     var _this = this;
 
+    _this.id = id;
+    _this.type = type;
+
+    // Selectors
     _this.$cont = $('#'+id);
 
     // Events
     _this.initEvents();
-
 };
 
 

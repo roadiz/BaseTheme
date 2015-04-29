@@ -1,15 +1,11 @@
 
 /**
  * Abstract page
- * @param {[type]} id      [identifier]
- * @param {[type]} context ["static" or "ajax"]
  */
-var BaseThemeAbstractPage = function(id, context){
+var BaseThemeAbstractPage = function(id, context, type){
     var _this = this;
 
-    console.log('Page - '+id);
-
-    _this.init(id, context);
+    console.log('=> Abstract page - '+id);
 };
 
 
@@ -17,11 +13,12 @@ var BaseThemeAbstractPage = function(id, context){
  * Init
  * @return {[type]} [description]
  */
-BaseThemeAbstractPage.prototype.init = function(id, context){
+BaseThemeAbstractPage.prototype.init = function(id, context, type){
     var _this = this;
 
     _this.id = id;
     _this.context = context;
+    _this.type = type;
 
     _this.loadDurationMin = 1200; // Time for animate loader
 
@@ -54,7 +51,7 @@ BaseThemeAbstractPage.prototype.init = function(id, context){
 BaseThemeAbstractPage.prototype.destroy = function(){
     var _this = this;
 
-    // console.log('-> Page Destroy');
+    // console.log('=> Page Destroy');
 
     // --- Fade & remove --- //
     _this.$cont.remove();
@@ -110,7 +107,7 @@ BaseThemeAbstractPage.prototype.destroyEvents = function(){
 BaseThemeAbstractPage.prototype.onLoad = function(e){
     var _this = this;
 
-    // console.log('-> Page onLoad');
+    // console.log('=> Page onLoad');
 
     _this.loadDate = new Date();
     _this.loadDuration = _this.loadDate - BaseTheme.history.loadBeginDate;
@@ -201,5 +198,5 @@ BaseThemeAbstractPage.prototype.initBlocks = function(){
 BaseThemeAbstractPage.prototype.onResize = function(){
     var _this = this;
 
-    console.log('-> Page resize');
+    console.log('=> Page resize');
 };
