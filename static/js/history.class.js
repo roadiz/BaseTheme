@@ -86,36 +86,43 @@ BaseThemeHistory.prototype.destroy = function(){
 BaseThemeHistory.prototype.linkClick = function(e){
     var _this = this;
 
-    e.preventDefault();
-
     // console.log('-> Link click');
 
-    var linkClassName = e.currentTarget.className;
+    var linkClassName = e.currentTarget.className,
+        linkHref = e.currentTarget.href;
 
-    // Check if link is not active
-    if(linkClassName.indexOf('active') == -1 && !_this.transition) {
+    // No mailto
+    if(linkHref.indexOf('mailto:') == -1){
 
-        _this.transition = true;
+        e.preventDefault();
 
-        var context = (e.currentTarget.className.indexOf('nav-link') >= 0) ? 'nav' : 'link',
-            dataHome = e.currentTarget.getAttribute('data-is-home'),
-            isHome = (dataHome == '1') ? true : false,
-            title = e.currentTarget.getAttribute('data-title');
+        // Check if link is not active
+        if( linkClassName.indexOf('active') == -1 && 
+            linkClassName.indexOf('no-ajax-link') == -1 && 
+            !_this.transition) {
 
-        if(title === '') title = e.currentTarget.innerHTML;
+            _this.transition = true;
 
-        var state = {
-            'nodeType'      : e.currentTarget.getAttribute('data-node-type'),
-            'nodeName'      : e.currentTarget.getAttribute('data-node-name'),
-            'index'         : parseInt(e.currentTarget.getAttribute('data-index')),
-            'transition'    : BaseTheme.page.type+'_to_'+e.currentTarget.getAttribute('data-node-type'),
-            'context'       : context,
-            'is_home'       : isHome
-        };
+            var context = (e.currentTarget.className.indexOf('nav-link') >= 0) ? 'nav' : 'link',
+                dataHome = e.currentTarget.getAttribute('data-is-home'),
+                isHome = (dataHome == '1') ? true : false,
+                title = e.currentTarget.getAttribute('data-title');
 
-        history.pushState(state, title, e.currentTarget.href);
+            if(title === '') title = e.currentTarget.innerHTML;
 
-        _this.loadPage(e, state);
+            var state = {
+                'nodeType'      : e.currentTarget.getAttribute('data-node-type'),
+                'nodeName'      : e.currentTarget.getAttribute('data-node-name'),
+                'index'         : Number(e.currentTarget.getAttribute('data-index')),
+                'transition'    : BaseTheme.page.type+'_to_'+e.currentTarget.getAttribute('data-node-type'),
+                'context'       : context,
+                'is_home'       : isHome
+            };
+
+            history.pushState(state, title, e.currentTarget.href);
+
+            _this.loadPage(e, state);
+        }
     }
 };
 
@@ -153,7 +160,7 @@ BaseThemeHistory.prototype.loadPage = function(e, state){
             BaseTheme.nav.update(state);
 
             // Update body id
-            Jaa.$body[0].id = state.nodeName;
+            BaseTheme.$body[0].id = state.nodeName;
 
             // Analytics
             if(typeof ga !== "undefined") ga('send', 'pageview', {'page':state.href, 'title':document.title});
