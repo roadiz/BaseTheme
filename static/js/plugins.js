@@ -19,14 +19,14 @@ var isset = function(element) {
 
 
 /**
- * Debounce 
+ * Debounce
  * Returns a function, that, as long as it continues to be invoked, will not
  * be triggered. The function will be called after it stops being called for
  * N milliseconds. If `immediate` is passed, trigger the function on the
  * leading edge, instead of the trailing.
  *
  * http://davidwalsh.name/javascript-debounce-function
- * 
+ *
  * @param  {[function]} func     [function to debounce]
  * @param  {[Number]} wait       [time to wait]
  * @param  {[boolean]} immediate []
@@ -63,6 +63,36 @@ var getViewportSize = function() {
     return { width : e[ a+'Width' ] , height : e[ a+'Height' ] };
 };
 
+/*
+ * Bootstrap media queries breakpoints tests.
+ */
+var isMediaMinSM = function () {
+    var size = getViewportSize();
+
+    if (size.width >= 768) {
+        return true;
+    } else {
+        return false;
+    }
+};
+var isMediaMinMD = function () {
+    var size = getViewportSize();
+
+    if (size.width >= 992) {
+        return true;
+    } else {
+        return false;
+    }
+};
+var isMediaMinLG = function () {
+    var size = getViewportSize();
+
+    if (size.width >= 1200) {
+        return true;
+    } else {
+        return false;
+    }
+};
 
 /**
  * Request animation frame polyfill
