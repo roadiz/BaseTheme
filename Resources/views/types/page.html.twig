@@ -32,7 +32,9 @@
         <div class="page-blocks">
 
             {# Page blocks pattern implementation #}
-            {% set blocks = nodeSource|children %}
+            {% set blocks = nodeSource|children({
+                'node.nodeType' : ['!=', themeServices.typePage]
+            }) %}
             {% for singleBlock in blocks %}
                 <article class="page-block page-block-{{ singleBlock.node.nodeType.name|lower }}"
                          id="block-{{ singleBlock.node.nodeName }}"

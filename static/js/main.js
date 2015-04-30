@@ -28,7 +28,7 @@ BaseTheme.formerPage = null;
 BaseTheme.nodeTypesClasses = {
     'page' : 'BaseThemePage',
     'project' : 'BaseThemeProject',
-    'blockbasic' : 'BaseThemeBlockBasic'
+    'basicblock' : 'BaseThemeBlockBasic'
 };
 
 BaseTheme.$ajaxContainer = null;
