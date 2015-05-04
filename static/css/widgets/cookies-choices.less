@@ -12,16 +12,25 @@
     top: auto !important;
     bottom: 0px;
     line-height: 18px;
+    
+    span{
+        position: relative;
+        display: inline-block;
+        vertical-align:top;
+    }
 
     a {
+        margin:0 10px !important;
         color: @color;
         display: inline-block;
         border-bottom: 1px dashed #999999;
 
-        &:hover {
+        &:hover, &:focus {
             border-bottom: none;
+            text-decoration: none;
         }
     }
+
     #cookieChoiceDismiss {
         font-weight: bolder;
     }
