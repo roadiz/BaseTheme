@@ -85,7 +85,9 @@
 
         <div class="container-fluid">{% block header %}{% endblock %}</div>
 
+        {% block mainnavigation %}
         {% include '@BaseTheme/modules/nav.html.twig' %}
+        {% endblock %}
 
         {# Add your site or application content here #}
         <div class="container" id="main-container">
