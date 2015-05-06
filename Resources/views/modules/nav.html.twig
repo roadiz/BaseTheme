@@ -1,36 +1,38 @@
 {% if themeServices.navigation|length %}
 <nav class="navbar navbar-default" id="nav" data-active-node="{{ node.id }}">
-{#
-     #  Home with a node
-     #}
-    {% if home %}
-    {% set homeSource = home.nodeSources.first %}
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navigation">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a href="{{ homeSource|url }}" class="navbar-brand nav-link" id="nav-home">{{ homeSource.title }}</a>
-    </div>
-    {% endif %}
+    <div class="container">
+        {#
+         #  Home with a node
+         #}
+        {% if home %}
+        {% set homeSource = home.nodeSources.first %}
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="{{ homeSource|url }}" class="navbar-brand nav-link" id="nav-home">{{ homeSource.title }}</a>
+        </div>
+        {% endif %}
 
-    {#
-     # Main navigation
-     #}
-    <div class="collapse navbar-collapse" id="main-navigation">
-        <ul class="nav navbar-nav" id="nav-list">
-            {% for source in themeServices.navigation %}
-                {% include '@BaseTheme/modules/nav-item.html.twig' with {
-                    'source' : source,
-                    'active' : node,
-                    'home' : home,
-                    'securityContext':securityContext,
-                    'themeServices':themeServices
-                } only %}
-            {% endfor %}
-        </ul>
+        {#
+         # Main navigation
+         #}
+        <div class="collapse navbar-collapse" id="main-navigation">
+            <ul class="nav navbar-nav" id="nav-list">
+                {% for source in themeServices.navigation %}
+                    {% include '@BaseTheme/modules/nav-item.html.twig' with {
+                        'source' : source,
+                        'active' : node,
+                        'home' : home,
+                        'securityContext':securityContext,
+                        'themeServices':themeServices
+                    } only %}
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 </nav>
 {% endif %}

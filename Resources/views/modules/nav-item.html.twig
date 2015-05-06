@@ -14,7 +14,7 @@
 {% endif %}
 
 {% if source.node != home %}
-<li class="{% for class in classes %}{{ class }} {% endfor %}"
+<li class="{{ classes|join(' ') }}"
 	id="nav-item-{{ source.node.nodeName }}"
 	data-node-id="{{ source.node.id }}">
 

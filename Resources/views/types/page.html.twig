@@ -22,7 +22,7 @@
 {% endblock %}
 
 {% block content %}
-    <section class="{% for class in classes %}{{ class }} {% endfor %}" id="page-content-{{ node.nodeName }}"
+    <section class="{{ classes|join(' ') }}" id="page-content-{{ node.nodeName }}"
              data-title="{{ nodeSource.title }}"
              data-node-type="{{ node.nodeType.name|lower }}"
              data-meta-title="{{ pageMeta.title }}">

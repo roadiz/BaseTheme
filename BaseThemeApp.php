@@ -23,9 +23,9 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class BaseThemeApp extends FrontendController
 {
-    const VERSION = '0.7.1';
+    const VERSION = '0.8.0';
 
-    protected static $themeName = 'RZ Base theme';
+    protected static $themeName = 'Base theme';
     protected static $themeAuthor = 'REZO ZERO';
     protected static $themeCopyright = 'REZO ZERO';
     protected static $themeDir = 'BaseTheme';
