@@ -93,6 +93,20 @@ class BaseThemeApp extends FrontendController
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function maintenanceAction(Request $request)
+    {
+        $translation = $this->bindLocaleFromRoute($request, $request->getLocale());
+        $this->prepareThemeAssignation(null, $translation);
+        return new Response(
+            $this->renderView('@BaseTheme/maintenance.html.twig', $this->assignation),
+            Response::HTTP_SERVICE_UNAVAILABLE,
+            ['content-type' => 'text/html']
+        );
+    }
+
+    /**
      * @param RZ\Roadiz\Core\Entities\Node        $node
      * @param RZ\Roadiz\Core\Entities\Translation $translation
      *
