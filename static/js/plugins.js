@@ -178,6 +178,17 @@ function getRandomInt(min, max) {
 
 
 /**
+ * Get style value
+ * @param  {[jQuery element ]}  $el     [element to check]
+ * @param  {[string]}           style   [description]
+ * @return {[int]}                      [value]
+ */
+function getStyleVal($el, style){
+    var elStyle = $el.css(style);
+    return Math.round(Number(elStyle.substr(0, elStyle.length - 2)));
+}
+
+/**
  * Replace placeholder
  * @return {[type]} [description]
  */
