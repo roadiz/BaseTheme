@@ -19,7 +19,7 @@
            are more than 1 translation for your website
         #}
         {% if translation %}
-        {% for id, key in translation.viewer.translationMenuAssignation(request, true) %}
+        {% for id, key in translation|menu(true) %}
         <link rel="alternate" href="{{ key.url }}" hreflang="{{ id }}" />
         {% endfor %}
         {% endif %}

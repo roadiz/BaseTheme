@@ -32,6 +32,14 @@
                     } only %}
                 {% endfor %}
             </ul>
+
+            <ul class="nav navbar-nav" id="lang-nav">
+                {% if translation %}
+                {% for id, trans in translation|menu %}
+                <li><a class="{% if trans.active %}active{% endif %}" href="{{ trans.url }}">{{ trans.translation }}</a></li>
+                {% endfor %}
+                {% endif %}
+            </ul>
         </div>
     </div>
 </nav>
