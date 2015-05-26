@@ -85,6 +85,9 @@ Base.init = function(){
         addClass(_this.$body[0],'ie');
     }
 
+    // Disable ajax if history is not available
+    if(!Modernizr.history) Base.ajaxEnabled = false;
+
     // History
     _this.history = new BaseHistory();
     _this.history.boot(_this.$body[0].getAttribute('data-node-type'), _this.$body[0].id, 'static');
