@@ -17,6 +17,7 @@ use RZ\Roadiz\Core\Entities\Node;
 use RZ\Roadiz\Core\Entities\Translation;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Themes\BaseTheme\Services;
 
 /**
  * BaseThemeApp class
@@ -119,9 +120,9 @@ class BaseThemeApp extends FrontendController
         /*
          * Register services
          */
-        $this->themeContainer->register(new \Themes\BaseTheme\Services\NodeServiceProvider($this->getContainer(), $this->translation));
-        $this->themeContainer->register(new \Themes\BaseTheme\Services\NodeTypeServiceProvider($this->getService('nodeTypeApi')));
-        $this->themeContainer->register(new \Themes\BaseTheme\Services\SLIRServiceProvider());
+        $this->themeContainer->register(new Services\NodeServiceProvider($this->getContainer(), $this->translation));
+        $this->themeContainer->register(new Services\NodeTypeServiceProvider($this->getService('nodeTypeApi')));
+        $this->themeContainer->register(new Services\AssetsServiceProvider());
 
         $this->themeContainer['grunt'] = function ($c) {
             return include dirname(__FILE__) . '/static/public/config/assets.config.php';

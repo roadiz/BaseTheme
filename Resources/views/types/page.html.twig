@@ -14,9 +14,7 @@
 {% block header %}
 <header>
     {% if headerImages[0] %}
-    <figure>
-        <img alt="{{ nodeSource.title }}" src="{{ headerImages[0]|url(themeServices.imageFormats.headerImage) }}" />
-    </figure>
+    <figure>{{ headerImages[0]|display(themeServices.imageFormats.headerImage) }}</figure>
     {% endif %}
 </header>
 {% endblock %}

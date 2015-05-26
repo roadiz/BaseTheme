@@ -2,7 +2,7 @@
  * Project
  */
 
-var BaseThemeProject = function(id, context){
+var Project = function(id, context){
     var _this = this;
 
     console.log('-> Project');
@@ -10,16 +10,16 @@ var BaseThemeProject = function(id, context){
     _this.init(id, context, 'project');
 };
 
-$.extend(BaseThemeProject.prototype, BaseThemeAbstractPage.prototype);
+$.extend(Project.prototype, AbstractPage.prototype);
 
 /**
  * Init
  * @return {[type]} [description]
  */
-BaseThemeProject.prototype.init = function(id, context, type){
-    var _this = this;   
+Project.prototype.init = function(id, context, type){
+    var _this = this;
 
     console.log('-> Project init : '+id);
 
-    BaseThemeAbstractPage.prototype.init.call(this, id, context, type);
+    AbstractPage.prototype.init.call(this, id, context, type);
 };

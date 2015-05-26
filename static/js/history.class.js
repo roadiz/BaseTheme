@@ -2,41 +2,38 @@
  * History
  */
 
-var BaseThemeHistory = function(){
+var BaseHistory = function(){
     var _this = this;
 
     _this.state = null;
     _this.stateBlock = true;
     _this.transition = false;
-
-    // Methods
     _this.init();
 };
 
-
 /**
- * Init
- * @return {[type]} [description]
+ * Init.
  */
-BaseThemeHistory.prototype.init = function(){
+BaseHistory.prototype.init = function(){
     var _this = this;
 
     // Events
-    if(BaseTheme.ajaxEnabled && Modernizr.history){
+    if(Base.ajaxEnabled && Modernizr.history){
 
         // Push first state
-        history.pushState({'firstPage': true, 'href':  window.location.href}, null, window.location.href);
+        history.pushState({
+            'firstPage': true,
+            'href':  window.location.href
+        }, null, window.location.href);
         window.onpopstate = $.proxy(_this.onPopState, _this);
     }
 };
 
 
 /**
- * On pop state
- * @param  {[type]} event [description]
- * @return {[type]}       [description]
+ * On pop state.
  */
-BaseThemeHistory.prototype.onPopState = function(e) {
+BaseHistory.prototype.onPopState = function(e) {
     var _this = this;
 
     if (typeof e.state !== "undefined" && e.state !== null) {
@@ -48,45 +45,38 @@ BaseThemeHistory.prototype.onPopState = function(e) {
     }
 };
 
-
 /**
- * Boot
- * @return {[type]} [description]
+ * Boot.
  */
-BaseThemeHistory.prototype.boot = function(nodeType, id, context){
+BaseHistory.prototype.boot = function(nodeType, id, context){
     var _this = this;
 
     // console.log('Boot '+nodeType+' - '+id);
 
-    // Page 
-    if(nodeType && typeof BaseTheme.nodeTypesClasses[nodeType] !== 'undefined'){
-        BaseTheme.page = new window[BaseTheme.nodeTypesClasses[nodeType]](id, context);
+    // Page
+    if(nodeType && typeof Base.nodeTypesClasses[nodeType] !== 'undefined') {
+        Base.page = new window[Base.nodeTypesClasses[nodeType]](id, context);
+    } else {
+        // Static pages
+        Base.page = new AbstractPage(id, context);
     }
-    // Static pages
-    else BaseTheme.page = new BaseThemeAbstractPage(id, context);
 };
 
-
 /**
- * Destroy
- * @return {[type]} [description]
+ * Destroy.
  */
-BaseThemeHistory.prototype.destroy = function(){
+BaseHistory.prototype.destroy = function(){
     var _this = this;
 
     // Events
 
 };
 
-
 /**
- * Link click
- * @return {[type]} [description]
+ * Link click.
  */
-BaseThemeHistory.prototype.linkClick = function(e){
+BaseHistory.prototype.linkClick = function(e){
     var _this = this;
-
-    // console.log('-> Link click');
 
     var linkClassName = e.currentTarget.className,
         linkHref = e.currentTarget.href;
@@ -97,8 +87,8 @@ BaseThemeHistory.prototype.linkClick = function(e){
         e.preventDefault();
 
         // Check if link is not active
-        if( linkClassName.indexOf('active') == -1 && 
-            linkClassName.indexOf('no-ajax-link') == -1 && 
+        if( linkClassName.indexOf('active') == -1 &&
+            linkClassName.indexOf('no-ajax-link') == -1 &&
             !_this.transition) {
 
             _this.transition = true;
@@ -114,7 +104,7 @@ BaseThemeHistory.prototype.linkClick = function(e){
                 'nodeType'      : e.currentTarget.getAttribute('data-node-type'),
                 'nodeName'      : e.currentTarget.getAttribute('data-node-name'),
                 'index'         : Number(e.currentTarget.getAttribute('data-index')),
-                'transition'    : BaseTheme.page.type+'_to_'+e.currentTarget.getAttribute('data-node-type'),
+                'transition'    : Base.page.type+'_to_'+e.currentTarget.getAttribute('data-node-type'),
                 'context'       : context,
                 'is_home'       : isHome
             };
@@ -128,13 +118,10 @@ BaseThemeHistory.prototype.linkClick = function(e){
 
 
 /**
- * Load page
- * @return {[type]} [description]
+ * Load page.
  */
-BaseThemeHistory.prototype.loadPage = function(e, state){
+BaseHistory.prototype.loadPage = function(e, state){
     var _this = this;
-    
-    // console.log('-> History load page');
 
     _this.loadBeginDate = new Date();
 
@@ -143,28 +130,26 @@ BaseThemeHistory.prototype.loadPage = function(e, state){
         url: e.currentTarget.href,
         type: 'get',
         success: function(data){
-
-            // console.log('-> History page loaded');
-
-            BaseTheme.$ajaxContainer.append(data);
+            Base.$ajaxContainer.append(data);
 
             // Disappear & destroy page
-            BaseTheme.formerPage = BaseTheme.page;
-            BaseTheme.page = null;
-            BaseTheme.formerPage.hide($.proxy(BaseTheme.formerPage.destroy, BaseTheme.formerPage));
+            Base.formerPage = Base.page;
+            Base.page = null;
+            Base.formerPage.hide($.proxy(Base.formerPage.destroy, Base.formerPage));
 
             // Init new page
             _this.boot(state.nodeType, state.nodeName, 'ajax');
 
             // Update nav
-            BaseTheme.nav.update(state);
+            Base.nav.update(state);
 
             // Update body id
-            BaseTheme.$body[0].id = state.nodeName;
+            Base.$body[0].id = state.nodeName;
 
             // Analytics
-            if(typeof ga !== "undefined") ga('send', 'pageview', {'page':state.href, 'title':document.title});
+            if(typeof ga !== "undefined") {
+                ga('send', 'pageview', {'page':state.href, 'title':document.title});
+            }
         }
     });
-
 };

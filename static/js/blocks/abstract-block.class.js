@@ -1,8 +1,7 @@
 /**
  * Abstract block
  */
-
-var BaseThemeAbstractBlock = function(id){
+var AbstractBlock = function(id){
     var _this = this;
 
     console.log('=> Abstract block - '+id);
@@ -14,9 +13,8 @@ var BaseThemeAbstractBlock = function(id){
 
 /**
  * Init
- * @return {[type]} [description]
  */
-BaseThemeAbstractBlock.prototype.init = function(id, type){
+AbstractBlock.prototype.init = function(id, type){
     var _this = this;
 
     _this.id = id;
@@ -29,20 +27,18 @@ BaseThemeAbstractBlock.prototype.init = function(id, type){
 
 /**
  * Init events
- * @return {[type]} [description]
  */
-BaseThemeAbstractBlock.prototype.initEvents = function(){
+AbstractBlock.prototype.initEvents = function(){
     var _this = this;
 
-    BaseTheme.$window.on('resize', debounce($.proxy(_this.resize, _this), 50, false));
+    Base.$window.on('resize', debounce($.proxy(_this.resize, _this), 50, false));
 };
 
 
 /**
  * Destroy
- * @return {[type]} [description]
  */
-BaseThemeAbstractBlock.prototype.destroy = function(){
+AbstractBlock.prototype.destroy = function(){
     var _this = this;
 
     // Events
@@ -52,20 +48,29 @@ BaseThemeAbstractBlock.prototype.destroy = function(){
 
 /**
  * Destroy events
- * @return {[type]} [description]
  */
-BaseThemeAbstractBlock.prototype.destroyEvents = function(){
+AbstractBlock.prototype.destroyEvents = function(){
     var _this = this;
 
-    BaseTheme.$window.off('resize', debounce($.proxy(_this.resize, _this), 50, false));
+    Base.$window.off('resize', debounce($.proxy(_this.resize, _this), 50, false));
 };
 
 
 /**
  * Resize
- * @return {[type]} [description]
  */
-BaseThemeAbstractBlock.prototype.resize = function(){
+AbstractBlock.prototype.resize = function(){
+    var _this = this;
+
+};
+
+/**
+ * Init maps.
+ *
+ * This method must be dispatched by Base.initMaps callback
+ * method.
+ */
+AbstractBlock.prototype.initMaps = function(){
     var _this = this;
 
 };

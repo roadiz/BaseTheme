@@ -16,7 +16,7 @@ use Pimple\ServiceProviderInterface;
 /**
  * Image formats.
  */
-class SLIRServiceProvider implements ServiceProviderInterface
+class AssetsServiceProvider implements ServiceProviderInterface
 {
 
     /**
@@ -29,20 +29,17 @@ class SLIRServiceProvider implements ServiceProviderInterface
             $array = [];
 
             $array['headerImage'] = [
-                'width' => 1024,
-                'crop' => '1024x200',
+                'fit' => '1024x200',
             ];
 
             $array['thumbnail'] = [
-                "width" => 600,
-                "crop" => "16x9",
+                "fit" => "600x338",
                 "controls" => true,
                 "embed" => true,
             ];
 
             $array['shareImage'] = [
-                'crop' => '200x200',
-                'width' => 200,
+                'fit' => '200x200',
                 'quality' => 90,
             ];
             return $array;
