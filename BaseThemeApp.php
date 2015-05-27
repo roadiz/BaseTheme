@@ -108,14 +108,11 @@ class BaseThemeApp extends FrontendController
     }
 
     /**
-     * @param RZ\Roadiz\Core\Entities\Node        $node
-     * @param RZ\Roadiz\Core\Entities\Translation $translation
-     *
-     * @return void
+     * {@inheritdoc}
      */
-    protected function prepareThemeAssignation(Node $node = null, Translation $translation = null)
+    protected function extendAssignation()
     {
-        parent::prepareThemeAssignation($node, $translation);
+        parent::extendAssignation();
 
         /*
          * Register services
