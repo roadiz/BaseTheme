@@ -27,6 +27,12 @@ AbstractPage.prototype.init = function(id, context, type){
     if(_this.$cont.length) _this.$link = _this.$cont.find('a').not('[target="_blank"]');
     else _this.$link = null;
 
+    // Add target blank on external link
+    if(null !== _this.$link && _this.$link.length){
+        externalLinkTarget(_this.$link, Base.baseUrl);
+        _this.$link = _this.$cont.find('a').not('[target="_blank"]');
+    }
+
     // Blocks
     _this.blocks = [];
     _this.$block = _this.$cont.find('.page-block');
