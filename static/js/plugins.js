@@ -189,6 +189,32 @@ function getStyleVal($el, style){
 }
 
 /**
+ * Log credits
+ * @param  {string} siteName
+ * @param  {string} bgColor
+ * @param  {array}  creditsList
+ * @param  {string} textColor (optional)
+ */
+function logCredits(siteName, bgColor, creditsList, textColor){
+
+    var color = '#fff';
+    if(typeof textColor !== 'undefined') color = textColor;
+
+    console.log('%c   ', 'font-size:3px;');
+    console.log('%c'+siteName, 'background:'+bgColor+'; color: '+color+'; font-size:14px; padding:5px 10px;');
+    console.log('%c   ', 'font-size:3px;');
+    console.log("Made by Rezo Zero - www.rezo-zero.com");
+    console.log("-");
+    console.log("Thanks to");
+    var creditsLength = creditsList.length;
+    for(var indexCredit = 0; indexCredit < creditsLength; indexCredit++) {
+        console.log(creditsList[indexCredit].name +' : '+creditsList[indexCredit].website);
+    }
+    console.log("-");
+    console.log(" ");
+};
+
+/**
  * Replace placeholder
  * @return {[type]} [description]
  */

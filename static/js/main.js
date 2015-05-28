@@ -36,6 +36,17 @@ Base.$ajaxContainer = null;
 Base.ajaxEnabled = true;
 Base.gmapLoaded = false;
 
+Base.creditsList = [
+    {
+        name:'roadiz',
+        website:'www.roadiz.io'
+    },
+    {
+        name:'GSAP',
+        website:'www.greensock.com'
+    }
+];
+
 /**
  * On document ready
  */
@@ -56,6 +67,8 @@ Base.onDocumentReady = function(e) {
  */
 Base.init = function(){
     var _this = this;
+
+    logCredits('Base','#000', Base.creditsList);
 
     // Set default TweenLite ease
     TweenLite.defaultEase = Expo.easeOut;
