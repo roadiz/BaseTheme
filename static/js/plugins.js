@@ -123,7 +123,6 @@ window.cancelAnimFrame = function(){
     );
 }();
 
-
 /**
  * Add class custom.
  * @param  {[object]} el                [dom element]
@@ -135,7 +134,6 @@ var addClass = function(el, classToAdd){
     if (el.classList) el.classList.add(classToAdd);
     else el.className += ' ' + classToAdd;
 };
-
 
 /**
  * Remove class custom.
@@ -154,7 +152,6 @@ var removeClass = function(el, classToRemove){
     }
 };
 
-
 /**
  * Get random number.
  * @param  {[number]} min [min value]
@@ -165,7 +162,6 @@ function getRandomNumber(min, max) {
     return Math.random() * (max - min) + min;
 }
 
-
 /**
  * Get random integer.
  * @param  {[int]} min [min value]
@@ -175,7 +171,6 @@ function getRandomNumber(min, max) {
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
 
 /**
  * Get style value
@@ -212,7 +207,32 @@ function logCredits(siteName, bgColor, creditsList, textColor){
     }
     console.log("-");
     console.log(" ");
-};
+}
+
+/**
+ * Add target blank on external link
+ * @param  {[array]}  links
+ * @param  {[string]} baseUrl
+ */
+function externalLinkTarget($links, baseUrl){
+
+    var linksLength = $links.length,
+        abstractBaseUrl = baseUrl.split('://');
+
+    abstractBaseUrl = abstractBaseUrl[1];
+
+    for(var linkIndex = 0; linkIndex < linksLength; linkIndex++){
+        var link = $links[linkIndex];
+
+        if(link.href.indexOf(abstractBaseUrl) == -1 &&
+           link.href.indexOf('javascript') == -1 &&
+           link.href.charAt(0) != '/' &&
+           link.href.charAt(0) != '#')
+        {
+            $links[linkIndex].target = '_blank';
+        }
+    }
+}
 
 /**
  * Replace placeholder
