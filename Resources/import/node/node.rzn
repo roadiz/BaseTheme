@@ -1,0 +1,28 @@
+[
+    {
+        "node_name": "home",
+        "node_type": "Page",
+        "home": true,
+        "visible": true,
+        "status": 20,
+        "locked": true,
+        "priority": 1,
+        "hiding_children": false,
+        "archived": false,
+        "sterile": false,
+        "children_order": "order",
+        "children_order_direction": "ASC",
+        "nodes_sources": [
+            {
+                "translation": "fr",
+                "title": "Home",
+                "meta_title": "",
+                "meta_keywords": "",
+                "meta_description": "",
+                "content": "Aenean eu leo qu",
+                "url_aliases": []
+            }
+        ],
+        "tags": []
+    }
+]
