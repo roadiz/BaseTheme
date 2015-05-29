@@ -104,7 +104,6 @@ MapBlock.prototype.initEvents = function(){
     AbstractBlock.prototype.initEvents.call(this);
 };
 
-
 /**
  * Destroy events
  */
@@ -114,3 +113,15 @@ MapBlock.prototype.destroyEvents = function(){
     AbstractBlock.prototype.destroyEvents.call(this);
 };
 
+
+/**
+ * Init map events
+ * @return {[type]} [description]
+ */
+MapBlock.prototype.initMapEvents = function(index){
+    var _this = this;
+
+    google.maps.event.addListener(_this.objects[index], 'zoom_changed', function() {
+        _this.zoom[index] = _this.objects[index].getZoom();
+    });
+};

@@ -30,11 +30,15 @@ module.exports = function(grunt) {
     var distFiles = [
         "js/vendor/cookiechoices.js",
         "js/plugins.js",
+
         "js/pages/abstract-page.class.js",
         "js/pages/page.class.js",
         "js/pages/project.class.js",
+
         "js/blocks/abstract-block.class.js",
         "js/blocks/basicblock.class.js",
+        "js/blocks/mapblock.class.js",
+
         "js/history.class.js",
         "js/nav.class.js",
         "js/main.js"

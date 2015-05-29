@@ -118,9 +118,11 @@
         <script type="text/javascript">
             var temp = {};
             temp.baseUrl = "{{ head.baseUrl }}";
+            temp.resourcesUrl = '{{ head.resourcesUrl }}';
             temp.ajaxToken = "{{ head.ajaxToken }}";
-            temp.domain = temp.baseUrl.split('://');
-            temp.domain = temp.domain[1];
+            temp.googleClientId = '{{ head.googleClientId }}';
+            temp.mapsStyle = JSON.parse('{{ head.maps_style|raw }}');
+            temp.domain = temp.baseUrl.split('://')[1];
 
             // Cookies choices
             document.addEventListener('DOMContentLoaded', function(event) {
