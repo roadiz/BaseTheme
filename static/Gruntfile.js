@@ -228,7 +228,33 @@ module.exports = function(grunt) {
                 }]
             }
         },
-        clean: ["public"]
+        clean: ["public"],
+        copy: {
+            main: {
+                files: [
+                    // includes files within path
+                    {
+                        expand: true,
+                        src: ['dist/style.min.css.map'],
+                        dest: 'public/',
+                        filter: 'isFile'
+                    },
+                    {
+                        expand: false,
+                        flatten: true,
+                        src: 'bower_components/bootstrap/dist/css/bootstrap.css.map',
+                        dest: 'public/bootstrap.css.map',
+                        filter: 'isFile'
+                    },
+                    {
+                        expand: true,
+                        src: ['dist/vendor.min.css.map'],
+                        dest: 'public/',
+                        filter: 'isFile'
+                    },
+                ],
+            },
+        }
     });
 
     /*
@@ -236,10 +262,10 @@ module.exports = function(grunt) {
      */
     grunt.event.on('watch', function(action, filepath) {
         if (filepath.indexOf('.js') > -1 ) {
-            grunt.config('watch.scripts.tasks', ['clean','jshint','versioning:development']);
+            grunt.config('watch.scripts.tasks', ['clean','jshint','versioning:development', 'copy']);
         }
         else if(filepath.indexOf('.less') > -1 ){
-            grunt.config('watch.scripts.tasks', ['clean','less:development','versioning:development']);
+            grunt.config('watch.scripts.tasks', ['clean','less:development','versioning:development', 'copy']);
         }
         else if( filepath.indexOf('.png') > -1  ||
             filepath.indexOf('.jpg') > -1  ||
@@ -249,5 +275,5 @@ module.exports = function(grunt) {
     });
 
     // Default task(s).
-    grunt.registerTask('default', ['clean', 'jshint', 'concat', 'uglify', 'less:production', 'imagemin', 'versioning:production']);
+    grunt.registerTask('default', ['clean', 'jshint', 'concat', 'uglify', 'less:production', 'versioning:production', 'copy']);
 };

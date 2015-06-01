@@ -9,6 +9,7 @@
     "grunt-contrib-concat": "~0.5.1",
     "grunt-contrib-watch": "~0.6.1",
     "grunt-contrib-imagemin": "~0.9.4",
+    "grunt-contrib-copy": "~0.8.0",
     "grunt-static-versioning": "~0.2.2",
     "jit-grunt": "~0.9.1",
     "grunt-contrib-clean": "~0.6.0"
