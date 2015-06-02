@@ -28,18 +28,23 @@
         <div>{{ nodeSource.content|markdown }}</div>
 
         <div class="page-blocks">
-
-            {# Page blocks pattern implementation #}
+            {#
+             # Page blocks pattern implementation
+             #}
             {% set blocks = nodeSource|children({
                 'node.nodeType' : ['!=', themeServices.typePage]
             }) %}
             {% for singleBlock in blocks %}
-                <article class="page-block page-block-{{ singleBlock.node.nodeType.name|lower }}"
-                         id="block-{{ singleBlock.node.nodeName }}"
-                         data-index="{{ loop.index0 }}"
-                         data-node-type="{{ singleBlock.node.nodeType.name|lower }}">
-
-                </article>
+            {% include '@BaseTheme/blocks/' ~ singleBlock.node.nodeType.name|lower ~ '.html.twig' with {
+                'nodeSource': singleBlock,
+                'parentNodeSource': nodeSource,
+                'themeServices': themeServices,
+                'head': head,
+                'node': singleBlock.node,
+                'nodeType': singleBlock.node.nodeType,
+                'loop': loop,
+                'blocksLength':blocks|length
+            } only %}
             {% endfor %}
         </div>
 
