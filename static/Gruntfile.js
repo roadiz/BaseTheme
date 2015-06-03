@@ -139,6 +139,18 @@ module.exports = function(grunt) {
                 }]
             }
         },
+        postcss: {
+            options: {
+                map: false,
+                processors: [
+                    require('autoprefixer-core')({browsers: ['last 3 version', 'ie 9']}),
+                    require('csswring').postcss
+                ]
+            },
+            dist: {
+                src: 'dist/style.min.css'
+            }
+        },
         versioning: {
             options: {
                 cwd: 'public',
@@ -257,6 +269,8 @@ module.exports = function(grunt) {
         }
     });
 
+    grunt.loadNpmTasks('grunt-postcss');
+
     /*
      * Watch differently LESS, JS & imagemin
      */
@@ -265,7 +279,7 @@ module.exports = function(grunt) {
             grunt.config('watch.scripts.tasks', ['clean','jshint','versioning:development', 'copy']);
         }
         else if(filepath.indexOf('.less') > -1 ){
-            grunt.config('watch.scripts.tasks', ['clean','less:development','versioning:development', 'copy']);
+            grunt.config('watch.scripts.tasks', ['clean','less:development', 'postcss','versioning:development', 'copy']);
         }
         else if( filepath.indexOf('.png') > -1  ||
             filepath.indexOf('.jpg') > -1  ||
@@ -275,5 +289,5 @@ module.exports = function(grunt) {
     });
 
     // Default task(s).
-    grunt.registerTask('default', ['clean', 'jshint', 'concat', 'uglify', 'less:production', 'versioning:production', 'copy']);
+    grunt.registerTask('default', ['clean', 'jshint', 'concat', 'uglify', 'less:production', 'postcss', 'versioning:production', 'copy']);
 };
