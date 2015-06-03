@@ -117,11 +117,12 @@
         <noscript><div id="no-js-message">{% trans %}no_javascript_message{% endtrans %}</div></noscript>
         <script type="text/javascript">
             var temp = {};
+            temp.devMode = {% if head.devMode %}true{% else %}false{% endif %};
             temp.baseUrl = "{{ head.baseUrl }}";
             temp.resourcesUrl = '{{ head.resourcesUrl }}';
             temp.ajaxToken = "{{ head.ajaxToken }}";
             temp.googleClientId = '{{ head.googleClientId }}';
-            temp.mapsStyle = JSON.parse('{{ head.maps_style|raw }}');
+            temp.mapsStyle = {% if head.mapsStyle %}JSON.parse('{{ head.mapsStyle|raw }}'){% else %}null{% endif %};
             temp.domain = temp.baseUrl.split('://')[1];
 
             // Cookies choices

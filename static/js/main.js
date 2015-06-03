@@ -68,7 +68,7 @@ Base.onDocumentReady = function(e) {
 Base.init = function(){
     var _this = this;
 
-    logCredits('Base','#000', Base.creditsList);
+    if(!Base.devMode) logCredits('Base','#000', Base.creditsList);
 
     // Set default TweenLite ease
     TweenLite.defaultEase = Expo.easeOut;

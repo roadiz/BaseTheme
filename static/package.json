@@ -15,6 +15,7 @@
     "grunt-contrib-watch": "~0.6.1",
     "grunt-postcss": "^0.4.0",
     "grunt-static-versioning": "~0.2.2",
-    "jit-grunt": "~0.9.1"
+    "jit-grunt": "~0.9.1",
+    "time-grunt": "^1.2.1"
   }
 }

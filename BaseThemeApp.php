@@ -133,7 +133,7 @@ class BaseThemeApp extends FrontendController
         $this->assignation['head']['twitterUrl'] = SettingsBag::get('twitter_url');
         $this->assignation['head']['googleplusUrl'] = SettingsBag::get('googleplus_url');
         $this->assignation['head']['googleClientId'] = SettingsBag::get('google_client_id');
-        $this->assignation['head']['maps_style'] = SettingsBag::get('maps_style');
+        $this->assignation['head']['mapsStyle'] = SettingsBag::get('maps_style');
         $this->assignation['head']['themeName'] = static::$themeName;
         $this->assignation['head']['themeVersion'] = static::VERSION;
 
