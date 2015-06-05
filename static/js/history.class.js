@@ -53,6 +53,8 @@ BaseHistory.prototype.boot = function(nodeType, id, context){
 
     // console.log('Boot '+nodeType+' - '+id);
 
+    if(context == 'static') _this.loadBeginDate = new Date();
+
     // Page
     if(nodeType && typeof Base.nodeTypesClasses[nodeType] !== 'undefined') {
         Base.page = new window[Base.nodeTypesClasses[nodeType]](id, context);
