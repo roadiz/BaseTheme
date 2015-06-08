@@ -30,17 +30,20 @@ class AssetsServiceProvider implements ServiceProviderInterface
 
             $array['headerImage'] = [
                 'fit' => '1024x200',
+                'progressive' => true
             ];
 
             $array['thumbnail'] = [
-                "fit" => "600x338",
-                "controls" => true,
-                "embed" => true,
+                'fit' => '600x338',
+                'controls' => true,
+                'embed' => true,
+                'progressive' => true
             ];
 
             $array['shareImage'] = [
                 'fit' => '200x200',
                 'quality' => 90,
+                'progressive' => true
             ];
             return $array;
         };
