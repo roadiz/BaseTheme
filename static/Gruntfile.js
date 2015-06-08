@@ -33,7 +33,6 @@ module.exports = function(grunt) {
 
         "js/pages/abstract-page.class.js",
         "js/pages/page.class.js",
-        "js/pages/project.class.js",
 
         "js/blocks/abstract-block.class.js",
         "js/blocks/basicblock.class.js",
