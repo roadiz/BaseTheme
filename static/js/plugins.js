@@ -19,14 +19,14 @@ var isset = function(element) {
 
 
 /**
- * Debounce 
+ * Debounce
  * Returns a function, that, as long as it continues to be invoked, will not
  * be triggered. The function will be called after it stops being called for
  * N milliseconds. If `immediate` is passed, trigger the function on the
  * leading edge, instead of the trailing.
  *
  * http://davidwalsh.name/javascript-debounce-function
- * 
+ *
  * @param  {[function]} func     [function to debounce]
  * @param  {[Number]} wait       [time to wait]
  * @param  {[boolean]} immediate []
@@ -63,6 +63,36 @@ var getViewportSize = function() {
     return { width : e[ a+'Width' ] , height : e[ a+'Height' ] };
 };
 
+/*
+ * Bootstrap media queries breakpoints tests.
+ */
+var isMediaMinSM = function () {
+    var size = getViewportSize();
+
+    if (size.width >= 768) {
+        return true;
+    } else {
+        return false;
+    }
+};
+var isMediaMinMD = function () {
+    var size = getViewportSize();
+
+    if (size.width >= 992) {
+        return true;
+    } else {
+        return false;
+    }
+};
+var isMediaMinLG = function () {
+    var size = getViewportSize();
+
+    if (size.width >= 1200) {
+        return true;
+    } else {
+        return false;
+    }
+};
 
 /**
  * Request animation frame polyfill
@@ -93,7 +123,6 @@ window.cancelAnimFrame = function(){
     );
 }();
 
-
 /**
  * Add class custom.
  * @param  {[object]} el                [dom element]
@@ -105,7 +134,6 @@ var addClass = function(el, classToAdd){
     if (el.classList) el.classList.add(classToAdd);
     else el.className += ' ' + classToAdd;
 };
-
 
 /**
  * Remove class custom.
@@ -124,7 +152,6 @@ var removeClass = function(el, classToRemove){
     }
 };
 
-
 /**
  * Get random number.
  * @param  {[number]} min [min value]
@@ -134,7 +161,6 @@ var removeClass = function(el, classToRemove){
 function getRandomNumber(min, max) {
     return Math.random() * (max - min) + min;
 }
-
 
 /**
  * Get random integer.
@@ -146,6 +172,67 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+/**
+ * Get style value
+ * @param  {[jQuery element ]}  $el     [element to check]
+ * @param  {[string]}           style   [description]
+ * @return {[int]}                      [value]
+ */
+function getStyleVal($el, style){
+    var elStyle = $el.css(style);
+    return Math.round(Number(elStyle.substr(0, elStyle.length - 2)));
+}
+
+/**
+ * Log credits
+ * @param  {string} siteName
+ * @param  {string} bgColor
+ * @param  {array}  creditsList
+ * @param  {string} textColor (optional)
+ */
+function logCredits(siteName, bgColor, creditsList, textColor){
+
+    var color = '#fff';
+    if(typeof textColor !== 'undefined') color = textColor;
+
+    console.log('%c   ', 'font-size:3px;');
+    console.log('%c'+siteName, 'background:'+bgColor+'; color: '+color+'; font-size:14px; padding:5px 10px;');
+    console.log('%c   ', 'font-size:3px;');
+    console.log("Made by Rezo Zero - www.rezo-zero.com");
+    console.log("-");
+    console.log("Thanks to");
+    var creditsLength = creditsList.length;
+    for(var indexCredit = 0; indexCredit < creditsLength; indexCredit++) {
+        console.log(creditsList[indexCredit].name +' : '+creditsList[indexCredit].website);
+    }
+    console.log("-");
+    console.log(" ");
+}
+
+/**
+ * Add target blank on external link
+ * @param  {[array]}  links
+ * @param  {[string]} baseUrl
+ */
+function externalLinkTarget($links, baseUrl){
+
+    var linksLength = $links.length,
+        abstractBaseUrl = baseUrl.split('://');
+
+    abstractBaseUrl = abstractBaseUrl[1];
+
+    for(var linkIndex = 0; linkIndex < linksLength; linkIndex++){
+        var link = $links[linkIndex];
+
+        if(link.href.indexOf(abstractBaseUrl) == -1 &&
+           link.href.indexOf('javascript') == -1 &&
+           link.href.charAt(0) != '/' &&
+           link.href.charAt(0) != '#')
+        {
+            $links[linkIndex].target = '_blank';
+        }
+    }
+}
 
 /**
  * Replace placeholder
@@ -176,9 +263,20 @@ var replacePlaceholder = function() {
             }
           });
         });
-
     }
+};
 
+
+/**
+ * Strip Trailing slash
+ * @param  {[type]} str [description]
+ * @return {[type]}     [description]
+ */
+var stripTrailingSlash = function(str) {
+    if(str.substr(-1) == '/') {
+        return str.substr(0, str.length - 1);
+    }
+    return str;
 };
 
 

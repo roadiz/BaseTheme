@@ -1,0 +1,18 @@
+<article class="page-block page-block-{{ nodeType.name|lower }}"
+         id="block-{{ node.nodeName }}"
+         data-index="{{ loop.index0 }}"
+         data-node-type="{{ nodeType.name|lower }}">
+
+    {% if nodeSource.geoloc %}
+    <div class="block-map-canvas-cont">
+        <div class="block-map-canvas" id="map-{{ nodeSource.id }}" data-geoloc="{{ nodeSource.geoloc }}"></div>
+        {% spaceless %}
+        <div class="block-map-buttons">
+            <button class="block-map-button block-map-button-plus" data-index="0"><i class="block-map-button-icon "></i></button>
+            <button class="block-map-button block-map-button-minus" data-index="0"><i class="block-map-button-icon"></i></button>
+        </div>
+        {% endspaceless %}
+    </div>
+    {% endif %}
+
+</article>

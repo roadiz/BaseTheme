@@ -17,15 +17,16 @@ use RZ\Roadiz\Core\Entities\Node;
 use RZ\Roadiz\Core\Entities\Translation;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Themes\BaseTheme\Services;
 
 /**
  * BaseThemeApp class
  */
 class BaseThemeApp extends FrontendController
 {
-    const VERSION = '0.7.1';
+    const VERSION = '0.9.0';
 
-    protected static $themeName = 'RZ Base theme';
+    protected static $themeName = 'Base theme';
     protected static $themeAuthor = 'REZO ZERO';
     protected static $themeCopyright = 'REZO ZERO';
     protected static $themeDir = 'BaseTheme';
@@ -93,21 +94,32 @@ class BaseThemeApp extends FrontendController
     }
 
     /**
-     * @param RZ\Roadiz\Core\Entities\Node        $node
-     * @param RZ\Roadiz\Core\Entities\Translation $translation
-     *
-     * @return void
+     * {@inheritdoc}
      */
-    protected function prepareThemeAssignation(Node $node = null, Translation $translation = null)
+    public function maintenanceAction(Request $request)
     {
-        parent::prepareThemeAssignation($node, $translation);
+        $translation = $this->bindLocaleFromRoute($request, $request->getLocale());
+        $this->prepareThemeAssignation(null, $translation);
+        return new Response(
+            $this->renderView('@BaseTheme/maintenance.html.twig', $this->assignation),
+            Response::HTTP_SERVICE_UNAVAILABLE,
+            ['content-type' => 'text/html']
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function extendAssignation()
+    {
+        parent::extendAssignation();
 
         /*
          * Register services
          */
-        $this->themeContainer->register(new \Themes\BaseTheme\Services\NodeServiceProvider($this->getContainer(), $this->translation));
-        $this->themeContainer->register(new \Themes\BaseTheme\Services\NodeTypeServiceProvider($this->getService('nodeTypeApi')));
-        $this->themeContainer->register(new \Themes\BaseTheme\Services\SLIRServiceProvider());
+        $this->themeContainer->register(new Services\NodeServiceProvider($this->getContainer(), $this->translation));
+        $this->themeContainer->register(new Services\NodeTypeServiceProvider($this->getService('nodeTypeApi')));
+        $this->themeContainer->register(new Services\AssetsServiceProvider());
 
         $this->themeContainer['grunt'] = function ($c) {
             return include dirname(__FILE__) . '/static/public/config/assets.config.php';
@@ -121,7 +133,7 @@ class BaseThemeApp extends FrontendController
         $this->assignation['head']['twitterUrl'] = SettingsBag::get('twitter_url');
         $this->assignation['head']['googleplusUrl'] = SettingsBag::get('googleplus_url');
         $this->assignation['head']['googleClientId'] = SettingsBag::get('google_client_id');
-        $this->assignation['head']['maps_style'] = SettingsBag::get('maps_style');
+        $this->assignation['head']['mapsStyle'] = SettingsBag::get('maps_style');
         $this->assignation['head']['themeName'] = static::$themeName;
         $this->assignation['head']['themeVersion'] = static::VERSION;
 

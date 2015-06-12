@@ -1,12 +1,12 @@
 ---
-name: "RZ Base theme"
+name: "Base theme"
 author: "REZO ZERO"
 copyright: "REZO ZERO"
 themeDir: "BaseTheme"
 supportedLocale:
     - "en"
     - "fr"
-versionRequire: "0.8.0"
+versionRequire: "0.9.0"
 importFiles:
     roles: []
     groups: []
@@ -14,4 +14,5 @@ importFiles:
     nodetypes:
         - "Resources/import/nodetype/Page.rzt"
     tags: []
-    nodes: []
+    nodes:
+        - "Resources/import/node/node.rzn"

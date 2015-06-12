@@ -2,44 +2,41 @@
  * History
  */
 
-var BaseThemeHistory = function(){
+var BaseHistory = function(){
     var _this = this;
 
     _this.state = null;
     _this.stateBlock = true;
     _this.transition = false;
-
-    // Methods
     _this.init();
 };
 
-
 /**
- * Init
- * @return {[type]} [description]
+ * Init.
  */
-BaseThemeHistory.prototype.init = function(){
+BaseHistory.prototype.init = function(){
     var _this = this;
 
     // Events
-    if(BaseTheme.ajaxEnabled && Modernizr.history){
+    if(Base.ajaxEnabled && Modernizr.history){
 
         // Push first state
-        history.pushState({'firstPage': true, 'href':  window.location.href}, null, window.location.href);
+        history.pushState({
+            'firstPage': true,
+            'href':  window.location.href
+        }, null, window.location.href);
         window.onpopstate = $.proxy(_this.onPopState, _this);
     }
 };
 
 
 /**
- * On pop state
- * @param  {[type]} event [description]
- * @return {[type]}       [description]
+ * On pop state.
  */
-BaseThemeHistory.prototype.onPopState = function(e) {
+BaseHistory.prototype.onPopState = function(e) {
     var _this = this;
 
-    if (typeof e.state !== "undefined") {
+    if (typeof e.state !== "undefined" && e.state !== null) {
         // console.log('------------');
         // console.log('-> Pop state');
         // console.log(event.state);
@@ -48,86 +45,85 @@ BaseThemeHistory.prototype.onPopState = function(e) {
     }
 };
 
-
 /**
- * Boot
- * @return {[type]} [description]
+ * Boot.
  */
-BaseThemeHistory.prototype.boot = function(nodeType, id, context){
+BaseHistory.prototype.boot = function(nodeType, id, context){
     var _this = this;
 
     // console.log('Boot '+nodeType+' - '+id);
 
-    // Page 
-    if(nodeType && typeof BaseTheme.nodeTypesClasses[nodeType] !== 'undefined'){
-        BaseTheme.page = new window[BaseTheme.nodeTypesClasses[nodeType]](id, context);
+    if(context == 'static') _this.loadBeginDate = new Date();
+
+    // Page
+    if(nodeType && typeof Base.nodeTypesClasses[nodeType] !== 'undefined') {
+        Base.page = new window[Base.nodeTypesClasses[nodeType]](id, context);
+    } else {
+        // Static pages
+        Base.page = new AbstractPage(id, context);
     }
-    // Static pages
-    else BaseTheme.page = new BaseThemeAbstractPage(id, context);
 };
 
-
 /**
- * Destroy
- * @return {[type]} [description]
+ * Destroy.
  */
-BaseThemeHistory.prototype.destroy = function(){
+BaseHistory.prototype.destroy = function(){
     var _this = this;
 
     // Events
 
 };
 
-
 /**
- * Link click
- * @return {[type]} [description]
+ * Link click.
  */
-BaseThemeHistory.prototype.linkClick = function(e){
+BaseHistory.prototype.linkClick = function(e){
     var _this = this;
 
-    e.preventDefault();
+    var linkClassName = e.currentTarget.className,
+        linkHref = e.currentTarget.href;
 
-    // console.log('-> Link click');
+    // No mailto
+    if(linkHref.indexOf('mailto:') == -1){
 
-    var linkClassName = e.currentTarget.className;
+        e.preventDefault();
 
-    // Check if link is not active
-    if(linkClassName.indexOf('active') == -1 && !_this.transition) {
+        // Check if link is not active
+        if( linkClassName.indexOf('active') == -1 &&
+            linkClassName.indexOf('no-ajax-link') == -1 &&
+            !_this.transition) {
 
-        _this.transition = true;
+            _this.transition = true;
 
-        var context = (e.currentTarget.className.indexOf('nav-link') >= 0) ? 'nav' : 'link',
-            dataHome = e.currentTarget.getAttribute('data-is-home'),
-            isHome = (dataHome == '1') ? true : false,
-            title = e.currentTarget.getAttribute('data-title');
+            var context = (e.currentTarget.className.indexOf('nav-link') >= 0) ? 'nav' : 'link',
+                dataHome = e.currentTarget.getAttribute('data-is-home'),
+                isHome = (dataHome == '1') ? true : false,
+                title = e.currentTarget.getAttribute('data-title');
 
-        if(title === '') title = e.currentTarget.innerHTML;
+            if(title === '') title = e.currentTarget.innerHTML;
 
-        var state = {
-            'nodeType'      : e.currentTarget.getAttribute('data-node-type'),
-            'nodeName'      : e.currentTarget.getAttribute('data-node-name'),
-            'index'         : parseInt(e.currentTarget.getAttribute('data-index')),
-            'transition'    : BaseTheme.page.type+'_to_'+e.currentTarget.getAttribute('data-node-type'),
-            'context'       : context,
-            'is_home'       : isHome
-        };
+            var state = {
+                'nodeType'      : e.currentTarget.getAttribute('data-node-type'),
+                'nodeName'      : e.currentTarget.getAttribute('data-node-name'),
+                'index'         : Number(e.currentTarget.getAttribute('data-index')),
+                'transition'    : Base.page.type+'_to_'+e.currentTarget.getAttribute('data-node-type'),
+                'context'       : context,
+                'is_home'       : isHome
+            };
 
-        history.pushState(state, title, e.currentTarget.href);
+            history.pushState(state, title, e.currentTarget.href);
 
-        _this.loadPage(e, state);
+            _this.loadPage(e, state);
+        }
     }
 };
 
 
 /**
- * Load page
- * @return {[type]} [description]
+ * Load page.
  */
-BaseThemeHistory.prototype.loadPage = function(e, state){
+BaseHistory.prototype.loadPage = function(e, state){
     var _this = this;
-    
-    // console.log('-> History load page');
 
     _this.loadBeginDate = new Date();
 
@@ -136,28 +132,26 @@ BaseThemeHistory.prototype.loadPage = function(e, state){
         url: e.currentTarget.href,
         type: 'get',
         success: function(data){
-
-            // console.log('-> History page loaded');
-
-            BaseTheme.$ajaxContainer.append(data);
+            Base.$ajaxContainer.append(data);
 
             // Disappear & destroy page
-            BaseTheme.formerPage = BaseTheme.page;
-            BaseTheme.page = null;
-            BaseTheme.formerPage.hide($.proxy(BaseTheme.formerPage.destroy, BaseTheme.formerPage));
+            Base.formerPage = Base.page;
+            Base.page = null;
+            Base.formerPage.hide($.proxy(Base.formerPage.destroy, Base.formerPage));
 
             // Init new page
             _this.boot(state.nodeType, state.nodeName, 'ajax');
 
             // Update nav
-            BaseTheme.nav.update(state);
+            Base.nav.update(state);
 
             // Update body id
-            Jaa.$body[0].id = state.nodeName;
+            Base.$body[0].id = state.nodeName;
 
             // Analytics
-            if(typeof ga !== "undefined") ga('send', 'pageview', {'page':state.href, 'title':document.title});
+            if(typeof ga !== "undefined") {
+                ga('send', 'pageview', {'page':state.href, 'title':document.title});
+            }
         }
     });
-
 };

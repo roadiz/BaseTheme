@@ -1,14 +1,13 @@
 /**
  * Nav
  */
-
-var BaseThemeNav = function(){
+var BaseNav = function(){
     var _this = this;
 
     console.log('Nav');
 
     // Selectors
-    _this.$cont = BaseTheme.$nav;
+    _this.$cont = Base.$nav;
     _this.$list = $('#nav-list');
     _this.$item = _this.$list.find('.nav-item');
     _this.$link = _this.$list.find('.nav-link');
@@ -22,7 +21,7 @@ var BaseThemeNav = function(){
  * Init
  * @return {[type]} [description]
  */
-BaseThemeNav.prototype.init = function(){
+BaseNav.prototype.init = function(){
     var _this = this;
 
     // Events
@@ -34,12 +33,14 @@ BaseThemeNav.prototype.init = function(){
  * Init events
  * @return {[type]} [description]
  */
-BaseThemeNav.prototype.initEvents = function(){
+BaseNav.prototype.initEvents = function(){
     var _this = this;
 
-    if(_this.$link.length && BaseTheme.ajaxEnabled) _this.$link.on('click', $.proxy(BaseTheme.history.linkClick, BaseTheme.history));
+    if(_this.$link.length && Base.ajaxEnabled) {
+        _this.$link.on('click', $.proxy(Base.history.linkClick, Base.history));
+    }
 
-    BaseTheme.$window.on('resize', debounce($.proxy(_this.resize, _this), 100, false));
+    Base.$window.on('resize', debounce($.proxy(_this.resize, _this), 100, false));
 };
 
 
@@ -47,12 +48,14 @@ BaseThemeNav.prototype.initEvents = function(){
  * Destroy events
  * @return {[type]} [description]
  */
-BaseThemeNav.prototype.destroyEvents = function(){
+BaseNav.prototype.destroyEvents = function(){
     var _this = this;
 
-    if(_this.$link.length && BaseTheme.ajaxEnabled) _this.$link.off('click', $.proxy(BaseTheme.history.linkClick, BaseTheme.history));
+    if(_this.$link.length && Base.ajaxEnabled) {
+        _this.$link.off('click', $.proxy(Base.history.linkClick, Base.history));
+    }
 
-    BaseTheme.$window.off('resize', debounce($.proxy(_this.resize, _this), 100, false));
+    Base.$window.off('resize', debounce($.proxy(_this.resize, _this), 100, false));
 };
 
 
@@ -60,7 +63,7 @@ BaseThemeNav.prototype.destroyEvents = function(){
  * Destroy
  * @return {[type]} [description]
  */
-BaseThemeNav.prototype.destroy = function(){
+BaseNav.prototype.destroy = function(){
     var _this = this;
 
     // Events
@@ -72,7 +75,7 @@ BaseThemeNav.prototype.destroy = function(){
  * Update
  * @return {[type]} [description]
  */
-BaseThemeNav.prototype.update = function(state){
+BaseNav.prototype.update = function(state){
     var _this = this;
 
     _this.$item.removeClass('active');
@@ -91,7 +94,7 @@ BaseThemeNav.prototype.update = function(state){
  * Window resize callback
  * @return {[type]} [description]
  */
-BaseThemeNav.prototype.resize = function(){
+BaseNav.prototype.resize = function(){
     var _this = this;
 
     console.log('-> Nav resize');

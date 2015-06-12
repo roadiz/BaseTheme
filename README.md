@@ -18,8 +18,9 @@ Blank theme uses *Grunt* and *Bower* to deal with front development files.
 
 ### Grunt
 
-This blank theme uses *Grunt* to manage your LESS, JS and CSS files. When you set it up, Grunt will
-generate versioned CSS and JS files to be properly served over browser caches.
+This blank theme uses *Grunt* to manage your LESS, JS and CSS files. 
+When you set it up, Grunt will generate versioned CSS and JS files to 
+be properly served over browser caches.
 
 * Install *NodeJS* - http://nodejs.org/
 * Install *Bower* - http://bower.io/

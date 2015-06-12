@@ -5,7 +5,16 @@
 {% endif %}
 {% set children = source|children %}
 
-<li class="nav-item{% if source.node.id == active.id or source.node.id == active.parent.id %} active{% endif %}{% if children|length %} dropdown has-children{% endif %}"
+{% set classes = ['nav-item'] %}
+{% if source.node.id == active.id or source.node.id == active.parent.id %}
+{% set classes = classes|merge(['active']) %}
+{% endif %}
+{% if children|length %}
+{% set classes = classes|merge(['dropdown', 'has-children']) %}
+{% endif %}
+
+{% if source.node != home %}
+<li class="{{ classes|join(' ') }}"
 	id="nav-item-{{ source.node.nodeName }}"
 	data-node-id="{{ source.node.id }}">
 
@@ -21,10 +30,10 @@
 			{% include '@BaseTheme/modules/nav-item.html.twig' with {
 				'source' : subsource,
 				'active' : active,
-	            'securityContext' : securityContext
+				'home' : home
 			} only %}
 		{% endfor %}
 	</ul>
 	{% endif %}
-
 </li>
+{% endif %}

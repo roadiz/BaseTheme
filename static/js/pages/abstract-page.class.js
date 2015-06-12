@@ -1,27 +1,23 @@
 
 /**
  * Abstract page
- * @param {[type]} id      [identifier]
- * @param {[type]} context ["static" or "ajax"]
  */
-var BaseThemeAbstractPage = function(id, context){
+var AbstractPage = function(id, context, type){
     var _this = this;
 
-    console.log('Page - '+id);
-
-    _this.init(id, context);
+    console.log('=> Abstract page - '+id);
 };
-
 
 /**
  * Init
  * @return {[type]} [description]
  */
-BaseThemeAbstractPage.prototype.init = function(id, context){
+AbstractPage.prototype.init = function(id, context, type){
     var _this = this;
 
     _this.id = id;
     _this.context = context;
+    _this.type = type;
 
     _this.loadDurationMin = 1200; // Time for animate loader
 
@@ -30,6 +26,12 @@ BaseThemeAbstractPage.prototype.init = function(id, context){
 
     if(_this.$cont.length) _this.$link = _this.$cont.find('a').not('[target="_blank"]');
     else _this.$link = null;
+
+    // Add target blank on external link
+    if(null !== _this.$link && _this.$link.length){
+        externalLinkTarget(_this.$link, Base.baseUrl);
+        _this.$link = _this.$cont.find('a').not('[target="_blank"]');
+    }
 
     // Blocks
     _this.blocks = [];
@@ -46,22 +48,20 @@ BaseThemeAbstractPage.prototype.init = function(id, context){
     _this.initEvents();
 };
 
-
 /**
  * Destroy
  * @return {[type]} [description]
  */
-BaseThemeAbstractPage.prototype.destroy = function(){
+AbstractPage.prototype.destroy = function(){
     var _this = this;
 
-    // console.log('-> Page Destroy');
+    // console.log('=> Page Destroy');
 
     // --- Fade & remove --- //
     _this.$cont.remove();
 
     // --- Events --- //
     _this.destroyEvents();
-
 
     // --- Blocks --- //
     if(_this.blocks !== null){
@@ -71,12 +71,11 @@ BaseThemeAbstractPage.prototype.destroy = function(){
     }
 };
 
-
 /**
  * Init events
  * @return {[type]} [description]
  */
-BaseThemeAbstractPage.prototype.initEvents = function(){
+AbstractPage.prototype.initEvents = function(){
     var _this = this;
 
     _this.$cont.waitForImages({
@@ -84,42 +83,44 @@ BaseThemeAbstractPage.prototype.initEvents = function(){
         waitForAll: true
     });
 
-    if(_this.$link !== null && BaseTheme.ajaxEnabled) _this.$link.on('click', $.proxy(BaseTheme.history.linkClick, BaseTheme.history));
+    if(_this.$link !== null && Base.ajaxEnabled) {
+        _this.$link.on('click', $.proxy(Base.history.linkClick, Base.history));
+    }
 
-    BaseTheme.$window.on('resize', debounce($.proxy(_this.onResize, _this), 100, false));
+    Base.$window.on('resize', debounce($.proxy(_this.onResize, _this), 100, false));
 };
-
 
 /**
  * Destroy events
  * @return {[type]} [description]
  */
-BaseThemeAbstractPage.prototype.destroyEvents = function(){
+AbstractPage.prototype.destroyEvents = function(){
     var _this = this;
 
-    if(_this.$link !== null && BaseTheme.ajaxEnabled) _this.$link.off('click', $.proxy(BaseTheme.history.linkClick, BaseTheme.history));
+    if(_this.$link !== null && Base.ajaxEnabled) {
+        _this.$link.off('click', $.proxy(Base.history.linkClick, Base.history));
+    }
 
-    BaseTheme.$window.off('resize', debounce($.proxy(_this.onResize, _this), 100, false));
+    Base.$window.off('resize', debounce($.proxy(_this.onResize, _this), 100, false));
 };
-
 
 /**
  * On load
  * @return {[type]} [description]
  */
-BaseThemeAbstractPage.prototype.onLoad = function(e){
+AbstractPage.prototype.onLoad = function(e){
     var _this = this;
 
-    // console.log('-> Page onLoad');
+    // console.log('=> Page onLoad');
 
     _this.loadDate = new Date();
-    _this.loadDuration = _this.loadDate - BaseTheme.history.loadBeginDate;
+    _this.loadDuration = _this.loadDate - Base.history.loadBeginDate;
 
     var delay = (_this.loadDuration > _this.loadDurationMin) ? 0 : _this.loadDurationMin - _this.loadDuration;
 
     // Hide loading
     setTimeout(function(){
-        
+
     }, delay);
 
     // Show
@@ -127,30 +128,28 @@ BaseThemeAbstractPage.prototype.onLoad = function(e){
 
 };
 
-
 /**
  * Show
  * @return {[type]} [description]
  */
-BaseThemeAbstractPage.prototype.show = function(callback){
+AbstractPage.prototype.show = function(callback){
     var _this = this;
 
     // Animate
     TweenLite.to(_this.$cont, 0.6, {opacity:1, onComplete:function(){
-        BaseTheme.history.transition = false;
+        Base.history.transition = false;
 
         if(typeof callback !== 'undefined'){
             callback();
-        } 
+        }
     }});
 };
-
 
 /**
  * Hide
  * @return {[type]} [description]
  */
-BaseThemeAbstractPage.prototype.hide = function(callback){
+AbstractPage.prototype.hide = function(callback){
     var _this = this;
 
     // Animate
@@ -161,12 +160,11 @@ BaseThemeAbstractPage.prototype.hide = function(callback){
     }});
 };
 
-
 /**
  * Init ajax
  * @return {[type]} [description]
  */
-BaseThemeAbstractPage.prototype.initAjax = function(){
+AbstractPage.prototype.initAjax = function(){
     var _this = this;
 
     // --- Change title --- //
@@ -176,28 +174,30 @@ BaseThemeAbstractPage.prototype.initAjax = function(){
     }
 };
 
-
 /**
  * Init blocks
  * @return {[type]} [description]
  */
-BaseThemeAbstractPage.prototype.initBlocks = function(){
+AbstractPage.prototype.initBlocks = function(){
     var _this = this;
 
     for(var blockIndex = 0; blockIndex < _this.blockLength; blockIndex++) {
         var nodeType = _this.$block[blockIndex].getAttribute('data-node-type'),
             id = _this.$block[blockIndex].id;
-        _this.blocks[blockIndex] = new window[BaseTheme.nodeTypesClasses[nodeType]](id);
+        if (typeof Base.nodeTypesClasses[nodeType] !== "undefined") {
+            _this.blocks[blockIndex] = new window[Base.nodeTypesClasses[nodeType]](id);
+        } else {
+            _this.blocks[blockIndex] = new AbstractBlock(id);
+        }
     }
 };
-
 
 /**
  * Resize
  * @return {[type]} [description]
  */
-BaseThemeAbstractPage.prototype.onResize = function(){
+AbstractPage.prototype.onResize = function(){
     var _this = this;
 
-    console.log('-> Page resize');
+    console.log('=> Page resize');
 };

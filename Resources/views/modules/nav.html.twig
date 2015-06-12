@@ -1,26 +1,45 @@
 {% if themeServices.navigation|length %}
 <nav class="navbar navbar-default" id="nav" data-active-node="{{ node.id }}">
+    <div class="container">
+        {#
+         #  Home with a node
+         #}
+        {% if home %}
+        {% set homeSource = home.nodeSources.first %}
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="{{ homeSource|url }}" class="navbar-brand nav-link" id="nav-home">{{ homeSource.title }}</a>
+        </div>
+        {% endif %}
 
-	{#
-	 #  Home with a node
-	 #}
-	{% if home %}
-	<a href="{{ home|url }}" class="navbar-brand nav-link" id="nav-home">{{ meta.siteName }}</a>
-	{% endif %}
+        {#
+         # Main navigation
+         #}
+        <div class="collapse navbar-collapse" id="main-navigation">
+            <ul class="nav navbar-nav" id="nav-list">
+                {% for source in themeServices.navigation %}
+                    {% include '@BaseTheme/modules/nav-item.html.twig' with {
+                        'source' : source,
+                        'active' : node,
+                        'home' : home,
+                        'themeServices':themeServices
+                    } only %}
+                {% endfor %}
+            </ul>
 
-	{#
-	 # Main navigation
-	 #}
-	<ul class="nav navbar-nav" id="nav-list">
-		{% for cnode in themeServices.navigation %}
-			{% set source = cnode.nodeSources.first %}
-			{% include '@BaseTheme/modules/nav-item.html.twig' with {
-				'source' : source,
-				'active' : node,
-				'securityContext':securityContext,
-				'themeServices':themeServices
-			} only %}
-		{% endfor %}
-	</ul>
+            <ul class="nav navbar-nav" id="lang-nav">
+                {% if translation %}
+                {% for id, trans in translation|menu %}
+                <li><a class="{% if trans.active %}active{% endif %}" href="{{ trans.url }}">{{ trans.translation }}</a></li>
+                {% endfor %}
+                {% endif %}
+            </ul>
+        </div>
+    </div>
 </nav>
 {% endif %}
