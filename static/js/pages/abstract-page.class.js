@@ -6,6 +6,8 @@ var AbstractPage = function(id, context, type){
     var _this = this;
 
     console.log('=> Abstract page - '+id);
+
+    _this.init(id, context, 'page');
 };
 
 /**
