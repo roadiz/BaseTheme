@@ -20,42 +20,43 @@
 {% endblock %}
 
 {% block content %}
-    <section class="{{ classes|join(' ') }}" id="page-content-{{ node.nodeName }}"
-             data-title="{{ nodeSource.title }}"
-             data-node-type="{{ node.nodeType.name|lower }}"
-             data-meta-title="{{ pageMeta.title }}">
-        <h1>{{ nodeSource.title }}</h1>
-        <div>{{ nodeSource.content|markdown }}</div>
+<article class="{{ classes|join(' ') }}"
+         id="page-content-{{ node.nodeName }}"
+         data-title="{{ nodeSource.title }}"
+         data-node-type="{{ node.nodeType.name|lower }}"
+         data-meta-title="{{ pageMeta.title }}">
+    <h1>{{ nodeSource.title }}</h1>
+    <div>{{ nodeSource.content|markdown }}</div>
 
-        <div class="page-blocks">
-            {#
-             # Page blocks pattern implementation
-             #}
-            {% set blocks = nodeSource|children({
-                'node.nodeType' : ['!=', themeServices.typePage]
-            }) %}
-            {% for singleBlock in blocks %}
-            {% include '@BaseTheme/blocks/' ~ singleBlock.node.nodeType.name|lower ~ '.html.twig' with {
-                'nodeSource': singleBlock,
-                'parentNodeSource': nodeSource,
-                'themeServices': themeServices,
-                'head': head,
-                'node': singleBlock.node,
-                'nodeType': singleBlock.node.nodeType,
-                'loop': loop,
-                'blocksLength':blocks|length
-            } only %}
-            {% endfor %}
-        </div>
+    <div class="page-blocks">
+        {#
+         # Page blocks pattern implementation
+         #}
+        {% set blocks = nodeSource|children({
+            'node.nodeType' : ['!=', themeServices.typePage]
+        }) %}
+        {% for singleBlock in blocks %}
+        {% include '@BaseTheme/blocks/' ~ singleBlock.node.nodeType.name|lower ~ '.html.twig' with {
+            'nodeSource': singleBlock,
+            'parentNodeSource': nodeSource,
+            'themeServices': themeServices,
+            'head': head,
+            'node': singleBlock.node,
+            'nodeType': singleBlock.node.nodeType,
+            'loop': loop,
+            'blocksLength':blocks|length
+        } only %}
+        {% endfor %}
+    </div>
 
-        <div class="image">
-            {% for document in nodeSource.images %}
-                {% set imageMetas = document.documentTranslations.first %}
-                <figure class="uk-thumbnail">
-                    {{ document|display(themeServices.imageFormats.thumbnail) }}
-                    <figcaption>{{ imageMetas.name }} — {{ imageMetas.copyright }}</figcaption>
-                </figure>
-            {% endfor %}
-        </div>
-    </section>
+    <div class="image">
+        {% for document in nodeSource.images %}
+            {% set imageMetas = document.documentTranslations.first %}
+            <figure class="uk-thumbnail">
+                {{ document|display(themeServices.imageFormats.thumbnail) }}
+                <figcaption>{{ imageMetas.name }} — {{ imageMetas.copyright }}</figcaption>
+            </figure>
+        {% endfor %}
+    </div>
+</article>
 {% endblock %}

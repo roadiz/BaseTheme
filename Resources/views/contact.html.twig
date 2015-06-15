@@ -10,7 +10,7 @@
 {% endif %}
 
 {% block content %}
-<section class="{{ classes|join(' ') }}"
+<article class="{{ classes|join(' ') }}"
          id="page-content-contact"
          data-title="{{ nodeSource.title }}"
          data-node-type="{{ node.nodeType.name|lower }}"
@@ -37,5 +37,5 @@
         {% form_theme contactForm 'bootstrap_3_layout.html.twig' %}
         {{ form(contactForm) }}
     </div>
-</section>
+</article>
 {% endblock %}
