@@ -48,7 +48,7 @@ BaseHistory.prototype.onPopState = function(e) {
 /**
  * Boot.
  */
-BaseHistory.prototype.boot = function(nodeType, id, context){
+BaseHistory.prototype.boot = function(nodeType, id, context, isHome){
     var _this = this;
 
     // console.log('Boot '+nodeType+' - '+id);
@@ -56,11 +56,14 @@ BaseHistory.prototype.boot = function(nodeType, id, context){
     if(context == 'static') _this.loadBeginDate = new Date();
 
     // Page
-    if(nodeType && typeof Base.nodeTypesClasses[nodeType] !== 'undefined') {
+    if(isHome && _this.options.homeHasClass){
+        Base.page = new BaseHome(id, context);
+    }
+    else if(nodeType && typeof Base.nodeTypesClasses[nodeType] !== 'undefined') {
         Base.page = new window[Base.nodeTypesClasses[nodeType]](id, context);
     } else {
         // Static pages
-        Base.page = new AbstractPage(id, context);
+        Base.page = new BaseAbstractPage(id, context);
     }
 };
 
@@ -108,7 +111,7 @@ BaseHistory.prototype.linkClick = function(e){
                 'index'         : Number(e.currentTarget.getAttribute('data-index')),
                 'transition'    : Base.page.type+'_to_'+e.currentTarget.getAttribute('data-node-type'),
                 'context'       : context,
-                'is_home'       : isHome
+                'isHome'       : isHome
             };
 
             history.pushState(state, title, e.currentTarget.href);
@@ -140,7 +143,7 @@ BaseHistory.prototype.loadPage = function(e, state){
             Base.formerPage.hide($.proxy(Base.formerPage.destroy, Base.formerPage));
 
             // Init new page
-            _this.boot(state.nodeType, state.nodeName, 'ajax');
+            _this.boot(state.nodeType, state.nodeName, 'ajax', state.isHome);
 
             // Update nav
             Base.nav.update(state);

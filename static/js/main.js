@@ -26,8 +26,7 @@ Base.page = null;
 Base.formerPage = null;
 
 Base.nodeTypesClasses = {
-    'page' : 'Page',
-    'project' : 'Project',
+    'page' : 'BasePage',
     'basicblock' : 'BasicBlock',
     'mapblock' : 'MapBlock'
 };
@@ -35,6 +34,10 @@ Base.nodeTypesClasses = {
 Base.$ajaxContainer = null;
 Base.ajaxEnabled = true;
 Base.gmapLoaded = false;
+
+Base.historyOptions = {
+    'homeHasClass': false
+};
 
 Base.creditsList = [
     {
@@ -103,7 +106,9 @@ Base.init = function(){
 
     // History
     _this.history = new BaseHistory();
-    _this.history.boot(_this.$body[0].getAttribute('data-node-type'), _this.$body[0].id, 'static');
+    var dataHome = _this.$body[0].getAttribute('data-is-home'),
+        isHome = (dataHome == '1') ? true : false;
+    _this.history.boot(_this.$body[0].getAttribute('data-node-type'), _this.$body[0].id, 'static', isHome);
 
     // Nav
     _this.$nav = $('#nav');
