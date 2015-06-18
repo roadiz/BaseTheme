@@ -34,6 +34,6 @@ class PageController extends BaseThemeApp
 
         $this->getService('stopwatch')->start('twigRender');
 
-        return $this->render('types/page.html.twig', $this->assignation, null, static::getThemeDir());
+        return $this->render('types/page.html.twig', $this->assignation);
     }
 }

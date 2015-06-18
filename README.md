@@ -16,6 +16,12 @@ If you need others node-type, duplicate theses files and rename them.
 
 Blank theme uses *Grunt* and *Bower* to deal with front development files.
 
+### Bootstrap
+
+We use *Bootstrap* right in BaseTheme but you can choose what feature to include in your style not to bloat your CSS files. We recommend to use *LESS* version to ignore unnecessary modules.
+Open your `static/css/styles.less` and comment/uncomment your *Bootstrap*
+modules files, you even can override *Bootstrap* variables.
+
 ### Grunt
 
 This blank theme uses *Grunt* to manage your LESS, JS and CSS files. 

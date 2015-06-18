@@ -25,7 +25,7 @@ class SitemapController extends BaseThemeApp
 
         $this->prepareThemeAssignation(null, $this->bindLocaleFromRoute($request, $_locale));
 
-        $this->assignation['home'] = $this->themeContainer['homeNode']->getNodeSources()->first();
+        //$this->assignation['home'] = $this->themeContainer['homeNode']->getNodeSources()->first();
 
         /*
          * Add your own nodes grouped by their type.

@@ -3,12 +3,12 @@ return array(
     'staticAssets' => array(
         'global' => array(
             'css' => array(
-                '/vendor.19d1cc83.css',
-                '/style.68b631be.css',
+                '/vendor.1e9c0f3b.css',
+                '/style.17137a46.css',
             ),
             'js' => array(
-                '/BaseTheme-vendor.452a27f3.min.js',
-                '/BaseTheme.92a4d1f5.min.js',
+                '/BaseTheme-vendor.71f258b5.min.js',
+                '/BaseTheme.b58edae5.min.js',
             ),
         ),
     )

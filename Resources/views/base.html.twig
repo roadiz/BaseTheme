@@ -110,12 +110,12 @@
         {# Scripts #}
 
         {# jQuery 2.* is only compatible for IE 9+ #}
-        {#<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="{{ head.resourcesUrl }}js/vendor/jquery-2.1.3.min.js"><\/script>')</script> #}
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="{{ head.resourcesUrl }}js/vendor/jquery-2.1.4.min.js"><\/script>')</script>
 
         {# jQuery 1.* for maximum compatibility #}
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="{{ head.resourcesUrl }}js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+        {#<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="{{ head.resourcesUrl }}js/vendor/jquery-1.11.3.min.js"><\/script>')</script>#}
 
         {# Import Grunt generated javascripts #}
         {% for jsMin in themeServices.grunt.staticAssets.global.js %}
