@@ -16,6 +16,8 @@ Base.windowSize = {
 
 Base.firstResize = true;
 
+Base.$loading = null;
+
 Base.$nav = null;
 Base.nav = null;
 
@@ -81,6 +83,7 @@ Base.init = function(){
     _this.$body = $('body');
 
     _this.$ajaxContainer = $('#ajax-container');
+    _this.$loading = $('#loading');
 
     // Set first window size
     var viewport = getViewportSize();

@@ -93,6 +93,10 @@
 
     <body {% block body_attributes %}{% if node %}class="{{ bodyClasses|join(' ') }}" id="{{ node.nodeName }}" data-node-type="{{ node.nodeType.name|lower }}" data-is-home="{{ node.home }}"{% endif %}{% endblock %}>
 
+        <div id="loading">
+            <div id="loading-inner"></div>
+        </div>
+
         <div class="container-fluid">{% block header %}{% endblock %}</div>
 
         {% block mainnavigation %}

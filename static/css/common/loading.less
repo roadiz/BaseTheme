@@ -1,0 +1,25 @@
+/*------------------------------------*\
+   LOADING
+\*------------------------------------*/
+
+
+/*
+ * Styles for loading
+ */
+
+@loadingInnerWidth  : 400px;
+@loadingInnerHeight : 150px;
+
+#loading{
+    position: fixed;
+    top:0; right:0; bottom:0; left:0;
+    background: white;
+    z-index:-1; // z65
+}
+
+#loading-inner{
+    position: absolute;
+    top:50%; left:50%;
+    width:@loadingInnerWidth; height:@loadingInnerHeight;
+    margin: (-@loadingInnerHeight/2) 0 0 -(@loadingInnerWidth/2);
+}
