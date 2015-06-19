@@ -34,7 +34,6 @@ class SitemapController extends BaseThemeApp
              ->getBy([
                  'node.nodeType' => $this->themeContainer['typePage'],
                  'node.visible' => true,
-                 'translation' => $this->translation,
              ]);
 
         return new Response(
