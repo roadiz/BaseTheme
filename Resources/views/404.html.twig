@@ -5,10 +5,7 @@
 {% block content %}
 <article class="page-content" id="page-content-404"
          data-title="{{ nodeSource.title }}">
-    <h1>Error 404</h1>
-    <h2>Requested page cannot be found.</h2>
-    {% if errorMessage %}
-    <div class="error">{{ errorMessage|markdown }}</div>
-    {% endif %}
+    <h1>{% trans %}error404.title{% endtrans %}Error 404</h1>
+    <h2>{% trans %}error404.message{% endtrans %}Requested page cannot be found.</h2>
 </article>
 {% endblock %}
