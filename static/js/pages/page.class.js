@@ -10,7 +10,7 @@ var BasePage = function(id, context){
     _this.init(id, context, 'page');
 };
 
-$.extend(BasePage.prototype, AbstractBasePage.prototype);
+$.extend(BasePage.prototype, BaseAbstractPage.prototype);
 
 /**
  * Init
@@ -21,5 +21,5 @@ BasePage.prototype.init = function(id, context, type){
 
     console.log('-> BasePage init : '+id);
 
-    AbstractBasePage.prototype.init.call(this, id, context, type);
+    BaseAbstractPage.prototype.init.call(this, id, context, type);
 };

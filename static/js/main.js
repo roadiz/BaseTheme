@@ -108,7 +108,7 @@ Base.init = function(){
     if(!Modernizr.history) Base.ajaxEnabled = false;
 
     // History
-    _this.history = new BaseHistory();
+    _this.history = new BaseHistory(_this.historyOptions);
     var dataHome = _this.$body[0].getAttribute('data-is-home'),
         isHome = (dataHome == '1') ? true : false;
     _this.history.boot(_this.$body[0].getAttribute('data-node-type'), _this.$body[0].id, 'static', isHome);

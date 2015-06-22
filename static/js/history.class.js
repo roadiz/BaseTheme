@@ -2,12 +2,14 @@
  * History
  */
 
-var BaseHistory = function(){
+var BaseHistory = function(options){
     var _this = this;
 
     _this.state = null;
     _this.stateBlock = true;
     _this.transition = false;
+    _this.options = options;
+
     _this.init();
 };
 
