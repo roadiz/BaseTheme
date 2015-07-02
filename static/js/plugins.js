@@ -226,6 +226,7 @@ function externalLinkTarget($links, baseUrl){
 
         if(link.href.indexOf(abstractBaseUrl) == -1 &&
            link.href.indexOf('javascript') == -1 &&
+           link.href.indexOf('mailto:') == -1 &&
            link.href.charAt(0) != '/' &&
            link.href.charAt(0) != '#')
         {
