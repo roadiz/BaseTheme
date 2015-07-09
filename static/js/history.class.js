@@ -20,15 +20,24 @@ BaseHistory.prototype.init = function(){
     var _this = this;
 
     // Events
-    if(Base.ajaxEnabled && Modernizr.history){
-
-        // Push first state
-        history.pushState({
-            'firstPage': true,
-            'href':  window.location.href
-        }, null, window.location.href);
+    if(Base.ajaxEnabled){
         window.onpopstate = $.proxy(_this.onPopState, _this);
     }
+};
+
+/**
+ * Push first state
+ * @return {[type]} [description]
+ */
+BaseHistory.prototype.pushFirstState = function(type, id){
+    var _this = this;
+
+    history.pushState({
+        'firstPage': true,
+        'href':  window.location.href,
+        'nodeType':type,
+        'nodeName':id
+    }, null, window.location.href);
 };
 
 
@@ -108,12 +117,13 @@ BaseHistory.prototype.linkClick = function(e){
             if(title === '') title = e.currentTarget.innerHTML;
 
             var state = {
+                'href'          : e.currentTarget.href,
                 'nodeType'      : e.currentTarget.getAttribute('data-node-type'),
                 'nodeName'      : e.currentTarget.getAttribute('data-node-name'),
                 'index'         : Number(e.currentTarget.getAttribute('data-index')),
                 'transition'    : Base.page.type+'_to_'+e.currentTarget.getAttribute('data-node-type'),
                 'context'       : context,
-                'isHome'       : isHome
+                'isHome'        : isHome
             };
 
             history.pushState(state, title, e.currentTarget.href);
@@ -134,7 +144,7 @@ BaseHistory.prototype.loadPage = function(e, state){
 
     // Load content
     $.ajax({
-        url: e.currentTarget.href,
+        url: state.href,
         type: 'get',
         success: function(data){
             Base.$ajaxContainer.append(data);

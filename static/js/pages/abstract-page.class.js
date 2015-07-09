@@ -26,6 +26,9 @@ BaseAbstractPage.prototype.init = function(id, context, type){
     // --- Selectors --- //
     _this.$cont = $('#page-content-'+_this.id);
 
+
+    // --- Link --- //
+
     if(_this.$cont.length) _this.$link = _this.$cont.find('a').not('[target="_blank"]');
     else _this.$link = null;
 
@@ -35,18 +38,23 @@ BaseAbstractPage.prototype.init = function(id, context, type){
         _this.$link = _this.$cont.find('a').not('[target="_blank"]');
     }
 
-    // Blocks
+
+    // --- Blocks --- //
     _this.blocks = [];
     _this.$block = _this.$cont.find('.page-block');
     _this.blockLength = _this.$block.length;
     if(_this.blockLength) _this.initBlocks();
 
-    // Ajax
-    if(_this.context == 'ajax'){
+
+    // --- Context --- //
+    if(_this.context == 'static' && Base.ajaxEnabled){
+        Base.history.pushFirstState(_this.type, _this.id);
+    }
+    else if(_this.context == 'ajax'){
         _this.initAjax();
     }
 
-    // Events
+    // --- Events --- //
     _this.initEvents();
 };
 
