@@ -93,6 +93,10 @@
 
     <body {% block body_attributes %}{% if node %}class="{{ bodyClasses|join(' ') }}" id="{{ node.nodeName }}" data-node-type="{{ node.nodeType.name|lower }}" data-is-home="{{ node.home }}"{% endif %}{% endblock %}>
 
+        <div id="svg-sprite" style="display: none">
+            {% include '@BaseTheme/svg/sprite.svg.twig' %}
+        </div>
+
         <div id="loading">
             <div id="loading-inner"></div>
         </div>
