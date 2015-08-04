@@ -1,25 +1,25 @@
 /**
- * Page
+ * BasePage
  */
 
-var Page = function(id, context){
+var BasePage = function(id, context){
     var _this = this;
 
-    console.log('-> Page - '+id);
+    console.log('-> BasePage - '+id);
 
     _this.init(id, context, 'page');
 };
 
-$.extend(Page.prototype, AbstractPage.prototype);
+$.extend(BasePage.prototype, BaseAbstractPage.prototype);
 
 /**
  * Init
  * @return {[type]} [description]
  */
-Page.prototype.init = function(id, context, type){
+BasePage.prototype.init = function(id, context, type){
     var _this = this;
 
-    console.log('-> Page init : '+id);
+    console.log('-> BasePage init : '+id);
 
-    AbstractPage.prototype.init.call(this, id, context, type);
+    BaseAbstractPage.prototype.init.call(this, id, context, type);
 };

@@ -2,17 +2,19 @@
 /**
  * Abstract page
  */
-var AbstractPage = function(id, context, type){
+var BaseAbstractPage = function(id, context, type){
     var _this = this;
 
     console.log('=> Abstract page - '+id);
+
+    _this.init(id, context, 'page');
 };
 
 /**
  * Init
  * @return {[type]} [description]
  */
-AbstractPage.prototype.init = function(id, context, type){
+BaseAbstractPage.prototype.init = function(id, context, type){
     var _this = this;
 
     _this.id = id;
@@ -24,6 +26,9 @@ AbstractPage.prototype.init = function(id, context, type){
     // --- Selectors --- //
     _this.$cont = $('#page-content-'+_this.id);
 
+
+    // --- Link --- //
+
     if(_this.$cont.length) _this.$link = _this.$cont.find('a').not('[target="_blank"]');
     else _this.$link = null;
 
@@ -33,18 +38,23 @@ AbstractPage.prototype.init = function(id, context, type){
         _this.$link = _this.$cont.find('a').not('[target="_blank"]');
     }
 
-    // Blocks
+
+    // --- Blocks --- //
     _this.blocks = [];
     _this.$block = _this.$cont.find('.page-block');
     _this.blockLength = _this.$block.length;
     if(_this.blockLength) _this.initBlocks();
 
-    // Ajax
-    if(_this.context == 'ajax'){
+
+    // --- Context --- //
+    if(_this.context == 'static' && Base.ajaxEnabled){
+        Base.history.pushFirstState(_this.type, _this.id);
+    }
+    else if(_this.context == 'ajax'){
         _this.initAjax();
     }
 
-    // Events
+    // --- Events --- //
     _this.initEvents();
 };
 
@@ -52,7 +62,7 @@ AbstractPage.prototype.init = function(id, context, type){
  * Destroy
  * @return {[type]} [description]
  */
-AbstractPage.prototype.destroy = function(){
+BaseAbstractPage.prototype.destroy = function(){
     var _this = this;
 
     // console.log('=> Page Destroy');
@@ -75,7 +85,7 @@ AbstractPage.prototype.destroy = function(){
  * Init events
  * @return {[type]} [description]
  */
-AbstractPage.prototype.initEvents = function(){
+BaseAbstractPage.prototype.initEvents = function(){
     var _this = this;
 
     _this.$cont.waitForImages({
@@ -94,7 +104,7 @@ AbstractPage.prototype.initEvents = function(){
  * Destroy events
  * @return {[type]} [description]
  */
-AbstractPage.prototype.destroyEvents = function(){
+BaseAbstractPage.prototype.destroyEvents = function(){
     var _this = this;
 
     if(_this.$link !== null && Base.ajaxEnabled) {
@@ -108,7 +118,7 @@ AbstractPage.prototype.destroyEvents = function(){
  * On load
  * @return {[type]} [description]
  */
-AbstractPage.prototype.onLoad = function(e){
+BaseAbstractPage.prototype.onLoad = function(e){
     var _this = this;
 
     // console.log('=> Page onLoad');
@@ -132,7 +142,7 @@ AbstractPage.prototype.onLoad = function(e){
  * Show
  * @return {[type]} [description]
  */
-AbstractPage.prototype.show = function(callback){
+BaseAbstractPage.prototype.show = function(callback){
     var _this = this;
 
     // Animate
@@ -149,7 +159,7 @@ AbstractPage.prototype.show = function(callback){
  * Hide
  * @return {[type]} [description]
  */
-AbstractPage.prototype.hide = function(callback){
+BaseAbstractPage.prototype.hide = function(callback){
     var _this = this;
 
     // Animate
@@ -164,7 +174,7 @@ AbstractPage.prototype.hide = function(callback){
  * Init ajax
  * @return {[type]} [description]
  */
-AbstractPage.prototype.initAjax = function(){
+BaseAbstractPage.prototype.initAjax = function(){
     var _this = this;
 
     // --- Change title --- //
@@ -178,7 +188,7 @@ AbstractPage.prototype.initAjax = function(){
  * Init blocks
  * @return {[type]} [description]
  */
-AbstractPage.prototype.initBlocks = function(){
+BaseAbstractPage.prototype.initBlocks = function(){
     var _this = this;
 
     for(var blockIndex = 0; blockIndex < _this.blockLength; blockIndex++) {
@@ -196,7 +206,7 @@ AbstractPage.prototype.initBlocks = function(){
  * Resize
  * @return {[type]} [description]
  */
-AbstractPage.prototype.onResize = function(){
+BaseAbstractPage.prototype.onResize = function(){
     var _this = this;
 
     console.log('=> Page resize');

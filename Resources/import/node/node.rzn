@@ -15,6 +15,15 @@
         "nodes_sources": [
             {
                 "translation": "fr",
+                "title": "Accueil",
+                "meta_title": "",
+                "meta_keywords": "",
+                "meta_description": "",
+                "content": "Aenean eu leo qu",
+                "url_aliases": []
+            },
+            {
+                "translation": "en",
                 "title": "Home",
                 "meta_title": "",
                 "meta_keywords": "",

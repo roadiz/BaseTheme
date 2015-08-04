@@ -16,6 +16,8 @@ Base.windowSize = {
 
 Base.firstResize = true;
 
+Base.$loading = null;
+
 Base.$nav = null;
 Base.nav = null;
 
@@ -26,8 +28,7 @@ Base.page = null;
 Base.formerPage = null;
 
 Base.nodeTypesClasses = {
-    'page' : 'Page',
-    'project' : 'Project',
+    'page' : 'BasePage',
     'basicblock' : 'BasicBlock',
     'mapblock' : 'MapBlock'
 };
@@ -35,6 +36,10 @@ Base.nodeTypesClasses = {
 Base.$ajaxContainer = null;
 Base.ajaxEnabled = true;
 Base.gmapLoaded = false;
+
+Base.historyOptions = {
+    'homeHasClass': false
+};
 
 Base.creditsList = [
     {
@@ -78,6 +83,7 @@ Base.init = function(){
     _this.$body = $('body');
 
     _this.$ajaxContainer = $('#ajax-container');
+    _this.$loading = $('#loading');
 
     // Set first window size
     var viewport = getViewportSize();
@@ -102,8 +108,10 @@ Base.init = function(){
     if(!Modernizr.history) Base.ajaxEnabled = false;
 
     // History
-    _this.history = new BaseHistory();
-    _this.history.boot(_this.$body[0].getAttribute('data-node-type'), _this.$body[0].id, 'static');
+    _this.history = new BaseHistory(_this.historyOptions);
+    var dataHome = _this.$body[0].getAttribute('data-is-home'),
+        isHome = (dataHome == '1') ? true : false;
+    _this.history.boot(_this.$body[0].getAttribute('data-node-type'), _this.$body[0].id, 'static', isHome);
 
     // Nav
     _this.$nav = $('#nav');

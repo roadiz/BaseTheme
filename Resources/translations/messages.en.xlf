@@ -38,6 +38,14 @@
                 <source>browser_update.link</source>
                 <target>See how to update your browser</target>
             </trans-unit>
+            <trans-unit id="error404.title">
+                <source>error404.title</source>
+                <target>Error 404</target>
+            </trans-unit>
+            <trans-unit id="error404.message">
+                <source>error404.message</source>
+                <target>Requested page cannot be found.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

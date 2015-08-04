@@ -38,6 +38,14 @@
                 <source>browser_update.link</source>
                 <target>Découvrez comment mettre votre navigateur à jour</target>
             </trans-unit>
+            <trans-unit id="error404.title">
+                <source>error404.title</source>
+                <target>Erreur 404</target>
+            </trans-unit>
+            <trans-unit id="error404.message">
+                <source>error404.message</source>
+                <target>Page introuvable.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

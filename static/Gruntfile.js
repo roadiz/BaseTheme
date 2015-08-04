@@ -150,6 +150,40 @@ module.exports = function(grunt) {
                 src: 'dist/style.min.css'
             }
         },
+        svgmin: {
+            options: {
+                plugins: [
+                    {
+                        removeViewBox: true
+                    }, {
+                        removeUselessStrokeAndFill: true
+                    }
+                ]
+            },
+            dist: {
+                expand: true,
+                cwd: 'src-svg',
+                src: ['*.svg'],
+                dest: 'svg',
+            }
+        },
+        svgstore: {
+            options: {
+                cleanup:[
+                    'fill',
+                    'fill-rule',
+                    'clip-rule',
+                ],
+                cleanupdefs:true,
+                includeTitleElement:false,
+                prefix:'base-icon-'
+            },
+            default : {
+                files: {
+                    '../Resources/views/svg/sprite.svg.twig': ['svg/*.svg'],
+                },
+            },
+        },
         versioning: {
             options: {
                 cwd: 'public',
@@ -288,5 +322,5 @@ module.exports = function(grunt) {
     });
 
     // Default task(s).
-    grunt.registerTask('default', ['clean', 'jshint', 'concat', 'uglify', 'less:production', 'postcss', 'versioning:production', 'copy']);
+    grunt.registerTask('default', ['clean', 'jshint', 'concat', 'uglify', 'less:production', 'postcss', 'versioning:production', 'copy', 'svgmin', 'svgstore']);
 };

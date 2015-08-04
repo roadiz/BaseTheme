@@ -2,12 +2,14 @@
  * History
  */
 
-var BaseHistory = function(){
+var BaseHistory = function(options){
     var _this = this;
 
     _this.state = null;
     _this.stateBlock = true;
     _this.transition = false;
+    _this.options = options;
+
     _this.init();
 };
 
@@ -18,15 +20,24 @@ BaseHistory.prototype.init = function(){
     var _this = this;
 
     // Events
-    if(Base.ajaxEnabled && Modernizr.history){
-
-        // Push first state
-        history.pushState({
-            'firstPage': true,
-            'href':  window.location.href
-        }, null, window.location.href);
+    if(Base.ajaxEnabled){
         window.onpopstate = $.proxy(_this.onPopState, _this);
     }
+};
+
+/**
+ * Push first state
+ * @return {[type]} [description]
+ */
+BaseHistory.prototype.pushFirstState = function(type, id){
+    var _this = this;
+
+    history.pushState({
+        'firstPage': true,
+        'href':  window.location.href,
+        'nodeType':type,
+        'nodeName':id
+    }, null, window.location.href);
 };
 
 
@@ -48,7 +59,7 @@ BaseHistory.prototype.onPopState = function(e) {
 /**
  * Boot.
  */
-BaseHistory.prototype.boot = function(nodeType, id, context){
+BaseHistory.prototype.boot = function(nodeType, id, context, isHome){
     var _this = this;
 
     // console.log('Boot '+nodeType+' - '+id);
@@ -56,11 +67,14 @@ BaseHistory.prototype.boot = function(nodeType, id, context){
     if(context == 'static') _this.loadBeginDate = new Date();
 
     // Page
-    if(nodeType && typeof Base.nodeTypesClasses[nodeType] !== 'undefined') {
+    if(isHome && _this.options.homeHasClass){
+        Base.page = new BaseHome(id, context);
+    }
+    else if(nodeType && typeof Base.nodeTypesClasses[nodeType] !== 'undefined') {
         Base.page = new window[Base.nodeTypesClasses[nodeType]](id, context);
     } else {
         // Static pages
-        Base.page = new AbstractPage(id, context);
+        Base.page = new BaseAbstractPage(id, context);
     }
 };
 
@@ -103,12 +117,13 @@ BaseHistory.prototype.linkClick = function(e){
             if(title === '') title = e.currentTarget.innerHTML;
 
             var state = {
+                'href'          : e.currentTarget.href,
                 'nodeType'      : e.currentTarget.getAttribute('data-node-type'),
                 'nodeName'      : e.currentTarget.getAttribute('data-node-name'),
                 'index'         : Number(e.currentTarget.getAttribute('data-index')),
                 'transition'    : Base.page.type+'_to_'+e.currentTarget.getAttribute('data-node-type'),
                 'context'       : context,
-                'is_home'       : isHome
+                'isHome'        : isHome
             };
 
             history.pushState(state, title, e.currentTarget.href);
@@ -129,7 +144,7 @@ BaseHistory.prototype.loadPage = function(e, state){
 
     // Load content
     $.ajax({
-        url: e.currentTarget.href,
+        url: state.href,
         type: 'get',
         success: function(data){
             Base.$ajaxContainer.append(data);
@@ -140,7 +155,7 @@ BaseHistory.prototype.loadPage = function(e, state){
             Base.formerPage.hide($.proxy(Base.formerPage.destroy, Base.formerPage));
 
             // Init new page
-            _this.boot(state.nodeType, state.nodeName, 'ajax');
+            _this.boot(state.nodeType, state.nodeName, 'ajax', state.isHome);
 
             // Update nav
             Base.nav.update(state);
