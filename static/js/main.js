@@ -34,22 +34,12 @@ Base.nodeTypesClasses = {
 };
 
 Base.$ajaxContainer = null;
-Base.ajaxEnabled = true;
+Base.ajaxEnabled = false;
 Base.gmapLoaded = false;
 
-Base.historyOptions = {
-    'homeHasClass': false
-};
-
 Base.creditsList = [
-    {
-        name:'roadiz',
-        website:'www.roadiz.io'
-    },
-    {
-        name:'GSAP',
-        website:'www.greensock.com'
-    }
+    { name:'roadiz', website:'www.roadiz.io' },
+    { name:'GSAP', website:'www.greensock.com' }
 ];
 
 /**
@@ -108,7 +98,9 @@ Base.init = function(){
     if(!Modernizr.history) Base.ajaxEnabled = false;
 
     // History
-    _this.history = new BaseHistory(_this.historyOptions);
+    _this.history = new BaseHistory({
+        'homeHasClass': false
+    });
     var dataHome = _this.$body[0].getAttribute('data-is-home'),
         isHome = (dataHome == '1') ? true : false;
     _this.history.boot(_this.$body[0].getAttribute('data-node-type'), _this.$body[0].id, 'static', isHome);
