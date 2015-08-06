@@ -1,15 +1,14 @@
 /**
  * Abstract block
  */
-var AbstractBlock = function(id){
+var AbstractBlock = function(id, type){
     var _this = this;
 
     console.log('=> Abstract block - '+id);
 
-    _this.init(id);
+    _this.init(id, type);
     _this.initEvents();
 };
-
 
 /**
  * Init

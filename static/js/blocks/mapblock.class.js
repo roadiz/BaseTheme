@@ -1,13 +1,8 @@
 /**
  * Map block
  */
-var MapBlock = function(id){
-    var _this = this;
-
-    console.log('-> MapBlock - '+id);
-
-    _this.init(id, 'mapblock');
-    _this.initEvents();
+var MapBlock = function(id, type){
+    AbstractBlock.call(this, id, type);
 };
 
 $.extend(MapBlock.prototype, AbstractBlock.prototype);
@@ -17,6 +12,8 @@ $.extend(MapBlock.prototype, AbstractBlock.prototype);
  */
 MapBlock.prototype.init = function(id, type){
     var _this = this;
+
+    console.log('-> MapBlock init : '+id);
 
     AbstractBlock.prototype.init.call(this, id, type);
 
