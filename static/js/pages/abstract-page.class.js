@@ -130,6 +130,19 @@ BaseAbstractPage.prototype.onLoad = function(e){
     // Hide loading
     setTimeout(function(){
 
+        if(_this.context == 'static'){
+
+        }
+        else if(_this.context == 'ajax'){
+
+            // Update body id
+            Base.$body[0].id = state.nodeName;
+
+            // Hide - show page
+            Base.formerPage.hide($.proxy(Base.formerPage.destroy, Base.formerPage));
+            _this.show();
+        }
+
     }, delay);
 
     // Show

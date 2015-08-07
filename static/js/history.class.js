@@ -153,16 +153,12 @@ BaseHistory.prototype.loadPage = function(e, state){
             // Disappear & destroy page
             Base.formerPage = Base.page;
             Base.page = null;
-            Base.formerPage.hide($.proxy(Base.formerPage.destroy, Base.formerPage));
 
             // Init new page
             _this.boot(state.nodeType, state.nodeName, 'ajax', state.isHome);
 
             // Update nav
             Base.nav.update(state);
-
-            // Update body id
-            Base.$body[0].id = state.nodeName;
 
             // Analytics
             if(typeof ga !== "undefined") {
