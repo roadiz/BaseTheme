@@ -123,7 +123,10 @@ module.exports = function(grunt) {
                 '!dist/*.js',
                 '!js/plugins.js',
                 '!js/vendor/*.js'
-            ]
+            ],
+            options: {
+                '-W008': true // decimal point
+            }
         },
         imagemin: {
             dynamic: {
