@@ -1,45 +1,57 @@
 {% if themeServices.navigation and themeServices.navigation|length %}
-<nav class="navbar navbar-default" id="nav" data-active-node="{{ node.id }}">
-    <div class="container">
-        {#
-         #  Home with a node
-         #}
-        {% if home %}
-        {% set homeSource = home.nodeSources.first %}
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navigation">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="{{ homeSource|url }}" class="navbar-brand nav-link" id="nav-home">{{ homeSource.title }}</a>
-        </div>
+
+{# Navbar #}
+<div id="navbar" class="visible-xs">
+    <div id="nav-btn">
+        <div class="nav-btn-bar" id="nav-btn-bar-1"></div>
+        <div class="nav-btn-bar" id="nav-btn-bar-2"></div>
+        <div class="nav-btn-bar" id="nav-btn-bar-3"></div>
+    </div>
+    <div id="navbar-label">Menu</div>
+</div>
+
+<div id="nav-overlay"></div>
+
+{# Main nav #}
+<nav class="" id="nav" data-active-node="{{ node.id }}">
+
+    <div class="container" id="nav-container">
+
+        {# Nav list #}
+        <ul class="nav-list" id="nav-list">
+
+            {# Home #}
+            {% if home %}
+            {% set homeSource = home.nodeSources.first %}
+            <li class="nav-item nav-item-home {% if node.isHome %}active{% endif %}">
+                <a href="{{ homeSource|url }}" title="{{ homeSource.title }}" class="nav-link-home nav-link {% if node.isHome %}active{% endif %}" id="nav-home">{{ homeSource.title }}</a>
+            </li>
+            {% endif %}
+
+            {# Pages #}
+            {% for source in themeServices.navigation %}
+                {% include '@BaseTheme/modules/nav-item.html.twig' with {
+                    'source' : source,
+                    'active' : node,
+                    'home' : home,
+                    'themeServices':themeServices
+                } only %}
+            {% endfor %}
+
+        </ul>
+
+        {# Lang #}
+        {% if translation %}
+        <ul class="nav-list" id="nav-lang">
+            {% for id, trans in translation|menu %}
+            <li class="nav-item nav-item-lang{% if trans.active %} active{% endif %}">
+                <a class="nav-link nav-link-lang{% if trans.active %} active{% endif %}" href="{{ trans.url }}">{{ trans.translation }}</a>
+            </li>
+            {% endfor %}
+        </ul>
         {% endif %}
 
-        {#
-         # Main navigation
-         #}
-        <div class="collapse navbar-collapse" id="main-navigation">
-            <ul class="nav navbar-nav" id="nav-list">
-                {% for source in themeServices.navigation %}
-                    {% include '@BaseTheme/modules/nav-item.html.twig' with {
-                        'source' : source,
-                        'active' : node,
-                        'home' : home,
-                        'themeServices':themeServices
-                    } only %}
-                {% endfor %}
-            </ul>
-
-            {% if translation %}
-            <ul class="nav navbar-nav" id="lang-nav">
-                {% for id, trans in translation|menu %}
-                <li><a class="{% if trans.active %}active{% endif %}" href="{{ trans.url }}">{{ trans.translation }}</a></li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-        </div>
     </div>
+
 </nav>
 {% endif %}
