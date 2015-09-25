@@ -8,10 +8,15 @@
  */
 
 #cookieChoiceInfo {
-    padding: 12px 10px 9px !important;
-    top: auto !important;
-    bottom: 0px;
+    position: fixed;
+    right:0; bottom:0; left:0;
+    margin:0;
+    padding: 12px 10px 9px;
     line-height: 18px;
+    text-align: center;
+    background: #eee;
+    color:@black;
+    z-index:999;
 
     span{
         position: relative;
@@ -24,9 +29,10 @@
         color: @black;
         display: inline-block;
         border-bottom: 1px dashed #999999;
+        transition:0.6s border-botom @easeOutExpo;
 
         &:hover, &:focus {
-            border-bottom: none;
+            border-bottom-color: transparent;
             text-decoration: none;
         }
     }
