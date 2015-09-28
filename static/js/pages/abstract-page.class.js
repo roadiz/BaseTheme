@@ -2,24 +2,26 @@
 /**
  * Abstract page
  */
-var BaseAbstractPage = function(id, context, type){
-    var _this = this;
+var BaseAbstractPage = function(id, context, type, isHome){
+    type = type || 'page';
 
     console.log('=> Abstract page - '+id);
 
-    _this.init(id, context, 'page');
+    this.init(id, context, type, isHome);
+    this.initEvents();
 };
 
 /**
  * Init
  * @return {[type]} [description]
  */
-BaseAbstractPage.prototype.init = function(id, context, type){
+BaseAbstractPage.prototype.init = function(id, context, type, isHome){
     var _this = this;
 
     _this.id = id;
     _this.context = context;
     _this.type = type;
+    _this.isHome = isHome;
 
     _this.loadDurationMin = 1200; // Time for animate loader
 
@@ -53,9 +55,6 @@ BaseAbstractPage.prototype.init = function(id, context, type){
     else if(_this.context == 'ajax'){
         _this.initAjax();
     }
-
-    // --- Events --- //
-    _this.initEvents();
 };
 
 /**
@@ -131,6 +130,19 @@ BaseAbstractPage.prototype.onLoad = function(e){
     // Hide loading
     setTimeout(function(){
 
+        if(_this.context == 'static'){
+
+        }
+        else if(_this.context == 'ajax'){
+
+            // Update body id
+            Base.$body[0].id = state.nodeName;
+
+            // Hide - show page
+            Base.formerPage.hide($.proxy(Base.formerPage.destroy, Base.formerPage));
+            _this.show();
+        }
+
     }, delay);
 
     // Show
@@ -192,13 +204,12 @@ BaseAbstractPage.prototype.initBlocks = function(){
     var _this = this;
 
     for(var blockIndex = 0; blockIndex < _this.blockLength; blockIndex++) {
-        var nodeType = _this.$block[blockIndex].getAttribute('data-node-type'),
+        var type = _this.$block[blockIndex].getAttribute('data-node-type'),
             id = _this.$block[blockIndex].id;
-        if (typeof Base.nodeTypesClasses[nodeType] !== "undefined") {
-            _this.blocks[blockIndex] = new window[Base.nodeTypesClasses[nodeType]](id);
-        } else {
-            _this.blocks[blockIndex] = new AbstractBlock(id);
-        }
+
+        if (typeof Base.nodeTypesClasses[type] !== "undefined") {
+            _this.blocks[blockIndex] = new window[Base.nodeTypesClasses[type]](id, type);
+        } else _this.blocks[blockIndex] = new AbstractBlock(id, type);
     }
 };
 

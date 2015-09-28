@@ -1,12 +1,8 @@
 /**
  * Basic Block
  */
-var BasicBlock = function(id){
-    var _this = this;
-
-    console.log('-> Basic Block - '+id);
-
-    _this.init(id, 'basicblock');
+var BasicBlock = function(id, type){
+    AbstractBlock.call(this, id, type);
 };
 
 $.extend(BasicBlock.prototype, AbstractBlock.prototype);
@@ -17,5 +13,8 @@ $.extend(BasicBlock.prototype, AbstractBlock.prototype);
  */
 BasicBlock.prototype.init = function(id, type){
     var _this = this;
-    console.log('-> Block init : '+id);
+
+    console.log('-> BasicBlock init : '+id);
+
+    AbstractBlock.prototype.init.call(this, id, type);
 };

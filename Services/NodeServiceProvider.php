@@ -36,9 +36,7 @@ class NodeServiceProvider implements ServiceProviderInterface
         $container['nodeMenu'] = function ($c) {
 
             if ($this->translation === null) {
-                $this->translation = $this->coreServices['em']
-                     ->getRepository('RZ\Roadiz\Core\Entities\Translation')
-                     ->findDefault();
+                $this->translation = $this->coreServices['defaultTranslation'];
             }
 
             return $this->coreServices['em']

@@ -4,11 +4,11 @@ return array(
         'global' => array(
             'css' => array(
                 '/vendor.1e9c0f3b.css',
-                '/style.e1da5867.css',
+                '/style.50cffed0.css',
             ),
             'js' => array(
-                '/BaseTheme-vendor.2efd8657.min.js',
-                '/BaseTheme.d7c87df5.min.js',
+                '/BaseTheme-vendor.6d4ca14b.min.js',
+                '/BaseTheme.61d1cf0b.min.js',
             ),
         ),
     )

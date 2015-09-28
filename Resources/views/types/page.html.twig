@@ -20,7 +20,7 @@
 {% endblock %}
 
 {% block content %}
-<article class="{{ classes|join(' ') }}"
+<section class="{{ classes|join(' ') }}"
          id="page-content-{{ node.nodeName }}"
          data-title="{{ nodeSource.title }}"
          data-node-type="{{ node.nodeType.name|lower }}"
@@ -58,5 +58,5 @@
             </figure>
         {% endfor %}
     </div>
-</article>
+</section>
 {% endblock %}

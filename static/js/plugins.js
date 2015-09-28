@@ -199,11 +199,13 @@ function logCredits(siteName, bgColor, creditsList, textColor){
     console.log('%c'+siteName, 'background:'+bgColor+'; color: '+color+'; font-size:14px; padding:5px 10px;');
     console.log('%c   ', 'font-size:3px;');
     console.log("Made by Rezo Zero - www.rezo-zero.com");
-    console.log("-");
-    console.log("Thanks to");
     var creditsLength = creditsList.length;
-    for(var indexCredit = 0; indexCredit < creditsLength; indexCredit++) {
-        console.log(creditsList[indexCredit].name +' : '+creditsList[indexCredit].website);
+    if (creditsLength){
+        console.log("-");
+        console.log("Thanks to");
+        for(var indexCredit = 0; indexCredit < creditsLength; indexCredit++) {
+            console.log(creditsList[indexCredit].name +' : '+creditsList[indexCredit].website);
+        }
     }
     console.log("-");
     console.log(" ");

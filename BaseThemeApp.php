@@ -24,7 +24,7 @@ use Themes\BaseTheme\Services;
  */
 class BaseThemeApp extends FrontendController
 {
-    const VERSION = '0.10.0';
+    const VERSION = '0.11.0';
 
     protected static $themeName = 'Base theme';
     protected static $themeAuthor = 'REZO ZERO';
@@ -77,9 +77,7 @@ class BaseThemeApp extends FrontendController
      */
     public function throw404($message = '')
     {
-        $this->translation = $this->getService('em')
-                            ->getRepository('RZ\Roadiz\Core\Entities\Translation')
-                            ->findDefault();
+        $this->translation = $this->getService('defaultTranslation');
 
         $this->prepareThemeAssignation(null, $this->translation);
         $this->getService('logger')->error($message);

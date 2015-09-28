@@ -29,13 +29,14 @@ BaseHistory.prototype.init = function(){
  * Push first state
  * @return {[type]} [description]
  */
-BaseHistory.prototype.pushFirstState = function(type, id){
+BaseHistory.prototype.pushFirstState = function(type, id, isHome){
     var _this = this;
 
     history.pushState({
         'firstPage': true,
         'href':  window.location.href,
         'nodeType':type,
+        'isHome':isHome,
         'nodeName':id
     }, null, window.location.href);
 };
@@ -68,13 +69,13 @@ BaseHistory.prototype.boot = function(nodeType, id, context, isHome){
 
     // Page
     if(isHome && _this.options.homeHasClass){
-        Base.page = new BaseHome(id, context);
+        Base.page = new BaseHome(id, context, nodeType, isHome);
     }
     else if(nodeType && typeof Base.nodeTypesClasses[nodeType] !== 'undefined') {
-        Base.page = new window[Base.nodeTypesClasses[nodeType]](id, context);
+        Base.page = new window[Base.nodeTypesClasses[nodeType]](id, context, nodeType, isHome);
     } else {
         // Static pages
-        Base.page = new BaseAbstractPage(id, context);
+        Base.page = new BaseAbstractPage(id, context, nodeType, isHome);
     }
 };
 
@@ -152,16 +153,12 @@ BaseHistory.prototype.loadPage = function(e, state){
             // Disappear & destroy page
             Base.formerPage = Base.page;
             Base.page = null;
-            Base.formerPage.hide($.proxy(Base.formerPage.destroy, Base.formerPage));
 
             // Init new page
             _this.boot(state.nodeType, state.nodeName, 'ajax', state.isHome);
 
             // Update nav
             Base.nav.update(state);
-
-            // Update body id
-            Base.$body[0].id = state.nodeName;
 
             // Analytics
             if(typeof ga !== "undefined") {
