@@ -7,17 +7,22 @@
  * Styles for all pages
  */
 
-::selection { background-color:@color; color:white; }
+::selection { background-color:@black; color:@white; }
 
 body {
     font: normal 14px/16px @font;
-    color:@color;
+    color:@black;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 a{
     text-decoration: none;
+
+    &:hover, &:focus{
+        text-decoration: none;
+        color:inherit;
+    }
 }
 
 button{

@@ -12,6 +12,11 @@ var BaseNav = function(){
     _this.$item = _this.$list.find('.nav-item');
     _this.$link = _this.$list.find('.nav-link');
 
+    _this.$btn = $('#nav-btn');
+    _this.$overlay = $('#nav-overlay');
+
+    _this.opened = false;
+
     // Methods
     _this.init();
 };
@@ -36,6 +41,8 @@ BaseNav.prototype.init = function(){
 BaseNav.prototype.initEvents = function(){
     var _this = this;
 
+    if(!isMediaMinSM()) _this.$btn.on('click', $.proxy(_this.btnClick, _this));
+
     if(_this.$link.length && Base.ajaxEnabled) {
         _this.$link.on('click', $.proxy(Base.history.linkClick, Base.history));
     }
@@ -50,6 +57,8 @@ BaseNav.prototype.initEvents = function(){
  */
 BaseNav.prototype.destroyEvents = function(){
     var _this = this;
+
+    if(!isMediaMinSM()) _this.$btn.off('click', $.proxy(_this.btnClick, _this));
 
     if(_this.$link.length && Base.ajaxEnabled) {
         _this.$link.off('click', $.proxy(Base.history.linkClick, Base.history));
@@ -68,6 +77,57 @@ BaseNav.prototype.destroy = function(){
 
     // Events
     _this.destroyEvents();
+};
+
+
+/**
+ * Btn click
+ * @return {[type]} [description]
+ */
+BaseNav.prototype.btnClick = function(e){
+    var _this = this;
+
+    if(!_this.opened) _this.open();
+    else _this.close();
+};
+
+/**
+ * Open
+ * @return {[type]} [description]
+ */
+BaseNav.prototype.open = function(e){
+    var _this = this;
+
+    if(!_this.opened){
+
+        var contXfrom = Math.round(-0.8*Base.windowSize.width);
+        TweenLite.fromTo(_this.$cont, 0.8, {x:contXfrom},{x:0});
+
+        _this.$overlay[0].style.display = 'block';
+        TweenLite.to(_this.$overlay, 1.2, {opacity:1});
+
+        _this.opened = true;
+    }
+};
+
+/**
+ * Close
+ * @return {[type]} [description]
+ */
+BaseNav.prototype.close = function(e){
+    var _this = this;
+
+    if(_this.opened){
+
+        var contX = Math.round(-0.8*Base.windowSize.width);
+        TweenLite.to(_this.$cont, 0.8, {x:contX});
+
+        TweenLite.to(_this.$overlay, 1.2, {opacity:0, onComplete:function(){
+            _this.$overlay[0].style.display = 'none';
+        }});
+
+        _this.opened = false;
+    }
 };
 
 
