@@ -15,17 +15,21 @@
 /*
  * Styles for nav
  */
-
+@navbar-height: 50px;
 
 // --- Navbar --- //
 
 #navbar{
     position: fixed;
     top:0; right:0; left:0;
-    height:50px;
+    height:@navbar-height;
     background: @white;
     border-bottom:1px solid #DADADA;
     z-index:55;
+}
+#main-container {
+    position: relative;
+    top: @navbar-height;
 }
 
 #nav-btn{
@@ -56,7 +60,7 @@
 
 #navbar-label{
     position: relative;
-    font-size:14px; line-height:50px;
+    font-size:14px; line-height:@navbar-height;
     padding-left:70px;
     z-index:56;
 }
@@ -136,6 +140,10 @@
         width:auto; height:68px;
         transform:none;
         border-bottom: 1px solid #DADADA;
+    }
+    #main-container {
+        position: relative;
+        top: 68px;
     }
 
     #nav-list{
