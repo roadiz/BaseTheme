@@ -11,7 +11,7 @@
 
 {% if source.node.id == active.id or source.node.id == active.parent.id %}
     {% set itemClasses = itemClasses|merge(['active']) %}
-    {% set linkClasses = itemClasses|merge(['active']) %}
+    {% set linkClasses = linkClasses|merge(['active']) %}
 {% endif %}
 
 {% if children|length %}
