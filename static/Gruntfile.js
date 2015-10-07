@@ -177,6 +177,7 @@ module.exports = function(grunt) {
                     'fill',
                     'fill-rule',
                     'clip-rule',
+                    'sketch:type'
                 ],
                 cleanupdefs:true,
                 includeTitleElement:false,
