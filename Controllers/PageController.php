@@ -29,10 +29,7 @@ class PageController extends BaseThemeApp
         Node $node = null,
         Translation $translation = null
     ) {
-
         $this->prepareThemeAssignation($node, $translation);
-
-        $this->getService('stopwatch')->start('twigRender');
 
         return $this->render('types/page.html.twig', $this->assignation);
     }

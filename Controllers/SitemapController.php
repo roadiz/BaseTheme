@@ -31,10 +31,10 @@ class SitemapController extends BaseThemeApp
          * Add your own nodes grouped by their type.
          */
         $this->assignation['pages'] = $this->getService('nodeSourceApi')
-             ->getBy([
-                 'node.nodeType' => $this->themeContainer['typePage'],
-                 'node.visible' => true,
-             ]);
+            ->getBy([
+                'node.nodeType' => $this->themeContainer['typePage'],
+                'node.visible' => true,
+            ]);
 
         return new Response(
             trim($this->getTwig()->render('@' . static::getThemeDir() . '/sitemap.xml.twig', $this->assignation)),
