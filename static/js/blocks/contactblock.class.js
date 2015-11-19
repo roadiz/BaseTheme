@@ -14,7 +14,7 @@ $.extend(ContactBlock.prototype, AbstractBlock.prototype);
 ContactBlock.prototype.init = function(id, type){
     var _this = this;
 
-    console.log('-> ContactBlock init : '+id);
+    // console.log('-> ContactBlock init : '+id);
 
     AbstractBlock.prototype.init.call(this, id, type);
 

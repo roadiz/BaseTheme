@@ -5,7 +5,7 @@
 var BaseAbstractPage = function(id, context, type, isHome){
     type = type || 'page';
 
-    console.log('=> Abstract page - '+id);
+    // console.log('=> Abstract page - '+id);
 
     this.init(id, context, type, isHome);
     this.initEvents();
@@ -136,7 +136,7 @@ BaseAbstractPage.prototype.onLoad = function(e){
         else if(_this.context == 'ajax'){
 
             // Update body id
-            Base.$body[0].id = state.nodeName;
+            Base.$body[0].id = history.state.nodeName;
 
             // Hide - show page
             Base.formerPage.hide($.proxy(Base.formerPage.destroy, Base.formerPage));
@@ -220,5 +220,5 @@ BaseAbstractPage.prototype.initBlocks = function(){
 BaseAbstractPage.prototype.onResize = function(){
     var _this = this;
 
-    console.log('=> Page resize');
+    // console.log('=> Page resize');
 };

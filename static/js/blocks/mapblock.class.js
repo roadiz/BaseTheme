@@ -13,7 +13,7 @@ $.extend(MapBlock.prototype, AbstractBlock.prototype);
 MapBlock.prototype.init = function(id, type){
     var _this = this;
 
-    console.log('-> MapBlock init : '+id);
+    // console.log('-> MapBlock init : '+id);
 
     AbstractBlock.prototype.init.call(this, id, type);
 

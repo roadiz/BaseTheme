@@ -34,7 +34,7 @@ Base.nodeTypesClasses = {
 };
 
 Base.$ajaxContainer = null;
-Base.ajaxEnabled = false;
+Base.ajaxEnabled = true;
 Base.gmapLoaded = false;
 
 Base.creditsList = [

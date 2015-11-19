@@ -4,7 +4,7 @@
 var BaseNav = function(){
     var _this = this;
 
-    console.log('Nav');
+    // console.log('Nav');
 
     // Selectors
     _this.$cont = Base.$nav;
@@ -157,5 +157,5 @@ BaseNav.prototype.update = function(state){
 BaseNav.prototype.resize = function(){
     var _this = this;
 
-    console.log('-> Nav resize');
+    // console.log('-> Nav resize');
 };

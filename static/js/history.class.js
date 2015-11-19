@@ -53,6 +53,9 @@ BaseHistory.prototype.onPopState = function(e) {
         // console.log('-> Pop state');
         // console.log(event.state);
         // console.log('------------');
+
+        _this.transition = true;
+
         _this.loadPage(e, e.state);
     }
 };
@@ -148,21 +151,24 @@ BaseHistory.prototype.loadPage = function(e, state){
         url: state.href,
         type: 'get',
         success: function(data){
-            Base.$ajaxContainer.append(data);
 
-            // Disappear & destroy page
-            Base.formerPage = Base.page;
-            Base.page = null;
+            if(this.url == history.state.href){
+                Base.$ajaxContainer.append(data);
 
-            // Init new page
-            _this.boot(state.nodeType, state.nodeName, 'ajax', state.isHome);
+                // Disappear & destroy page
+                Base.formerPage = Base.page;
+                Base.page = null;
 
-            // Update nav
-            Base.nav.update(state);
+                // Init new page
+                _this.boot(state.nodeType, state.nodeName, 'ajax', state.isHome);
 
-            // Analytics
-            if(typeof ga !== "undefined") {
-                ga('send', 'pageview', {'page':state.href, 'title':document.title});
+                // Update nav
+                Base.nav.update(state);
+
+                // Analytics
+                if(typeof ga !== "undefined") {
+                    ga('send', 'pageview', {'page':state.href, 'title':document.title});
+                }
             }
         }
     });
