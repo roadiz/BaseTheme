@@ -281,7 +281,7 @@ module.exports = function(grunt) {
                 }]
             }
         },
-        clean: ["public"],
+        clean: ["public","svg"],
         copy: {
             main: {
                 files: [
@@ -315,10 +315,10 @@ module.exports = function(grunt) {
      */
     grunt.event.on('watch', function(action, filepath) {
         if (filepath.indexOf('.js') > -1 ) {
-            grunt.config('watch.scripts.tasks', ['clean','jshint','versioning:development', 'copy']);
+            grunt.config('watch.scripts.tasks', ['clean','jshint','versioning:development', 'copy', 'svgmin', 'svgstore']);
         }
         else if(filepath.indexOf('.less') > -1 ){
-            grunt.config('watch.scripts.tasks', ['clean','less:development', 'postcss','versioning:development', 'copy']);
+            grunt.config('watch.scripts.tasks', ['clean','less:development', 'postcss','versioning:development', 'copy', 'svgmin', 'svgstore']);
         }
         else if( filepath.indexOf('.png') > -1  ||
             filepath.indexOf('.jpg') > -1  ||
