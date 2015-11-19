@@ -25,7 +25,7 @@ Base.isMobile = false;
 Base.isIE = false;
 
 Base.page = null;
-Base.formerPage = null;
+Base.formerPages = [];
 
 Base.nodeTypesClasses = {
     'page' : 'BasePage',

@@ -1,8 +1,3 @@
-{% if source.title %}
-	{% set title = source.title %}
-{% else %}
-	{% set title = source.node.nodeName %}
-{% endif %}
 
 {% set children = source|children %}
 
@@ -26,8 +21,8 @@
 	<a class="{{ linkClasses|join(' ') }}" id="nav-link-{{ source.node.nodeName }}" href="{{ source|url }}"
 	   data-node-type="{{ source.node.nodeType.name|lower }}"
        data-node-name="{{ source.node.nodeName }}"
-       data-content="{{ title }}"
-       data-title="{{ source.handler.seo.title }}">{{ title }}</a>
+       data-content="{{ source.title|default(source.node.nodeName) }}"
+       data-title="{{ source.handler.seo.title }}">{{ source.title|default(source.node.nodeName) }}</a>
 
 	{% if children|length %}
 	<ul class="dropdown-menu nav-children">

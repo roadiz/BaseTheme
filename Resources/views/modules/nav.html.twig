@@ -24,7 +24,13 @@
             {% if home %}
             {% set homeSource = home.nodeSources.first %}
             <li class="nav-item nav-item-home {% if node.isHome %}active{% endif %}">
-                <a href="{{ homeSource|url }}" title="{{ homeSource.title }}" class="nav-link-home nav-link {% if node.isHome %}active{% endif %}" id="nav-home">{{ homeSource.title }}</a>
+                <a data-node-type="{{ home.nodeType.name|lower }}"
+                   data-node-name="{{ home.nodeName }}"
+                   data-content="{{ homeSource.title|default(home.nodeName) }}"
+                   data-title="{{ homeSource.handler.seo.title }}"
+                   href="{{ homeSource|url }}"
+                   title="{{ homeSource.title }}"
+                   class="nav-link-home nav-link {% if node.isHome %}active{% endif %}" id="nav-home">{{ homeSource.title|default(home.nodeName) }}</a>
             </li>
             {% endif %}
 
