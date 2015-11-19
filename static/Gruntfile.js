@@ -310,8 +310,6 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-postcss');
-
     /*
      * Watch differently LESS, JS & imagemin
      */
