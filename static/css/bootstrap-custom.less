@@ -8,6 +8,14 @@
  */
 
 @import "../bower_components/bootstrap/less/variables.less";
+
+@screen-xl:                  1920px;
+@screen-xl-min:              @screen-xl;
+@screen-xl-desktop:          @screen-xl-min;
+@screen-lg-max:              (@screen-xl-min - 1);
+@container-extralarge-desktop:      (1440px + @grid-gutter-width);
+@container-xl:                 @container-extralarge-desktop;
+
 @import "../bower_components/bootstrap/less/mixins.less";
 
 // --- Bootstrap override variables --- //
@@ -23,6 +31,61 @@
 //** Link hover color set via `darken()` function.
 @link-hover-color: darken(@mainColor, 15%);
 
+
+// Generate the large columns
+.make-xl-column(@columns; @gutter: @grid-gutter-width) {
+  position: relative;
+  min-height: 1px;
+  padding-left:  (@gutter / 2);
+  padding-right: (@gutter / 2);
+
+  @media (min-width: @screen-xl-min) {
+    float: left;
+    width: percentage((@columns / @grid-columns));
+  }
+}
+.make-xl-column-offset(@columns) {
+  @media (min-width: @screen-xl-min) {
+    margin-left: percentage((@columns / @grid-columns));
+  }
+}
+.make-xl-column-push(@columns) {
+  @media (min-width: @screen-xl-min) {
+    left: percentage((@columns / @grid-columns));
+  }
+}
+.make-xl-column-pull(@columns) {
+  @media (min-width: @screen-xl-min) {
+    right: percentage((@columns / @grid-columns));
+  }
+}
+
+/*
+ * OVERRIDE bootstrap
+ */
+.make-grid-columns() {
+  // Common styles for all sizes of grid columns, widths 1-12
+  .col(@index) { // initial
+    @item: ~".col-xs-@{index}, .col-sm-@{index}, .col-md-@{index}, .col-lg-@{index}, .col-xl-@{index}";
+    .col((@index + 1), @item);
+  }
+  .col(@index, @list) when (@index =< @grid-columns) { // general; "=<" isn't a typo
+    @item: ~".col-xs-@{index}, .col-sm-@{index}, .col-md-@{index}, .col-lg-@{index}, .col-xl-@{index}";
+    .col((@index + 1), ~"@{list}, @{item}");
+  }
+  .col(@index, @list) when (@index > @grid-columns) { // terminal
+    @{list} {
+      position: relative;
+      // Prevent columns from collapsing when empty
+      min-height: 1px;
+      // Inner gutter via padding
+      padding-left:  ceil((@grid-gutter-width / 2));
+      padding-right: floor((@grid-gutter-width / 2));
+    }
+  }
+  .col(1); // kickstart it
+}
+
 // Reset and dependencies
 @import "../bower_components/bootstrap/less/normalize.less";
 @import "../bower_components/bootstrap/less/print.less";
@@ -33,6 +96,22 @@
 @import "../bower_components/bootstrap/less/type.less";
 @import "../bower_components/bootstrap/less/code.less";
 @import "../bower_components/bootstrap/less/grid.less";
+
+.container {
+    @media (min-width: @screen-xl-min) {
+      width: @container-xl;
+    }
+}
+
+// XLarge grid
+//
+// Columns, offsets, pushes, and pulls for the large desktop device range.
+
+@media (min-width: @screen-xl-min) {
+  .make-grid(xl);
+}
+
+
 @import "../bower_components/bootstrap/less/tables.less";
 @import "../bower_components/bootstrap/less/forms.less";
 @import "../bower_components/bootstrap/less/buttons.less";
@@ -70,13 +149,50 @@
 @import "../bower_components/bootstrap/less/utilities.less";
 @import "../bower_components/bootstrap/less/responsive-utilities.less";
 
+// Visibility utilities
+// Note: Deprecated .visible-xs, .visible-sm, .visible-md, and .visible-lg as of v3.2.0
+.visible-xl {
+  .responsive-invisibility();
+}
+.visible-xl-block,
+.visible-xl-inline,
+.visible-xl-inline-block {
+  display: none !important;
+}
+.visible-xl {
+  @media (min-width: @screen-xl-min) {
+    .responsive-visibility();
+  }
+}
+.visible-xl-block {
+  @media (min-width: @screen-xl-min) {
+    display: block !important;
+  }
+}
+.visible-xl-inline {
+  @media (min-width: @screen-xl-min) {
+    display: inline !important;
+  }
+}
+.visible-xl-inline-block {
+  @media (min-width: @screen-xl-min) {
+    display: inline-block !important;
+  }
+}
+.hidden-xl {
+  @media (min-width: @screen-xl-min) {
+    .responsive-invisibility();
+  }
+}
+
 /*
  * Added a 20% column width
  */
 .col-xs-2-4,
 .col-sm-2-4,
 .col-md-2-4,
-.col-lg-2-4 {
+.col-lg-2-4,
+.col-xl-2-4 {
     float: left;
     position: relative;
     min-height: 1px;
@@ -89,6 +205,12 @@
     width: 20%;
 }
 
+@media (min-width: @screen-sm-min) {
+    // 5 colonnes = 2,4 / 12 = 20%
+    .col-sm-2-4 {
+        width: 20%;
+    }
+}
 @media (min-width: @screen-md-min) {
     // 5 colonnes = 2,4 / 12 = 20%
     .col-md-2-4 {
@@ -101,9 +223,9 @@
         width: 20%;
     }
 }
-@media (min-width: @screen-sm-min) {
+@media (min-width: @screen-xl-min) {
     // 5 colonnes = 2,4 / 12 = 20%
-    .col-sm-2-4 {
+    .col-xl-2-4 {
         width: 20%;
     }
 }
