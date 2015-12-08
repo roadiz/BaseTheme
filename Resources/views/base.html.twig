@@ -24,6 +24,11 @@
         {% endfor %}
         {% endif %}
 
+        {# Canonical url #}
+        {% if node %}
+        <link rel="canonical" href="{{ nodeSource|url({'absolute':true}) }}" />
+        {% endif %}
+
         {# --- Favicons --- #}
         <link rel="apple-touch-icon" sizes="57x57" href="{{ head.resourcesUrl }}img/favicons/apple-touch-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="{{ head.resourcesUrl }}img/favicons/apple-touch-icon-60x60.png">

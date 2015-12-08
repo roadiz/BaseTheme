@@ -1,0 +1,21 @@
+
+.container {
+    @media (min-width: @screen-xl-min) {
+      width: @container-xl;
+    }
+}
+
+// XLarge grid
+//
+// Columns, offsets, pushes, and pulls for the large desktop device range.
+
+@media (min-width: @screen-xl-min) {
+  .make-grid(xl);
+}
+
+@media (min-width: @screen-xl-min) {
+    // 5 colonnes = 2,4 / 12 = 20%
+    .col-xl-2-4 {
+        width: 20%;
+    }
+}

@@ -214,18 +214,18 @@ module.exports = function(grunt) {
                         type: 'js',
                         ext: '.min.js'
                     },
-                    {
-                        assets: [
-                            {
-                                src:['dist/vendor.min.css'],
-                                dest:'dist/vendor.min.css'
-                            }
-                        ],
-                        key: 'global',
-                        dest: '',
-                        type: 'css',
-                        ext: '.css'
-                    },
+                    // {
+                    //     assets: [
+                    //         {
+                    //             src:['dist/vendor.min.css'],
+                    //             dest:'dist/vendor.min.css'
+                    //         }
+                    //     ],
+                    //     key: 'global',
+                    //     dest: '',
+                    //     type: 'css',
+                    //     ext: '.css'
+                    // },
                     {
                         assets: [
                             {
@@ -260,16 +260,17 @@ module.exports = function(grunt) {
                     type: 'js',
                     ext: '.min.js'
                 },
+                // {
+                //     assets: [{
+                //         src: [ 'dist/vendor.min.css' ],
+                //         dest:'dist/vendor.min.css'
+                //     }],
+                //     key: 'global',
+                //     dest: '',
+                //     type: 'css',
+                //     ext: '.css'
+                // },
                 {
-                    assets: [{
-                        src: [ 'dist/vendor.min.css' ],
-                        dest:'dist/vendor.min.css'
-                    }],
-                    key: 'global',
-                    dest: '',
-                    type: 'css',
-                    ext: '.css'
-                },{
                     assets: [{
                         src: [ 'dist/style.min.css' ],
                         dest:'dist/style.min.css'
@@ -299,12 +300,12 @@ module.exports = function(grunt) {
                         dest: 'public/bootstrap.css.map',
                         filter: 'isFile'
                     },
-                    {
-                        expand: true,
-                        src: ['dist/vendor.min.css.map'],
-                        dest: 'public/',
-                        filter: 'isFile'
-                    },
+                    // {
+                    //     expand: true,
+                    //     src: ['dist/vendor.min.css.map'],
+                    //     dest: 'public/',
+                    //     filter: 'isFile'
+                    // },
                 ],
             },
         }
