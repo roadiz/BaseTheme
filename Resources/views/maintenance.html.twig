@@ -1,12 +1,26 @@
-{% extends '@BaseTheme/base.html.twig' %}
+{% extends head.ajax ? '@BaseTheme/base.ajax.twig' : '@BaseTheme/base.html.twig' %}
+
+{% set classes = [
+    'page-content',
+] %}
+{% if node.home %}
+{% set classes = classes|merge(['home-content']) %}
+{% endif %}
+{% if head.ajax %}
+{% set classes = classes|merge(['page-content-ajax']) %}
+{% endif %}
 
 {% block body_attributes %}class="maintenance" id="maintenance"{% endblock %}
 
 {% block mainnavigation %}
-<nav class="navbar navbar-default" id="nav"></nav>
+<nav id="nav"></nav>
 {% endblock %}
 {% block content %}
-<section>
+<section class="{{ classes|join(' ') }}"
+         id="page-content-maintenance"
+         data-title="{{ nodeSource.title }}"
+         data-node-type="{{ node.nodeType.name|lower }}"
+         data-meta-title="{{ pageMeta.title }}">
     <h1>{% trans %}website.is.under.maintenance{% endtrans %}</h1>
     <p>{% trans %}website.is.under.maintenance.we.will.be.back.soon{% endtrans %}</p>
 </section>

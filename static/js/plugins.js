@@ -188,9 +188,10 @@ function getStyleVal($el, style){
  * @param  {string} siteName
  * @param  {string} bgColor
  * @param  {array}  creditsList
+ * @param  {array}  thanksList
  * @param  {string} textColor (optional)
  */
-function logCredits(siteName, bgColor, creditsList, textColor){
+function logCredits(siteName, bgColor, creditsList, thanksList, textColor){
 
     var color = '#fff';
     if(typeof textColor !== 'undefined') color = textColor;
@@ -198,15 +199,23 @@ function logCredits(siteName, bgColor, creditsList, textColor){
     console.log('%c   ', 'font-size:3px;');
     console.log('%c'+siteName, 'background:'+bgColor+'; color: '+color+'; font-size:14px; padding:5px 10px;');
     console.log('%c   ', 'font-size:3px;');
-    console.log("Made by Rezo Zero - www.rezo-zero.com");
+
     var creditsLength = creditsList.length;
     if (creditsLength){
-        console.log("-");
-        console.log("Thanks to");
         for(var indexCredit = 0; indexCredit < creditsLength; indexCredit++) {
-            console.log(creditsList[indexCredit].name +' : '+creditsList[indexCredit].website);
+            console.log(creditsList[indexCredit].name +' - '+creditsList[indexCredit].website);
         }
     }
+
+    var thanksLength = thanksList.length;
+    if (thanksLength){
+        console.log("-");
+        console.log("Thanks to");
+        for(var indexThanks = 0; indexThanks < thanksLength; indexThanks++) {
+            console.log(thanksList[indexThanks].name +' : '+thanksList[indexThanks].website);
+        }
+    }
+
     console.log("-");
     console.log(" ");
 }

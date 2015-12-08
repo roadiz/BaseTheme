@@ -123,7 +123,10 @@ module.exports = function(grunt) {
                 '!dist/*.js',
                 '!js/plugins.js',
                 '!js/vendor/*.js'
-            ]
+            ],
+            options: {
+                '-W008': true // decimal point
+            }
         },
         imagemin: {
             dynamic: {
@@ -174,6 +177,10 @@ module.exports = function(grunt) {
                     'fill',
                     'fill-rule',
                     'clip-rule',
+                    'sketch:type',
+                    'sketch:type',
+                    'xmlns:sketch',
+                    'xmlns:xlink'
                 ],
                 cleanupdefs:true,
                 includeTitleElement:false,
@@ -207,18 +214,18 @@ module.exports = function(grunt) {
                         type: 'js',
                         ext: '.min.js'
                     },
-                    {
-                        assets: [
-                            {
-                                src:['dist/vendor.min.css'],
-                                dest:'dist/vendor.min.css'
-                            }
-                        ],
-                        key: 'global',
-                        dest: '',
-                        type: 'css',
-                        ext: '.css'
-                    },
+                    // {
+                    //     assets: [
+                    //         {
+                    //             src:['dist/vendor.min.css'],
+                    //             dest:'dist/vendor.min.css'
+                    //         }
+                    //     ],
+                    //     key: 'global',
+                    //     dest: '',
+                    //     type: 'css',
+                    //     ext: '.css'
+                    // },
                     {
                         assets: [
                             {
@@ -253,16 +260,17 @@ module.exports = function(grunt) {
                     type: 'js',
                     ext: '.min.js'
                 },
+                // {
+                //     assets: [{
+                //         src: [ 'dist/vendor.min.css' ],
+                //         dest:'dist/vendor.min.css'
+                //     }],
+                //     key: 'global',
+                //     dest: '',
+                //     type: 'css',
+                //     ext: '.css'
+                // },
                 {
-                    assets: [{
-                        src: [ 'dist/vendor.min.css' ],
-                        dest:'dist/vendor.min.css'
-                    }],
-                    key: 'global',
-                    dest: '',
-                    type: 'css',
-                    ext: '.css'
-                },{
                     assets: [{
                         src: [ 'dist/style.min.css' ],
                         dest:'dist/style.min.css'
@@ -274,7 +282,7 @@ module.exports = function(grunt) {
                 }]
             }
         },
-        clean: ["public"],
+        clean: ["public","svg"],
         copy: {
             main: {
                 files: [
@@ -292,28 +300,26 @@ module.exports = function(grunt) {
                         dest: 'public/bootstrap.css.map',
                         filter: 'isFile'
                     },
-                    {
-                        expand: true,
-                        src: ['dist/vendor.min.css.map'],
-                        dest: 'public/',
-                        filter: 'isFile'
-                    },
+                    // {
+                    //     expand: true,
+                    //     src: ['dist/vendor.min.css.map'],
+                    //     dest: 'public/',
+                    //     filter: 'isFile'
+                    // },
                 ],
             },
         }
     });
-
-    grunt.loadNpmTasks('grunt-postcss');
 
     /*
      * Watch differently LESS, JS & imagemin
      */
     grunt.event.on('watch', function(action, filepath) {
         if (filepath.indexOf('.js') > -1 ) {
-            grunt.config('watch.scripts.tasks', ['clean','jshint','versioning:development', 'copy']);
+            grunt.config('watch.scripts.tasks', ['clean','jshint','versioning:development', 'copy', 'svgmin', 'svgstore']);
         }
         else if(filepath.indexOf('.less') > -1 ){
-            grunt.config('watch.scripts.tasks', ['clean','less:development', 'postcss','versioning:development', 'copy']);
+            grunt.config('watch.scripts.tasks', ['clean','less:development', 'postcss','versioning:development', 'copy', 'svgmin', 'svgstore']);
         }
         else if( filepath.indexOf('.png') > -1  ||
             filepath.indexOf('.jpg') > -1  ||

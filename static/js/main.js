@@ -25,7 +25,7 @@ Base.isMobile = false;
 Base.isIE = false;
 
 Base.page = null;
-Base.formerPage = null;
+Base.formerPages = [];
 
 Base.nodeTypesClasses = {
     'page' : 'BasePage',
@@ -38,6 +38,9 @@ Base.ajaxEnabled = false;
 Base.gmapLoaded = false;
 
 Base.creditsList = [
+    { name:'Made by REZO ZERO', website:'www.rezo-zero.com' }
+];
+Base.thanksList = [
     { name:'roadiz', website:'www.roadiz.io' },
     { name:'GSAP', website:'www.greensock.com' }
 ];
@@ -63,7 +66,7 @@ Base.onDocumentReady = function(e) {
 Base.init = function(){
     var _this = this;
 
-    if(!Base.devMode) logCredits('Base','#000', Base.creditsList);
+    logCredits('Base','#000', Base.creditsList, Base.thanksList);
 
     // Set default TweenLite ease
     TweenLite.defaultEase = Expo.easeOut;

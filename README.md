@@ -1,6 +1,6 @@
 # Blank Roadiz theme
 
-This theme is meant to get a **fresh start** to create a theme.
+This theme is meant to get a **fresh start** to create a custom website.
 
 * **Find and replace** `BaseTheme` over this folder using your own theme name
 * Rename `BaseThemeApp.php`, javascript files (`static/js/pages/` & `static/js/pages/blocks/`) and this folder according to your theme name
@@ -16,7 +16,7 @@ If you need others node-type, duplicate theses files and rename them.
 
 Blank theme uses *Grunt* and *Bower* to deal with front development files.
 
-### Bootstrap
+### Bootstrap
 
 We use *Bootstrap* right in BaseTheme but you can choose what feature to include in your style not to bloat your CSS files. We recommend to use *LESS* version to ignore unnecessary modules.
 Open your `static/css/styles.less` and comment/uncomment your *Bootstrap*

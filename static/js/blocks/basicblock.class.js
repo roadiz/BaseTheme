@@ -14,7 +14,7 @@ $.extend(BasicBlock.prototype, AbstractBlock.prototype);
 BasicBlock.prototype.init = function(id, type){
     var _this = this;
 
-    console.log('-> BasicBlock init : '+id);
+    // console.log('-> BasicBlock init : '+id);
 
     AbstractBlock.prototype.init.call(this, id, type);
 };

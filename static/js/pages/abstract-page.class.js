@@ -5,7 +5,7 @@
 var BaseAbstractPage = function(id, context, type, isHome){
     type = type || 'page';
 
-    console.log('=> Abstract page - '+id);
+    // console.log('=> Abstract page - '+id);
 
     this.init(id, context, type, isHome);
     this.initEvents();
@@ -26,7 +26,7 @@ BaseAbstractPage.prototype.init = function(id, context, type, isHome){
     _this.loadDurationMin = 1200; // Time for animate loader
 
     // --- Selectors --- //
-    _this.$cont = $('#page-content-'+_this.id);
+    _this.$cont = $('#page-content-'+_this.id).eq(0);
 
 
     // --- Link --- //
@@ -50,7 +50,7 @@ BaseAbstractPage.prototype.init = function(id, context, type, isHome){
 
     // --- Context --- //
     if(_this.context == 'static' && Base.ajaxEnabled){
-        Base.history.pushFirstState(_this.type, _this.id);
+        Base.history.pushFirstState(_this.type, _this.id, _this.isHome);
     }
     else if(_this.context == 'ajax'){
         _this.initAjax();
@@ -64,7 +64,6 @@ BaseAbstractPage.prototype.init = function(id, context, type, isHome){
 BaseAbstractPage.prototype.destroy = function(){
     var _this = this;
 
-    // console.log('=> Page Destroy');
 
     // --- Fade & remove --- //
     _this.$cont.remove();
@@ -78,6 +77,7 @@ BaseAbstractPage.prototype.destroy = function(){
             _this.blocks[blockIndex].destroy();
         }
     }
+    //console.log('=> Destroyed: '+_this.id);
 };
 
 /**
@@ -87,10 +87,14 @@ BaseAbstractPage.prototype.destroy = function(){
 BaseAbstractPage.prototype.initEvents = function(){
     var _this = this;
 
-    _this.$cont.waitForImages({
-        finished: $.proxy(_this.onLoad, _this),
-        waitForAll: true
-    });
+    if (_this.$cont.find('a').length) {
+        _this.$cont.waitForImages({
+            finished: $.proxy(_this.onLoad, _this),
+            waitForAll: true
+        });
+    } else {
+        _this.onLoad();
+    }
 
     if(_this.$link !== null && Base.ajaxEnabled) {
         _this.$link.on('click', $.proxy(Base.history.linkClick, Base.history));
@@ -129,20 +133,33 @@ BaseAbstractPage.prototype.onLoad = function(e){
 
     // Hide loading
     setTimeout(function(){
-
         if(_this.context == 'static'){
 
-        }
-        else if(_this.context == 'ajax'){
+        } else if(_this.context == 'ajax'){
 
             // Update body id
-            Base.$body[0].id = state.nodeName;
+            Base.$body[0].id = history.state.nodeName;
 
-            // Hide - show page
-            Base.formerPage.hide($.proxy(Base.formerPage.destroy, Base.formerPage));
+            // Hide formerPages - show
+            if (Base.formerPages.length > 0) {
+                var formerPage = Base.formerPages[(Base.formerPages.length - 1)];
+                var formerPageDestroy = $.proxy(formerPage.destroy, formerPage);
+                //console.log('=> Req destroy on '+formerPage.id);
+                /*
+                 * Very important,
+                 * DO NOT animate if there are more than 1 page
+                 * in destroy queue!
+                 */
+                if (Base.formerPages.length > 1) {
+                    formerPageDestroy();
+                } else {
+                    formerPage.hide(formerPageDestroy);
+                }
+                Base.formerPages.pop();
+            }
+            //console.log(Base.formerPages);
             _this.show();
         }
-
     }, delay);
 
     // Show
@@ -175,11 +192,8 @@ BaseAbstractPage.prototype.hide = function(callback){
     var _this = this;
 
     // Animate
-    TweenLite.to(_this.$cont, 0.6, {opacity:0, onComplete:function(){
-        if(typeof callback !== 'undefined'){
-            callback();
-        }
-    }});
+    //console.log('=> Hiding: '+_this.id);
+    TweenLite.to(_this.$cont, 0.6, {opacity:0, onComplete:callback});
 };
 
 /**
@@ -220,5 +234,5 @@ BaseAbstractPage.prototype.initBlocks = function(){
 BaseAbstractPage.prototype.onResize = function(){
     var _this = this;
 
-    console.log('=> Page resize');
+    // console.log('=> Page resize');
 };

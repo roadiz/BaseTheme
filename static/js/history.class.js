@@ -9,6 +9,7 @@ var BaseHistory = function(options){
     _this.stateBlock = true;
     _this.transition = false;
     _this.options = options;
+    _this.currentRequest = null;
 
     _this.init();
 };
@@ -53,6 +54,9 @@ BaseHistory.prototype.onPopState = function(e) {
         // console.log('-> Pop state');
         // console.log(event.state);
         // console.log('------------');
+
+        _this.transition = true;
+
         _this.loadPage(e, e.state);
     }
 };
@@ -63,7 +67,7 @@ BaseHistory.prototype.onPopState = function(e) {
 BaseHistory.prototype.boot = function(nodeType, id, context, isHome){
     var _this = this;
 
-    // console.log('Boot '+nodeType+' - '+id);
+    //console.log('Boot '+nodeType+' - '+id);
 
     if(context == 'static') _this.loadBeginDate = new Date();
 
@@ -141,28 +145,43 @@ BaseHistory.prototype.linkClick = function(e){
 BaseHistory.prototype.loadPage = function(e, state){
     var _this = this;
 
+    if(_this.currentRequest && _this.currentRequest.readyState != 4){
+        _this.currentRequest.abort();
+    }
+
     _this.loadBeginDate = new Date();
 
+    /*
+     * You should not do any DOM modification
+     * or animation before XHR request as it can
+     * be aborted.
+     */
+
     // Load content
-    $.ajax({
+    _this.currentRequest = $.ajax({
         url: state.href,
         type: 'get',
         success: function(data){
-            Base.$ajaxContainer.append(data);
 
-            // Disappear & destroy page
-            Base.formerPage = Base.page;
-            Base.page = null;
+            if(this.url == history.state.href) {
+                //console.log('Finished request: '+this.url);
+                Base.$ajaxContainer.append(data);
 
-            // Init new page
-            _this.boot(state.nodeType, state.nodeName, 'ajax', state.isHome);
+                /*
+                 * Push a copy object not to set it as null.
+                 */
+                Base.formerPages.push(Base.page);
 
-            // Update nav
-            Base.nav.update(state);
+                // Init new page
+                _this.boot(state.nodeType, state.nodeName, 'ajax', state.isHome);
 
-            // Analytics
-            if(typeof ga !== "undefined") {
-                ga('send', 'pageview', {'page':state.href, 'title':document.title});
+                // Update nav
+                Base.nav.update(state);
+
+                // Analytics
+                if(typeof ga !== "undefined") {
+                    ga('send', 'pageview', {'page':state.href, 'title':document.title});
+                }
             }
         }
     });

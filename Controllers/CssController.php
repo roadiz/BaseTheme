@@ -69,14 +69,11 @@ class CssController extends BaseThemeApp
 
     public function getPages()
     {
-
         $pages = $this->getService('nodeSourceApi')
-                      ->getBy(array(
-                          'node.nodeType' => $this->themeContainer['typePage'],
-                      ));
+            ->getBy(array(
+                'node.nodeType' => $this->themeContainer['typePage'],
+            ));
 
         return $pages;
-
     }
-
 }

@@ -1,5 +1,8 @@
 <url>
-    <loc>{{ element|url({absolute:true}) }}</loc>
-    <lastmod>{{ element.node.updatedAt|date('Y-m-d') }}</lastmod>
-    <priority>{{ element.node.priority }}</priority>
+<loc>{{ element|url({absolute:true}) }}</loc>
+{% if element.node.nodeSources|length > 1 %}
+{% for alternative in element.node.nodeSources %}
+<xhtml:link rel="alternate" hreflang="{{ alternative.translation.locale|lower|replace('_', '-') }}" href="{{ alternative|url({absolute:true}) }}" />
+{% endfor %}
+{% endif %}
 </url>

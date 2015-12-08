@@ -24,6 +24,11 @@
         {% endfor %}
         {% endif %}
 
+        {# Canonical url #}
+        {% if node %}
+        <link rel="canonical" href="{{ nodeSource|url({'absolute':true}) }}" />
+        {% endif %}
+
         {# --- Favicons --- #}
         <link rel="apple-touch-icon" sizes="57x57" href="{{ head.resourcesUrl }}img/favicons/apple-touch-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="{{ head.resourcesUrl }}img/favicons/apple-touch-icon-60x60.png">
@@ -61,8 +66,10 @@
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="{{ pageMeta.title }}" />
         <meta name="twitter:description" content="{{ pageMeta.description }}" />
-        <meta name="twitter:site" content="@roadiz_cms" />
-        <meta name="twitter:creator" content="@roadiz_cms" />
+        {% if head.twitterAccount %}
+        <meta name="twitter:site" content="{{ head.twitterAccount }}" />
+        <meta name="twitter:creator" content="{{ head.twitterAccount }}" />
+        {% endif %}
         <meta name="twitter:url" content="{{ request.uri }}" />
         <meta name="twitter:image" content="{{ head.baseUrl }}{{ head.resourcesUrl }}img/share.png" />
         {% endblock %}

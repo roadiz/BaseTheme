@@ -29,8 +29,8 @@
     white-space: nowrap;
 }
 
-.gradient(@color: #F5F5F5, @start: #EEE, @stop: #FFF) {
-    background: @color;
+.gradient(@black: #F5F5F5, @start: #EEE, @stop: #FFF) {
+    background: @black;
     background: -webkit-gradient(linear,
                                left bottom,
                                left top,
@@ -56,8 +56,8 @@
     background-image: linear-gradient(@origin, @start, @stop);
 }
 
-.bw-gradient(@color: #F5F5F5, @start: 0, @stop: 255) {
-    background: @color;
+.bw-gradient(@black: #F5F5F5, @start: 0, @stop: 255) {
+    background: @black;
     background: -webkit-gradient(linear,
                                left bottom,
                                left top,
@@ -165,9 +165,9 @@
     -ms-interpolation-mode:nearest-neighbor;          /* IE8+ */   
 }
 
-.color-placeholder(@color) {
+.color-placeholder(@black) {
     &::placeholder {
-        color:@color;
+        color:@black;
     }
 }
 

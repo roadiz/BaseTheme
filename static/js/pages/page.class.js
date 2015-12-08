@@ -14,7 +14,7 @@ $.extend(BasePage.prototype, BaseAbstractPage.prototype);
 BasePage.prototype.init = function(id, context, type, isHome){
     var _this = this;
 
-    console.log('-> Page init : '+id);
+    // console.log('-> Page init : '+id);
 
     BaseAbstractPage.prototype.init.call(this, id, context, type, isHome);
 };

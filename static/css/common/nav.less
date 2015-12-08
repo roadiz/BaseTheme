@@ -7,26 +7,162 @@
  * Styles for nav
  */
 
+/*------------------------------------*\
+   NAV
+\*------------------------------------*/
 
 
-#nav{
+/*
+ * Styles for nav
+ */
+@navbar-height: 50px;
+
+// --- Navbar --- //
+#navbar{
+    position: fixed;
+    top:0; right:0; left:0;
+    height:@navbar-height;
+    background: @white;
+    border-bottom:1px solid #DADADA;
+    z-index:55;
+}
+#main-container {
     position: relative;
-    background: #fff;
-    height:68px;
-    padding-top:25px;
+    margin-top: @navbar-height;
 }
 
+#nav-btn{
+    position: absolute;
+    top:15px; left:20px;
+    width:30px; height:22px;
+    cursor: pointer;
+    z-index:57;
+}
+
+.nav-btn-bar{
+    position: absolute;
+    width:30px; height:3px;
+    background: @black;
+}
+
+#nav-btn-bar-1{
+    top:0;
+}
+
+#nav-btn-bar-2{
+    top:9px;
+}
+
+#nav-btn-bar-3{
+    top:18px;
+}
+
+#navbar-label{
+    position: relative;
+    font-size:14px; line-height:@navbar-height;
+    padding-left:70px;
+    z-index:56;
+}
+
+#nav-overlay{
+    position: fixed;
+    top:0; right:0; bottom:0; left:0;
+    background: rgba(0,0,0,0.6);
+    z-index:35;
+    display: none;
+}
+
+// --- Nav --- //
+
+#nav{
+    position:fixed;
+    top:0; bottom:0; left:0;
+    width:80%;
+    background: @white;
+    z-index:50;
+    transform:translateX(-100%);
+}
+
+#nav-list{
+    position: relative;
+    float: left;
+    margin:0;
+    padding:80px 15px 10px;
+    width:100%;
+}
+
+#nav-lang{
+    position: relative;
+    float:left;
+    margin:0; padding:0 15px;
+}
+
+.nav-item{
+    position: relative;
+    display: block;
+}
 
 .nav-link{
     position: relative;
-    display: inline-block;
-    margin:0 4px;
-    padding:0 7px 18px 7px;
-    font-size:16px;
-    line-height:16px;
-    font-weight: bold;
+    display: block;
+}
+
+.nav-link{
+    margin:0 0 12px;
+    padding:0 7px 8px 7px;
+    font-size:17px; line-height:17px;
+    color: lighten(@black, 30%);
+    transition:0.6s color @easeOutExpo;
 
     &.active{
         cursor: default;
+    }
+
+    &:hover, &.active{
+        color: @black;
+    }
+}
+
+.nav-link-home {
+
+}
+
+
+/*
+ * Responsive
+ */
+
+@media (min-width: @screen-sm-min) {
+
+    #nav {
+        right:0; bottom:initial;
+        width:auto; height:68px;
+        transform:none;
+        border-bottom: 1px solid #DADADA;
+    }
+    #main-container {
+        position: relative;
+        margin-top: 68px;
+    }
+
+    #nav-list{
+        float: left;
+        width:auto;
+        padding:0;
+    }
+
+    #nav-lang{
+        float: right;
+    }
+
+    .nav-item{
+        display:inline-block; vertical-align: top;
+    }
+
+    .nav-link{
+        display: inline-block; vertical-align: top;
+        padding: 26px 2px;
+        margin: 0px 13px;
+        line-height:17px;
     }
 }

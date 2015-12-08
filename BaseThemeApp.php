@@ -13,7 +13,6 @@ namespace Themes\BaseTheme;
 
 use RZ\Roadiz\CMS\Controllers\FrontendController;
 use RZ\Roadiz\Core\Bags\SettingsBag;
-use RZ\Roadiz\Core\Entities\Node;
 use RZ\Roadiz\Core\Entities\Translation;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +23,7 @@ use Themes\BaseTheme\Services;
  */
 class BaseThemeApp extends FrontendController
 {
-    const VERSION = '0.11.0';
+    const VERSION = '0.12.0';
 
     protected static $themeName = 'Base theme';
     protected static $themeAuthor = 'REZO ZERO';
@@ -131,6 +130,7 @@ class BaseThemeApp extends FrontendController
         $this->assignation['head']['twitterUrl'] = SettingsBag::get('twitter_url');
         $this->assignation['head']['googleplusUrl'] = SettingsBag::get('googleplus_url');
         $this->assignation['head']['googleClientId'] = SettingsBag::get('google_client_id');
+        $this->assignation['head']['twitterAccount'] = SettingsBag::get('twitter_account');
         $this->assignation['head']['mapsStyle'] = SettingsBag::get('maps_style');
         $this->assignation['head']['themeName'] = static::$themeName;
         $this->assignation['head']['themeVersion'] = static::VERSION;

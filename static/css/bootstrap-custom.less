@@ -1,13 +1,16 @@
 /*------------------------------------*\
-   BOOSTRAP CUSTOM
+   BOOTSTRAP CUSTOM
 \*------------------------------------*/
 
 
 /*
- * Imports from boostrap library
+ * Imports from bootstrap library
  */
 
 @import "../bower_components/bootstrap/less/variables.less";
+
+// @import "base/bootstrap-xl-variables.less";
+
 @import "../bower_components/bootstrap/less/mixins.less";
 
 // --- Bootstrap override variables --- //
@@ -23,6 +26,10 @@
 //** Link hover color set via `darken()` function.
 @link-hover-color: darken(@mainColor, 15%);
 
+
+// @import "base/bootstrap-xl-mixins.less";
+
+
 // Reset and dependencies
 @import "../bower_components/bootstrap/less/normalize.less";
 @import "../bower_components/bootstrap/less/print.less";
@@ -33,18 +40,21 @@
 @import "../bower_components/bootstrap/less/type.less";
 @import "../bower_components/bootstrap/less/code.less";
 @import "../bower_components/bootstrap/less/grid.less";
+
+// @import "base/bootstrap-xl-grid.less";
+
 @import "../bower_components/bootstrap/less/tables.less";
 @import "../bower_components/bootstrap/less/forms.less";
-@import "../bower_components/bootstrap/less/buttons.less";
+// @import "../bower_components/bootstrap/less/buttons.less";
 
 // Components
 @import "../bower_components/bootstrap/less/component-animations.less";
-@import "../bower_components/bootstrap/less/dropdowns.less";
-@import "../bower_components/bootstrap/less/button-groups.less";
-@import "../bower_components/bootstrap/less/input-groups.less";
+// @import "../bower_components/bootstrap/less/dropdowns.less";
+// @import "../bower_components/bootstrap/less/button-groups.less";
+// @import "../bower_components/bootstrap/less/input-groups.less";
 @import "../bower_components/bootstrap/less/navs.less";
 @import "../bower_components/bootstrap/less/navbar.less";
-@import "../bower_components/bootstrap/less/breadcrumbs.less";
+// @import "../bower_components/bootstrap/less/breadcrumbs.less";
 //@import "../bower_components/bootstrap/less/pagination.less";
 //@import "../bower_components/bootstrap/less/pager.less";
 //@import "../bower_components/bootstrap/less/labels.less";
@@ -70,40 +80,6 @@
 @import "../bower_components/bootstrap/less/utilities.less";
 @import "../bower_components/bootstrap/less/responsive-utilities.less";
 
-/*
- * Added a 20% column width
- */
-.col-xs-2-4,
-.col-sm-2-4,
-.col-md-2-4,
-.col-lg-2-4 {
-    float: left;
-    position: relative;
-    min-height: 1px;
-    padding-left: 15px;
-    padding-right: 15px;
-}
+// @import "base/bootstrap-xl-responsive-utilities.less";
 
-// 5 colonnes = 2,4 / 12 = 20%
-.col-xs-2-4 {
-    width: 20%;
-}
-
-@media (min-width: @screen-md-min) {
-    // 5 colonnes = 2,4 / 12 = 20%
-    .col-md-2-4 {
-        width: 20%;
-    }
-}
-@media (min-width: @screen-lg-min) {
-    // 5 colonnes = 2,4 / 12 = 20%
-    .col-lg-2-4 {
-        width: 20%;
-    }
-}
-@media (min-width: @screen-sm-min) {
-    // 5 colonnes = 2,4 / 12 = 20%
-    .col-sm-2-4 {
-        width: 20%;
-    }
-}
+@import "base/bootstrap-col-2-4.less";
