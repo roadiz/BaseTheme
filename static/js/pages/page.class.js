@@ -2,10 +2,10 @@
  * BasePage
  */
 var BasePage = function(id, context, type, isHome){
-    BaseAbstractPage.call(this, id, context, type, isHome);
+    AbstractPage.call(this, id, context, type, isHome);
 };
 
-$.extend(BasePage.prototype, BaseAbstractPage.prototype);
+$.extend(BasePage.prototype, AbstractPage.prototype);
 
 /**
  * Init
@@ -16,5 +16,5 @@ BasePage.prototype.init = function(id, context, type, isHome){
 
     // console.log('-> Page init : '+id);
 
-    BaseAbstractPage.prototype.init.call(this, id, context, type, isHome);
+    AbstractPage.prototype.init.call(this, id, context, type, isHome);
 };

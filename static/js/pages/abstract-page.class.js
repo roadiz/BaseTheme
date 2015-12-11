@@ -2,7 +2,7 @@
 /**
  * Abstract page
  */
-var BaseAbstractPage = function(id, context, type, isHome){
+var AbstractPage = function(id, context, type, isHome){
     type = type || 'page';
 
     // console.log('=> Abstract page - '+id);
@@ -15,7 +15,7 @@ var BaseAbstractPage = function(id, context, type, isHome){
  * Init
  * @return {[type]} [description]
  */
-BaseAbstractPage.prototype.init = function(id, context, type, isHome){
+AbstractPage.prototype.init = function(id, context, type, isHome){
     var _this = this;
 
     _this.id = id;
@@ -61,7 +61,7 @@ BaseAbstractPage.prototype.init = function(id, context, type, isHome){
  * Destroy
  * @return {[type]} [description]
  */
-BaseAbstractPage.prototype.destroy = function(){
+AbstractPage.prototype.destroy = function(){
     var _this = this;
 
 
@@ -84,7 +84,7 @@ BaseAbstractPage.prototype.destroy = function(){
  * Init events
  * @return {[type]} [description]
  */
-BaseAbstractPage.prototype.initEvents = function(){
+AbstractPage.prototype.initEvents = function(){
     var _this = this;
 
     if (_this.$cont.find('a').length) {
@@ -107,7 +107,7 @@ BaseAbstractPage.prototype.initEvents = function(){
  * Destroy events
  * @return {[type]} [description]
  */
-BaseAbstractPage.prototype.destroyEvents = function(){
+AbstractPage.prototype.destroyEvents = function(){
     var _this = this;
 
     if(_this.$link !== null && Base.ajaxEnabled) {
@@ -121,7 +121,7 @@ BaseAbstractPage.prototype.destroyEvents = function(){
  * On load
  * @return {[type]} [description]
  */
-BaseAbstractPage.prototype.onLoad = function(e){
+AbstractPage.prototype.onLoad = function(e){
     var _this = this;
 
     // console.log('=> Page onLoad');
@@ -171,7 +171,7 @@ BaseAbstractPage.prototype.onLoad = function(e){
  * Show
  * @return {[type]} [description]
  */
-BaseAbstractPage.prototype.show = function(callback){
+AbstractPage.prototype.show = function(callback){
     var _this = this;
 
     // Animate
@@ -188,7 +188,7 @@ BaseAbstractPage.prototype.show = function(callback){
  * Hide
  * @return {[type]} [description]
  */
-BaseAbstractPage.prototype.hide = function(callback){
+AbstractPage.prototype.hide = function(callback){
     var _this = this;
 
     // Animate
@@ -200,7 +200,7 @@ BaseAbstractPage.prototype.hide = function(callback){
  * Init ajax
  * @return {[type]} [description]
  */
-BaseAbstractPage.prototype.initAjax = function(){
+AbstractPage.prototype.initAjax = function(){
     var _this = this;
 
     // --- Change title --- //
@@ -214,7 +214,7 @@ BaseAbstractPage.prototype.initAjax = function(){
  * Init blocks
  * @return {[type]} [description]
  */
-BaseAbstractPage.prototype.initBlocks = function(){
+AbstractPage.prototype.initBlocks = function(){
     var _this = this;
 
     for(var blockIndex = 0; blockIndex < _this.blockLength; blockIndex++) {
@@ -231,7 +231,7 @@ BaseAbstractPage.prototype.initBlocks = function(){
  * Resize
  * @return {[type]} [description]
  */
-BaseAbstractPage.prototype.onResize = function(){
+AbstractPage.prototype.onResize = function(){
     var _this = this;
 
     // console.log('=> Page resize');
