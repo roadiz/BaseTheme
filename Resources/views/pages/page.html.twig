@@ -25,8 +25,9 @@
          data-title="{{ nodeSource.title }}"
          data-node-type="{{ node.nodeType.name|lower }}"
          data-meta-title="{{ pageMeta.title }}">
-    <h1>{{ nodeSource.title }}</h1>
-    <div>{{ nodeSource.content|markdown }}</div>
+
+    <h1 class="page-title">{{ nodeSource.title }}</h1>
+    <div class="page-text">{{ nodeSource.content|markdown }}</div>
 
     <div class="page-blocks">
         {#
@@ -49,11 +50,11 @@
         {% endfor %}
     </div>
 
-    <div class="image">
-        {% for document in nodeSource.images %}
-            {% set imageMetas = document.documentTranslations.first %}
-            <figure class="uk-thumbnail">
-                {{ document|display(themeServices.imageFormats.thumbnail) }}
+    <div class="images">
+        {% for image in nodeSource.images %}
+            {% set imageMetas = image.documentTranslations.first %}
+            <figure class="image">
+                {{ image|display(themeServices.imageFormats.thumbnail) }}
                 <figcaption>{{ imageMetas.name }} — {{ imageMetas.copyright }}</figcaption>
             </figure>
         {% endfor %}

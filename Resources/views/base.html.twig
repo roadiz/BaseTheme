@@ -111,7 +111,7 @@
         <div class="container-fluid">{% block header %}{% endblock %}</div>
 
         {% block mainnavigation %}
-        {% include '@BaseTheme/modules/nav.html.twig' %}
+        {% include '@BaseTheme/common/nav.html.twig' %}
         {% endblock %}
 
         {# Add your site or application content here #}
@@ -120,7 +120,7 @@
             <div id="ajax-container"></div>
         </div>
 
-        {% include '@BaseTheme/modules/footer.html.twig' %}
+        {% include '@BaseTheme/common/footer.html.twig' %}
 
         {# Scripts #}
 

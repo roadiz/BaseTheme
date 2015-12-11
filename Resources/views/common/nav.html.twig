@@ -36,7 +36,7 @@
 
             {# Pages #}
             {% for source in themeServices.navigation %}
-                {% include '@BaseTheme/modules/nav-item.html.twig' with {
+                {% include '@BaseTheme/common/nav-item.html.twig' with {
                     'source' : source,
                     'active' : node,
                     'home' : home,

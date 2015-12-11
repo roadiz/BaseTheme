@@ -6,8 +6,8 @@ return array(
                 '/style.e10fe04d.css',
             ),
             'js' => array(
-                '/BaseTheme-vendor.a75ac870.min.js',
-                '/BaseTheme.339406af.min.js',
+                '/BaseTheme-vendor.d1583d11.min.js',
+                '/BaseTheme.fee8f5ff.min.js',
             ),
         ),
     )

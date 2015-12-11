@@ -84,7 +84,7 @@ class BaseThemeApp extends FrontendController
 
         $this->getService('stopwatch')->start('twigRender');
         return new Response(
-            $this->getTwig()->render('@' . static::getThemeDir() . '/404.html.twig', $this->assignation),
+            $this->getTwig()->render('@' . static::getThemeDir() . '/pages/404.html.twig', $this->assignation),
             Response::HTTP_NOT_FOUND,
             array('content-type' => 'text/html')
         );
@@ -98,7 +98,7 @@ class BaseThemeApp extends FrontendController
         $translation = $this->bindLocaleFromRoute($request, $request->getLocale());
         $this->prepareThemeAssignation(null, $translation);
         return new Response(
-            $this->renderView('@BaseTheme/maintenance.html.twig', $this->assignation),
+            $this->renderView('@BaseTheme/pages/maintenance.html.twig', $this->assignation),
             Response::HTTP_SERVICE_UNAVAILABLE,
             ['content-type' => 'text/html']
         );
