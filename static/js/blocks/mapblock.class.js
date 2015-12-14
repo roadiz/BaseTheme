@@ -24,7 +24,7 @@ MapBlock.prototype.init = function(id, type){
     _this.zoom = [];
     _this.marker = [];
 
-    _this.$mapCanvas = _this.$cont.find('.block-map-canvas');
+    _this.$mapCanvas = _this.$cont.find('.mapblock-canvas');
 
     if(_this.$mapCanvas.length) {
         if (typeof google == "undefined" && !Base.gmapLoaded) {
