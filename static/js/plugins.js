@@ -378,6 +378,38 @@ var gaTrackErrors = function(){
 
 
 /**
+ * Get a css property with the vendor prefix
+ * @param  {String} property the css property
+ * @return {String}          the prefixed property
+ */
+function prefixProperty(property){
+    var prefixes = ['', 'ms', 'Webkit', 'Moz', 'O'];
+    var numPrefixes = prefixes.length;
+    var tmp = document.createElement("div");
+
+    for(var i = 0; i < numPrefixes; i++) {
+        var prefix = prefixes[i];
+        property = prefix === '' ? property : property.charAt(0).toUpperCase() + property.substring(1).toLowerCase();
+        var prop = prefix + property;
+
+        if(typeof tmp.style[prop] != "undefined")
+            return prop;
+    }
+}
+
+
+/**
+* Gets normalized ratio of value inside range.
+* from https://github.com/mout/mout/blob/master/src/math/norm.js
+*/
+function getNormRatio(val, min, max){
+    if (val < min) return 0;
+    if (val > max) return 1;
+
+    return val === max ? 1 : (val - min) / (max - min);
+}
+
+/**
  * JS / jQuery helper & plugins
  */
 
