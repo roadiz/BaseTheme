@@ -134,7 +134,7 @@ AbstractPage.prototype.onLoad = function(e){
     // Hide loading
     setTimeout(function(){
         if(_this.context == 'static'){
-
+            // _this.show();
         } else if(_this.context == 'ajax'){
 
             // Update body id
@@ -142,8 +142,10 @@ AbstractPage.prototype.onLoad = function(e){
 
             // Hide formerPages - show
             if (Base.formerPages.length > 0) {
-                var formerPage = Base.formerPages[(Base.formerPages.length - 1)];
-                var formerPageDestroy = $.proxy(formerPage.destroy, formerPage);
+
+                var formerPage = Base.formerPages[(Base.formerPages.length - 1)],
+                    formerPageDestroy = $.proxy(formerPage.destroy, formerPage);
+
                 //console.log('=> Req destroy on '+formerPage.id);
                 /*
                  * Very important,
@@ -161,10 +163,6 @@ AbstractPage.prototype.onLoad = function(e){
             _this.show();
         }
     }, delay);
-
-    // Show
-    _this.show();
-
 };
 
 /**
