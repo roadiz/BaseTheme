@@ -32,7 +32,9 @@ class SitemapController extends BaseThemeApp
          */
         $this->assignation['pages'] = $this->getService('nodeSourceApi')
             ->getBy([
-                'node.nodeType' => $this->themeContainer['typePage'],
+                'node.nodeType' => [
+                    $this->themeContainer['typePage'],
+                ],
                 'node.visible' => true,
             ]);
 
