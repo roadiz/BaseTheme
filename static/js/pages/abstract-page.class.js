@@ -87,7 +87,7 @@ AbstractPage.prototype.destroy = function(){
 AbstractPage.prototype.initEvents = function(){
     var _this = this;
 
-    if (_this.$cont.find('a').length) {
+    if (_this.$cont.find('img').length) {
         _this.$cont.waitForImages({
             finished: $.proxy(_this.onLoad, _this),
             waitForAll: true
