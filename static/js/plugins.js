@@ -212,7 +212,7 @@ function logCredits(siteName, bgColor, creditsList, thanksList, textColor){
         console.log("-");
         console.log("Thanks to");
         for(var indexThanks = 0; indexThanks < thanksLength; indexThanks++) {
-            console.log(thanksList[indexThanks].name +' : '+thanksList[indexThanks].website);
+            console.log(thanksList[indexThanks].name +' ('+thanksList[indexThanks].website+')');
         }
     }
 
