@@ -50,7 +50,7 @@ class AssetsServiceProvider implements ServiceProviderInterface
             $array['shareImage'] = [
                 'fit' => '1200x630',
                 'quality' => 90,
-                'absolute': true,
+                'absolute' => true,
                 'progressive' => true,
             ];
             return $array;
