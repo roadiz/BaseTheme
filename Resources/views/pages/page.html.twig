@@ -23,7 +23,7 @@
 
 {% block share_metas %}
 {% if headerImages[0] %}
-{% set previewImageUrl = headerImages[0]|url(themeServices.imageFormats.shareImage)) %}
+{% set previewImageUrl = headerImages[0]|url(themeServices.imageFormats.shareImage) %}
 {% endif %}
 {% if previewImageUrl %}
     {# Facebook #}
