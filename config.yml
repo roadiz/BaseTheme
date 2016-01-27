@@ -6,7 +6,7 @@ themeDir: "BaseTheme"
 supportedLocale:
     - "en"
     - "fr"
-versionRequire: "0.11.0"
+versionRequire: "0.12.0"
 importFiles:
     roles: []
     groups: []
