@@ -160,7 +160,7 @@ AbstractPage.prototype.onLoad = function(e){
                 Base.formerPages.pop();
             }
             //console.log(Base.formerPages);
-            _this.show();
+            _this.show($.proxy(_this.showEnded, _this));
         }
     }, delay);
 };
@@ -180,6 +180,18 @@ AbstractPage.prototype.show = function(callback){
             callback();
         }
     }});
+};
+
+/**
+ * Show ended
+ * @return {[type]} [description]
+ */
+AbstractPage.prototype.showEnded = function(){
+    var _this = this;
+
+    if(_this.context == 'ajax'){
+        removeClass(_this.$cont[0],'page-content-ajax');
+    }
 };
 
 /**
