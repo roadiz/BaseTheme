@@ -28,10 +28,11 @@ body .buorg {
     a, a:visited{
         color:@browserUpdateColorLink;
         text-decoration: none;
-        border-bottom:1px dashed @browserUpdateColorLink;
+        border-bottom:1px solid @browserUpdateColorLink;
+        transition:0.6s border-bottom-color @easeOutExpo;
 
-        &:hover{
-            border-bottom:none;
+        &:hover, &:focus{
+            border-bottom-color: rgba(0,0,0,0);
         }
     }
 }

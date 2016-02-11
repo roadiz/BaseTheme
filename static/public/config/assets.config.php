@@ -3,11 +3,11 @@ return array(
     'staticAssets' => array(
         'global' => array(
             'css' => array(
-                '/style.5ee6d2ed.css',
+                '/style.d2341b01.css',
             ),
             'js' => array(
-                '/BaseTheme-vendor.0686a93c.min.js',
-                '/BaseTheme.78472f18.min.js',
+                '/BaseTheme-vendor.2fb83774.min.js',
+                '/BaseTheme.aa00426f.min.js',
             ),
         ),
     )
