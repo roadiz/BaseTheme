@@ -22,6 +22,7 @@ AbstractPage.prototype.init = function(id, context, type, isHome){
     _this.context = context;
     _this.type = type;
     _this.isHome = isHome;
+    _this.onResizeDebounce = debounce($.proxy(_this.onResize, _this), 100, false);
 
     _this.loadDurationMin = 1200; // Time for animate loader
 
@@ -100,7 +101,7 @@ AbstractPage.prototype.initEvents = function(){
         _this.$link.on('click', $.proxy(Base.history.linkClick, Base.history));
     }
 
-    Base.$window.on('resize', debounce($.proxy(_this.onResize, _this), 100, false));
+    Base.$window.on('resize', _this.onResizeDebounce);
 };
 
 /**
@@ -114,7 +115,7 @@ AbstractPage.prototype.destroyEvents = function(){
         _this.$link.off('click', $.proxy(Base.history.linkClick, Base.history));
     }
 
-    Base.$window.off('resize', debounce($.proxy(_this.onResize, _this), 100, false));
+    Base.$window.off('resize', _this.onResizeDebounce);
 };
 
 /**
