@@ -156,10 +156,16 @@ var removeClass = function(el, classToRemove){
  * Get random number.
  * @param  {[number]} min [min value]
  * @param  {[number]} max [max value]
+ * @param  {[decimal]} decimal [decimal amount]
  * @return {[type]}     [description]
  */
-function getRandomNumber(min, max) {
-    return Math.random() * (max - min) + min;
+function getRandomNumber(min, max, decimal) {
+    var result = Math.random() * (max - min) + min;
+
+    if(typeof decimal !== 'undefined'){
+        return result.toFixed(decimal);
+    }
+    else return result;
 }
 
 /**
