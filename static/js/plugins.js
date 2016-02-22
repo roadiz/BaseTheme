@@ -206,19 +206,23 @@ function logCredits(siteName, bgColor, creditsList, thanksList, textColor){
     console.log('%c'+siteName, 'background:'+bgColor+'; color: '+color+'; font-size:14px; padding:5px 10px;');
     console.log('%c   ', 'font-size:3px;');
 
-    var creditsLength = creditsList.length;
-    if (creditsLength){
-        for(var indexCredit = 0; indexCredit < creditsLength; indexCredit++) {
-            console.log(creditsList[indexCredit].name +' - '+creditsList[indexCredit].website);
+    if(creditsList !== null){
+        var creditsLength = creditsList.length;
+        if (creditsLength){
+            for(var indexCredit = 0; indexCredit < creditsLength; indexCredit++) {
+                console.log(creditsList[indexCredit].name +' - '+creditsList[indexCredit].website);
+            }
         }
     }
 
-    var thanksLength = thanksList.length;
-    if (thanksLength){
-        console.log("-");
-        console.log("Thanks to");
-        for(var indexThanks = 0; indexThanks < thanksLength; indexThanks++) {
-            console.log(thanksList[indexThanks].name +' ('+thanksList[indexThanks].website+')');
+    if(thanksList !== null){
+        var thanksLength = thanksList.length;
+        if (thanksLength){
+            console.log("-");
+            console.log("Thanks to");
+            for(var indexThanks = 0; indexThanks < thanksLength; indexThanks++) {
+                console.log(thanksList[indexThanks].name +' ('+thanksList[indexThanks].website+')');
+            }
         }
     }
 
