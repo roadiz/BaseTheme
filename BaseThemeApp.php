@@ -30,10 +30,6 @@ class BaseThemeApp extends FrontendController
     protected static $themeCopyright = 'REZO ZERO';
     protected static $themeDir = 'BaseTheme';
     protected static $backendTheme = false;
-    protected static $specificNodesControllers = [
-        // Put here your nodes which need a specific controller
-        // instead of a node-type controller
-    ];
 
     /**
      * {@inheritdoc}
@@ -117,10 +113,6 @@ class BaseThemeApp extends FrontendController
         $this->themeContainer->register(new Services\NodeServiceProvider($this->getContainer(), $this->translation));
         $this->themeContainer->register(new Services\NodeTypeServiceProvider($this->getService('nodeTypeApi')));
         $this->themeContainer->register(new Services\AssetsServiceProvider());
-
-        $this->themeContainer['grunt'] = function ($c) {
-            return include dirname(__FILE__) . '/static/public/config/assets.config.php';
-        };
 
         $this->assignation['themeServices'] = $this->themeContainer;
 
