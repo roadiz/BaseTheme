@@ -18,8 +18,6 @@ requirejs.config({
         "utils/debounce": "/themes/PITheme/static/bower_components/pageblock/dist/utils/debounce",
         "utils/bootstrapMedia": "/themes/PITheme/static/bower_components/pageblock/dist/utils/bootstrapMedia",
         "utils/polyfills": "/themes/PITheme/static/bower_components/pageblock/dist/utils/polyfills",
-        // If you want to use example Page and Home classes in your project
-        "pages/page": "/themes/PITheme/static/bower_components/pageblock/dist/pages/page"
     }
 });
 

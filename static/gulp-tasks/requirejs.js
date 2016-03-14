@@ -34,8 +34,6 @@ gulp.task('requirejs', ['babel', 'clean-build'], function() {
             "utils/polyfills": "./../bower_components/pageblock/dist/utils/polyfills",
             "utils/debounce": "./../bower_components/pageblock/dist/utils/debounce",
             "utils/bootstrapMedia": "./../bower_components/pageblock/dist/utils/bootstrapMedia",
-            // If you want to use example Page and Home classes in your project
-            "pages/page": "./../bower_components/pageblock/dist/pages/page",
         }
     }))
     .pipe(uglify())
