@@ -77,11 +77,11 @@
         {% endblock %}
 
         {# --- Styles --- #}
+        <!-- inject:css -->
+        <link rel="stylesheet" href="{{ head.resourcesUrl }}/css/style-94f06b8164.css">
+        <link rel="stylesheet" href="{{ head.resourcesUrl }}/css/vendor-ca20979732.css">
+        <!-- endinject -->
 
-        {# Import Grunt generated Stylesheets #}
-        {% for cssMin in themeServices.grunt.staticAssets.global.css %}
-        <link rel="stylesheet" href="{{ head.resourcesUrl }}public{{ cssMin }}" />
-        {% endfor %}
         <link rel="stylesheet" href="{{ path('FontFaceCSS', {"token": head.fontToken}) }}" />
         {# Dynamic styles - uncomment next line to activate it #}
         {#  <link rel="stylesheet" href="{{ path('CssDynamicStyles') }}"> #}
@@ -124,15 +124,15 @@
 
         {% include '@BaseTheme/common/footer.html.twig' %}
 
-        {# jQuery 2.* is only compatible for IE 9+ #}
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="{{ head.resourcesUrl }}js/vendor/jquery-2.2.0.min.js"><\/script>')</script>
+         {% if not head.devMode %}
+        <!-- inject:js -->
+        <script data-main="{{ head.resourcesUrl }}/build/app-465c8ddbf1.min.js" src="{{ head.resourcesUrl }}bower_components/requirejs/require.js">
+        <!-- endinject -->
+        {% else %}
+        <script data-main="{{ head.resourcesUrl }}bootstrap.js" src="{{ head.resourcesUrl }}bower_components/requirejs/require.js"></script>
+        {% endif %}
 
-        {# Import Grunt generated javascripts #}
-        {% for jsMin in themeServices.grunt.staticAssets.global.js %}
-        <script src="{{ head.resourcesUrl }}public{{ jsMin }}"></script>
-        {% endfor %}
-
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
         <noscript><div id="no-js-message">{% trans %}no_javascript_message{% endtrans %}</div></noscript>
         <script type="text/javascript">
             var temp = {};
@@ -145,14 +145,13 @@
             temp.domain = temp.baseUrl.split('://')[1];
 
             // Cookies choices
-            document.addEventListener('DOMContentLoaded', function(event) {
-                cookieChoices.showCookieConsentBar(
-                    '{% trans %}cookie_choice.consent_message{% endtrans %}',
-                    '{% trans %}cookie_choice.close_message{% endtrans %}', // OK link title
-                    '{% trans %}cookie_choice.find_out_more_message{% endtrans %}', // Link title
-                    '/legals' // set legals page here to read full cookie usage explainations.
-                );
-            });
+            window.cookieconsent_options = {
+                "message":"{% trans %}cookie_choice.consent_message{% endtrans %}",
+                "dismiss":"{% trans %}cookie_choice.close_message{% endtrans %}",
+                "learnMore":"{% trans %}cookie_choice.find_out_more_message{% endtrans %}",
+                "link":'/legals',
+                "theme":"dark-bottom"
+            };
 
             // Browser update — http://browser-update.org/customize.html
             var $buoop = {
