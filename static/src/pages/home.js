@@ -22,9 +22,9 @@
  * @file home.js
  * @author Ambroise Maupate
  */
-import AbstractPage from "abstract-page";
+import {AbstractPage} from "abstract-page";
 
-export default class Home extends AbstractPage {
+export class Home extends AbstractPage {
     constructor(router, id, context, type, isHome){
         super(router, id, context, type, isHome);
     }
