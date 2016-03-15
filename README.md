@@ -2,7 +2,11 @@
 
 This theme is meant to get a **fresh start** to create a custom website.
 
-* **Find and replace** every `BaseTheme` occurences over this folder using your own theme name
+* **Find and replace** every `BaseTheme` occurences over this folder using your own theme name, verify in:
+    * PHP namespaces
+    * BaseThemeApp class usages
+    * Paths in `bootstrap.js`
+    * In `./config.yml` to change theme name
 * Rename `BaseThemeApp.php`.
 * Do not forget to `npm install` and `bower install` in your `static` folder.
 
