@@ -1,12 +1,26 @@
 <?php
-/*
- * Copyright REZO ZERO 2015
+/**
+ * Copyright © 2016, Ambroise Maupate
  *
- * BaseTheme main class.
- * Entry point for your theme logic and inheritance.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is furnished
+ * to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+ * IN THE SOFTWARE.
  *
  * @file BaseThemeApp.php
- * @copyright REZO ZERO 2015
  * @author Ambroise Maupate
  */
 namespace Themes\BaseTheme;
@@ -39,6 +53,17 @@ class BaseThemeApp extends FrontendController
         $_locale = null
     ) {
         /*
+         * Automatic http Accept-Language detection and redirection.
+         * Force locale if we request with no locale in URL
+         */
+        // if ($_locale === null) {
+        //     $transRepository = $this->getService('em')->getRepository('RZ\Roadiz\Core\Entities\Translation');
+        //     $redirectLocale = $request->getPreferredLanguage($transRepository->getAvailableLocales());
+        //     $translation = $transRepository->findOneByLocaleAndAvailable($redirectLocale);
+
+        //     return $this->redirect($this->generateUrl('homePageLocale', ['_locale'=>$translation->getPreferredLocale()]), 301);
+        // }
+        /*
          * If you use a static route for Home page
          * we need to grab manually language.
          *
@@ -68,7 +93,7 @@ class BaseThemeApp extends FrontendController
      *
      * @param string $message Additionnal message to describe 404 error.
      *
-     * @return Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function throw404($message = '')
     {
@@ -80,7 +105,7 @@ class BaseThemeApp extends FrontendController
 
         $this->getService('stopwatch')->start('twigRender');
         return new Response(
-            $this->getTwig()->render('@' . static::getThemeDir() . '/pages/404.html.twig', $this->assignation),
+            $this->renderView('@BaseTheme/pages/404.html.twig', $this->assignation),
             Response::HTTP_NOT_FOUND,
             array('content-type' => 'text/html')
         );
@@ -93,6 +118,8 @@ class BaseThemeApp extends FrontendController
     {
         $translation = $this->bindLocaleFromRoute($request, $request->getLocale());
         $this->prepareThemeAssignation(null, $translation);
+
+        $this->getService('stopwatch')->start('twigRender');
         return new Response(
             $this->renderView('@BaseTheme/pages/maintenance.html.twig', $this->assignation),
             Response::HTTP_SERVICE_UNAVAILABLE,
@@ -128,6 +155,8 @@ class BaseThemeApp extends FrontendController
         $this->assignation['head']['themeVersion'] = static::VERSION;
 
         // Get session messages
+        // Remove FlashBag assignation from here if you handle your forms
+        // in sub-requests block renders.
         $this->assignation['session']['messages'] = $this->getService('session')->getFlashBag()->all();
     }
 }

@@ -10,26 +10,30 @@
         {% if pageMeta.description %}<meta name="description" content="{{ pageMeta.description }}" />{% endif %}
         {% if pageMeta.keywords %}<meta name="keywords" content="{{ pageMeta.keywords }}" />{% endif %}
         <meta name="generator" content="Roadiz {{ head.cmsVersion }} {{ head.cmsVersionNumber }} - {{ head.themeName }} v{{ head.themeVersion }}" />
-
-        {# This will enable mobile viewports #}
-        <!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
-
         {#
-           HrefLang alternate url (Google suggestion), to activate ONLY if there
-           are more than 1 translation for your website
-        #}
+         # This will enable mobile viewports
+         #}
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {#
+         # HrefLang alternate url (Google suggestion), to activate ONLY if there
+         # are more than 1 translation for your website
+         #}
         {% if translation %}
         {% for key in translation|menu(true) %}
         <link rel="alternate" href="{{ key.url }}" hreflang="{{ key.locale|replace('_', '-')|lower }}" />
         {% endfor %}
         {% endif %}
 
-        {# Canonical url #}
+        {#
+         # Canonical url -------------------------------------------------------
+         #}
         {% if node %}
         <link rel="canonical" href="{{ nodeSource|url({'absolute':true}) }}" />
         {% endif %}
 
-        {# --- Favicons --- #}
+        {#
+         # Favicons ------------------------------------------------------------
+         #}
         <link rel="apple-touch-icon" sizes="57x57" href="{{ head.resourcesUrl }}img/favicons/apple-touch-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="{{ head.resourcesUrl }}img/favicons/apple-touch-icon-60x60.png">
         <link rel="apple-touch-icon" sizes="72x72" href="{{ head.resourcesUrl }}img/favicons/apple-touch-icon-72x72.png">
@@ -51,9 +55,13 @@
         <meta name="msapplication-TileImage" content="/mstile-144x144.png">
         <meta name="theme-color" content="#ffffff">
 
-        {# --- Share metas --- #}
+        {#
+         # Share metas ---------------------------------------------------------
+         #}
         {% block share_metas %}
-        {# Facebook #}
+        {#
+         # Facebook ------------------------------------------------------------
+         #}
         <meta property="og:title" content="{{ nodeSource.title }}" />
         <meta property="og:site_name" content="{{ meta.siteName }}" />
         <meta property="og:description" content="{{ pageMeta.description }}" />
@@ -75,22 +83,27 @@
         <meta name="twitter:url" content="{{ request.uri }}" />
         <meta name="twitter:image" content="{{ head.baseUrl }}{{ head.resourcesUrl }}img/share.png" />
         {% endblock %}
-
-        {# --- Styles --- #}
+        {#
+         # Gulp injected styles ------------------------------------------------
+         #}
         <!-- inject:css -->
         <link rel="stylesheet" href="{{ head.resourcesUrl }}/css/style-94f06b8164.css">
         <link rel="stylesheet" href="{{ head.resourcesUrl }}/css/vendor-ca20979732.css">
         <!-- endinject -->
-
+        {#
+         # Roadiz font-face CSS (comment if no fonts available) ----------------
+         #}
         <link rel="stylesheet" href="{{ path('FontFaceCSS', {"token": head.fontToken}) }}" />
-        {# Dynamic styles - uncomment next line to activate it #}
-        {#  <link rel="stylesheet" href="{{ path('CssDynamicStyles') }}"> #}
+        {#
+         # Dynamic CSS styles - uncomment next line to activate it -------------
+         #}
+        {# <link rel="stylesheet" href="{{ path('CssDynamicStyles') }}"> #}
 
-        {# --- Modernizr --- #}
-        <script src="{{ head.resourcesUrl }}js/vendor/modernizr.custom.71331.js"></script>
-
+        {#
+         # Modernizr -----------------------------------------------------------
+         #}
+        <script src="{{ head.resourcesUrl }}vendor/modernizr.custom.js"></script>
     </head>
-
     {% set bodyClasses = [] %}
     {% if node %}
         {% set bodyClasses = bodyClasses|merge([
@@ -101,30 +114,32 @@
     {% endif %}
 
     <body {% block body_attributes %}{% if node %}class="{{ bodyClasses|join(' ') }}" id="{{ node.nodeName }}" data-node-type="{{ node.nodeType.name|lower }}" data-is-home="{{ node.home }}"{% endif %}{% endblock %}>
-
-        <div id="svg-sprite" style="display: none">
-            {% include '@BaseTheme/svg/sprite.svg.twig' %}
-        </div>
-
-        <div id="loading">
-            <div id="loading-inner"></div>
-        </div>
-
+        <div id="svg-sprite" style="display: none">{% include '@BaseTheme/svg/sprite.svg.twig' %}</div>
+        <div id="loading"><div id="loading-inner"></div></div>
+        {#
+         # Header block --------------------------------------------------------
+         #}
         <div class="container-fluid">{% block header %}{% endblock %}</div>
-
-        {% block mainnavigation %}
-        {% include '@BaseTheme/common/nav.html.twig' %}
-        {% endblock %}
-
-        {# Add your site or application content here #}
+        {#
+         # Main navigation inclusion -------------------------------------------
+         #}
+        {% block mainnavigation %}{% include '@BaseTheme/common/nav.html.twig' %}{% endblock %}
+        {#
+         # Content block -------------------------------------------------------
+         #}
         <div class="container" id="main-container">
             {% block content %}{% endblock %}
             <div id="ajax-container"></div>
         </div>
-
+        {#
+         # Footer --------------------------------------------------------------
+         #}
         {% include '@BaseTheme/common/footer.html.twig' %}
 
-         {% if not head.devMode %}
+        {#
+         # JS scripts inclusions -----------------------------------------------
+         #}
+        {% if not head.devMode %}
         <!-- inject:js -->
         <script data-main="{{ head.resourcesUrl }}/build/app-61d80a6caf.min.js" src="{{ head.resourcesUrl }}bower_components/requirejs/require.js">
         <!-- endinject -->
@@ -144,7 +159,9 @@
             temp.mapsStyle = {% if head.mapsStyle %}JSON.parse('{{ head.mapsStyle|raw }}'){% else %}null{% endif %};
             temp.domain = temp.baseUrl.split('://')[1];
 
-            // Cookies choices
+            {#
+             # Cookie consent --------------------------------------------------
+             #}
             window.cookieconsent_options = {
                 "message":"{% trans %}cookie_choice.consent_message{% endtrans %}",
                 "dismiss":"{% trans %}cookie_choice.close_message{% endtrans %}",
@@ -153,7 +170,9 @@
                 "theme":"dark-bottom"
             };
 
-            // Browser update — http://browser-update.org/customize.html
+            {#
+             # Browser update — http://browser-update.org/customize.html -------
+             #}
             var $buoop = {
                 vs:{i:9,f:15,o:12.1,s:5.1,c:2},
                 text:'{% trans %}browser_update.message{% endtrans %} <a href="http://browser-update.org/update-browser.html" target="_blank">{% trans %}browser_update.link{% endtrans %}</a>'
@@ -166,7 +185,9 @@
             try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
             catch(e){window.attachEvent("onload", $buo_f)}
 
-            // Analytics
+            {#
+             # Google Analytics ------------------------------------------------
+             #}
             {% if head.universalAnalyticsId %}
             {# Google Analytics: change {{ head.universalAnalyticsId }} to be your site's ID.  #}
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=

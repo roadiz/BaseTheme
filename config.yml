@@ -1,7 +1,7 @@
 ---
 name: "Base theme"
-author: "REZO ZERO"
-copyright: "REZO ZERO"
+author: "Rezo Zero"
+copyright: "Rezo Zero"
 themeDir: "BaseTheme"
 supportedLocale:
     - "en"

@@ -5,9 +5,10 @@ This theme is meant to get a **fresh start** to create a custom website.
 * **Find and replace** every `BaseTheme` occurences over this folder using your own theme name, verify in:
     * PHP namespaces
     * BaseThemeApp class usages
-    * Paths in `bootstrap.js`
+    * Absolute paths in `bootstrap.js`
     * In `./config.yml` to change theme name
-* Rename `BaseThemeApp.php`.
+* Rename `Base theme` title in `BaseThemeApp.php` and in `./config.yml` to get the good name when you’re installing Roadiz
+* Rename `BaseThemeApp.php` file name.
 * Do not forget to `npm install` and `bower install` in your `static` folder.
 
 A common node-type called *Page* will be installed with this theme, his controller is located 
