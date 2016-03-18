@@ -1,5 +1,3 @@
-{% if themeServices.navigation and themeServices.navigation|length %}
-
 {# Navbar #}
 <div id="navbar" class="visible-xs">
     <div id="nav-btn">
@@ -9,14 +7,10 @@
     </div>
     <div id="navbar-label">Menu</div>
 </div>
-
 <div id="nav-overlay"></div>
-
 {# Main nav #}
 <nav id="nav" data-active-node="{{ node.id }}">
-
     <div class="container" id="nav-container">
-
         {# Nav list #}
         <ul class="nav-list" id="nav-list">
 
@@ -24,24 +18,23 @@
             {% if home %}
             {% set homeSource = home.nodeSources.first %}
             <li class="nav-item nav-item-home {% if node.isHome %}active{% endif %}">
-                <a href="{{ homeSource|url }}"
-                   title="{{ homeSource.title }}"
+                <a href="{{ path('homePageLocale', {_locale:request.locale}) }}"
                    class="nav-link-home nav-link {% if node.isHome %}active{% endif %}" id="nav-home">{{ homeSource.title|default(home.nodeName) }}</a>
             </li>
             {% endif %}
 
-            {# Pages #}
-            {% for source in themeServices.navigation %}
-                {% include '@BaseTheme/common/nav-item.html.twig' with {
-                    'source' : source,
-                    'active' : node,
-                    'home' : home,
-                    'themeServices':themeServices
-                } only %}
-            {% endfor %}
-
+            {% if themeServices.navigation and themeServices.navigation|length %}
+                {# Pages #}
+                {% for source in themeServices.navigation %}
+                    {% include '@BaseTheme/common/nav-item.html.twig' with {
+                        'source' : source,
+                        'active' : node,
+                        'home' : home,
+                        'themeServices':themeServices
+                    } only %}
+                {% endfor %}
+            {% endif %}
         </ul>
-
         {# Lang #}
         {% if translation %}
         <ul class="nav-list" id="nav-lang">
@@ -52,8 +45,5 @@
             {% endfor %}
         </ul>
         {% endif %}
-
     </div>
-
 </nav>
-{% endif %}

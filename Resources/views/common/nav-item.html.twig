@@ -18,7 +18,9 @@
 	id="nav-item-{{ source.node.nodeName }}"
 	data-node-id="{{ source.node.id }}">
 
-	<a class="{{ linkClasses|join(' ') }}" id="nav-link-{{ source.node.nodeName }}" href="{{ source|url }}">{{ source.title|default(source.node.nodeName) }}</a>
+	<a class="{{ linkClasses|join(' ') }}"
+       id="nav-link-{{ source.node.nodeName }}"
+       href="{{ source|url }}">{{ source.title|default(source.node.nodeName) }}</a>
 
 	{# {% if children|length %}
 	<ul class="dropdown-menu nav-children">
