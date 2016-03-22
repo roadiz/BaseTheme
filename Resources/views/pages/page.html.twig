@@ -70,7 +70,7 @@
             'node.nodeType' : ['!=', themeServices.typePage]
         }) %}
         {% for singleBlock in blocks %}
-        {% include '@BaseTheme/blocks/' ~ singleBlock.node.nodeType.name|lower ~ '.html.twig' with {
+        {% include '@BaseTheme/blocks/' ~ singleBlock.node.nodeType.name|lower ~ '.html.twig' ignore missing with {
             'nodeSource': singleBlock,
             'parentNodeSource': nodeSource,
             'themeServices': themeServices,
