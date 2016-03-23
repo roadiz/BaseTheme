@@ -23,6 +23,7 @@ gulp.task('requirejs', ['babel', 'clean-build'], function() {
             TweenMax: "./../bower_components/gsap/src/minified/TweenMax.min",
             isMobile: "./../bower_components/isMobile/isMobile.min",
             actual: "./../bower_components/jquery.actual/jquery.actual.min",
+            jqueryTouchEvents: "./../bower_components/jquery-touch-events/src/1.0.1/jquery.mobile-events.min",
             // Utils functions and classes
             "utils/utils": "./../bower_components/pageblock/dist/utils/utils",
             "utils/gaTrackErrors": "./../bower_components/pageblock/dist/utils/gaTrackErrors",
