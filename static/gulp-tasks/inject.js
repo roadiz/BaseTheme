@@ -8,7 +8,7 @@ gulp.task('inject', ['css', 'requirejs'], function () {
         .pipe(inject(builtFiles, {
             transform: function (filepath) {
                 if (filepath.slice(-3) === '.js') {
-                    return '<script data-main="{{ head.resourcesUrl }}' + filepath + '" src="{{ head.resourcesUrl }}bower_components/requirejs/require.js">';
+                    return '<script data-main="{{ head.resourcesUrl }}' + filepath + '" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.22/require.min.js"></script>';
                 }
                 if (filepath.slice(-4) === '.css') {
                     return '<link rel="stylesheet" href="{{ head.resourcesUrl }}' + filepath + '">';
@@ -28,7 +28,7 @@ gulp.task('inject-css', ['css'], function () {
         .pipe(inject(builtFiles, {
             transform: function (filepath) {
                 if (filepath.slice(-3) === '.js') {
-                    return '<script data-main="{{ head.resourcesUrl }}' + filepath + '" src="{{ head.resourcesUrl }}bower_components/requirejs/require.js">';
+                    return '<script data-main="{{ head.resourcesUrl }}' + filepath + '" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.22/require.min.js"></script>';
                 }
                 if (filepath.slice(-4) === '.css') {
                     return '<link rel="stylesheet" href="{{ head.resourcesUrl }}' + filepath + '">';
