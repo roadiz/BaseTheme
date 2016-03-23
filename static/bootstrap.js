@@ -7,11 +7,12 @@ requirejs.config({
         TweenMax: "/themes/BaseTheme/static/bower_components/gsap/src/minified/TweenMax.min",
         isMobile: "/themes/BaseTheme/static/bower_components/isMobile/isMobile.min",
         actual: "/themes/BaseTheme/static/bower_components/jquery.actual/jquery.actual.min",
-        jqueryTouchEvents: "/themes/BaseTheme/static/bower_components/jquery-touch-events/src/1.0.1/jquery.mobile-events.min",
+        Hammer: "/themes/BaseTheme/static/bower_components/hammerjs/hammer.min",
         // Utils functions and classes
         "utils/utils": "/themes/BaseTheme/static/bower_components/pageblock/dist/utils/utils",
         "utils/polyfills": "/themes/BaseTheme/static/bower_components/pageblock/dist/utils/polyfills",
         "utils/debounce": "/themes/BaseTheme/static/bower_components/pageblock/dist/utils/debounce",
+        "utils/scroll": "/themes/BaseTheme/static/bower_components/pageblock/dist/utils/scroll",
         "utils/gaTrackErrors": "/themes/BaseTheme/static/bower_components/pageblock/dist/utils/gaTrackErrors",
         "utils/bootstrapMedia": "/themes/BaseTheme/static/bower_components/pageblock/dist/utils/bootstrapMedia",
         // Include current page-block sources from their location in bower_components

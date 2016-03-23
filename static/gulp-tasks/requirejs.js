@@ -12,7 +12,6 @@ gulp.task('requirejs', ['babel', 'clean-build'], function() {
     return gulp.src('./bootstrap.js')
     .pipe(requirejsOptimize({
         out: 'app.min.js',
-        optimize: "none",
         skipDirOptimize: "true",
         baseUrl: "./dist",
         name: "./../bootstrap",
@@ -23,12 +22,13 @@ gulp.task('requirejs', ['babel', 'clean-build'], function() {
             TweenMax: "./../bower_components/gsap/src/minified/TweenMax.min",
             isMobile: "./../bower_components/isMobile/isMobile.min",
             actual: "./../bower_components/jquery.actual/jquery.actual.min",
-            jqueryTouchEvents: "./../bower_components/jquery-touch-events/src/1.0.1/jquery.mobile-events.min",
+            Hammer: "./../bower_components/hammerjs/hammer.min",
             // Utils functions and classes
             "utils/utils": "./../bower_components/pageblock/dist/utils/utils",
             "utils/gaTrackErrors": "./../bower_components/pageblock/dist/utils/gaTrackErrors",
             "utils/polyfills": "./../bower_components/pageblock/dist/utils/polyfills",
             "utils/debounce": "./../bower_components/pageblock/dist/utils/debounce",
+            "utils/scroll": "./../bower_components/pageblock/dist/utils/scroll",
             "utils/bootstrapMedia": "./../bower_components/pageblock/dist/utils/bootstrapMedia",
             // Include current page-block sources from their location in bower_components
             // if you are using bower to fetch this lib.
