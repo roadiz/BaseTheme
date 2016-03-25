@@ -18,11 +18,11 @@ AbstractBlock.prototype.init = function(id, type){
 
     _this.id = id;
     _this.type = type;
+    _this.onResizeDebounce = debounce($.proxy(_this.resize, _this), 50, false);
 
     // Selectors
     _this.$cont = $('#'+id);
 };
-
 
 /**
  * Init events
@@ -30,7 +30,12 @@ AbstractBlock.prototype.init = function(id, type){
 AbstractBlock.prototype.initEvents = function(){
     var _this = this;
 
-    Base.$window.on('resize', debounce($.proxy(_this.resize, _this), 50, false));
+    _this.$cont.waitForImages({
+        finished: $.proxy(_this.onLoad, _this),
+        waitForAll: true
+    });
+
+    Base.$window.on('resize', _this.onResizeDebounce);
 };
 
 
@@ -44,14 +49,24 @@ AbstractBlock.prototype.destroy = function(){
     _this.destroyEvents();
 };
 
-
 /**
  * Destroy events
  */
 AbstractBlock.prototype.destroyEvents = function(){
     var _this = this;
 
-    Base.$window.off('resize', debounce($.proxy(_this.resize, _this), 50, false));
+    Base.$window.off('resize', _this.onResizeDebounce);
+};
+
+/**
+ * On load
+ */
+AbstractBlock.prototype.onLoad = function(e){
+    var _this = this;
+
+    setTimeout(function(){
+        _this.resize();
+    }, 0);
 };
 
 

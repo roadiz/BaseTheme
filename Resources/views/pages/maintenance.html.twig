@@ -10,17 +10,18 @@
 {% set classes = classes|merge(['page-content-ajax']) %}
 {% endif %}
 
-{% block body_attributes %}class="maintenance" id="maintenance"{% endblock %}
+{% block body_attributes %}class="maintenance" id="maintenance" data-node-type="maintenance"{% endblock %}
 
 {% block mainnavigation %}
 <nav id="nav"></nav>
 {% endblock %}
+
 {% block content %}
 <section class="{{ classes|join(' ') }}"
          id="page-content-maintenance"
-         data-title="{{ nodeSource.title }}"
-         data-node-type="{{ node.nodeType.name|lower }}"
-         data-meta-title="{{ pageMeta.title }}">
+         data-title="{% trans %}website.is.under.maintenance{% endtrans %}"
+         data-node-type="maintenance"
+         data-meta-title="{% trans %}website.is.under.maintenance{% endtrans %}">
     <h1>{% trans %}website.is.under.maintenance{% endtrans %}</h1>
     <p>{% trans %}website.is.under.maintenance.we.will.be.back.soon{% endtrans %}</p>
 </section>

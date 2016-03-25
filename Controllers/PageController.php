@@ -31,6 +31,6 @@ class PageController extends BaseThemeApp
     ) {
         $this->prepareThemeAssignation($node, $translation);
 
-        return $this->render('types/page.html.twig', $this->assignation);
+        return $this->render('pages/page.html.twig', $this->assignation);
     }
 }

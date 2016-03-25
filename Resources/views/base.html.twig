@@ -45,6 +45,8 @@
         <link rel="icon" type="image/png" href="{{ head.resourcesUrl }}img/favicons/android-chrome-192x192.png" sizes="192x192">
         <link rel="icon" type="image/png" href="{{ head.resourcesUrl }}img/favicons/favicon-16x16.png" sizes="16x16">
         <link rel="manifest" href="{{ head.resourcesUrl }}img/favicons/manifest.json">
+        <meta name="apple-mobile-web-app-title" content="{{ meta.siteName }}">
+        <meta name="application-name" content="{{ meta.siteName }}">
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="/mstile-144x144.png">
         <meta name="theme-color" content="#ffffff">
@@ -52,7 +54,7 @@
         {# --- Share metas --- #}
         {% block share_metas %}
         {# Facebook #}
-        <meta property="og:title" content="{{ pageMeta.title }}" />
+        <meta property="og:title" content="{{ nodeSource.title }}" />
         <meta property="og:site_name" content="{{ meta.siteName }}" />
         <meta property="og:description" content="{{ pageMeta.description }}" />
         <meta property="og:url" content="{{ request.uri }}" />
@@ -111,7 +113,7 @@
         <div class="container-fluid">{% block header %}{% endblock %}</div>
 
         {% block mainnavigation %}
-        {% include '@BaseTheme/modules/nav.html.twig' %}
+        {% include '@BaseTheme/common/nav.html.twig' %}
         {% endblock %}
 
         {# Add your site or application content here #}
@@ -120,17 +122,11 @@
             <div id="ajax-container"></div>
         </div>
 
-        {% include '@BaseTheme/modules/footer.html.twig' %}
-
-        {# Scripts #}
+        {% include '@BaseTheme/common/footer.html.twig' %}
 
         {# jQuery 2.* is only compatible for IE 9+ #}
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="{{ head.resourcesUrl }}js/vendor/jquery-2.1.4.min.js"><\/script>')</script>
-
-        {# jQuery 1.* for maximum compatibility #}
-        {#<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="{{ head.resourcesUrl }}js/vendor/jquery-1.11.3.min.js"><\/script>')</script>#}
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="{{ head.resourcesUrl }}js/vendor/jquery-2.2.0.min.js"><\/script>')</script>
 
         {# Import Grunt generated javascripts #}
         {% for jsMin in themeServices.grunt.staticAssets.global.js %}

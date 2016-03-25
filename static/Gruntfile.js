@@ -184,7 +184,7 @@ module.exports = function(grunt) {
                 ],
                 cleanupdefs:true,
                 includeTitleElement:false,
-                prefix:'base-icon-'
+                prefix:'icon-'
             },
             default : {
                 files: {

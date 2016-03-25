@@ -1,15 +1,22 @@
-<div class="page-block page-block-{{ nodeType.name|lower }}"
+{% set blockClassPrefix = nodeType.name|lower %}
+
+{% set blockClasses = [
+    'page-block',
+    blockClassPrefix
+] %}
+
+<div class="{{ blockClasses|join(' ') }}"
      id="block-{{ node.nodeName }}"
      data-index="{{ loop.index0 }}"
      data-node-type="{{ nodeType.name|lower }}">
 
     {% if nodeSource.geoloc %}
-    <div class="block-map-canvas-cont">
-        <div class="block-map-canvas" id="map-{{ nodeSource.id }}" data-geoloc="{{ nodeSource.geoloc }}"></div>
+    <div class="{{ blockClassPrefix }}-canvas-cont">
+        <div class="{{ blockClassPrefix }}-canvas" id="map-{{ nodeSource.id }}" data-geoloc="{{ nodeSource.geoloc }}"></div>
         {% spaceless %}
-        <div class="block-map-buttons">
-            <button class="block-map-button block-map-button-plus" data-index="0"><i class="block-map-button-icon "></i></button>
-            <button class="block-map-button block-map-button-minus" data-index="0"><i class="block-map-button-icon"></i></button>
+        <div class="{{ blockClassPrefix }}-buttons">
+            <button class="{{ blockClassPrefix }}-button {{ blockClassPrefix }}-button-plus" data-index="0"><i class="{{ blockClassPrefix }}-button-icon "></i></button>
+            <button class="{{ blockClassPrefix }}-button {{ blockClassPrefix }}-button-minus" data-index="0"><i class="{{ blockClassPrefix }}-button-icon"></i></button>
         </div>
         {% endspaceless %}
     </div>

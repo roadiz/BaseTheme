@@ -27,7 +27,7 @@
 	{% if children|length %}
 	<ul class="dropdown-menu nav-children">
 		{% for subsource in children %}
-			{% include '@BaseTheme/modules/nav-item.html.twig' with {
+			{% include '@BaseTheme/common/nav-item.html.twig' with {
 				'source' : subsource,
 				'active' : active,
 				'home' : home

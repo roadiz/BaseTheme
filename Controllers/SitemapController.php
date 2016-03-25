@@ -32,12 +32,14 @@ class SitemapController extends BaseThemeApp
          */
         $this->assignation['pages'] = $this->getService('nodeSourceApi')
             ->getBy([
-                'node.nodeType' => $this->themeContainer['typePage'],
+                'node.nodeType' => [
+                    $this->themeContainer['typePage'],
+                ],
                 'node.visible' => true,
             ]);
 
         return new Response(
-            trim($this->getTwig()->render('@' . static::getThemeDir() . '/sitemap.xml.twig', $this->assignation)),
+            trim($this->getTwig()->render('@' . static::getThemeDir() . '/sitemap/sitemap.xml.twig', $this->assignation)),
             Response::HTTP_OK,
             array('content-type' => 'application/xml')
         );
