@@ -35,7 +35,7 @@ gulp.task('requirejs', ['babel', 'clean-build'], function() {
             "state": "./../bower_components/pageblock/dist/state",
             "router": "./../bower_components/pageblock/dist/router",
             "graphicLoader": "./../bower_components/pageblock/dist/graphicLoader",
-            "nav": "./../bower_components/pageblock/dist/nav",
+            "abstract-nav": "./../bower_components/pageblock/dist/abstract-nav",
             "abstract-page": "./../bower_components/pageblock/dist/abstract-page",
             "abstract-block": "./../bower_components/pageblock/dist/abstract-block",
             // If you want to use example Page and Home classes in your project

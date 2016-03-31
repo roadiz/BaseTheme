@@ -20,7 +20,7 @@ requirejs.config({
         "state": "/themes/BaseTheme/static/bower_components/pageblock/dist/state",
         "router": "/themes/BaseTheme/static/bower_components/pageblock/dist/router",
         "graphicLoader": "/themes/BaseTheme/static/bower_components/pageblock/dist/graphicLoader",
-        "nav": "/themes/BaseTheme/static/bower_components/pageblock/dist/nav",
+        "abstract-nav": "/themes/BaseTheme/static/bower_components/pageblock/dist/abstract-nav",
         "abstract-page": "/themes/BaseTheme/static/bower_components/pageblock/dist/abstract-page",
         "abstract-block": "/themes/BaseTheme/static/bower_components/pageblock/dist/abstract-block",
         // If you want to use example Page and Home classes in your project
