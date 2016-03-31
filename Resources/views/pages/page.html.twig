@@ -1,15 +1,14 @@
 {% extends head.ajax ? '@BaseTheme/base.ajax.twig' : '@BaseTheme/base.html.twig' %}
 
 {% set classes = [
-    'page-content',
+    'page-container',
 ] %}
 {% if node.home %}
-{% set classes = classes|merge(['home-content']) %}
+{% set classes = classes|merge(['home-container']) %}
 {% endif %}
 {% if head.ajax %}
-{% set classes = classes|merge(['page-content-ajax']) %}
+{% set classes = classes|merge(['page-container-ajax']) %}
 {% endif %}
-
 
 {% set headerImages = nodeSource.headerImage %}
 
@@ -54,7 +53,7 @@
 
 {% block content %}
 <section class="{{ classes|join(' ') }}"
-         id="page-content-{{ node.nodeName }}"
+         id="page-container-{{ node.nodeName }}"
          data-title="{{ nodeSource.title }}"
          data-node-type="{{ node.nodeType.name|lower }}"
          data-meta-title="{{ pageMeta.title }}">

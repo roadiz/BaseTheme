@@ -8,6 +8,7 @@ import {Nav} from "nav";
 import {Router} from "router";
 import {GraphicLoader} from "graphicLoader";
 import {Page} from "pages/page";
+// import {ContactBlock} from "blocks/contact-block";
 
 /**
  * Set default Tween ease
@@ -78,6 +79,7 @@ const router = new Router(
          * ES6 modules
          */
         'page' : Page,
+        // 'contactblock' : ContactBlock
     },
     // temp namespace is defined in your index.html
     temp.baseUrl,
@@ -85,5 +87,5 @@ const router = new Router(
     new Nav()
 );
 router.initEvents();
-router.boot($('.page-content').eq(0), 'static', isHome);
+router.boot($('.page-container').eq(0), 'static', isHome);
 

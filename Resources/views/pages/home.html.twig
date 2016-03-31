@@ -1,16 +1,16 @@
 {% extends head.ajax ? '@BaseTheme/base.ajax.twig' : '@BaseTheme/base.html.twig' %}
 
 {% set classes = [
-    'page-content',
-    'home-content'
+    'page-container',
+    'home-container'
 ] %}
 
 {% if head.ajax %}
-{% set classes = classes|merge(['page-content-ajax']) %}
+{% set classes = classes|merge(['page-container-ajax']) %}
 {% endif %}
 
 {% block content %}
-<section class="{{ classes|join(' ') }}" id="page-content-{{ node.nodeName }}"
+<section class="{{ classes|join(' ') }}" id="page-container-{{ node.nodeName }}"
          data-title="{{ nodeSource.title }}"
          data-node-type="{{ node.nodeType.name|lower }}"
          data-meta-title="{{ pageMeta.title }}">
