@@ -72,6 +72,7 @@ const router = new Router(
     {
         homeHasClass: false,
         ajaxEnabled: true,
+        pageClass:'page-container'
     },
     {
         /*

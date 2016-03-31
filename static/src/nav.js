@@ -7,7 +7,6 @@
  */
 import $ from 'jquery';
 import {AbstractNav} from 'abstract-nav';
-import {Header} from "blocks/header";
 
 export class Nav extends AbstractNav {
     constructor() {
@@ -20,7 +19,7 @@ export class Nav extends AbstractNav {
     initEvents(router) {
         super.initEvents(router);
         if (router.options.ajaxEnabled) {
-            this.$links.on('click', $.proxy(router.onLinkClick, router));
+            this.$links.on('click', router.onLinkClick.bind(router));
         }
     }
 }

@@ -40,7 +40,8 @@ export class ContactBlock extends AbstractBlock {
             data : this.$form.serialize(),
             type: 'post',
             dataType: 'json',
-            success: function(data){
+            success: (data) => {
+                // console.log('SUCCESS');
                 // console.log(data.status);
                 if (data.status != 'success') {
                     this.$formMessage[0].className = 'form-message form-message-'+data.status;
@@ -55,7 +56,8 @@ export class ContactBlock extends AbstractBlock {
                 TweenLite.to(this.$formMessage, 0.6, {height:height, delay:0.2});
 
             },
-            error: function(data){
+            error: (data) => {
+                // console.log('ERROR');
                 data = data.responseJSON;
                 // console.log(data);
                 this.$formMessage[0].className = 'form-message form-message-hidden form-message-error form-message-'+data.status;
