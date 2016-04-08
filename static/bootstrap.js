@@ -5,6 +5,7 @@ requirejs.config({
         waitForImages: '/themes/BaseTheme/static/bower_components/waitForImages/dist/jquery.waitforimages.min',
         TweenLite: "/themes/BaseTheme/static/bower_components/gsap/src/minified/TweenLite.min",
         TweenMax: "/themes/BaseTheme/static/bower_components/gsap/src/minified/TweenMax.min",
+        scrollTo: "/themes/BaseTheme/static/bower_components/gsap/src/minified/plugins/ScrollToPlugin.min",
         isMobile: "/themes/BaseTheme/static/bower_components/isMobile/isMobile.min",
         actual: "/themes/BaseTheme/static/bower_components/jquery.actual/jquery.actual.min",
         Hammer: "/themes/BaseTheme/static/bower_components/hammerjs/hammer.min",

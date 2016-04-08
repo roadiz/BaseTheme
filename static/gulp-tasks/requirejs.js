@@ -20,6 +20,7 @@ gulp.task('requirejs', ['babel', 'clean-build'], function() {
             waitForImages: './../bower_components/waitForImages/dist/jquery.waitforimages.min',
             TweenLite: "./../bower_components/gsap/src/minified/TweenLite.min",
             TweenMax: "./../bower_components/gsap/src/minified/TweenMax.min",
+            scrollTo: "/../bower_components/gsap/src/minified/plugins/ScrollToPlugin.min",
             isMobile: "./../bower_components/isMobile/isMobile.min",
             actual: "./../bower_components/jquery.actual/jquery.actual.min",
             Hammer: "./../bower_components/hammerjs/hammer.min",
