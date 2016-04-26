@@ -86,6 +86,7 @@ class CssController extends BaseThemeApp
         $pages = $this->getService('nodeSourceApi')
             ->getBy(array(
                 'node.nodeType' => $this->themeContainer['typePage'],
+                'translation' => $this->translation
             ));
 
         return $pages;
