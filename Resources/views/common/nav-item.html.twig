@@ -14,25 +14,25 @@
 {% endif %} #}
 
 {% if source.node != home %}
-<li class="{{ itemClasses|join(' ') }}"
-	id="nav-item-{{ source.node.nodeName }}"
-	data-node-id="{{ source.node.id }}">
+    <li class="{{ itemClasses|join(' ') }}"
+        id="nav-item-{{ source.node.nodeName }}"
+        data-node-id="{{ source.node.id }}">
 
-	<a class="{{ linkClasses|join(' ') }}"
-       id="nav-link-{{ source.node.nodeName }}"
-       href="{{ source|url }}">{{ source.title|default(source.node.nodeName) }}</a>
+        <a class="{{ linkClasses|join(' ') }}"
+           id="nav-link-{{ source.node.nodeName }}"
+           href="{{ source|url }}">{{ source.title|default(source.node.nodeName) }}</a>
 
-	{# {% if children|length %}
-	<ul class="dropdown-menu nav-children">
-		{% for subsource in children %}
-			{% include '@BaseTheme/common/nav-item.html.twig' with {
-				'source' : subsource,
-				'active' : active,
-				'home' : home
-			} only %}
-		{% endfor %}
-	</ul>
-	{% endif %} #}
+        {# {% if children|length %}
+        <ul class="dropdown-menu nav-children">
+            {% for subsource in children %}
+                {% include '@BaseTheme/common/nav-item.html.twig' with {
+                    'source' : subsource,
+                    'active' : active,
+                    'home' : home
+                } only %}
+            {% endfor %}
+        </ul>
+        {% endif %} #}
 
-</li>
+    </li>
 {% endif %}

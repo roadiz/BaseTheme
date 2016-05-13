@@ -16,34 +16,34 @@
 
             {# Home #}
             {% if home %}
-            {% set homeSource = home.nodeSources.first %}
-            <li class="nav-item nav-item-home {% if node.isHome %}active{% endif %}">
-                <a href="{{ path('homePageLocale', {_locale:request.locale}) }}"
-                   class="nav-link-home nav-link {% if node.isHome %}active{% endif %}" id="nav-home">{{ homeSource.title|default(home.nodeName) }}</a>
-            </li>
+                {% set homeSource = home.nodeSources.first %}
+                <li class="nav-item nav-item-home {% if node.isHome %}active{% endif %}">
+                    <a href="{{ path('homePageLocale', {_locale:request.locale}) }}"
+                       class="nav-link-home nav-link {% if node.isHome %}active{% endif %}" id="nav-home">{{ homeSource.title|default(home.nodeName) }}</a>
+                </li>
             {% endif %}
 
             {% if themeServices.navigation and themeServices.navigation|length %}
                 {# Pages #}
                 {% for source in themeServices.navigation %}
                     {% include '@BaseTheme/common/nav-item.html.twig' with {
-                        'source' : source,
-                        'active' : node,
-                        'home' : home,
-                        'themeServices':themeServices
+                    'source' : source,
+                    'active' : node,
+                    'home' : home,
+                    'themeServices':themeServices
                     } only %}
                 {% endfor %}
             {% endif %}
         </ul>
         {# Lang #}
         {% if translation %}
-        <ul class="nav-list" id="nav-lang">
-            {% for id, trans in translation|menu %}
-            <li class="nav-item nav-item-lang{% if trans.active %} active{% endif %}">
-                <a class="nav-link nav-link-lang{% if trans.active %} active{% endif %}" href="{{ trans.url }}">{{ trans.translation }}</a>
-            </li>
-            {% endfor %}
-        </ul>
+            <ul class="nav-list" id="nav-lang">
+                {% for id, trans in translation|menu %}
+                    <li class="nav-item nav-item-lang{% if trans.active %} active{% endif %}">
+                        <a class="nav-link nav-link-lang{% if trans.active %} active{% endif %}" href="{{ trans.url }}">{{ trans.translation }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
         {% endif %}
     </div>
 </nav>

@@ -30,7 +30,8 @@ use Pimple\ServiceProviderInterface;
 use RZ\Roadiz\Core\Entities\Translation;
 
 /**
- * Image formats.
+ * Class NodeServiceProvider
+ * @package Themes\BaseTheme\Services
  */
 class NodeServiceProvider implements ServiceProviderInterface
 {
@@ -54,8 +55,8 @@ class NodeServiceProvider implements ServiceProviderInterface
             }
 
             return $this->coreServices['em']
-                        ->getRepository('RZ\Roadiz\Core\Entities\Node')
-                        ->findHomeWithTranslation($this->translation);
+                ->getRepository('RZ\Roadiz\Core\Entities\Node')
+                ->findHomeWithTranslation($this->translation);
         };
 
         /*
@@ -65,14 +66,14 @@ class NodeServiceProvider implements ServiceProviderInterface
         $container['navigation'] = function ($c) {
             if ($c['nodeMenu'] !== null) {
                 return $this->coreServices['nodeSourceApi']
-                            ->getBy(
-                                [
-                                    'node.parent' => $c['nodeMenu'],
-                                    'node.visible' => true,
-                                    'translation' => $this->translation,
-                                ],
-                                ['node.position' => 'ASC']
-                            );
+                    ->getBy(
+                        [
+                            'node.parent' => $c['nodeMenu'],
+                            'node.visible' => true,
+                            'translation' => $this->translation,
+                        ],
+                        ['node.position' => 'ASC']
+                    );
             }
 
             return null;

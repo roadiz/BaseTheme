@@ -30,15 +30,20 @@ use Symfony\Component\HttpFoundation\Response;
 use Themes\BaseTheme\BaseThemeApp;
 
 /**
- * SitemapController class
+ * Class SitemapController
+ * @package Themes\BaseTheme\Controllers
  */
 class SitemapController extends BaseThemeApp
 {
+    /**
+     * @param Request $request
+     * @param string $_locale
+     * @return Response
+     */
     public function sitemapAction(
         Request $request,
         $_locale = 'fr'
     ) {
-
         $this->prepareThemeAssignation(null, $this->bindLocaleFromRoute($request, $_locale));
 
         //$this->assignation['home'] = $this->themeContainer['homeNode']->getNodeSources()->first();

@@ -32,17 +32,16 @@ use Symfony\Component\HttpFoundation\Response;
 use Themes\BaseTheme\BaseThemeApp;
 
 /**
- * CssController class
+ * Class CssController
+ * @package Themes\BaseTheme\Controllers
  */
 class CssController extends BaseThemeApp
 {
     const CSS_CACHE_ID = "dynamic_styles";
 
     /**
-     * @param Request     $request
-     * @param Node        $node
-     * @param Translation $translation
-     *
+     * @param Request $request
+     * @param string|null $_locale
      * @return Response
      */
     public function stylesAction(
@@ -81,7 +80,10 @@ class CssController extends BaseThemeApp
         return $response;
     }
 
-    public function getPages()
+    /**
+     * @return Node[]
+     */
+    protected function getPages()
     {
         $pages = $this->getService('nodeSourceApi')
             ->getBy(array(

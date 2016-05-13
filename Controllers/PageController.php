@@ -36,7 +36,10 @@ use Themes\BaseTheme\BaseThemeApp;
 class PageController extends BaseThemeApp
 {
     /**
-     * {@inheritdoc}
+     * @param Request $request
+     * @param Node|null $node
+     * @param Translation|null $translation
+     * @return mixed
      */
     public function indexAction(
         Request $request,

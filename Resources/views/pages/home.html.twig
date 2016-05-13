@@ -1,42 +1,42 @@
 {% extends head.ajax ? '@BaseTheme/base.ajax.twig' : '@BaseTheme/base.html.twig' %}
 
 {% set classes = [
-    'page-container',
-    'home-container'
+'page-container',
+'home-container'
 ] %}
 
 {% if head.ajax %}
-{% set classes = classes|merge(['page-container-ajax']) %}
+    {% set classes = classes|merge(['page-container-ajax']) %}
 {% endif %}
 
 {% block content %}
-<section class="{{ classes|join(' ') }}" id="page-container-{{ node.nodeName }}"
-         data-title="{{ nodeSource.title }}"
-         data-node-type="{{ node.nodeType.name|lower }}"
-         data-meta-title="{{ pageMeta.title }}">
-    <h1>{% trans %}hello.world{% endtrans %}</h1>
-    <div>
-    {% if node %}
-    <p>{{ "node.name.is.%name%"|trans({'%name%':node.nodeSources.first.title }) }}</p>
-    {% endif %}
-    {% if translation %}
-    <p>{{ "translation.is.%name%"|trans({'%name%':translation.getName }) }}</p>
-    {% endif %}
-    </div>
+    <section class="{{ classes|join(' ') }}" id="page-container-{{ node.nodeName }}"
+             data-title="{{ nodeSource.title }}"
+             data-node-type="{{ node.nodeType.name|lower }}"
+             data-meta-title="{{ pageMeta.title }}">
+        <h1>{% trans %}hello.world{% endtrans %}</h1>
+        <div>
+            {% if node %}
+                <p>{{ "node.name.is.%name%"|trans({'%name%':node.nodeSources.first.title }) }}</p>
+            {% endif %}
+            {% if translation %}
+                <p>{{ "translation.is.%name%"|trans({'%name%':translation.getName }) }}</p>
+            {% endif %}
+        </div>
 
-    <div class="page-blocks">
-        {# Page blocks pattern implementation #}
-        {% set blocks = nodeSource|children({
+        <div class="page-blocks">
+            {# Page blocks pattern implementation #}
+            {% set blocks = nodeSource|children({
             'node.nodeType' : ['!=', themeServices.typePage]
-        }) %}
-        {% for singleBlock in blocks %}
-            <article class="page-block page-block-{{ singleBlock.node.nodeType.name|lower }}"
-                     id="block-{{ singleBlock.node.nodeName }}"
-                     data-index="{{ loop.index0 }}"
-                     data-node-type="{{ singleBlock.node.nodeType.name|lower }}">
+            }) %}
+            {% for singleBlock in blocks %}
+                <article class="page-block page-block-{{ singleBlock.node.nodeType.name|lower }}"
+                         id="block-{{ singleBlock.node.nodeName }}"
+                         data-index="{{ loop.index0 }}"
+                         data-node-type="{{ singleBlock.node.nodeType.name|lower }}">
 
-            </article>
-        {% endfor %}
-    </div>
-</section>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
 {% endblock %}
