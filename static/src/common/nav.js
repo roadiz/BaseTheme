@@ -116,7 +116,7 @@ export class Nav extends AbstractNav {
                // document.body.removeAttribute('style');
             }});
 
-            TweenLite.to(this.$overlay, 1.2, {opacity:0, onComplete:function(){
+            TweenLite.to(this.$overlay, 1.2, {opacity:0, onComplete: () => {
                 this.$overlay[0].style.display = 'none';
             }});
 
