@@ -4,7 +4,7 @@ import isMobile from "isMobile";
 import {Utils} from "utils/utils";
 import {polyfills} from "utils/polyfills";
 import {gaTrackErrors} from "utils/gaTrackErrors";
-import {Nav} from "nav";
+import {Nav} from "common/nav";
 import {Router} from "router";
 import {GraphicLoader} from "graphicLoader";
 import {Page} from "pages/page";
