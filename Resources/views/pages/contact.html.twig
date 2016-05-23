@@ -1,41 +1,41 @@
 {% extends head.ajax ? '@BaseTheme/base.ajax.twig' : '@BaseTheme/base.html.twig' %}
 
 {% set classes = [
-    'page-content',
-    'contact-content'
+'page-container',
+'contact-container'
 ] %}
 
 {% if head.ajax %}
-{% set classes = classes|merge(['page-content-ajax']) %}
+    {% set classes = classes|merge(['page-container-ajax']) %}
 {% endif %}
 
 {% block content %}
-<article class="{{ classes|join(' ') }}"
-         id="page-content-contact"
-         data-title="{{ nodeSource.title }}"
-         data-node-type="{{ node.nodeType.name|lower }}"
-         data-meta-title="{{ pageMeta.title }}">
-    <h1>{% trans %}contact.us{% endtrans %}</h1>
-    <div>
-        {#
-         # Display contact errors
-         #}
-        {% if session.messages|length %}
-            {% for type, msgs in session.messages %}
-                {% for msg in msgs %}
-                    <div class="alert alert-{% if type == "confirm" %}success{% elseif type == "warning" %}warning{% else %}danger{% endif %}">
-                        <a href="" class="alert-close close"></a>
-                        <p>{{ msg }}</p>
-                    </div>
+    <article class="{{ classes|join(' ') }}"
+             id="page-container-contact"
+             data-title="{{ nodeSource.title }}"
+             data-node-type="{{ node.nodeType.name|lower }}"
+             data-meta-title="{{ pageMeta.title }}">
+        <h1>{% trans %}contact.us{% endtrans %}</h1>
+        <div>
+            {#
+             # Display contact errors
+             #}
+            {% if session.messages|length %}
+                {% for type, msgs in session.messages %}
+                    {% for msg in msgs %}
+                        <div class="alert alert-{% if type == "confirm" %}success{% elseif type == "warning" %}warning{% else %}danger{% endif %}">
+                            <a href="" class="alert-close close"></a>
+                            <p>{{ msg }}</p>
+                        </div>
+                    {% endfor %}
                 {% endfor %}
-            {% endfor %}
-        {% endif %}
+            {% endif %}
 
-        {#
-         # Display contact form with default symfony bootstrap theme
-         #}
-        {% form_theme contactForm 'bootstrap_3_layout.html.twig' %}
-        {{ form(contactForm) }}
-    </div>
-</article>
+            {#
+             # Display contact form with default symfony bootstrap theme
+             #}
+            {% form_theme contactForm 'bootstrap_3_layout.html.twig' %}
+            {{ form(contactForm) }}
+        </div>
+    </article>
 {% endblock %}

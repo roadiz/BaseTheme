@@ -1,12 +1,12 @@
 ---
 name: "Base theme"
-author: "REZO ZERO"
-copyright: "REZO ZERO"
+author: "Rezo Zero"
+copyright: "Rezo Zero"
 themeDir: "BaseTheme"
 supportedLocale:
     - "en"
     - "fr"
-versionRequire: "0.12.0"
+versionRequire: "0.14.0"
 importFiles:
     roles: []
     groups: []

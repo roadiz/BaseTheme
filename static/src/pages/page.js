@@ -1,4 +1,3 @@
-<?php
 /**
  * Copyright © 2016, Ambroise Maupate
  *
@@ -20,33 +19,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  *
- * @file NodeTypeServiceProvider.php
+ * @file page.js
  * @author Ambroise Maupate
  */
-namespace Themes\BaseTheme\Services;
+import {AbstractPage} from "abstract-page";
 
-use Pimple\Container;
-use Pimple\ServiceProviderInterface;
-use RZ\Roadiz\CMS\Utils\NodeTypeApi;
-
-class NodeTypeServiceProvider implements ServiceProviderInterface
-{
-    protected $api;
-
-    public function __construct(NodeTypeApi $api)
-    {
-        $this->api = $api;
-    }
-
-    /**
-     * @param Container $container
-     */
-    public function register(Container $container)
-    {
-        $container['typePage'] = function () {
-            return $this->api->getOneBy(['name' => 'Page']);
-        };
-
-        return $container;
+export class Page extends AbstractPage {
+    constructor(router, id, context, type, isHome){
+        super(router, id, context, type, isHome);
     }
 }

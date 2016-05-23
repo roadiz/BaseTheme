@@ -1,6 +1,6 @@
 {
   "name": "BaseTheme",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "homepage": "https://github.com/roadiz/BaseTheme",
   "authors": [
     "Ambroise Maupate <ambroise@rezo-zero.com>",
@@ -15,15 +15,17 @@
     "test",
     "tests"
   ],
-  "dependencies": {
-  },
   "devDependencies": {
     "gsap": "~1.16.1",
     "jquery": "~2.2.0",
+    "waitForImages": "~2.1.0",
+    "requirejs": "^2.1.22",
+    "pageblock": "git@github.com:rezozero/pageblock-framework.git",
+    "bootstrap": "~3.3.4",
     "normalize.css": "~3.0.3",
     "jquery.actual": "~1.0.16",
     "isMobile": "~0.3.6",
-    "waitForImages": "~2.1.0",
-    "bootstrap": "~3.3.4"
+    "flag-icon-css": "~1.4.0",
+    "hammerjs": "~2.0.6"
   }
 }
