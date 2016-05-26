@@ -5,6 +5,7 @@
  * @copyright REZO ZERO 2016
  * @author Ambroise Maupate
  */
+
 import $ from 'jquery';
 import {Utils} from "utils/utils";
 import {BootstrapMedia} from "utils/bootstrapMedia";

@@ -5,6 +5,7 @@
  * @copyright REZO ZERO 2016
  * @author Maxime Bérard
  */
+
 import $ from "jquery";
 import TweenMax from "TweenMax";
 import {AbstractBlock} from "abstract-block";
