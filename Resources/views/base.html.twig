@@ -104,6 +104,7 @@
      #}
     <script src="{{ head.resourcesUrl }}vendor/modernizr.custom.js"></script>
 </head>
+
 {% set bodyClasses = [] %}
 {% if node %}
     {% set bodyClasses = bodyClasses|merge([
@@ -114,89 +115,94 @@
 {% endif %}
 
 <body {% block body_attributes %}{% if node %}class="{{ bodyClasses|join(' ') }}" id="{{ node.nodeName }}" data-node-type="{{ node.nodeType.name|lower }}" data-is-home="{{ node.home }}"{% endif %}{% endblock %}>
-<div id="svg-sprite" style="display: none">{% include '@BaseTheme/svg/sprite.svg.twig' %}</div>
-<div id="loading"><div id="loading-inner"></div></div>
-{#
- # Header block --------------------------------------------------------
- #}
-<div class="container-fluid">{% block header %}{% endblock %}</div>
-{#
- # Main navigation inclusion -------------------------------------------
- #}
-{% block mainnavigation %}{% include '@BaseTheme/common/nav.html.twig' %}{% endblock %}
-{#
- # Content block -------------------------------------------------------
- #}
-<div class="container" id="main-container">
-    {% block content %}{% endblock %}
-    <div id="ajax-container"></div>
-</div>
-{#
- # Footer --------------------------------------------------------------
- #}
-{% include '@BaseTheme/common/footer.html.twig' %}
 
-{#
- # JS scripts inclusions -----------------------------------------------
- #}
-{% if not head.devMode %}
-    <!-- inject:js -->
-    <script data-main="{{ head.resourcesUrl }}build/app-e73f10a378.min.js" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.22/require.min.js"></script>
-    <!-- endinject -->
-{% else %}
-    <script data-main="{{ head.resourcesUrl }}bootstrap.js" src="{{ head.resourcesUrl }}bower_components/requirejs/require.js"></script>
-{% endif %}
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
-<noscript><div id="no-js-message">{% trans %}no_javascript_message{% endtrans %}</div></noscript>
-<script type="text/javascript">
-    var temp = {};
-    temp.devMode = {% if head.devMode %}true{% else %}false{% endif %};
-    temp.baseUrl = "{{ head.baseUrl }}";
-    temp.resourcesUrl = '{{ head.resourcesUrl }}';
-    temp.ajaxToken = "{{ head.ajaxToken }}";
-    temp.googleClientId = '{{ head.googleClientId }}';
-    temp.mapsStyle = {% if head.mapsStyle %}JSON.parse('{{ head.mapsStyle|raw }}'){% else %}null{% endif %};
-    temp.domain = temp.baseUrl.split('://')[1];
+    <div id="svg-sprite" style="display:none;">{% include '@BaseTheme/svg/sprite.svg.twig' %}</div>
+    <div id="loading"><div id="loading-inner"></div></div>
 
     {#
-     # Cookie consent --------------------------------------------------
+     # Header block --------------------------------------------------------
      #}
-    window.cookieconsent_options = {
-        "message":"{% trans %}cookie_choice.consent_message{% endtrans %}",
-        "dismiss":"{% trans %}cookie_choice.close_message{% endtrans %}",
-        "learnMore":"{% trans %}cookie_choice.find_out_more_message{% endtrans %}",
-        "link":'/legals',
-        "theme":"dark-bottom"
-    };
+    <div class="container-fluid">{% block header %}{% endblock %}</div>
 
     {#
-     # Browser update — http://browser-update.org/customize.html -------
+     # Main navigation inclusion -------------------------------------------
      #}
-    var $buoop = {
-        vs:{i:9,f:15,o:12.1,s:5.1,c:2},
-        text:'{% trans %}browser_update.message{% endtrans %} <a href="http://browser-update.org/update-browser.html" target="_blank">{% trans %}browser_update.link{% endtrans %}</a>'
-    };
-    function $buo_f(){
-        var e = document.createElement("script");
-        e.src = "//browser-update.org/update.js";
-        document.body.appendChild(e);
-    };
-    try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
-    catch(e){window.attachEvent("onload", $buo_f)}
+    {% block mainnavigation %}{% include '@BaseTheme/common/nav.html.twig' %}{% endblock %}
 
     {#
-     # Google Analytics ------------------------------------------------
+     # Content block -------------------------------------------------------
      #}
-    {% if head.universalAnalyticsId %}
-    {# Google Analytics: change {{ head.universalAnalyticsId }} to be your site's ID.  #}
-    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-        e.src='//www.google-analytics.com/analytics.js';
-        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-    ga('create','{{ head.universalAnalyticsId }}', temp.domain);ga('send','pageview');
+    <div class="container" id="main-container">
+        {% block content %}{% endblock %}
+        <div id="ajax-container"></div>
+    </div>
+
+    {#
+     # Footer --------------------------------------------------------------
+     #}
+    {% include '@BaseTheme/common/footer.html.twig' %}
+
+    {#
+     # JS scripts inclusions -----------------------------------------------
+     #}
+    {% if not head.devMode %}
+        <!-- inject:js -->
+        <script data-main="{{ head.resourcesUrl }}build/app-e73f10a378.min.js" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.22/require.min.js"></script>
+        <!-- endinject -->
+    {% else %}
+        <script data-main="{{ head.resourcesUrl }}bootstrap.js" src="{{ head.resourcesUrl }}bower_components/requirejs/require.js"></script>
     {% endif %}
-</script>
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
+    <noscript><div id="no-js-message">{% trans %}no_javascript_message{% endtrans %}</div></noscript>
+    <script type="text/javascript">
+        var temp = {};
+        temp.devMode = {% if head.devMode %}true{% else %}false{% endif %};
+        temp.baseUrl = "{{ head.baseUrl }}";
+        temp.resourcesUrl = '{{ head.resourcesUrl }}';
+        temp.ajaxToken = "{{ head.ajaxToken }}";
+        temp.googleClientId = '{{ head.googleClientId }}';
+        temp.mapsStyle = {% if head.mapsStyle %}JSON.parse('{{ head.mapsStyle|raw }}'){% else %}null{% endif %};
+        temp.domain = temp.baseUrl.split('://')[1];
+
+        {#
+         # Cookie consent --------------------------------------------------
+         #}
+        window.cookieconsent_options = {
+            "message":"{% trans %}cookie_choice.consent_message{% endtrans %}",
+            "dismiss":"{% trans %}cookie_choice.close_message{% endtrans %}",
+            "learnMore":"{% trans %}cookie_choice.find_out_more_message{% endtrans %}",
+            "link":'/legals',
+            "theme":"dark-bottom"
+        };
+
+        {#
+         # Browser update — www.browser-update.org/customize.html -------
+         #}
+        var $buoop = {
+            vs:{i:9,f:15,o:12.1,s:5.1,c:2},
+            text:'{% trans %}browser_update.message{% endtrans %} <a href="http://browser-update.org/update-browser.html" target="_blank">{% trans %}browser_update.link{% endtrans %}</a>'
+        };
+        function $buo_f(){
+            var e = document.createElement("script");
+            e.src = "//browser-update.org/update.js";
+            document.body.appendChild(e);
+        };
+        try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
+        catch(e){window.attachEvent("onload", $buo_f)}
+
+        {#
+         # Google Analytics ------------------------------------------------
+         #}
+        {% if head.universalAnalyticsId %}
+        {# Google Analytics: change {{ head.universalAnalyticsId }} to be your site ID.  #}
+        (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+        ga('create','{{ head.universalAnalyticsId }}', temp.domain);ga('send','pageview');
+        {% endif %}
+    </script>
 </body>
 </html>
