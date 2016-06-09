@@ -3,9 +3,11 @@
 {% set classes = [
 'page-container',
 ] %}
+
 {% if node.home %}
     {% set classes = classes|merge(['home-container']) %}
 {% endif %}
+
 {% if head.ajax %}
     {% set classes = classes|merge(['page-container-ajax']) %}
 {% endif %}
