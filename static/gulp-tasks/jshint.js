@@ -1,11 +1,23 @@
 var gulp = require('gulp');
-var jshint = require('gulp-jshint');
+var eslint = require('gulp-eslint');
 
 gulp.task('lint', function() {
     return gulp.src(paths.scripts)
-        .pipe(jshint({
-            'esversion': 6,
-            '-W008': true // decimal point
+        .pipe(eslint({
+            extends: 'eslint:recommended',
+            parserOptions: {
+                "ecmaVersion": 6,
+                "sourceType": "module",
+            },
+            env: {
+                browser: true,
+                node: false
+            },
+            "rules": {
+                "no-console":0,
+                'no-undef':0,
+                'no-unused-vars':0
+            }
         }))
-        .pipe(jshint.reporter('default', { verbose: true }));
+        .pipe(eslint.formatEach('compact', process.stderr));
 });
