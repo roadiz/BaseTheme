@@ -43,7 +43,7 @@ export class ClassFactory
      * according to the nodeTypeName or an AbstractBlock as default.
      *
      * @param  {String}  nodeTypeName
-     * @param  {AbstractPage}  router
+     * @param  {AbstractPage} page
      * @param  {jQuery}  $cont
      * @return {AbstractBlock}
      */

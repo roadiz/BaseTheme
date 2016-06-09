@@ -12,7 +12,6 @@ gulp.task('requirejs', ['babel', 'clean-build'], function() {
     return gulp.src('./bootstrap.js')
     .pipe(requirejsOptimize({
         out: 'app.min.js',
-        skipDirOptimize: "true",
         baseUrl: "./dist",
         name: "./../bootstrap",
         paths: {

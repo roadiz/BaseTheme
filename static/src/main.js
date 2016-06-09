@@ -1,6 +1,7 @@
 import $ from "jquery";
 import TweenMax from "TweenMax";
 import isMobile from "isMobile";
+import log from "loglevel";
 import {Utils} from "utils/utils";
 import {polyfills} from "utils/polyfills";
 import {gaTrackErrors} from "utils/gaTrackErrors";
@@ -10,7 +11,7 @@ import {GraphicLoader} from "graphicLoader";
 import {ClassFactory} from "class-factory";
 
 /**
- * Set max log level (most verbose)
+ * Set max log level (most verbose) 0 ---> 5
  * @see https://github.com/pimterry/loglevel
  */
 log.setLevel(0);
