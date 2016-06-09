@@ -7,8 +7,13 @@ import {gaTrackErrors} from "utils/gaTrackErrors";
 import {Nav} from "common/nav";
 import {Router} from "router";
 import {GraphicLoader} from "graphicLoader";
-import {Page} from "pages/page";
-// import {ContactBlock} from "blocks/contact-block";
+import {ClassFactory} from "class-factory";
+
+/**
+ * Set max log level (most verbose)
+ * @see https://github.com/pimterry/loglevel
+ */
+log.setLevel(0);
 
 /**
  * Set default Tween ease
@@ -74,14 +79,7 @@ const router = new Router(
         ajaxEnabled: true,
         pageClass:'page-container'
     },
-    {
-        /*
-         * Routes are nodeType corresponding to
-         * ES6 modules
-         */
-        'page' : Page,
-        // 'contactblock' : ContactBlock
-    },
+    new ClassFactory(),
     // temp namespace is defined in your index.html
     temp.baseUrl,
     new GraphicLoader(),

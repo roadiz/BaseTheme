@@ -9,6 +9,7 @@ requirejs.config({
         isMobile: "/themes/BaseTheme/static/bower_components/isMobile/isMobile.min",
         actual: "/themes/BaseTheme/static/bower_components/jquery.actual/jquery.actual.min",
         Hammer: "/themes/BaseTheme/static/bower_components/hammerjs/hammer.min",
+        loglevel: "/themes/BaseTheme/static/bower_components/loglevel/dist/loglevel.min",
         // Utils functions and classes
         "utils/utils": "/themes/BaseTheme/static/bower_components/pageblock/dist/utils/utils",
         "utils/polyfills": "/themes/BaseTheme/static/bower_components/pageblock/dist/utils/polyfills",
