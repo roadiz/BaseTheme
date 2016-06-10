@@ -88,7 +88,7 @@
      #}
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ head.resourcesUrl }}css/vendor-ca20979732.css">
-    <link rel="stylesheet" href="{{ head.resourcesUrl }}css/style-94f06b8164.css">
+    <link rel="stylesheet" href="{{ head.resourcesUrl }}css/style-b7c1ecdf36.css">
     <!-- endinject -->
     {#
      # Roadiz font-face CSS (comment if no fonts available) ----------------
@@ -142,12 +142,14 @@
      #}
     {% include '@BaseTheme/common/footer.html.twig' %}
 
+    <div id="cookiesconsent"></div>
+
     {#
      # JS scripts inclusions -----------------------------------------------
      #}
     {% if not head.devMode %}
         <!-- inject:js -->
-        <script data-main="{{ head.resourcesUrl }}build/app-c8dc58e7bc.min.js" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.22/require.min.js"></script>
+        <script data-main="{{ head.resourcesUrl }}build/app-fbe5489496.min.js" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.22/require.min.js"></script>
         <!-- endinject -->
     {% else %}
         <script data-main="{{ head.resourcesUrl }}bootstrap.js" src="{{ head.resourcesUrl }}bower_components/requirejs/require.js"></script>
@@ -170,6 +172,7 @@
          #}
         window.cookieconsent_options = {
             "message":"{% trans %}cookie_choice.consent_message{% endtrans %}",
+            "container":"#cookiesconsent",
             "dismiss":"{% trans %}cookie_choice.close_message{% endtrans %}",
             "learnMore":"{% trans %}cookie_choice.find_out_more_message{% endtrans %}",
             "link":'/legals',
