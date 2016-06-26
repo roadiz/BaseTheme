@@ -25,14 +25,14 @@
     {% endif %}
 
     {#
-     # Canonical url -------------------------------------------------------
+     # Canonical url -----------------------------------------------------------
      #}
     {% if node %}
         <link rel="canonical" href="{{ nodeSource|url({'absolute':true}) }}" />
     {% endif %}
 
     {#
-     # Favicons ------------------------------------------------------------
+     # Favicons ----------------------------------------------------------------
      #}
     <link rel="apple-touch-icon" sizes="57x57" href="{{ head.resourcesUrl }}img/favicons/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="{{ head.resourcesUrl }}img/favicons/apple-touch-icon-60x60.png">
@@ -56,7 +56,7 @@
     <meta name="theme-color" content="#ffffff">
 
     {#
-     # Share metas ---------------------------------------------------------
+     # Share metas -------------------------------------------------------------
      #}
     {% block share_metas %}
         {#
@@ -84,23 +84,25 @@
         <meta name="twitter:image" content="{{ head.baseUrl }}{{ head.resourcesUrl }}img/share.png" />
     {% endblock %}
     {#
-     # Gulp injected styles ------------------------------------------------
+     # Gulp injected styles ----------------------------------------------------
+     # Using gulp-inject
+     # @see static/gulp-tasks/inject.js
      #}
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ head.resourcesUrl }}css/vendor-ca20979732.css">
     <link rel="stylesheet" href="{{ head.resourcesUrl }}css/style-b7c1ecdf36.css">
     <!-- endinject -->
     {#
-     # Roadiz font-face CSS (comment if no fonts available) ----------------
+     # Roadiz font-face CSS (comment it if no fonts available) -----------------
      #}
     <link rel="stylesheet" href="{{ path('FontFaceCSS', {"token": head.fontToken}) }}" />
     {#
-     # Dynamic CSS styles - uncomment next line to activate it -------------
+     # Dynamic CSS styles - uncomment next line to activate it -----------------
      #}
     {# <link rel="stylesheet" href="{{ path('CssDynamicStyles') }}"> #}
 
     {#
-     # Modernizr -----------------------------------------------------------
+     # Modernizr ---------------------------------------------------------------
      #}
     <script src="{{ head.resourcesUrl }}vendor/modernizr.custom.js"></script>
 </head>
@@ -120,17 +122,17 @@
     <div id="loading"><div id="loading-inner"></div></div>
 
     {#
-     # Header block --------------------------------------------------------
+     # Header block ------------------------------------------------------------
      #}
     <div class="container-fluid">{% block header %}{% endblock %}</div>
 
     {#
-     # Main navigation inclusion -------------------------------------------
+     # Main navigation inclusion -----------------------------------------------
      #}
     {% block mainnavigation %}{% include '@BaseTheme/common/nav.html.twig' %}{% endblock %}
 
     {#
-     # Content block -------------------------------------------------------
+     # Content block -----------------------------------------------------------
      #}
     <div class="container" id="main-container">
         {% block content %}{% endblock %}
@@ -138,18 +140,20 @@
     </div>
 
     {#
-     # Footer --------------------------------------------------------------
+     # Footer ------------------------------------------------------------------
      #}
     {% include '@BaseTheme/common/footer.html.twig' %}
 
     <div id="cookiesconsent"></div>
 
     {#
-     # JS scripts inclusions -----------------------------------------------
+     # JS scripts inclusions ---------------------------------------------------
+     # Using gulp-inject
+     # @see static/gulp-tasks/inject.js
      #}
     {% if not head.devMode %}
         <!-- inject:js -->
-        <script data-main="{{ head.resourcesUrl }}build/app-fbe5489496.min.js" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.22/require.min.js"></script>
+        <script data-main="{{ head.resourcesUrl }}build/app-d773a2cb3a.min.js" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.22/require.min.js"></script>
         <!-- endinject -->
     {% else %}
         <script data-main="{{ head.resourcesUrl }}bootstrap.js" src="{{ head.resourcesUrl }}bower_components/requirejs/require.js"></script>
@@ -158,6 +162,16 @@
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
     <noscript><div id="no-js-message">{% trans %}no_javascript_message{% endtrans %}</div></noscript>
     <script type="text/javascript">
+        {#
+         # Increase timeout for Requirejs --------------------------------------
+         #}
+        requirejs.config({
+            waitSeconds: 60
+        });
+
+        {#
+         # Passing server vars to JS framework ---------------------------------
+         #}
         var temp = {};
         temp.devMode = {% if head.devMode %}true{% else %}false{% endif %};
         temp.baseUrl = "{{ head.baseUrl }}";
@@ -168,19 +182,19 @@
         temp.domain = temp.baseUrl.split('://')[1];
 
         {#
-         # Cookie consent --------------------------------------------------
+         # Cookie consent ------------------------------------------------------
          #}
         window.cookieconsent_options = {
             "message":"{% trans %}cookie_choice.consent_message{% endtrans %}",
             "container":"#cookiesconsent",
             "dismiss":"{% trans %}cookie_choice.close_message{% endtrans %}",
             "learnMore":"{% trans %}cookie_choice.find_out_more_message{% endtrans %}",
-            "link":'/legals',
+            "link":'/legals', /* Adapt this link to your legals page */
             "theme":"dark-bottom"
         };
 
         {#
-         # Browser update — www.browser-update.org/customize.html -------
+         # Browser update — www.browser-update.org/customize.html --------------
          #}
         var $buoop = {
             vs:{i:9,f:15,o:12.1,s:5.1,c:2},
@@ -195,7 +209,7 @@
         catch(e){window.attachEvent("onload", $buo_f)}
 
         {#
-         # Google Analytics ------------------------------------------------
+         # Google Analytics ----------------------------------------------------
          #}
         {% if head.universalAnalyticsId %}
         {# Google Analytics: change {{ head.universalAnalyticsId }} to be your site ID.  #}

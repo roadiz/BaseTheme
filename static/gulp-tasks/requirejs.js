@@ -5,6 +5,7 @@ var rev = require('gulp-rev');
 var del = require('del');
 
 gulp.task('clean-build', function () {
+    del(['./dist/*.js']);
     return del(['./build/*.js']);
 });
 
@@ -15,10 +16,16 @@ gulp.task('requirejs', ['babel', 'clean-build'], function() {
         baseUrl: "./dist",
         name: "./../bootstrap",
         paths: {
-            jquery: '//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min',
+            /*
+             * Do not include these lib to load them from CDN
+             */
+            jquery: 'empty:',
+            TweenLite: "empty:",
+            TweenMax: "empty:",
+            /*
+             * Compile dep
+             */
             waitForImages: './../bower_components/waitForImages/dist/jquery.waitforimages.min',
-            TweenLite: "./../bower_components/gsap/src/minified/TweenLite.min",
-            TweenMax: "./../bower_components/gsap/src/minified/TweenMax.min",
             scrollTo: "./../bower_components/gsap/src/minified/plugins/ScrollToPlugin.min",
             isMobile: "./../bower_components/isMobile/isMobile.min",
             actual: "./../bower_components/jquery.actual/jquery.actual.min",

@@ -16,10 +16,10 @@
     "tests"
   ],
   "devDependencies": {
-    "gsap": "~1.16.1",
+    "gsap": "~1.18.5",
     "jquery": "~2.2.0",
     "waitForImages": "~2.2.0",
-    "requirejs": "^2.1.22",
+    "requirejs": "^2.2.0",
     "pageblock": "git@github.com:rezozero/pageblock-framework.git",
     "bootstrap": "~3.3.4",
     "normalize.css": "~3.0.3",

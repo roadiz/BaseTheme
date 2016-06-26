@@ -14,7 +14,11 @@ import {ClassFactory} from "class-factory";
  * Set max log level (most verbose) 0 ---> 5
  * @see https://github.com/pimterry/loglevel
  */
-log.setLevel(0);
+if (temp.devMode && true === temp.devMode) {
+    log.setLevel(0);
+} else {
+    log.setLevel(5);
+}
 
 /**
  * Set default Tween ease
@@ -78,10 +82,10 @@ const router = new Router(
     {
         homeHasClass: false,
         ajaxEnabled: true,
-        pageClass:'page-container'
+        pageClass: 'page-container'
     },
     new ClassFactory(),
-    // temp namespace is defined in your index.html
+    // temp namespace is defined in your Resources/views/base.twig.html
     temp.baseUrl,
     new GraphicLoader(),
     new Nav()
