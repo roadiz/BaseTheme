@@ -72,7 +72,7 @@ else Utils.addClass($body[0],'is-desktop');
  */
 if(navigator.userAgent.indexOf('MSIE') >= 0 ||
     navigator.userAgent.indexOf('Trident') >= 0){
-    Utils.addClass($body[0],'ie');
+    Utils.addClass($body[0],'ie-browser');
 }
 
 /**
