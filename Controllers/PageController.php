@@ -28,10 +28,12 @@ namespace Themes\BaseTheme\Controllers;
 use RZ\Roadiz\Core\Entities\Node;
 use RZ\Roadiz\Core\Entities\Translation;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Themes\BaseTheme\BaseThemeApp;
 
 /**
- * PageController class
+ * Class PageController
+ * @package Themes\BaseTheme\Controllers
  */
 class PageController extends BaseThemeApp
 {
@@ -39,7 +41,7 @@ class PageController extends BaseThemeApp
      * @param Request $request
      * @param Node|null $node
      * @param Translation|null $translation
-     * @return mixed
+     * @return Response
      */
     public function indexAction(
         Request $request,
