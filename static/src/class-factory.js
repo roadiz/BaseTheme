@@ -52,8 +52,8 @@ export class ClassFactory
             /*case 'contact-block':
                 return new ContactBlock(page, $cont, nodeTypeName);*/
             default:
-                log.info('    "' + nodeTypeName + '" has no defined route, using AbstractBlock.');
-                return new AbstractBlock(page, $cont, nodeTypeName);
+                /*log.info('    "' + nodeTypeName + '" has no defined route, using AbstractBlock.');
+                return new AbstractBlock(page, $cont, nodeTypeName);*/
         }
     }
 }

@@ -25,6 +25,7 @@ gulp.task('requirejs', ['babel', 'clean-build'], function() {
             /*
              * Compile dep
              */
+            Lazyload: './../bower_components/vanilla-lazyload/dist/lazyload',
             waitForImages: './../bower_components/waitForImages/dist/jquery.waitforimages.min',
             scrollTo: "./../bower_components/gsap/src/minified/plugins/ScrollToPlugin.min",
             isMobile: "./../bower_components/isMobile/isMobile.min",

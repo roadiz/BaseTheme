@@ -55,15 +55,13 @@ gaTrackErrors();
  * Define vars
  */
 const $body = $('body');
-const nodeType = $body[0].getAttribute('data-node-type') || 'page';
 const dataHome = $body[0].getAttribute('data-is-home');
-const bodyId = $body[0].id;
-const isHome = (dataHome == '1') ? true : false;
+const isHome = (dataHome == '1');
 
 /*
  * isMobile Test
  */
-let deviceMobile = (isMobile.any === false) ? false : true;
+let deviceMobile = (isMobile.any !== false);
 if(deviceMobile) Utils.addClass($body[0],'is-mobile');
 else Utils.addClass($body[0],'is-desktop');
 
@@ -82,6 +80,7 @@ const router = new Router(
     {
         homeHasClass: false,
         ajaxEnabled: true,
+        lazyloadEnabled: true,
         pageClass: 'page-container'
     },
     new ClassFactory(),

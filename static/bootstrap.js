@@ -10,6 +10,7 @@ requirejs.config({
         TweenMax: "//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/TweenMax.min",
         TweenLite: "//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/TweenLite.min",
         // Internal dep
+        Lazyload: '/themes/BaseTheme/static/bower_components/vanilla-lazyload/dist/lazyload',
         waitForImages: '/themes/BaseTheme/static/bower_components/waitForImages/dist/jquery.waitforimages.min',
         scrollTo: "/themes/BaseTheme/static/bower_components/gsap/src/minified/plugins/ScrollToPlugin.min",
         isMobile: "/themes/BaseTheme/static/bower_components/isMobile/isMobile.min",
