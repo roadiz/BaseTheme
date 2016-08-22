@@ -1,6 +1,6 @@
 {
   "name": "BaseTheme",
-  "version": "0.13.0",
+  "version": "0.15.0",
   "devDependencies": {
     "autoprefixer": "^6.3.3",
     "babel-plugin-transform-es2015-modules-amd": "^6.6.0",
