@@ -37,7 +37,7 @@ use Themes\BaseTheme\Services;
  */
 class BaseThemeApp extends FrontendController
 {
-    const VERSION = '0.14.0';
+    const VERSION = '0.15.0';
 
     protected static $themeName = 'Base theme';
     protected static $themeAuthor = 'REZO ZERO';
@@ -144,6 +144,7 @@ class BaseThemeApp extends FrontendController
         $this->assignation['themeServices'] = $this->themeContainer;
 
         $this->assignation['head']['facebookUrl'] = SettingsBag::get('facebook_url');
+        $this->assignation['head']['pinterest_url'] = SettingsBag::get('pinterest_url');
         $this->assignation['head']['facebookClientId'] = SettingsBag::get('facebook_client_id');
         $this->assignation['head']['instagramUrl'] = SettingsBag::get('instagram_url');
         $this->assignation['head']['twitterUrl'] = SettingsBag::get('twitter_url');

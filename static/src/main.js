@@ -1,14 +1,24 @@
 import $ from "jquery";
 import TweenMax from "TweenMax";
 import isMobile from "isMobile";
+import log from "loglevel";
 import {Utils} from "utils/utils";
 import {polyfills} from "utils/polyfills";
 import {gaTrackErrors} from "utils/gaTrackErrors";
-import {Nav} from "nav";
+import {Nav} from "common/nav";
 import {Router} from "router";
 import {GraphicLoader} from "graphicLoader";
-import {Page} from "pages/page";
-// import {ContactBlock} from "blocks/contact-block";
+import {ClassFactory} from "class-factory";
+
+/**
+ * Set max log level (most verbose) 0 ---> 5
+ * @see https://github.com/pimterry/loglevel
+ */
+if (temp.devMode && true === temp.devMode) {
+    log.setLevel(0);
+} else {
+    log.setLevel(5);
+}
 
 /**
  * Set default Tween ease
@@ -45,15 +55,13 @@ gaTrackErrors();
  * Define vars
  */
 const $body = $('body');
-const nodeType = $body[0].getAttribute('data-node-type') || 'page';
 const dataHome = $body[0].getAttribute('data-is-home');
-const bodyId = $body[0].id;
-const isHome = (dataHome == '1') ? true : false;
+const isHome = (dataHome == '1');
 
 /*
  * isMobile Test
  */
-let deviceMobile = (isMobile.any === false) ? false : true;
+let deviceMobile = (isMobile.any !== false);
 if(deviceMobile) Utils.addClass($body[0],'is-mobile');
 else Utils.addClass($body[0],'is-desktop');
 
@@ -62,7 +70,7 @@ else Utils.addClass($body[0],'is-desktop');
  */
 if(navigator.userAgent.indexOf('MSIE') >= 0 ||
     navigator.userAgent.indexOf('Trident') >= 0){
-    Utils.addClass($body[0],'ie');
+    Utils.addClass($body[0],'ie-browser');
 }
 
 /**
@@ -72,17 +80,11 @@ const router = new Router(
     {
         homeHasClass: false,
         ajaxEnabled: true,
-        pageClass:'page-container'
+        lazyloadEnabled: true,
+        pageClass: 'page-container'
     },
-    {
-        /*
-         * Routes are nodeType corresponding to
-         * ES6 modules
-         */
-        'page' : Page,
-        // 'contactblock' : ContactBlock
-    },
-    // temp namespace is defined in your index.html
+    new ClassFactory(),
+    // temp namespace is defined in your Resources/views/base.twig.html
     temp.baseUrl,
     new GraphicLoader(),
     new Nav()

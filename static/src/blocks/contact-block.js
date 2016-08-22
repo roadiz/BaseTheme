@@ -5,8 +5,10 @@
  * @copyright REZO ZERO 2016
  * @author Maxime Bérard
  */
+
 import $ from "jquery";
 import TweenMax from "TweenMax";
+import log from "loglevel";
 import {AbstractBlock} from "abstract-block";
 
 export class ContactBlock extends AbstractBlock {
@@ -41,8 +43,8 @@ export class ContactBlock extends AbstractBlock {
             type: 'post',
             dataType: 'json',
             success: (data) => {
-                // console.log('SUCCESS');
-                // console.log(data.status);
+                log.debug('SUCCESS');
+                log.debug(data.status);
                 if (data.status != 'success') {
                     this.$formMessage[0].className = 'form-message form-message-'+data.status;
                     this.$formMessage[0].innerHTML = '<span>'+data.message+'</span>';
@@ -57,9 +59,9 @@ export class ContactBlock extends AbstractBlock {
 
             },
             error: (data) => {
-                // console.log('ERROR');
+                log.debug('ERROR');
                 data = data.responseJSON;
-                // console.log(data);
+                log.debug(data);
                 this.$formMessage[0].className = 'form-message form-message-hidden form-message-error form-message-'+data.status;
                 this.$formMessage[0].innerHTML = '<span>'+data.errors+'</span>';
 

@@ -13,8 +13,11 @@
     <section class="{{ classes|join(' ') }}" id="page-container-{{ node.nodeName }}"
              data-title="{{ nodeSource.title }}"
              data-node-type="{{ node.nodeType.name|lower }}"
+             data-node-name="{{ node.nodeName }}"
+             data-is-home="{{ node.home }}"
              data-meta-title="{{ pageMeta.title }}">
-        <h1>{% trans %}hello.world{% endtrans %}</h1>
+
+        <h1 class="page-title">{% trans %}hello.world{% endtrans %}</h1>
         <div>
             {% if node %}
                 <p>{{ "node.name.is.%name%"|trans({'%name%':node.nodeSources.first.title }) }}</p>

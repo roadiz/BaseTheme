@@ -31,6 +31,9 @@ use RZ\Roadiz\CMS\Utils\NodeTypeApi;
 
 class NodeTypeServiceProvider implements ServiceProviderInterface
 {
+    /**
+     * @var NodeTypeApi
+     */
     protected $api;
 
     public function __construct(NodeTypeApi $api)

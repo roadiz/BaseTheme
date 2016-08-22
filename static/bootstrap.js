@@ -1,14 +1,22 @@
 requirejs.config({
     baseUrl: '/themes/BaseTheme/static/dist',
     paths: {
+        /*
+         * CDN dependencies
+         * TweenLite should not be loaded if TweenMax is used
+         * except for optional libs like Draggable.
+         */
         jquery: '//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min',
+        TweenMax: "//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/TweenMax.min",
+        TweenLite: "//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/TweenLite.min",
+        // Internal dep
+        Lazyload: '/themes/BaseTheme/static/bower_components/vanilla-lazyload/dist/lazyload',
         waitForImages: '/themes/BaseTheme/static/bower_components/waitForImages/dist/jquery.waitforimages.min',
-        TweenLite: "/themes/BaseTheme/static/bower_components/gsap/src/minified/TweenLite.min",
-        TweenMax: "/themes/BaseTheme/static/bower_components/gsap/src/minified/TweenMax.min",
         scrollTo: "/themes/BaseTheme/static/bower_components/gsap/src/minified/plugins/ScrollToPlugin.min",
         isMobile: "/themes/BaseTheme/static/bower_components/isMobile/isMobile.min",
         actual: "/themes/BaseTheme/static/bower_components/jquery.actual/jquery.actual.min",
         Hammer: "/themes/BaseTheme/static/bower_components/hammerjs/hammer.min",
+        loglevel: "/themes/BaseTheme/static/bower_components/loglevel/dist/loglevel.min",
         // Utils functions and classes
         "utils/utils": "/themes/BaseTheme/static/bower_components/pageblock/dist/utils/utils",
         "utils/polyfills": "/themes/BaseTheme/static/bower_components/pageblock/dist/utils/polyfills",

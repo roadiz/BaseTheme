@@ -3,9 +3,11 @@
 {% set classes = [
 'page-container',
 ] %}
+
 {% if node.home %}
     {% set classes = classes|merge(['home-container']) %}
 {% endif %}
+
 {% if head.ajax %}
     {% set classes = classes|merge(['page-container-ajax']) %}
 {% endif %}
@@ -52,44 +54,47 @@
 {% endblock %}
 
 {% block content %}
-    <section class="{{ classes|join(' ') }}"
-             id="page-container-{{ node.nodeName }}"
-             data-title="{{ nodeSource.title }}"
-             data-node-type="{{ node.nodeType.name|lower }}"
-             data-meta-title="{{ pageMeta.title }}">
+<section class="{{ classes|join(' ') }}"
+         id="page-container-{{ node.nodeName }}"
+         data-title="{{ nodeSource.title }}"
+         data-node-type="{{ node.nodeType.name|lower }}"
+         data-node-name="{{ node.nodeName }}"
+         data-is-home="{{ node.home }}"
+         data-meta-title="{{ pageMeta.title }}">
 
-        <h1 class="page-title">{{ nodeSource.title }}</h1>
-        <div class="page-text">{{ nodeSource.content|markdown }}</div>
+    <h1 class="page-title">{{ nodeSource.title }}</h1>
+    <div class="page-text">{{ nodeSource.content|markdown }}</div>
 
-        <div class="page-blocks">
-            {#
-             # Page blocks pattern implementation
-             #}
-            {% set blocks = nodeSource|children({
-            'node.nodeType' : ['!=', themeServices.typePage]
-            }) %}
-            {% for singleBlock in blocks %}
-                {% include '@BaseTheme/blocks/' ~ singleBlock.node.nodeType.name|lower ~ '.html.twig' ignore missing with {
-                'nodeSource': singleBlock,
-                'parentNodeSource': nodeSource,
-                'themeServices': themeServices,
-                'head': head,
-                'node': singleBlock.node,
-                'nodeType': singleBlock.node.nodeType,
-                'loop': loop,
-                'blocksLength':blocks|length
-                } only %}
-            {% endfor %}
-        </div>
+    <div class="page-blocks">
+        {#
+         # Page blocks pattern implementation
+         #}
+        {% set blocks = nodeSource|children({
+        'node.nodeType' : ['!=', themeServices.typePage]
+        }) %}
+        {% for singleBlock in blocks %}
+            {% include '@BaseTheme/blocks/' ~ singleBlock.node.nodeType.name|lower ~ '.html.twig' ignore missing with {
+            'nodeSource': singleBlock,
+            'parentNodeSource': nodeSource,
+            'themeServices': themeServices,
+            'head': head,
+            'node': singleBlock.node,
+            'nodeType': singleBlock.node.nodeType,
+            'loop': loop,
+            'blocksLength':blocks|length
+            } only %}
+        {% endfor %}
+    </div>
 
-        <div class="images">
-            {% for image in nodeSource.images %}
-                {% set imageMetas = image.documentTranslations.first %}
-                <figure class="image">
-                    {{ image|display(themeServices.imageFormats.thumbnail) }}
-                    <figcaption>{{ imageMetas.name }} — {{ imageMetas.copyright }}</figcaption>
-                </figure>
-            {% endfor %}
-        </div>
-    </section>
+    <div class="images">
+        {% for image in nodeSource.images %}
+            {% set imageMetas = image.documentTranslations.first %}
+            <figure class="image">
+                {{ image|display(themeServices.imageFormats.thumbnail) }}
+                <figcaption>{{ imageMetas.name }} — {{ imageMetas.copyright }}</figcaption>
+            </figure>
+        {% endfor %}
+    </div>
+
+</section>
 {% endblock %}
