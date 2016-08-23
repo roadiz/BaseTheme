@@ -1,0 +1,101 @@
+{% extends head.ajax ? '@BaseTheme/base.ajax.twig' : '@BaseTheme/base.html.twig' %}
+
+{% set classes = [
+'page-container',
+] %}
+
+{% if node.home %}
+    {% set classes = classes|merge(['home-container']) %}
+{% endif %}
+
+{% if head.ajax %}
+    {% set classes = classes|merge(['page-container-ajax']) %}
+{% endif %}
+
+{% set headerImage = nodeSource.headerImage[0] %}
+
+{% block header %}
+    <header>
+        {% if headerImage %}
+            <figure>{{ headerImage|display(themeServices.imageFormats.headerImage) }}</figure>
+        {% endif %}
+    </header>
+{% endblock %}
+
+{% block share_metas %}
+    {% if headerImage %}
+        {% set previewImageUrl = headerImage|url(themeServices.imageFormats.shareImage) %}
+    {% endif %}
+    {% if previewImageUrl %}
+        {# Facebook #}
+        <meta property="og:title" content="{{ nodeSource.title }}" />
+        <meta property="og:site_name" content="{{ meta.siteName }}" />
+        <meta property="og:description" content="{{ pageMeta.description }}" />
+        <meta property="og:url" content="{{ request.uri }}" />
+        <meta property="og:image" content="{{ previewImageUrl }}" />
+        <meta property="og:type" content="article" />
+        {# Google plus #}
+        <meta itemprop="name" content="{{ pageMeta.title }}" />
+        <meta itemprop="description" content="{{ pageMeta.description }}" />
+        <meta itemprop="image" content="{{ previewImageUrl }}" />
+        {# Twitter #}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="{{ pageMeta.title }}" />
+        <meta name="twitter:description" content="{{ pageMeta.description }}" />
+        {% if head.twitterAccount %}
+            <meta name="twitter:site" content="{{ head.twitterAccount }}" />
+            <meta name="twitter:creator" content="{{ head.twitterAccount }}" />
+        {% endif %}
+        <meta name="twitter:url" content="{{ request.uri }}" />
+        <meta name="twitter:image" content="{{ previewImageUrl }}" />
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<section class="{{ classes|join(' ') }}"
+         id="page-container-{{ node.nodeName }}"
+         data-title="{{ nodeSource.title }}"
+         data-node-type="{{ node.nodeType.name|lower }}"
+         data-node-name="{{ node.nodeName }}"
+         data-is-home="{{ node.home }}"
+         data-meta-title="{{ pageMeta.title }}">
+
+    {% block inner_content %}
+        <h1 class="page-title">{{ nodeSource.title }}</h1>
+        <div class="page-text">{{ nodeSource.content|markdown }}</div>
+
+        <div class="page-blocks">
+            {#
+             # Page blocks pattern implementation
+             #}
+            {% set blocks = nodeSource|children({
+            'node.nodeType' : ['!=', themeServices.typePage]
+            }) %}
+            {% for singleBlock in blocks %}
+                {% include '@BaseTheme/blocks/' ~ singleBlock.node.nodeType.name|lower ~ '.html.twig' ignore missing with {
+                'nodeSource': singleBlock,
+                'parentNodeSource': nodeSource,
+                'themeServices': themeServices,
+                'head': head,
+                'node': singleBlock.node,
+                'nodeType': singleBlock.node.nodeType,
+                'loop': loop,
+                'blocksLength':blocks|length
+                } only %}
+            {% endfor %}
+        </div>
+
+        <div class="images">
+            {% for image in nodeSource.images %}
+                {% set imageMetas = image.documentTranslations.first %}
+                <figure class="image">
+                    {{ image|display(themeServices.imageFormats.thumbnail) }}
+                    <figcaption>{{ imageMetas.name }} — {{ imageMetas.copyright }}</figcaption>
+                </figure>
+            {% endfor %}
+        </div>
+    {% endblock %}
+</section>
+{% endblock %}
