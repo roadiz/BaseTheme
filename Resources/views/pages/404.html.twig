@@ -1,26 +1,21 @@
-{% extends head.ajax ? '@BaseTheme/base.ajax.twig' : '@BaseTheme/base.html.twig' %}
-
-{% set classes = [
-'page-container',
-] %}
-{% if node.home %}
-    {% set classes = classes|merge(['home-container']) %}
-{% endif %}
-{% if head.ajax %}
-    {% set classes = classes|merge(['page-container-ajax']) %}
-{% endif %}
+{% extends '@BaseTheme/pages/base.html.twig' %}
 
 {% block body_attributes %}class="error error-404" id="error-404" data-node-type="error404"{% endblock %}
 
-{% block content %}
-    <section class="{{ classes|join(' ') }}"
-             id="page-container-error-404"
-             data-title="{% trans %}error404.title{% endtrans %}"
-             data-node-type="error-404"
-             data-meta-title="{% trans %}error404.title{% endtrans %}">
+{% block inner_content %}
 
-        <h1 class="page-title">{% trans %}error404.title{% endtrans %}</h1>
-        <h2 class="page-subtitle">{% trans %}error404.message{% endtrans %}</h2>
-        {% if head.devMode %}{{ errorMessage|trans }}{% endif %}
-    </section>
+    <div class="container">
+        <div class="row">
+
+            <h1 class="page-title">{{ title }}</h1>
+            {% if content %}<div class="page-text">{{ content|markdown }}</div>{% endif %}
+            {% if head.devMode %}{{ errorMessage|trans }}{% endif %}
+
+        </div>
+    </div>
+
 {% endblock %}
+
+
+
+

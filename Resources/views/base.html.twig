@@ -1,13 +1,30 @@
+{#
+ # Main base HTML file.
+ #}
+{% set pageMetaDescription = pageMetaDescription|default(pageMeta.description)|default(meta.siteDescription) %}
+{% set pageMetaTitle = pageMetaTitle|default(pageMeta.title)|default(meta.siteName) %}
+{% set formattedLocale = request.locale|replace('_', '-')|lower %}
+{#  #}
+{% set nodeName = nodeName|default(node.nodeName) %}
+{% set nodeTypeName = nodeTypeName|default(node.nodeType.name) %}
+{% set nodeHome = node.home|default(false) %}
+{#  #}
+{% set title = title|default(nodeSource.title) %}
+{% set content = content|default(nodeSource.content) %}
+{% if nodeSource %}
+    {% set headerImage = nodeSource.headerImage[0] %}
+{% endif %}
+{# No whitespace before DOCTYPE #}
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html itemscope itemtype="http://schema.org/WebPage" class="no-js lt-ie9 lt-ie8 lt-ie7" lang="{{ request.locale|replace('_', '-')|lower }}"> <![endif]-->
-<!--[if IE 7]>         <html itemscope itemtype="http://schema.org/WebPage" class="no-js lt-ie9 lt-ie8" lang="{{ request.locale|replace('_', '-')|lower }}"> <![endif]-->
-<!--[if IE 8]>         <html itemscope itemtype="http://schema.org/WebPage" class="no-js lt-ie9" lang="{{ request.locale|replace('_', '-')|lower }}"> <![endif]-->
-<!--[if IE 9]>         <html itemscope itemtype="http://schema.org/WebPage" class="no-js ie9" lang="{{ request.locale|replace('_', '-')|lower }}"> <![endif]-->
-<!--[if gt IE 9]><!--> <html itemscope itemtype="http://schema.org/WebPage" class="no-js" lang="{{ request.locale|replace('_', '-')|lower }}"> <!--<![endif]-->
+<!--[if lt IE 7]>      <html itemscope itemtype="http://schema.org/WebPage" class="no-js lt-ie9 lt-ie8 lt-ie7" lang="{{ formattedLocale }}"> <![endif]-->
+<!--[if IE 7]>         <html itemscope itemtype="http://schema.org/WebPage" class="no-js lt-ie9 lt-ie8" lang="{{ formattedLocale }}"> <![endif]-->
+<!--[if IE 8]>         <html itemscope itemtype="http://schema.org/WebPage" class="no-js lt-ie9" lang="{{ formattedLocale }}"> <![endif]-->
+<!--[if IE 9]>         <html itemscope itemtype="http://schema.org/WebPage" class="no-js ie9" lang="{{ formattedLocale }}"> <![endif]-->
+<!--[if gt IE 9]><!--> <html itemscope itemtype="http://schema.org/WebPage" class="no-js" lang="{{ formattedLocale }}"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
-    <title>{{ pageMeta.title }}</title>
-    {% if pageMeta.description %}<meta name="description" content="{{ pageMeta.description }}" />{% endif %}
+    <title>{{ pageMetaTitle }}</title>
+    <meta name="description" content="{{ pageMetaDescription }}" />
     {% if pageMeta.keywords %}<meta name="keywords" content="{{ pageMeta.keywords }}" />{% endif %}
     <meta name="generator" content="Roadiz {{ head.cmsVersion }} {{ head.cmsVersionNumber }} - {{ head.themeName }} v{{ head.themeVersion }}" />
     {#
@@ -58,30 +75,37 @@
     {#
      # Share metas -------------------------------------------------------------
      #}
+
     {% block share_metas %}
-        {#
-         # Facebook ------------------------------------------------------------
-         #}
-        <meta property="og:title" content="{{ nodeSource.title }}" />
+
+        {% if headerImage %}
+            {% set previewImageUrl = headerImage|url(themeServices.imageFormats.shareImage) %}
+        {% else %}
+            {% set previewImageUrl = head.baseUrl ~ head.resourcesUrl ~ 'img/share.png' %}
+        {% endif %}
+
+        {# Facebook #}
+        <meta property="og:title" content="{{ title }}" />
         <meta property="og:site_name" content="{{ meta.siteName }}" />
-        <meta property="og:description" content="{{ pageMeta.description }}" />
+        <meta property="og:description" content="{{ pageMetaDescription }}" />
         <meta property="og:url" content="{{ request.uri }}" />
-        <meta property="og:image" content="{{ head.baseUrl }}{{ head.resourcesUrl }}img/share.png" />
-        <meta property="og:type" content="website" />
+        <meta property="og:image" content="{{ previewImageUrl }}" />
+        <meta property="og:type" content="{{ ogType|default('article') }}" />
         {# Google plus #}
-        <meta itemprop="name" content="{{ pageMeta.title }}" />
-        <meta itemprop="description" content="{{ pageMeta.description }}" />
-        <meta itemprop="image" content="{{ head.baseUrl }}{{ head.resourcesUrl }}img/share.png" />
+        <meta itemprop="name" content="{{ pageMetaTitle }}" />
+        <meta itemprop="description" content="{{ pageMetaDescription }}" />
+        <meta itemprop="image" content="{{ previewImageUrl }}" />
         {# Twitter #}
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="{{ pageMeta.title }}" />
-        <meta name="twitter:description" content="{{ pageMeta.description }}" />
+        <meta name="twitter:title" content="{{ pageMetaTitle }}" />
+        <meta name="twitter:description" content="{{ pageMetaDescription }}" />
         {% if head.twitterAccount %}
             <meta name="twitter:site" content="{{ head.twitterAccount }}" />
             <meta name="twitter:creator" content="{{ head.twitterAccount }}" />
         {% endif %}
         <meta name="twitter:url" content="{{ request.uri }}" />
-        <meta name="twitter:image" content="{{ head.baseUrl }}{{ head.resourcesUrl }}img/share.png" />
+        <meta name="twitter:image" content="{{ previewImageUrl }}" />
+
     {% endblock %}
     {#
      # Gulp injected styles ----------------------------------------------------
@@ -90,7 +114,7 @@
      #}
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ head.resourcesUrl }}css/vendor-ca20979732.css">
-    <link rel="stylesheet" href="{{ head.resourcesUrl }}css/style-b7c1ecdf36.css">
+    <link rel="stylesheet" href="{{ head.resourcesUrl }}css/style-78587f1b58.css">
     <!-- endinject -->
     {#
      # Roadiz font-face CSS (comment it if no fonts available) -----------------
@@ -110,21 +134,16 @@
 {% set bodyClasses = [] %}
 {% if node %}
     {% set bodyClasses = bodyClasses|merge([
-    node.nodeType.name|lower,
-    node.nodeName,
-    nodeSource.translation.locale|replace('_', '-')|lower
+    nodeTypeName|lower,
+    nodeName,
+    formattedLocale
     ]) %}
 {% endif %}
 
-<body {% block body_attributes %}{% if node %}class="{{ bodyClasses|join(' ') }}" id="{{ node.nodeName }}" data-node-type="{{ node.nodeType.name|lower }}" data-is-home="{{ node.home }}"{% endif %}{% endblock %}>
+<body {% block body_attributes %}{% if node %}class="{{ bodyClasses|join(' ') }}" id="{{nodeName }}" data-node-type="{{ nodeTypeName|lower }}" data-is-home="{{ nodeHome }}"{% endif %}{% endblock %}>
 
     <div id="svg-sprite" style="display:none;">{% include '@BaseTheme/svg/sprite.svg.twig' %}</div>
     <div id="loading"><div id="loading-inner"></div></div>
-
-    {#
-     # Header block ------------------------------------------------------------
-     #}
-    <div class="container-fluid">{% block header %}{% endblock %}</div>
 
     {#
      # Main navigation inclusion -----------------------------------------------
@@ -134,7 +153,7 @@
     {#
      # Content block -----------------------------------------------------------
      #}
-    <div class="container" id="main-container">
+    <div id="main-container">
         {% block content %}{% endblock %}
         <div id="ajax-container"></div>
     </div>
@@ -153,7 +172,7 @@
      #}
     {% if not head.devMode %}
         <!-- inject:js -->
-        <script data-main="{{ head.resourcesUrl }}build/app-bf4bd19174.min.js" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.22/require.min.js"></script>
+        <script data-main="{{ head.resourcesUrl }}build/app-c21632b3d9.min.js" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.22/require.min.js"></script>
         <!-- endinject -->
     {% else %}
         <script data-main="{{ head.resourcesUrl }}bootstrap.js" src="{{ head.resourcesUrl }}bower_components/requirejs/require.js"></script>
@@ -212,7 +231,7 @@
          # Google Analytics ----------------------------------------------------
          #}
         {% if head.universalAnalyticsId %}
-        {# Google Analytics: change {{ head.universalAnalyticsId }} to be your site ID.  #}
+        {# Google Analytics: change head.universalAnalyticsId to be your site ID.  #}
         (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
             function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
             e=o.createElement(i);r=o.getElementsByTagName(i)[0];

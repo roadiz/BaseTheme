@@ -101,7 +101,13 @@ class BaseThemeApp extends FrontendController
 
         $this->prepareThemeAssignation(null, $this->translation);
         $this->getService('logger')->error($message);
+
+        $this->assignation['nodeName'] = 'error-404';
+        $this->assignation['nodeTypeName'] = 'error404';
         $this->assignation['errorMessage'] = $message;
+        $this->assignation['title'] = $this->getService('translator')->trans('error404.title');
+        $this->assignation['content'] = $this->getService('translator')->trans('error404.message');
+
 
         $this->getService('stopwatch')->start('twigRender');
         return new Response(
@@ -118,6 +124,11 @@ class BaseThemeApp extends FrontendController
     {
         $translation = $this->bindLocaleFromRoute($request, $request->getLocale());
         $this->prepareThemeAssignation(null, $translation);
+
+        $this->assignation['nodeName'] = 'maintenance' ;
+        $this->assignation['nodeTypeName'] = 'maintenance';
+        $this->assignation['title'] = $this->getService('translator')->trans('website.is.under.maintenance');
+        $this->assignation['content'] = $this->getService('translator')->trans('website.is.under.maintenance.we.will.be.back.soon');
 
         $this->getService('stopwatch')->start('twigRender');
         return new Response(
