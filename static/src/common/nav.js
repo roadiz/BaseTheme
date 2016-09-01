@@ -5,13 +5,15 @@
  * @copyright REZO ZERO 2016
  * @author Ambroise Maupate
  */
-
 import $ from 'jquery';
 import {Utils} from "utils/utils";
 import {BootstrapMedia} from "utils/bootstrapMedia";
 import {debounce} from "utils/debounce";
 import {AbstractNav} from 'abstract-nav';
 
+/**
+ *
+ */
 export class Nav extends AbstractNav {
     constructor() {
         super();
@@ -37,14 +39,14 @@ export class Nav extends AbstractNav {
             this.$links.on('click', router.onLinkClick.bind(router));
         }
 
-        if(!BootstrapMedia.isMinSM()) this.$btn.on('click', $.proxy(this.btnClick, this));
-        if(!BootstrapMedia.isMinSM()) this.$overlay.on('click', this.close.bind(this));
+        this.$btn.on('click', this.btnClick.bind(this));
+        this.$overlay.on('click', this.close.bind(this));
 
         window.addEventListener('scroll', this.onScroll.bind(this));
         window.addEventListener('resize', debounce(this.onResize.bind(this), 100, false));
     }
 
-    destroyEvents(router){
+    destroyEvents(router) {
 
         super.destroyEvents(router);
 
@@ -52,8 +54,8 @@ export class Nav extends AbstractNav {
             this.$links.off('click', router.onLinkClick.bind(router));
         }
 
-        if(!BootstrapMedia.isMinSM()) this.$btn.off('click', $.proxy(this.btnClick, this));
-        if(!BootstrapMedia.isMinSM()) this.$overlay.off('click', this.close.bind(this));
+        this.$btn.off('click', this.btnClick.bind(this));
+        this.$overlay.off('click', this.close.bind(this));
 
         window.removeEventListener('scroll', this.onScroll.bind(this));
         window.removeEventListener('resize', debounce(this.onResize.bind(this), 100, false));
@@ -89,14 +91,14 @@ export class Nav extends AbstractNav {
      * Btn click
      */
     btnClick(e) {
-
-        if(!this.opened) this.open();
-        else this.close();
+        if(!BootstrapMedia.isMinSM()) {
+            if(!this.opened) this.open();
+            else this.close();
+        }
     }
 
     open() {
-
-        if(!this.opened){
+        if(!BootstrapMedia.isMinSM() && !this.opened){
 
             this.$cont[0].style.display = 'block';
             TweenLite.fromTo(this.$cont, 0.4, {xPercent:-100}, {xPercent:0});
@@ -109,8 +111,7 @@ export class Nav extends AbstractNav {
     }
 
     close() {
-
-        if(this.opened){
+        if(!BootstrapMedia.isMinSM() && this.opened){
 
             TweenLite.to(this.$cont, 0.4, {xPercent:-100, onComplete: () => {
                 if(!this.opened) this.$cont[0].style.display = 'none';
@@ -128,5 +129,4 @@ export class Nav extends AbstractNav {
     onResize() {
 
     }
-
 }
