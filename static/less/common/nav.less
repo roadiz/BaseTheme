@@ -26,10 +26,6 @@
     border-bottom:1px solid #DADADA;
     z-index:55;
 }
-#main-container {
-    position: relative;
-    margin-top: @navbar-height;
-}
 
 #nav-btn{
     position: absolute;
@@ -83,6 +79,15 @@
     transform:translateX(-100%);
 }
 
+@media (min-width: @screen-sm-min) {
+    #nav {
+        right:0; bottom:initial;
+        width:auto; height:68px;
+        transform:none;
+        border-bottom: 1px solid #DADADA;
+    }
+}
+
 #nav-list{
     position: relative;
     float: left;
@@ -91,10 +96,12 @@
     width:100%;
 }
 
-#nav-lang{
-    position: relative;
-    float:left;
-    margin:0; padding:0 15px;
+@media (min-width: @screen-sm-min) {
+    #nav-list{
+        float: left;
+        width:auto;
+        padding:0;
+    }
 }
 
 .nav-item{
@@ -102,12 +109,15 @@
     display: block;
 }
 
-.nav-link{
-    position: relative;
-    display: block;
+@media (min-width: @screen-sm-min) {
+    .nav-item{
+        display:inline-block; vertical-align: top;
+    }
 }
 
 .nav-link{
+    position: relative;
+    display: block;
     margin:0 0 12px;
     padding:0 7px 8px 7px;
     font-size:17px; line-height:17px;
@@ -123,46 +133,31 @@
     }
 }
 
-.nav-link-home {
-
-}
-
-
-/*
- * Responsive
- */
-
 @media (min-width: @screen-sm-min) {
-
-    #nav {
-        right:0; bottom:initial;
-        width:auto; height:68px;
-        transform:none;
-        border-bottom: 1px solid #DADADA;
-    }
-    #main-container {
-        position: relative;
-        margin-top: 68px;
-    }
-
-    #nav-list{
-        float: left;
-        width:auto;
-        padding:0;
-    }
-
-    #nav-lang{
-        float: right;
-    }
-
-    .nav-item{
-        display:inline-block; vertical-align: top;
-    }
 
     .nav-link{
         display: inline-block; vertical-align: top;
         padding: 26px 2px;
         margin: 0px 13px;
         line-height:17px;
+    }
+}
+
+.nav-link-home {
+
+}
+
+
+// --- Lang --- //
+
+#nav-lang{
+    position: relative;
+    float:left;
+    margin:0; padding:0 15px;
+}
+
+@media (min-width: @screen-sm-min) {
+    #nav-lang{
+        float: right;
     }
 }
