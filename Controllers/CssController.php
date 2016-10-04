@@ -35,7 +35,7 @@ class CssController extends BaseThemeApp
         /*
          * Use same cache as Doctrine
          */
-        $cacheDriver = $this->getService('em')->getConfiguration()->getMetadataCacheImpl();
+        $cacheDriver = $this->get('em')->getConfiguration()->getMetadataCacheImpl();
 
         if ($cacheDriver->contains(static::CSS_CACHE_ID)) {
             $response = $cacheDriver->fetch(static::CSS_CACHE_ID);
@@ -51,7 +51,7 @@ class CssController extends BaseThemeApp
 
             $response->setStatusCode(Response::HTTP_OK);
             $response->headers->set('Content-Type', 'text/css');
-            $this->getService('stopwatch')->start('twigRender');
+            $this->get('stopwatch')->start('twigRender');
 
             $result = $this->getTwig()->render('@BaseTheme/css/dynamic-styles.css.twig', $this->assignation);
 
@@ -69,7 +69,7 @@ class CssController extends BaseThemeApp
      */
     protected function getPages()
     {
-        $pages = $this->getService('nodeSourceApi')
+        $pages = $this->get('nodeSourceApi')
             ->getBy(array(
                 'node.nodeType' => $this->themeContainer['typePage'],
                 'translation' => $this->translation

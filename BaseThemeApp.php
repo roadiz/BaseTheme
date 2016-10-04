@@ -43,7 +43,7 @@ class BaseThemeApp extends FrontendController
          * Force locale if we request with no locale in URL
          */
         // if ($_locale === null) {
-        //     $transRepository = $this->getService('em')->getRepository('RZ\Roadiz\Core\Entities\Translation');
+        //     $transRepository = $this->get('em')->getRepository('RZ\Roadiz\Core\Entities\Translation');
         //     $redirectLocale = $request->getPreferredLanguage($transRepository->getAvailableLocales());
         //     $translation = $transRepository->findOneByLocaleAndAvailable($redirectLocale);
 
@@ -83,19 +83,19 @@ class BaseThemeApp extends FrontendController
      */
     public function throw404($message = '')
     {
-        $this->translation = $this->getService('defaultTranslation');
+        $this->translation = $this->get('defaultTranslation');
 
         $this->prepareThemeAssignation(null, $this->translation);
-        $this->getService('logger')->error($message);
+        $this->get('logger')->error($message);
 
         $this->assignation['nodeName'] = 'error-404';
         $this->assignation['nodeTypeName'] = 'error404';
         $this->assignation['errorMessage'] = $message;
-        $this->assignation['title'] = $this->getService('translator')->trans('error404.title');
-        $this->assignation['content'] = $this->getService('translator')->trans('error404.message');
+        $this->assignation['title'] = $this->get('translator')->trans('error404.title');
+        $this->assignation['content'] = $this->get('translator')->trans('error404.message');
 
 
-        $this->getService('stopwatch')->start('twigRender');
+        $this->get('stopwatch')->start('twigRender');
         return new Response(
             $this->renderView('@BaseTheme/pages/404.html.twig', $this->assignation),
             Response::HTTP_NOT_FOUND,
@@ -114,10 +114,10 @@ class BaseThemeApp extends FrontendController
 
         $this->assignation['nodeName'] = 'maintenance' ;
         $this->assignation['nodeTypeName'] = 'maintenance';
-        $this->assignation['title'] = $this->getService('translator')->trans('website.is.under.maintenance');
-        $this->assignation['content'] = $this->getService('translator')->trans('website.is.under.maintenance.we.will.be.back.soon');
+        $this->assignation['title'] = $this->get('translator')->trans('website.is.under.maintenance');
+        $this->assignation['content'] = $this->get('translator')->trans('website.is.under.maintenance.we.will.be.back.soon');
 
-        $this->getService('stopwatch')->start('twigRender');
+        $this->get('stopwatch')->start('twigRender');
         return new Response(
             $this->renderView('@BaseTheme/pages/maintenance.html.twig', $this->assignation),
             Response::HTTP_SERVICE_UNAVAILABLE,
@@ -136,7 +136,7 @@ class BaseThemeApp extends FrontendController
          * Register services
          */
         $this->themeContainer->register(new Services\NodeServiceProvider($this->getContainer(), $this->translation));
-        $this->themeContainer->register(new Services\NodeTypeServiceProvider($this->getService('nodeTypeApi')));
+        $this->themeContainer->register(new Services\NodeTypeServiceProvider($this->get('nodeTypeApi')));
         $this->themeContainer->register(new Services\AssetsServiceProvider());
 
         $this->assignation['themeServices'] = $this->themeContainer;
@@ -156,6 +156,6 @@ class BaseThemeApp extends FrontendController
         // Get session messages
         // Remove FlashBag assignation from here if you handle your forms
         // in sub-requests block renders.
-        $this->assignation['session']['messages'] = $this->getService('session')->getFlashBag()->all();
+        $this->assignation['session']['messages'] = $this->get('session')->getFlashBag()->all();
     }
 }

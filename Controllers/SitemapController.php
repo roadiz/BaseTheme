@@ -33,7 +33,7 @@ class SitemapController extends BaseThemeApp
         /*
          * Add your own nodes grouped by their type.
          */
-        $this->assignation['pages'] = $this->getService('nodeSourceApi')
+        $this->assignation['pages'] = $this->get('nodeSourceApi')
             ->getBy([
                 'node.nodeType' => [
                     $this->themeContainer['typePage'],
