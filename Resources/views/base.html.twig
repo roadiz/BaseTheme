@@ -82,7 +82,7 @@
         {% if headerImage %}
             {% set previewImageUrl = headerImage|url(themeServices.imageFormats.shareImage) %}
         {% else %}
-            {% set previewImageUrl = head.baseUrl ~ head.resourcesUrl ~ 'img/share.png' %}
+            {% set previewImageUrl = head.absoluteResourcesUrl ~ 'img/share.png' %}
         {% endif %}
 
         {# Facebook #}
