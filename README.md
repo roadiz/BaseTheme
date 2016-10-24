@@ -92,7 +92,7 @@ insert as many `<script>` and `<link>` tags as needed.
 - `make`: is equivalent to `make configtest && make install && make build`
 - `make configtest`: test if *NPM*, *Bower* and *Gulp CLI* are available
 - `make install`: install *NPM* and *Bower* dependencies
-- `make build`: call `gulp` in `static/` folder
-- `make watch`: call `gulp watch` in `static/` folder
+- `make build`: call `npm run build` in `static/` folder
+- `make watch`: call `npm run dev` in `static/` folder
 - `make clean`: remove any generated CSS and JS files (build and dist folders)
 - `make uninstall`: remove any *NPM* and *Bower* dependencies and `clean` 

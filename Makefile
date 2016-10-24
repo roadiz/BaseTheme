@@ -23,10 +23,10 @@ static/node_modules :
 
 # Launch Gulp watch task
 watch : configtest
-	cd ./static && gulp watch;
+	cd ./static && npm run dev;
 # Build prod ready assets with Gulp
 build : configtest
-	cd ./static && gulp;
+	cd ./static && npm run build;
 # Update NPM deps and Bower deps
 update : configtest
 	cd ./static && npm update && bower update;
