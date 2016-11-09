@@ -4,7 +4,7 @@ var inject = require('gulp-inject');
 var transformFunc = function (filepath) {
     if (filepath.slice(-3) === '.js') {
         if (filepath.charAt(0) === '/') filepath = filepath.substr(1);
-        return '<script data-main="{{ head.resourcesUrl }}' + filepath + '" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.22/require.min.js"></script>';
+        return '<script data-main="{{ head.resourcesUrl }}' + filepath + '" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.min.js"></script>';
     }
     if (filepath.slice(-4) === '.css') {
         if (filepath.charAt(0) === '/') filepath = filepath.substr(1);
