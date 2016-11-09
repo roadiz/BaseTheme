@@ -1,27 +1,11 @@
 <?php
 /**
- * Copyright © 2016, Ambroise Maupate
+ * Copyright (c) 2016. Rezo Zero
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is furnished
- * to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
- * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
- * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
- * IN THE SOFTWARE.
+ * BaseTheme
  *
  * @file BaseThemeApp.php
- * @author Ambroise Maupate
+ * @author Ambroise Maupate <ambroise@rezo-zero.com>
  */
 namespace Themes\BaseTheme;
 
@@ -37,7 +21,7 @@ use Themes\BaseTheme\Services;
  */
 class BaseThemeApp extends FrontendController
 {
-    const VERSION = '0.15.0';
+    const VERSION = '0.16.0';
 
     protected static $themeName = 'Base theme';
     protected static $themeAuthor = 'REZO ZERO';
@@ -46,7 +30,9 @@ class BaseThemeApp extends FrontendController
     protected static $backendTheme = false;
 
     /**
-     * {@inheritdoc}
+     * @param Request $request
+     * @param null $_locale
+     * @return Response
      */
     public function homeAction(
         Request $request,
@@ -57,7 +43,7 @@ class BaseThemeApp extends FrontendController
          * Force locale if we request with no locale in URL
          */
         // if ($_locale === null) {
-        //     $transRepository = $this->getService('em')->getRepository('RZ\Roadiz\Core\Entities\Translation');
+        //     $transRepository = $this->get('em')->getRepository('RZ\Roadiz\Core\Entities\Translation');
         //     $redirectLocale = $request->getPreferredLanguage($transRepository->getAvailableLocales());
         //     $translation = $transRepository->findOneByLocaleAndAvailable($redirectLocale);
 
@@ -97,13 +83,19 @@ class BaseThemeApp extends FrontendController
      */
     public function throw404($message = '')
     {
-        $this->translation = $this->getService('defaultTranslation');
+        $this->translation = $this->get('defaultTranslation');
 
         $this->prepareThemeAssignation(null, $this->translation);
-        $this->getService('logger')->error($message);
-        $this->assignation['errorMessage'] = $message;
+        $this->get('logger')->error($message);
 
-        $this->getService('stopwatch')->start('twigRender');
+        $this->assignation['nodeName'] = 'error-404';
+        $this->assignation['nodeTypeName'] = 'error404';
+        $this->assignation['errorMessage'] = $message;
+        $this->assignation['title'] = $this->get('translator')->trans('error404.title');
+        $this->assignation['content'] = $this->get('translator')->trans('error404.message');
+
+
+        $this->get('stopwatch')->start('twigRender');
         return new Response(
             $this->renderView('@BaseTheme/pages/404.html.twig', $this->assignation),
             Response::HTTP_NOT_FOUND,
@@ -112,14 +104,20 @@ class BaseThemeApp extends FrontendController
     }
 
     /**
-     * {@inheritdoc}
+     * @param Request $request
+     * @return Response
      */
     public function maintenanceAction(Request $request)
     {
         $translation = $this->bindLocaleFromRoute($request, $request->getLocale());
         $this->prepareThemeAssignation(null, $translation);
 
-        $this->getService('stopwatch')->start('twigRender');
+        $this->assignation['nodeName'] = 'maintenance' ;
+        $this->assignation['nodeTypeName'] = 'maintenance';
+        $this->assignation['title'] = $this->get('translator')->trans('website.is.under.maintenance');
+        $this->assignation['content'] = $this->get('translator')->trans('website.is.under.maintenance.we.will.be.back.soon');
+
+        $this->get('stopwatch')->start('twigRender');
         return new Response(
             $this->renderView('@BaseTheme/pages/maintenance.html.twig', $this->assignation),
             Response::HTTP_SERVICE_UNAVAILABLE,
@@ -138,7 +136,7 @@ class BaseThemeApp extends FrontendController
          * Register services
          */
         $this->themeContainer->register(new Services\NodeServiceProvider($this->getContainer(), $this->translation));
-        $this->themeContainer->register(new Services\NodeTypeServiceProvider($this->getService('nodeTypeApi')));
+        $this->themeContainer->register(new Services\NodeTypeServiceProvider($this->get('nodeTypeApi')));
         $this->themeContainer->register(new Services\AssetsServiceProvider());
 
         $this->assignation['themeServices'] = $this->themeContainer;
@@ -158,6 +156,6 @@ class BaseThemeApp extends FrontendController
         // Get session messages
         // Remove FlashBag assignation from here if you handle your forms
         // in sub-requests block renders.
-        $this->assignation['session']['messages'] = $this->getService('session')->getFlashBag()->all();
+        $this->assignation['session']['messages'] = $this->get('session')->getFlashBag()->all();
     }
 }

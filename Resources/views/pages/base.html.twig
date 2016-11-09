@@ -1,0 +1,69 @@
+{% extends head.ajax ? '@BaseTheme/base.ajax.twig' : '@BaseTheme/base.html.twig' %}
+
+{% set classes = classes|default([
+    'page-container',
+]) %}
+
+{% if node.home %}
+    {% set classes = classes|merge(['home-container']) %}
+{% endif %}
+
+{% if head.ajax %}
+    {% set classes = classes|merge(['page-container-ajax']) %}
+{% endif %}
+
+{% block content %}
+<section class="{{ classes|join(' ') }}"
+         id="page-container-{{ nodeName }}"
+         data-title="{{ title }}"
+         data-node-type="{{ nodeTypeName|lower }}"
+         data-node-name="{{ nodeName }}"
+         data-is-home="{{ nodeHome }}"
+         data-meta-title="{{ pageMetaTitle }}">
+
+    {% block header %}
+        {% if headerImage %}
+        <header class="page-header">
+                <figure class="page-header-image">{{ headerImage|display(themeServices.imageFormats.headerImage) }}</figure>
+        </header>
+        {% endif %}
+    {% endblock %}
+
+    {% block inner_content %}
+
+        <div class="container">
+            <div class="row">
+
+                <h1 class="page-title">{{ title }}</h1>
+                {% if content %}<div class="page-text">{{ content|markdown }}</div>{% endif %}
+
+            </div>
+        </div>
+
+        {% if nodeSource %}
+        <div class="page-blocks">
+            {#
+             # Page blocks pattern implementation
+             #}
+            {% set blocks = nodeSource|children({
+            'node.nodeType' : ['!=', themeServices.typePage]
+            }) %}
+            {% for singleBlock in blocks %}
+                {% include '@BaseTheme/blocks/' ~ singleBlock.node.nodeType.name|lower ~ '.html.twig' ignore missing with {
+                'nodeSource': singleBlock,
+                'parentNodeSource': nodeSource,
+                'themeServices': themeServices,
+                'head': head,
+                'node': singleBlock.node,
+                'nodeType': singleBlock.node.nodeType,
+                'loop': loop,
+                'blocksLength':blocks|length
+                } only %}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+    {% endblock %}
+
+</section>
+{% endblock %}

@@ -7,8 +7,9 @@
  */
 
 import {AbstractPage} from "abstract-page";
+// import {DefaultPage} from "pages/default-page";
 
-export class Page extends AbstractPage {
+export class Page extends AbstractPage { // extends DefaultPage
 
     init(){
         super.init();

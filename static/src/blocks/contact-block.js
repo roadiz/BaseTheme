@@ -10,8 +10,9 @@ import $ from "jquery";
 import TweenMax from "TweenMax";
 import log from "loglevel";
 import {AbstractBlock} from "abstract-block";
+// import {DefaultBlock} from "blocks/default-block";
 
-export class ContactBlock extends AbstractBlock {
+export class ContactBlock extends AbstractBlock { // extends DefaultBlock
 
     init() {
         super.init();

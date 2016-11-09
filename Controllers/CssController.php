@@ -1,27 +1,11 @@
 <?php
 /**
- * Copyright © 2016, Ambroise Maupate
+ * Copyright (c) 2016. Rezo Zero
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is furnished
- * to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
- * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
- * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
- * IN THE SOFTWARE.
+ * BaseTheme
  *
  * @file CssController.php
- * @author Ambroise Maupate
+ * @author Ambroise Maupate <ambroise@rezo-zero.com>
  */
 namespace Themes\BaseTheme\Controllers;
 
@@ -51,7 +35,7 @@ class CssController extends BaseThemeApp
         /*
          * Use same cache as Doctrine
          */
-        $cacheDriver = $this->getService('em')->getConfiguration()->getMetadataCacheImpl();
+        $cacheDriver = $this->get('em')->getConfiguration()->getMetadataCacheImpl();
 
         if ($cacheDriver->contains(static::CSS_CACHE_ID)) {
             $response = $cacheDriver->fetch(static::CSS_CACHE_ID);
@@ -67,7 +51,7 @@ class CssController extends BaseThemeApp
 
             $response->setStatusCode(Response::HTTP_OK);
             $response->headers->set('Content-Type', 'text/css');
-            $this->getService('stopwatch')->start('twigRender');
+            $this->get('stopwatch')->start('twigRender');
 
             $result = $this->getTwig()->render('@BaseTheme/css/dynamic-styles.css.twig', $this->assignation);
 
@@ -85,7 +69,7 @@ class CssController extends BaseThemeApp
      */
     protected function getPages()
     {
-        $pages = $this->getService('nodeSourceApi')
+        $pages = $this->get('nodeSourceApi')
             ->getBy(array(
                 'node.nodeType' => $this->themeContainer['typePage'],
                 'translation' => $this->translation

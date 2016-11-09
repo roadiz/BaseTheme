@@ -31,6 +31,17 @@ button{
     outline: none;
 }
 
+#main-container {
+    position: relative;
+    margin-top: @navbar-height;
+}
+
+@media (min-width: @screen-sm-min) {
+    #main-container {
+        position: relative;
+        margin-top: 68px;
+    }
+}
 
 // --- Table cell --- //
 
@@ -43,4 +54,13 @@ button{
 .table-cell{
     position: relative;
     display: table-cell; vertical-align: middle;
+}
+
+
+// --- Bootstrap reset --- //
+
+.page-header{
+    margin:0;
+    padding:0;
+    border:0;
 }

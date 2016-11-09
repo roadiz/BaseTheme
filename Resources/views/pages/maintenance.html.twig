@@ -1,30 +1,7 @@
-{% extends head.ajax ? '@BaseTheme/base.ajax.twig' : '@BaseTheme/base.html.twig' %}
-
-{% set classes = [
-'page-container',
-] %}
-
-{% if node.home %}
-{% set classes = classes|merge(['home-container']) %}
-{% endif %}
-
-{% if head.ajax %}
-{% set classes = classes|merge(['page-container-ajax']) %}
-{% endif %}
+{% extends '@BaseTheme/pages/base.html.twig' %}
 
 {% block body_attributes %}class="maintenance" id="maintenance" data-node-type="maintenance"{% endblock %}
 
 {% block mainnavigation %}
 <nav id="nav"></nav>
-{% endblock %}
-
-{% block content %}
-<section class="{{ classes|join(' ') }}"
-         id="page-container-maintenance"
-         data-title="{% trans %}website.is.under.maintenance{% endtrans %}"
-         data-node-type="maintenance"
-         data-meta-title="{% trans %}website.is.under.maintenance{% endtrans %}">
-    <h1>{% trans %}website.is.under.maintenance{% endtrans %}</h1>
-    <p>{% trans %}website.is.under.maintenance.we.will.be.back.soon{% endtrans %}</p>
-</section>
 {% endblock %}
