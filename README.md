@@ -21,12 +21,11 @@ If you need others node-type, duplicate theses files and rename them.
 Base theme uses *Gulp* and *Bower* to deal with front development files.
 We chose to use **ES6 javascript** transpiled with *Babel* and loaded via *RequireJS*.
 
-Then we externalized all the JS logic and routing system into *https://github.com/rezozero/pageblock-framework*
-so that your theme only host specific JS code and will be able to easily upgrade common JS features.
+Then we externalized all the JS logic and routing system into our [*Starting blocks*](https://github.com/rezozero/starting-blocks) framework so that your theme only host specific JS code and will be able to easily upgrade common JS features.
 
-We encourage you to read [*PageBlock* README](https://github.com/rezozero/pageblock-framework/blob/master/README.md) 
+We encourage you to read [*Starting Blocks* README](https://github.com/rezozero/starting-blocks/blob/master/README.md) 
 to understand how we route and synchronize our *Twig* generated DOM with our ES6 scripts. You can find a detailled
-API documentation at http://pageblock.rezo-zero.com/
+API documentation at http://startingblocks.rezo-zero.com
 
 ### Based on Bootstrap 3
 
