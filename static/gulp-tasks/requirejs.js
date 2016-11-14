@@ -33,23 +33,24 @@ gulp.task('requirejs', ['babel', 'clean-build'], function() {
             Hammer: "./../bower_components/hammerjs/hammer.min",
             loglevel: "./../bower_components/loglevel/dist/loglevel.min",
             // Utils functions and classes
-            "utils/utils": "./../bower_components/pageblock/dist/utils/utils",
-            "utils/gaTrackErrors": "./../bower_components/pageblock/dist/utils/gaTrackErrors",
-            "utils/polyfills": "./../bower_components/pageblock/dist/utils/polyfills",
-            "utils/debounce": "./../bower_components/pageblock/dist/utils/debounce",
-            "utils/scroll": "./../bower_components/pageblock/dist/utils/scroll",
-            "utils/bootstrapMedia": "./../bower_components/pageblock/dist/utils/bootstrapMedia",
+            "utils/utils": "./../bower_components/starting-blocks/dist/utils/utils",
+            "utils/gaTrackErrors": "./../bower_components/starting-blocks/dist/utils/gaTrackErrors",
+            "utils/polyfills": "./../bower_components/starting-blocks/dist/utils/polyfills",
+            "utils/debounce": "./../bower_components/starting-blocks/dist/utils/debounce",
+            "utils/scroll": "./../bower_components/starting-blocks/dist/utils/scroll",
+            "utils/bootstrapMedia": "./../bower_components/starting-blocks/dist/utils/bootstrapMedia",
             // Include current page-block sources from their location in bower_components
             // if you are using bower to fetch this lib.
-            "state": "./../bower_components/pageblock/dist/state",
-            "router": "./../bower_components/pageblock/dist/router",
-            "graphicLoader": "./../bower_components/pageblock/dist/graphicLoader",
-            "abstract-nav": "./../bower_components/pageblock/dist/abstract-nav",
-            "abstract-page": "./../bower_components/pageblock/dist/abstract-page",
-            "abstract-block": "./../bower_components/pageblock/dist/abstract-block",
+            "state": "./../bower_components/starting-blocks/dist/state",
+            "router": "./../bower_components/starting-blocks/dist/router",
+            "cache-provider": "./../bower_components/starting-blocks/dist/cache-provider",
+            "graphicLoader": "./../bower_components/starting-blocks/dist/graphicLoader",
+            "abstract-nav": "./../bower_components/starting-blocks/dist/abstract-nav",
+            "abstract-page": "./../bower_components/starting-blocks/dist/abstract-page",
+            "abstract-block": "./../bower_components/starting-blocks/dist/abstract-block",
             // If you want to use example Page and Home classes in your project
-            // "pages/page": "./../bower_components/pageblock/dist/pages/page",
-            // "pages/home": "./../bower_components/pageblock/dist/pages/home"
+            // "pages/page": "./../bower_components/starting-blocks/dist/pages/page",
+            // "pages/home": "./../bower_components/starting-blocks/dist/pages/home"
         }
     }))
     .pipe(uglify())
