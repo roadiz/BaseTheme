@@ -11,7 +11,16 @@ gulp.task('css', ['less-vendor', 'less'], function () {
         require('css-mqpacker')(),
         require('cssnano')
     ];
-    return gulp.src('./css/*.css')
-        .pipe(postcss(processors))
-        .pipe(gulp.dest('./css'));
+    if (process.env.NODE_ENV === 'production') {
+        /*
+         * Only use CSS processors in production
+         */
+        console.log('Optimized and cleaned CSS with PostCSS.');
+        return gulp.src('./css/*.css')
+            .pipe(postcss(processors))
+            .pipe(gulp.dest('./css'));
+    } else {
+        console.log('No CSS optimization.');
+        return gulp.src('./css/*.css').pipe(gulp.dest('./css'));
+    }
 });

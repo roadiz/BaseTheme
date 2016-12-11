@@ -15,7 +15,7 @@ var transformFunc = function (filepath) {
 };
 
 gulp.task('inject', ['css', 'requirejs'], function () {
-    var builtFiles = gulp.src(['build/*', 'css/vendor-*.css','css/style-*.css']);
+    var builtFiles = gulp.src(['build/*', 'css/vendor-*.css','css/style-*.css'], {read: false});
 
     return gulp.src('./../Resources/views/base.html.twig')
         .pipe(inject(builtFiles, {
@@ -24,9 +24,18 @@ gulp.task('inject', ['css', 'requirejs'], function () {
         .pipe(gulp.dest('./../Resources/views/'));
 });
 
+gulp.task('inject-js', ['requirejs'], function () {
+    var builtFiles = gulp.src(['build/*', 'css/vendor-*.css','css/style-*.css'], {read: false});
+
+    return gulp.src('./../Resources/views/base.html.twig')
+        .pipe(inject(builtFiles, {
+            transform: transformFunc
+        }))
+        .pipe(gulp.dest('./../Resources/views/'));
+});
 
 gulp.task('inject-css', ['css'], function () {
-    var builtFiles = gulp.src(['./css/vendor-*.css','./css/style-*.css'], {read: false});
+    var builtFiles = gulp.src(['build/*', 'css/vendor-*.css','css/style-*.css'], {read: false});
 
     return gulp.src('./../Resources/views/base.html.twig')
         .pipe(inject(builtFiles, {

@@ -54,7 +54,8 @@ make watch
 
 And when you need to prepare files for production: this command will generate production CSS
 files (no source-map and minified) and will optimize *requireJS* dependence tree into
-a single JS bundle in `static/build/` folder.
+a single JS bundle in `static/build/` folder. 
+Build command passes `NODE_ENV=production` environment var to *Gulp*.
 
 ```shell
 make build
