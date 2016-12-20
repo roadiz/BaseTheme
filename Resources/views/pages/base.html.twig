@@ -46,7 +46,8 @@
              # Page blocks pattern implementation
              #}
             {% set blocks = nodeSource|children({
-            'node.nodeType' : ['!=', themeServices.typePage]
+            'node.nodeType' : ['!=', themeServices.typePage],
+            'node.visible': true,
             }) %}
             {% for singleBlock in blocks %}
                 {% include '@BaseTheme/blocks/' ~ singleBlock.node.nodeType.name|lower ~ '.html.twig' ignore missing with {

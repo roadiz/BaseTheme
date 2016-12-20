@@ -46,6 +46,4 @@ uninstall : clean
 #
 configtest:
 	@command -v npm >/dev/null 2>&1 || { echo "❌\t${RED}I require npm but it's not installed. \tAborting.${NC}" >&2; exit 1; }
-	@command -v bower >/dev/null 2>&1 || { echo "❌\t${RED}I require bower but it's not installed. \tAborting.${NC}" >&2; exit 1; }
-	@command -v gulp >/dev/null 2>&1 || { echo "❌\t${RED}I require gulp-cli but it's not installed. \tAborting.${NC}" >&2; exit 1; }
-	@echo "✅\t${GREEN}NPM, Bower and Gulp-CLi are available. \tOK.${NC}" >&2;
+	@echo "✅\t${GREEN}NPM is available. \tOK.${NC}" >&2;
