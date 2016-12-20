@@ -14,7 +14,8 @@
     <div class="page-blocks">
         {# Page blocks pattern implementation #}
         {% set blocks = nodeSource|children({
-        'node.nodeType' : ['!=', themeServices.typePage]
+            'node.nodeType' : ['!=', themeServices.typePage],
+            'node.visible': true,
         }) %}
         {% for singleBlock in blocks %}
             <article class="page-block page-block-{{ singleBlock.node.nodeType.name|lower }}"
