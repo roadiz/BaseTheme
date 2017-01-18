@@ -109,19 +109,29 @@ BaseTheme will provide you some ready-made *Twig* templates, styles and ES6 clas
 ## Renaming BaseTheme to fit your project
 
 - Remove *Git* history to begin a fresh theme.
+- Rename theme folder `BaseTheme/`
 - Rename `BaseThemeApp.php`
 - Find and replace with `find` and `sed` UNIX tools
 
 ```shell
-rm -rf ${THEME_ROOT}/.git
+export GREEN='\033[0;32m';
+export THEME_PREFIX='MySuper';
+export NC='\033[0m';
+
+cd ~/path/to/themes;
+mv BaseTheme ${THEME_PREFIX}Theme;
+echo "✅\t${GREEN}Rename theme folder.${NC}";
+
+cd ~/path/to/themes/${THEME_PREFIX}Theme;
+rm -rf ./.git;
 echo "✅\t${GREEN}Delete existing Git history.${NC}";
 
-mv BaseThemeApp.php ${theme_prefix}ThemeApp.php
+mv BaseThemeApp.php ${THEME_PREFIX}ThemeApp.php;
 echo "✅\t${GREEN}Rename theme files against you theme name.${NC}";
 
-LC_ALL=C $FIND ./ -type f -exec $SED -i.bak -e "s/BaseTheme/${theme_prefix}Theme/g" {} \;
-LC_ALL=C $FIND ./ -type f -exec $SED -i.bak -e "s/Base theme/${theme_prefix} theme/g" {} \;
-LC_ALL=C $FIND ./static -type f -exec $SED -i.bak -e "s/Base/${theme_prefix}/g" {} \;
+LC_ALL=C $FIND ./ -type f -exec $SED -i.bak -e "s/BaseTheme/${THEME_PREFIX}Theme/g" {} \;
+LC_ALL=C $FIND ./ -type f -exec $SED -i.bak -e "s/Base theme/${THEME_PREFIX} theme/g" {} \;
+LC_ALL=C $FIND ./static -type f -exec $SED -i.bak -e "s/Base/${THEME_PREFIX}/g" {} \;
 LC_ALL=C $FIND ./ -type f -name '*.bak' -exec rm -f {} \;
 echo "✅\t${GREEN}Rename every occurrences of BaseTheme in your theme.${NC}";
 ```
