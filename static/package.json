@@ -30,6 +30,7 @@
     "gulp-imagemin": "^2.4.0",
     "gulp-inject": "^3.0.0",
     "gulp-less": "^3.0.5",
+    "gulp-natural-sort": "^0.1.1",
     "gulp-plumber": "^1.1.0",
     "gulp-postcss": "^6.1.0",
     "gulp-rename": "^1.2.2",

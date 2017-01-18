@@ -1,9 +1,10 @@
-var gulp = require('gulp');
-var imagemin = require('gulp-imagemin');
-var pngquant = require('imagemin-pngquant');
+import gulp from 'gulp';
+import imagemin from 'gulp-imagemin';
+import pngquant from 'imagemin-pngquant';
+import themePaths from './themePaths';
 
 gulp.task('imagemin', function() {
-    return gulp.src(paths.images)
+    return gulp.src(themePaths.images)
         .pipe(imagemin({
             progressive: true,
             svgoPlugins: [{removeViewBox: false}],

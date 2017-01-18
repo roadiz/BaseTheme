@@ -1,17 +1,26 @@
-require('es6-promise').polyfill();
-var postcss = require('gulp-postcss');
-var gulp = require('gulp');
+import Promise from 'es6-promise';
+import postcss from 'gulp-postcss';
+import gulp from 'gulp';
+import postcssFixes from 'postcss-fixes';
+import postcssFilterGradient from 'postcss-filter-gradient';
+import postcssReduceTransform from 'postcss-reduce-transforms';
+import autoprefixer from 'autoprefixer';
+import cssMqpacker from 'css-mqpacker';
+import cssnano from 'cssnano';
 
-gulp.task('css', ['less-vendor', 'less'], function () {
-    var processors = [
-        require('postcss-fixes')(),
-        require('postcss-filter-gradient')(),
-        require('postcss-reduce-transforms')(),
-        require('autoprefixer')({browsers: ['last 4 version', 'ie 11', 'ie 10', 'ie 9']}),
-        require('css-mqpacker')(),
-        require('cssnano')
+Promise.polyfill();
+const production = process.env.NODE_ENV === 'production';
+
+gulp.task('css', ['less-vendor', 'less'], () => {
+    const processors = [
+        postcssFixes(),
+        postcssFilterGradient(),
+        postcssReduceTransform(),
+        autoprefixer({browsers: ['last 2 version', 'ie 11', 'ie 10']}),
+        cssMqpacker(),
+        cssnano
     ];
-    if (process.env.NODE_ENV === 'production') {
+    if (production) {
         /*
          * Only use CSS processors in production
          */

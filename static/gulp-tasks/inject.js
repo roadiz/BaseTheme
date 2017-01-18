@@ -1,7 +1,12 @@
-var gulp = require('gulp');
-var inject = require('gulp-inject');
+import gulp from 'gulp';
+import inject from 'gulp-inject';
+/*
+ * Needed to invert JS order and
+ * load vendor before app
+ */
+import naturalSort from 'gulp-natural-sort';
 
-var transformFunc = function (filepath) {
+const transformFunc = (filepath) => {
     if (filepath.slice(-3) === '.js') {
         if (filepath.charAt(0) === '/') filepath = filepath.substr(1);
         return '<script src="{{ head.resourcesUrl }}' + filepath + '"></script>';
@@ -14,8 +19,9 @@ var transformFunc = function (filepath) {
     return inject.transform.apply(inject.transform, arguments);
 };
 
-gulp.task('inject', ['css', 'webpack'], function () {
-    var builtFiles = gulp.src(['build/*', 'css/vendor-*.css','css/style-*.css'], {read: false});
+gulp.task('inject', ['css', 'webpack'], () => {
+    const builtFiles = gulp.src(['build/*', 'css/vendor-*.css','css/style-*.css'], {read: false})
+                            .pipe(naturalSort('desc'));
 
     return gulp.src('./../Resources/views/base.html.twig')
         .pipe(inject(builtFiles, {
@@ -24,8 +30,9 @@ gulp.task('inject', ['css', 'webpack'], function () {
         .pipe(gulp.dest('./../Resources/views/'));
 });
 
-gulp.task('inject-js', ['webpack'], function () {
-    var builtFiles = gulp.src(['build/*', 'css/vendor-*.css','css/style-*.css'], {read: false});
+gulp.task('inject-js', ['webpack'], () => {
+    const builtFiles = gulp.src(['build/*', 'css/vendor-*.css','css/style-*.css'], {read: false})
+        .pipe(naturalSort('desc'));
 
     return gulp.src('./../Resources/views/base.html.twig')
         .pipe(inject(builtFiles, {
@@ -34,8 +41,9 @@ gulp.task('inject-js', ['webpack'], function () {
         .pipe(gulp.dest('./../Resources/views/'));
 });
 
-gulp.task('inject-css', ['css'], function () {
-    var builtFiles = gulp.src(['build/*', 'css/vendor-*.css','css/style-*.css'], {read: false});
+gulp.task('inject-css', ['css'], () => {
+    const builtFiles = gulp.src(['build/*', 'css/vendor-*.css','css/style-*.css'], {read: false})
+        .pipe(naturalSort('desc'));
 
     return gulp.src('./../Resources/views/base.html.twig')
         .pipe(inject(builtFiles, {

@@ -1,26 +1,35 @@
-/*
- * Copyright (c) 2017. Rezo Zero
- * ShiftTheme - Shift Capital website - dec. 2016
- * @file webpack.js
- * @author Ambroise Maupate <ambroise@rezo-zero.com>
- */
-var gulp = require('gulp');
-var webpackStream = require('webpack-stream');
-var webpack = require('webpack');
-var path = require('path');
-var rev = require('gulp-rev');
-var plumber = require('gulp-plumber');
-var del = require('del');
-var named = require('vinyl-named');
+import gulp from 'gulp';
+import webpackStream from 'webpack-stream';
+import webpack from 'webpack';
+import plumber from 'gulp-plumber';
+import del from 'del';
+import named from 'vinyl-named';
+import themePaths from './themePaths';
+const production = process.env.NODE_ENV === 'production';
 
-gulp.task('clean-build', function () {
-    return del(paths.distScripts);
+gulp.task('clean-build', () => {
+    return del(themePaths.distScripts);
 });
 
-gulp.task('webpack', ['clean-build'], function(cb) {
-    var config = {
+gulp.task('webpack', ['clean-build'], (cb) => {
+    const config = {
+        debug:   !production,
+        devtool: production ? false : 'eval',
+        entry: {
+            app: "./src/main.js",
+            vendor: [
+                'jquery',
+                'gsap/src/uncompressed/TweenLite.js',
+                'gsap/src/uncompressed/plugins/CSSPlugin.js',
+                'gsap/src/uncompressed/easing/EasePack.js',
+                'starting-blocks/src/router.js',
+                'starting-blocks/src/state.js'
+            ]
+        },
         output: {
-            filename: "app.js"
+            filename: '[name]-[hash].js',
+            chunkFilename: '[name]-[chunkhash].js',
+            publicPath: 'build/',
         },
         resolve: {
             extensions: ['', '.js', '.jsx'],
@@ -30,11 +39,15 @@ gulp.task('webpack', ['clean-build'], function(cb) {
             }
         },
         plugins: [
-            new webpack.HotModuleReplacementPlugin(),
             new webpack.ProvidePlugin({
                 jQuery: 'jquery',
                 $: 'jquery',
                 jquery: 'jquery'
+            }),
+            new webpack.optimize.CommonsChunkPlugin({
+                name: 'vendor', // Move dependencies to our main file
+                /*children: true, // Look for common dependencies in all children,*/
+                minChunks: Infinity, // How many times a dependency must come up before being extracted
             })
         ],
         descriptionFiles: ["package.json"],
@@ -55,33 +68,35 @@ gulp.task('webpack', ['clean-build'], function(cb) {
         }
     };
 
-    if (process.env.NODE_ENV === 'production') {
+    if (production) {
+        config.plugins.push(new webpack.optimize.DedupePlugin());
+        config.plugins.push(new webpack.optimize.OccurenceOrderPlugin());
         config.plugins.push(new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false
             },
+            mangle:   true,
             comments: false,
             sourceMap: false,
         }));
         config.plugins.push(new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: JSON.stringify('production')
-            }
+            __SERVER__:      !production,
+            __DEVELOPMENT__: !production,
+            __DEVTOOLS__:    !production,
+            'process.env':   {
+                BABEL_ENV: JSON.stringify(process.env.NODE_ENV),
+            },
         }));
-        console.log('Uglified scripts.');
-    } else {
-        config.devtool = "eval";
-        console.log('With eval source maps.');
+
     }
 
-    return gulp.src(paths.entry)
+    return gulp.src(themePaths.entry)
         .pipe(plumber({
-            handleError: function (err) {
+            handleError: (err) => {
                 cb(err);
             }
         }))
         .pipe(named())
         .pipe(webpackStream(config))
-        .pipe(rev())
-        .pipe(gulp.dest(paths.distScripts));
+        .pipe(gulp.dest(themePaths.distScripts));
 });

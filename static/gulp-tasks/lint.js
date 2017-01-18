@@ -1,8 +1,9 @@
-var gulp = require('gulp');
-var eslint = require('gulp-eslint');
+import gulp from 'gulp';
+import eslint from 'gulp-eslint';
+import themePaths from './themePaths';
 
-gulp.task('lint', function() {
-    return gulp.src(paths.scripts)
+gulp.task('lint', () => {
+    return gulp.src(themePaths.scripts)
         .pipe(eslint({
             extends: 'eslint:recommended',
             parserOptions: {
