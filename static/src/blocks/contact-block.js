@@ -5,14 +5,13 @@
  * @copyright REZO ZERO 2016
  * @author Maxime Bérard
  */
+import $            from "jquery";
+import TweenLite    from "TweenLite";
+import CSSPlugin    from "gsap/src/uncompressed/plugins/CSSPlugin";
+import log          from "loglevel/dist/loglevel";
+import DefaultBlock from "./default-block";
 
-import $ from "jquery";
-import TweenMax from "TweenMax";
-import log from "loglevel";
-import {AbstractBlock} from "abstract-block";
-// import {DefaultBlock} from "blocks/default-block";
-
-export class ContactBlock extends AbstractBlock { // extends DefaultBlock
+export default class ContactBlock extends DefaultBlock {
 
     init() {
         super.init();
@@ -25,17 +24,22 @@ export class ContactBlock extends AbstractBlock { // extends DefaultBlock
     initEvents() {
         super.initEvents();
 
-        if(this.$form.length) this.$form.on('submit', $.proxy(this.formSubmit, this));
+        /*
+         * Un-comment to handle contact form with AJAX
+         */
+        //if(this.$form.length) this.$form.on('submit', $.proxy(this.formSubmit, this));
     }
 
     destroyEvents() {
         super.destroyEvents();
 
-        if(this.$form.length) this.$form.off('submit', $.proxy(this.formSubmit, this));
+        /*
+         * Un-comment to handle contact form with AJAX
+         */
+        //if(this.$form.length) this.$form.off('submit', $.proxy(this.formSubmit, this));
     }
 
     formSubmit(e) {
-
         TweenLite.to(this.$formMessage, 0.4, {height:0});
 
         $.ajax({
@@ -55,7 +59,7 @@ export class ContactBlock extends AbstractBlock { // extends DefaultBlock
                     this.$formMessage[0].innerHTML = '<span>'+data.message+'</span>';
                 }
 
-                var height = this.$formMessage.find('span').actual('outerHeight');
+                let height = this.$formMessage.find('span').actual('outerHeight');
                 TweenLite.to(this.$formMessage, 0.6, {height:height, delay:0.2});
 
             },
@@ -66,13 +70,12 @@ export class ContactBlock extends AbstractBlock { // extends DefaultBlock
                 this.$formMessage[0].className = 'form-message form-message-hidden form-message-error form-message-'+data.status;
                 this.$formMessage[0].innerHTML = '<span>'+data.errors+'</span>';
 
-                var height = this.$formMessage.find('span').actual('outerHeight');
+                let height = this.$formMessage.find('span').actual('outerHeight');
                 TweenLite.to(this.$formMessage, 0.6, {height:height, delay:0.2});
             }
         });
 
         e.preventDefault();
     }
-
 }
 

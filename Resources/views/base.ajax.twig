@@ -1,2 +1,15 @@
+{% set pageMetaDescription = pageMetaDescription|default(pageMeta.description)|default(meta.siteDescription) %}
+{% set pageMetaTitle = pageMetaTitle|default(pageMeta.title)|default(meta.siteName) %}
+{% set formattedLocale = request.locale|replace('_', '-')|lower %}
+{#  #}
+{% set nodeName = nodeName|default(node.nodeName) %}
+{% set nodeTypeName = nodeTypeName|default(node.nodeType.name) %}
+{% set nodeHome = node.home|default(false) %}
+{#  #}
+{% set title = title|default(nodeSource.title) %}
+{% set content = content|default(nodeSource.content) %}
+{% if nodeSource %}
+    {% set headerImage = nodeSource.headerImage[0] %}
+{% endif %}
 {# Content #}
 {% block content %}{% endblock %}

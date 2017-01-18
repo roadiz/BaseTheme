@@ -4,16 +4,17 @@
  * @file class-factory.js
  * @author Ambroise Maupate
  */
-import log from "loglevel";
-import {Page} from "pages/page";
-import {Home} from "pages/home";
-import {AbstractBlock} from "abstract-block";
-// import {ContactBlock} from "blocks/contact-block";
+import log          from "loglevel/dist/loglevel";
+import Page         from "./pages/page";
+import Home         from "./pages/home";
+import ContactBlock from "./blocks/contact-block";
+import BasicBlock   from "./blocks/basic-block";
+import MapBlock     from "./blocks/map-block";
 
 /**
  * This class need to be redefined for each of your projects.
  */
-export class ClassFactory
+export default class ClassFactory
 {
     /**
      * Returns an AbstractPage child class instance
@@ -50,7 +51,11 @@ export class ClassFactory
     getBlockInstance(nodeTypeName, page, $cont) {
         switch(nodeTypeName){
             /*case 'contact-block':
-                return new ContactBlock(page, $cont, nodeTypeName);*/
+                return new ContactBlock(page, $cont, nodeTypeName);
+            case 'mapblock':
+                return new MapBlock(page, $cont, nodeTypeName);
+            case 'basicblock':
+                return new BasicBlock(page, $cont, nodeTypeName);*/
             default:
                 /*log.info('    "' + nodeTypeName + '" has no defined route, using AbstractBlock.');
                 return new AbstractBlock(page, $cont, nodeTypeName);*/

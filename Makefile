@@ -11,10 +11,7 @@ NC=\033[0m
 all : configtest install build
 
 # Install NPM deps and Bower deps
-install : configtest static/node_modules static/bower_components
-
-static/bower_components :
-	cd ./static && bower install;
+install : configtest static/node_modules
 
 static/node_modules :
 	cd ./static && npm install;
@@ -29,8 +26,8 @@ build : configtest
 	cd ./static && npm run build;
 # Update NPM deps and Bower deps
 update : configtest
-	cd ./static && npm update && bower update;
-	@echo "✅\t${GREEN}Updated NPM and Bower dependencies. \tOK.${NC}" >&2;
+	cd ./static && npm update;
+	@echo "✅\t${GREEN}Updated NPM dependencies. \tOK.${NC}" >&2;
 # Delete generated assets
 clean :
 	rm -rf ./static/build;
@@ -38,9 +35,8 @@ clean :
 	@echo "✅\t${GREEN}Cleaned build and dist folders. \tOK.${NC}" >&2;
 # Uninstall NPM and Bower deps and clean generated assets
 uninstall : clean
-	rm -rf ./static/bower_components;
 	rm -rf ./static/node_modules;
-	@echo "✅\t${GREEN}Removed NPM and Bower dependencies. \tOK.${NC}" >&2;
+	@echo "✅\t${GREEN}Removed NPM dependencies. \tOK.${NC}" >&2;
 #
 # Test if required binaries are available
 #

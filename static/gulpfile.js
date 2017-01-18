@@ -6,6 +6,8 @@ var requireDir = require('require-dir');
  * source JS files.
  */
 paths = {
+    'entry': 'src/main.js',
+    'distScripts': 'build',
     'scripts': [
         'src/**/*.js'
     ],
@@ -31,7 +33,7 @@ gulp.task('default', ['svgstore', 'imagemin', 'inject']);
  * Watch tasks
  */
 gulp.task('watch-js', function (cb) {
-    return gulp.watch(paths.scripts, ['babel']);
+    return gulp.watch(paths.scripts, ['inject-js']);
 });
 gulp.task('watch-css', function (cb) {
     return gulp.watch(paths.styles, ['inject-css']);
