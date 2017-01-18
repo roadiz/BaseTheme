@@ -10,7 +10,6 @@ import log          from "loglevel/dist/loglevel";
 import DefaultBlock from "./default-block";
 
 export default class BasicBlock extends DefaultBlock {
-
     init() {
         super.init();
     }
