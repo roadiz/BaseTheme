@@ -95,7 +95,7 @@ insert as many `<script>` and `<link>` tags as needed.
 - `make clean`: remove any generated CSS and JS files (build and dist folders)
 - `make uninstall`: remove any *NPM* dependencies and `clean` 
 
-### Boilerplate
+## Boilerplate
 
 BaseTheme will provide you some ready-made *Twig* templates, styles and ES6 classes.
 
@@ -105,3 +105,23 @@ BaseTheme will provide you some ready-made *Twig* templates, styles and ES6 clas
 - `contact-block.js` with an AJAX form submit
 - `map-block.js` with a Google Map creation
 - `nav.js` with AJAX update for your active *nav-item*
+
+## Renaming BaseTheme to fit your project
+
+- Remove *Git* history to begin a fresh theme.
+- Rename `BaseThemeApp.php`
+- Find and replace with `find` and `sed` UNIX tools
+
+```shell
+rm -rf ${THEME_ROOT}/.git
+echo "✅\t${GREEN}Delete existing Git history.${NC}";
+
+mv BaseThemeApp.php ${theme_prefix}ThemeApp.php
+echo "✅\t${GREEN}Rename theme files against you theme name.${NC}";
+
+LC_ALL=C $FIND ./ -type f -exec $SED -i.bak -e "s/BaseTheme/${theme_prefix}Theme/g" {} \;
+LC_ALL=C $FIND ./ -type f -exec $SED -i.bak -e "s/Base theme/${theme_prefix} theme/g" {} \;
+LC_ALL=C $FIND ./static -type f -exec $SED -i.bak -e "s/Base/${theme_prefix}/g" {} \;
+LC_ALL=C $FIND ./ -type f -name '*.bak' -exec rm -f {} \;
+echo "✅\t${GREEN}Rename every occurrences of BaseTheme in your theme.${NC}";
+```
