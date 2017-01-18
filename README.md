@@ -129,9 +129,9 @@ echo "✅\t${GREEN}Delete existing Git history.${NC}";
 mv BaseThemeApp.php ${THEME_PREFIX}ThemeApp.php;
 echo "✅\t${GREEN}Rename theme files against you theme name.${NC}";
 
-LC_ALL=C $FIND ./ -type f -exec $SED -i.bak -e "s/BaseTheme/${THEME_PREFIX}Theme/g" {} \;
-LC_ALL=C $FIND ./ -type f -exec $SED -i.bak -e "s/Base theme/${THEME_PREFIX} theme/g" {} \;
-LC_ALL=C $FIND ./static -type f -exec $SED -i.bak -e "s/Base/${THEME_PREFIX}/g" {} \;
-LC_ALL=C $FIND ./ -type f -name '*.bak' -exec rm -f {} \;
+LC_ALL=C find ./ -type f -exec sed -i.bak -e "s/BaseTheme/${THEME_PREFIX}Theme/g" {} \;
+LC_ALL=C find ./ -type f -exec sed -i.bak -e "s/Base theme/${THEME_PREFIX} theme/g" {} \;
+LC_ALL=C find ./static -type f -exec sed -i.bak -e "s/Base/${THEME_PREFIX}/g" {} \;
+LC_ALL=C find ./ -type f -name '*.bak' -exec rm -f {} \;
 echo "✅\t${GREEN}Rename every occurrences of BaseTheme in your theme.${NC}";
 ```
