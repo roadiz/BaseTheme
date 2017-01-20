@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2016. Rezo Zero
+ * Copyright (c) 2017. Rezo Zero
  *
  * BaseTheme
  *
@@ -21,7 +21,7 @@ use Themes\BaseTheme\Services;
  */
 class BaseThemeApp extends FrontendController
 {
-    const VERSION = '0.16.1';
+    const VERSION = '0.16.3';
 
     protected static $themeName = 'Base theme';
     protected static $themeAuthor = 'REZO ZERO';
