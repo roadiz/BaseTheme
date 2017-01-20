@@ -12,7 +12,8 @@ importFiles:
     groups: []
     settings: []
     nodetypes:
-        - "Resources/import/nodetype/Page.rzt"
+        - "Resources/import/node-type/Neutral.rzt"
+        - "Resources/import/node-type/Page.rzt"
     tags: []
     nodes:
-        - "Resources/import/node/node.rzn"
+        - "Resources/import/node/node-main-menu.rzn"

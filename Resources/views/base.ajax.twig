@@ -8,7 +8,7 @@
 {#  #}
 {% set title = title|default(nodeSource.title) %}
 {% set content = content|default(nodeSource.content) %}
-{% if nodeSource %}
+{% if nodeSource and nodeSource.headerImage|length > 0 %}
     {% set headerImage = nodeSource.headerImage[0] %}
 {% endif %}
 {# Content #}

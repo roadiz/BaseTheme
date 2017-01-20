@@ -85,7 +85,7 @@ if(navigator.userAgent.indexOf('MSIE') >= 0 ||
 const router = new Router(
     {
         homeHasClass: false,
-        ajaxEnabled: true,
+        ajaxEnabled: false,
         lazyloadEnabled: true,
         pageClass: 'page-container'
     },

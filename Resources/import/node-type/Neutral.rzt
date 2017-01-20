@@ -1,0 +1,11 @@
+{
+    "name": "Neutral",
+    "displayName": "Neutral",
+    "description": "Type made only for creating menu",
+    "visible": true,
+    "newsletterType": false,
+    "hidingNodes": false,
+    "color": "#9c9c9c",
+    "reachable": false,
+    "fields": []
+}

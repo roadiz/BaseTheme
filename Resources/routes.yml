@@ -16,8 +16,9 @@ CssDynamicStyles:
     defaults: { _controller: Themes\BaseTheme\Controllers\CssController::stylesAction }
 
 sitemap:
-    path:     /sitemap.xml
+    path: /sitemap.xml
     defaults: { _controller: Themes\BaseTheme\Controllers\SitemapController::sitemapAction }
+
 defaultRemoveTrailingSlash:
     path: /{url}
     defaults: { _controller: Themes\BaseTheme\BaseThemeApp::removeTrailingSlashAction }

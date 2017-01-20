@@ -162,6 +162,8 @@ export default class Nav extends AbstractNav {
         if(BootstrapMedia.isMinSM()) {
             this.$cont[0].style.display = '';
             this.$cont[0].style.transform = '';
+            this.$overlay[0].style.display = '';
+            this.opened = false;
         }
     }
 }
