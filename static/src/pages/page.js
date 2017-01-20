@@ -5,11 +5,9 @@
  * @copyright REZO ZERO 2016
  * @author Ambroise Maupate
  */
+import DefaultPage from "./default-page";
 
-import {AbstractPage} from "abstract-page";
-// import {DefaultPage} from "pages/default-page";
-
-export class Page extends AbstractPage { // extends DefaultPage
+export default class Page extends DefaultPage {
 
     init(){
         super.init();

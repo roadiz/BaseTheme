@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2016. Rezo Zero
+ * Copyright (c) 2017. Rezo Zero
  *
  * BaseTheme
  *

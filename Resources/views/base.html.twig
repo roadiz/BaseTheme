@@ -11,7 +11,7 @@
 {#  #}
 {% set title = title|default(nodeSource.title) %}
 {% set content = content|default(nodeSource.content) %}
-{% if nodeSource %}
+{% if nodeSource and nodeSource.headerImage|length > 0 %}
     {% set headerImage = nodeSource.headerImage[0] %}
 {% endif %}
 {# No whitespace before DOCTYPE #}
@@ -114,8 +114,8 @@
      # @see static/gulp-tasks/inject.js
      #}
     <!-- inject:css -->
-    <link rel="stylesheet" href="{{ head.resourcesUrl }}css/vendor-ca20979732.css">
-    <link rel="stylesheet" href="{{ head.resourcesUrl }}css/style-72dab93ffc.css">
+    <link rel="stylesheet" href="{{ head.resourcesUrl }}css/vendor-3a0f7aea0d.css">
+    <link rel="stylesheet" href="{{ head.resourcesUrl }}css/style-c7c29e2626.css">
     <!-- endinject -->
     {#
      # Roadiz font-face CSS (comment it if no fonts available) -----------------
@@ -166,41 +166,25 @@
     {% include '@BaseTheme/common/footer.html.twig' %}
 
     <div id="cookiesconsent"></div>
-
     {#
      # JS scripts inclusions ---------------------------------------------------
      # Using gulp-inject
      # @see static/gulp-tasks/inject.js
      #}
-    {% if not head.devMode %}
-        <!-- inject:js -->
-        <script data-main="{{ head.resourcesUrl }}build/app-f94e9d60d5.min.js" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.min.js"></script>
-        <!-- endinject -->
-    {% else %}
-        <script data-main="{{ head.resourcesUrl }}bootstrap.js" src="{{ head.resourcesUrl }}bower_components/requirejs/require.js"></script>
-    {% endif %}
-
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
     <noscript><div id="no-js-message">{% trans %}no_javascript_message{% endtrans %}</div></noscript>
     <script type="text/javascript">
         {#
-         # Increase timeout for Requirejs --------------------------------------
-         #}
-        requirejs.config({
-            waitSeconds: 60
-        });
-
-        {#
          # Passing server vars to JS framework ---------------------------------
          #}
-        var temp = {};
-        temp.devMode = {% if head.devMode %}true{% else %}false{% endif %};
-        temp.baseUrl = "{{ head.baseUrl }}";
-        temp.resourcesUrl = '{{ head.resourcesUrl }}';
-        temp.ajaxToken = "{{ head.ajaxToken }}";
-        temp.googleClientId = '{{ head.googleClientId }}';
-        temp.mapsStyle = {% if head.mapsStyle %}JSON.parse('{{ head.mapsStyle|raw }}'){% else %}null{% endif %};
-        temp.domain = temp.baseUrl.split('://')[1];
+        window.temp = {
+            devMode: {% if head.devMode %}true{% else %}false{% endif %},
+            locale: '{{ request.locale }}',
+            resourcesUrl: '{{ head.resourcesUrl }}',
+            ajaxToken: "{{ head.ajaxToken }}",
+            googleClientId: '{{ head.googleClientId }}',
+            mapsStyle: {% if head.mapsStyle %}JSON.parse('{{ head.mapsStyle|raw }}'){% else %}null{% endif %}
+        };
 
         {#
          # Cookie consent ------------------------------------------------------
@@ -242,5 +226,9 @@
         ga('create','{{ head.universalAnalyticsId }}', temp.domain);ga('send','pageview');
         {% endif %}
     </script>
+    <!-- inject:js -->
+    <script src="{{ head.resourcesUrl }}build/vendor-5f9301e2f9b94b6c5691.js"></script>
+    <script src="{{ head.resourcesUrl }}build/app-5f9301e2f9b94b6c5691.js"></script>
+    <!-- endinject -->
 </body>
 </html>

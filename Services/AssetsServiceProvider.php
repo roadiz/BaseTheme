@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2016. Rezo Zero
+ * Copyright (c) 2017. Rezo Zero
  *
  * BaseTheme
  *
@@ -28,7 +28,8 @@ class AssetsServiceProvider implements ServiceProviderInterface
             $array = [];
 
             $array['headerImage'] = [
-                'width' => 1440,
+                'fit' => '1920x300',
+                'quality' => 85,
                 'progressive' => true,
                 'class' => 'img-responsive',
             ];

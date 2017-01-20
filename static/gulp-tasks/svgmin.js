@@ -1,19 +1,20 @@
-var gulp = require('gulp');
-var svgmin = require('gulp-svgmin');
-var svgstore = require('gulp-svgstore');
-var path = require('path');
-var del = require('del');
-var rename = require("gulp-rename");
+import gulp from 'gulp';
+import svgmin from 'gulp-svgmin';
+import svgstore from 'gulp-svgstore';
+import path from 'path';
+import del from 'del';
+import rename from "gulp-rename";
+import themePaths from './themePaths';
 
-gulp.task('clean-svg', function () {
+gulp.task('clean-svg', () => {
     return del(['./../Resources/views/svg/sprite.svg.twig'], {
         force: true
     });
 });
-gulp.task('svgstore', ['clean-svg'], function () {
-    return gulp.src(paths.svg)
+gulp.task('svgstore', ['clean-svg'], () => {
+    return gulp.src(themePaths.svg)
         .pipe(svgmin(function (file) {
-            var prefix = path.basename(file.relative, path.extname(file.relative));
+            const prefix = path.basename(file.relative, path.extname(file.relative));
             return {
                 plugins: [
                     {

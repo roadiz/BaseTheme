@@ -1,0 +1,36 @@
+{
+    "name": "Page",
+    "displayName": "Page",
+    "description": null,
+    "visible": true,
+    "newsletterType": false,
+    "hidingNodes": false,
+    "color": "#000000",
+    "reachable": true,
+    "fields": [
+        {
+            "name": "content",
+            "label": "Content",
+            "description": null,
+            "visible": true,
+            "type": 4,
+            "indexed": false,
+            "virtual": false,
+            "universal": false,
+            "default_values": null,
+            "group_name": null
+        },
+        {
+            "name": "header_image",
+            "label": "Header image",
+            "description": null,
+            "visible": true,
+            "type": 9,
+            "indexed": false,
+            "virtual": true,
+            "universal": true,
+            "default_values": null,
+            "group_name": null
+        }
+    ]
+}

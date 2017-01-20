@@ -1,23 +1,29 @@
-import $ from "jquery";
-import TweenMax from "TweenMax";
-import isMobile from "isMobile";
-import log from "loglevel";
-import {Utils} from "utils/utils";
-import {polyfills} from "utils/polyfills";
-import {gaTrackErrors} from "utils/gaTrackErrors";
-import {Nav} from "common/nav";
-import {Router} from "router";
-import {GraphicLoader} from "graphicLoader";
-import {ClassFactory} from "class-factory";
+import $                from "jquery";
+import log              from "loglevel/dist/loglevel";
+import polyfills        from "starting-blocks/src/utils/polyfills";
+import gaTrackErrors    from "starting-blocks/src/utils/gaTrackErrors";
+import isMobile         from "ismobilejs/isMobile";
+import Utils            from "starting-blocks/src/utils/utils";
+import Router           from "starting-blocks/src/router";
+import GraphicLoader    from "starting-blocks/src/graphicLoader";
+import Nav              from "./common/nav";
+import ClassFactory     from "./class-factory";
+import TweenLite        from "TweenLite";
+import EasePack         from "gsap/src/uncompressed/easing/EasePack";
+
 
 /**
  * Set max log level (most verbose) 0 ---> 5
  * @see https://github.com/pimterry/loglevel
  */
-if (temp.devMode && true === temp.devMode) {
+if (true === window.temp.devMode) {
     log.setLevel(0);
 } else {
     log.setLevel(5);
+}
+
+if (!location.origin) {
+    location.origin = location.protocol + "//" + location.host;
 }
 
 /**
@@ -28,18 +34,18 @@ TweenLite.defaultEase = Expo.easeOut;
 /**
  * Log credits
  */
-// Utils.logCredits(
-//     'BaseTheme',
-//     '#fff',
-//     [
-//         { name:'Rezo Zero', website:'www.rezo-zero.com' }
-//     ],
-//     [
-//         { name:'roadiz', website:'www.roadiz.io' },
-//         { name:'GSAP', website:'www.greensock.com' }
-//     ],
-//     '#000'
-// );
+Utils.logCredits(
+    'BaseTheme',
+    '#fff',
+    [
+        { name:'Rezo Zero', website:'www.rezo-zero.com' }
+    ],
+    [
+        { name:'roadiz', website:'www.roadiz.io' },
+        { name:'GSAP', website:'www.greensock.com' }
+    ],
+    '#000'
+);
 
 /*
  * Declare polyfills
@@ -79,13 +85,12 @@ if(navigator.userAgent.indexOf('MSIE') >= 0 ||
 const router = new Router(
     {
         homeHasClass: false,
-        ajaxEnabled: true,
+        ajaxEnabled: false,
         lazyloadEnabled: true,
         pageClass: 'page-container'
     },
     new ClassFactory(),
-    // temp namespace is defined in your Resources/views/base.twig.html
-    temp.baseUrl,
+    location.origin,
     new GraphicLoader(),
     new Nav()
 );

@@ -5,16 +5,19 @@
  * @copyright REZO ZERO 2016
  * @author Ambroise Maupate
  */
-import $ from 'jquery';
-import {Utils} from "utils/utils";
-import {BootstrapMedia} from "utils/bootstrapMedia";
-import {debounce} from "utils/debounce";
-import {AbstractNav} from 'abstract-nav';
+import $                from 'jquery';
+import log              from "loglevel/dist/loglevel";
+import Utils            from "starting-blocks/src/utils/utils";
+import BootstrapMedia   from "starting-blocks/src/utils/bootstrapMedia";
+import debounce         from "starting-blocks/src/utils/debounce";
+import AbstractNav      from 'starting-blocks/src/abstract-nav';
+import TweenLite        from "TweenLite";
+import CSSPlugin        from "gsap/src/uncompressed/plugins/CSSPlugin";
 
 /**
  *
  */
-export class Nav extends AbstractNav {
+export default class Nav extends AbstractNav {
     constructor() {
         super();
 
@@ -46,8 +49,42 @@ export class Nav extends AbstractNav {
         window.addEventListener('resize', debounce(this.onResize.bind(this), 100, false));
     }
 
-    destroyEvents(router) {
+    /**
+     * Update navigation state against a DOM container.
+     *
+     * @abstract
+     * @param {AbstractPage} page
+     */
+    update(page) {
+        /*
+         * Remove active link on previous page.
+         */
+        if (this.page) {
+            const $previousItem = $('#nav-item-' + this.page.name);
+            if ($previousItem.length) {
+                const $previousLink = $previousItem.find('.nav-link').eq(0);
 
+                $previousLink.removeClass('active');
+                $previousItem.removeClass('active');
+            }
+        }
+
+        super.update(page);
+
+        /*
+         * Add active on new page.
+         */
+        const $currentItem = $('#nav-item-' + page.name);
+        if ($currentItem.length) {
+            const $currentLink = $currentItem.find('.nav-link').eq(0);
+
+            $currentLink.addClass('active');
+            $currentItem.addClass('active');
+        }
+        this.close();
+    }
+
+    destroyEvents(router) {
         super.destroyEvents(router);
 
         if (router.options.ajaxEnabled) {
@@ -65,7 +102,6 @@ export class Nav extends AbstractNav {
      * Scroll
      */
     onScroll(e) {
-
         if(window.scrollY > this.minifyLimit){
             if(!this.minified) this.minify();
         }
@@ -75,14 +111,12 @@ export class Nav extends AbstractNav {
     }
 
     minify() {
-
-        Utils.addClass(document.body,'nav-minified');
+        Utils.addClass(document.body, 'nav-minified');
         this.minified = true;
     }
 
     unminify() {
-
-        Utils.removeClass(document.body,'nav-minified');
+        Utils.removeClass(document.body, 'nav-minified');
         this.minified = false;
     }
 
@@ -101,7 +135,7 @@ export class Nav extends AbstractNav {
         if(!BootstrapMedia.isMinSM() && !this.opened){
 
             this.$cont[0].style.display = 'block';
-            TweenLite.fromTo(this.$cont, 0.4, {xPercent:-100}, {xPercent:0});
+            TweenLite.fromTo(this.$cont, 0.5, {xPercent:-100}, {xPercent:0});
 
             this.$overlay[0].style.display = 'block';
             TweenLite.to(this.$overlay, 1.2, {opacity:1});
@@ -112,10 +146,8 @@ export class Nav extends AbstractNav {
 
     close() {
         if(!BootstrapMedia.isMinSM() && this.opened){
-
-            TweenLite.to(this.$cont, 0.4, {xPercent:-100, onComplete: () => {
+            TweenLite.to(this.$cont, 0.5, {xPercent:-100, onComplete: () => {
                 if(!this.opened) this.$cont[0].style.display = 'none';
-               // document.body.removeAttribute('style');
             }});
 
             TweenLite.to(this.$overlay, 1.2, {opacity:0, onComplete: () => {
@@ -127,6 +159,11 @@ export class Nav extends AbstractNav {
     }
 
     onResize() {
-
+        if(BootstrapMedia.isMinSM()) {
+            this.$cont[0].style.display = '';
+            this.$cont[0].style.transform = '';
+            this.$overlay[0].style.display = '';
+            this.opened = false;
+        }
     }
 }

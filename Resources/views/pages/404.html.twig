@@ -2,18 +2,22 @@
 
 {% block body_attributes %}class="error error-404" id="error-404" data-node-type="error404"{% endblock %}
 
-{% block inner_content %}
-
-    <div class="container">
-        <div class="row">
-
+{% block header %}
+    <header class="page-header">
+        {% if headerImage %}
+            <figure class="page-header-image">{{ headerImage|display(themeServices.imageFormats.headerImage) }}</figure>
+        {% endif %}
+        <div class="container">
             <h1 class="page-title">{{ title }}</h1>
-            {% if content %}<div class="page-text">{{ content|markdown }}</div>{% endif %}
-            {% if head.devMode %}{{ errorMessage|trans }}{% endif %}
-
         </div>
-    </div>
+    </header>
+{% endblock %}
 
+{% block inner_content %}
+    <div class="container">
+        {% if content %}<div class="page-text">{{ content|markdown }}</div>{% endif %}
+        {% if head.devMode %}{{ errorMessage|trans }}{% endif %}
+    </div>
 {% endblock %}
 
 
