@@ -39,14 +39,15 @@ class NodeServiceProvider implements ServiceProviderInterface
      */
     public function register(Container $container)
     {
-        $container['nodeMenu'] = function ($c) {
-            if ($this->translation === null) {
-                $this->translation = $this->coreServices['defaultTranslation'];
-            }
-
-            return $this->coreServices['em']
-                ->getRepository('RZ\Roadiz\Core\Entities\Node')
-                ->findHomeWithTranslation($this->translation);
+        /*
+         * Get main-menu root node
+         * whatever its translation.
+         */
+        $container['nodeMenu'] = function () {
+            return $this->coreServices['nodeApi']
+                        ->getOneBy([
+                            'nodeName' => 'main-menu',
+                        ]);
         };
 
         /*

@@ -9,6 +9,8 @@
  */
 namespace Themes\BaseTheme\Controllers;
 
+use Doctrine\Common\Cache\CacheProvider;
+use Doctrine\Common\Cache\VoidCache;
 use RZ\Roadiz\Core\Entities\Node;
 use RZ\Roadiz\Core\Entities\Translation;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,15 +34,23 @@ class CssController extends BaseThemeApp
         Request $request,
         $_locale = null
     ) {
-        /*
+        /**
          * Use same cache as Doctrine
+         *
+         * @var CacheProvider $cacheDriver
          */
         $cacheDriver = $this->get('em')->getConfiguration()->getMetadataCacheImpl();
+
+        /*
+         * Do not cache CSS in preview mode.
+         */
+        if ($this->get('kernel')->isPreview()) {
+            $cacheDriver = new VoidCache();
+        }
 
         if ($cacheDriver->contains(static::CSS_CACHE_ID)) {
             $response = $cacheDriver->fetch(static::CSS_CACHE_ID);
         } else {
-
             $response = new Response();
 
             $translation = $this->bindLocaleFromRoute($request, $_locale);

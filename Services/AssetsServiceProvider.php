@@ -28,7 +28,8 @@ class AssetsServiceProvider implements ServiceProviderInterface
             $array = [];
 
             $array['headerImage'] = [
-                'width' => 1440,
+                'fit' => '1920x300',
+                'quality' => 85,
                 'progressive' => true,
                 'class' => 'img-responsive',
             ];
