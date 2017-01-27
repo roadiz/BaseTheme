@@ -4,7 +4,6 @@
  * @file basic-block.js
  * @author Ambroise Maupate <ambroise@rezo-zero.com>
  */
-import $            from "jquery";
 import DefaultBlock from "./default-block";
 
 export default class BasicBlock extends DefaultBlock {

@@ -8,7 +8,7 @@ import Router                from "starting-blocks/src/router";
 import GraphicLoader         from "starting-blocks/src/graphicLoader";
 import Nav                   from "./common/nav";
 import ClassFactory          from "./class-factory";
-import {TweenLite, EasePack} from "gsap";
+import {TweenLite, Expo}     from "gsap";
 
 
 /**
