@@ -5,14 +5,13 @@
  * @copyright REZO ZERO 2016
  * @author Ambroise Maupate
  */
-import $                from 'jquery';
-import log              from "loglevel/dist/loglevel";
-import Utils            from "starting-blocks/src/utils/utils";
-import BootstrapMedia   from "starting-blocks/src/utils/bootstrapMedia";
-import debounce         from "starting-blocks/src/utils/debounce";
-import AbstractNav      from 'starting-blocks/src/abstract-nav';
-import TweenLite        from "TweenLite";
-import CSSPlugin        from "gsap/src/uncompressed/plugins/CSSPlugin";
+import $                     from 'jquery';
+import log                   from "loglevel/dist/loglevel";
+import Utils                 from "starting-blocks/src/utils/utils";
+import BootstrapMedia        from "starting-blocks/src/utils/bootstrapMedia";
+import debounce              from "starting-blocks/src/utils/debounce";
+import AbstractNav           from 'starting-blocks/src/abstract-nav';
+import {TweenLite, EasePack} from "gsap";
 
 /**
  *

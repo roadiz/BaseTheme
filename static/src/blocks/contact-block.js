@@ -5,11 +5,10 @@
  * @copyright REZO ZERO 2016
  * @author Maxime Bérard
  */
-import $            from "jquery";
-import TweenLite    from "TweenLite";
-import CSSPlugin    from "gsap/src/uncompressed/plugins/CSSPlugin";
-import log          from "loglevel/dist/loglevel";
-import DefaultBlock from "./default-block";
+import $                     from "jquery";
+import log                   from "loglevel/dist/loglevel";
+import DefaultBlock          from "./default-block";
+import {TweenLite, EasePack} from "gsap";
 
 export default class ContactBlock extends DefaultBlock {
 

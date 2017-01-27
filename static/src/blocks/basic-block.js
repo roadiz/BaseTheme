@@ -5,8 +5,6 @@
  * @author Ambroise Maupate <ambroise@rezo-zero.com>
  */
 import $            from "jquery";
-import TweenMax     from "TweenMax";
-import log          from "loglevel/dist/loglevel";
 import DefaultBlock from "./default-block";
 
 export default class BasicBlock extends DefaultBlock {
