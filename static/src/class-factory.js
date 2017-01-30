@@ -4,12 +4,12 @@
  * @file class-factory.js
  * @author Ambroise Maupate
  */
-import log          from "loglevel/dist/loglevel";
-import Page         from "./pages/page";
-import Home         from "./pages/home";
+import log from "loglevel";
+import Page from "./pages/page";
+import Home from "./pages/home";
 import ContactBlock from "./blocks/contact-block";
-import BasicBlock   from "./blocks/basic-block";
-import MapBlock     from "./blocks/map-block";
+import BasicBlock from "./blocks/basic-block";
+import MapBlock from "./blocks/map-block";
 
 /**
  * This class need to be redefined for each of your projects.

@@ -5,12 +5,9 @@
  * @copyright REZO ZERO 2016
  * @author Ambroise Maupate
  */
-import $                      from 'jquery';
-import log                    from "loglevel/dist/loglevel";
-import Utils                  from "starting-blocks/src/utils/utils";
-import BootstrapMedia         from "starting-blocks/src/utils/bootstrapMedia";
-import debounce               from "starting-blocks/src/utils/debounce";
-import AbstractNav            from 'starting-blocks/src/abstract-nav';
+import $ from 'jquery';
+import log from "loglevel";
+import {Utils, BootstrapMedia, debounce, AbstractNav} from "starting-blocks";
 import {TweenLite, CSSPlugin} from "gsap";
 
 /**

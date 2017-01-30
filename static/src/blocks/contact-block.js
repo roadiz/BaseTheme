@@ -7,7 +7,7 @@
  */
 import $ from "jquery";
 import {TweenLite} from "gsap";
-import log from "loglevel/dist/loglevel";
+import log from "loglevel";
 import DefaultBlock from "./default-block";
 
 export default class ContactBlock extends DefaultBlock {

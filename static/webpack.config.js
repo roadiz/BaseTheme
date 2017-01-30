@@ -9,11 +9,7 @@ const config = {
         vendor: [
             'jquery',
             'gsap/TweenMax.js',
-            'gsap/TweenLite.js',
-            'gsap/CSSPlugin.js',
-            'gsap/EasePack.js',
-            'starting-blocks/src/router.js',
-            'starting-blocks/src/state.js',
+            'starting-blocks/bundle.js',
             'loglevel/dist/loglevel.js',
             'ismobilejs/isMobile.js'
         ]
@@ -44,7 +40,7 @@ const config = {
             { test: /\.css$/, loader: "style!css" },
             {
                 test: /\.js$/,
-                exclude: /node_modules(?!\/starting-blocks)/,
+                exclude: /node_modules/,
                 loader: 'babel-loader'
             },
             {

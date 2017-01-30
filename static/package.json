@@ -58,7 +58,7 @@
     "load-google-maps-api": "0.0.2",
     "loglevel": "^1.4.1",
     "normalize.css": "^5.0.0",
-    "starting-blocks": "^2.0.3",
+    "starting-blocks": "^2.0.5",
     "vanilla-lazyload": "^3.0.0"
   }
 }

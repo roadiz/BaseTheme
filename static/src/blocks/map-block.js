@@ -5,7 +5,7 @@
  * @author Ambroise Maupate <ambroise@rezo-zero.com>
  */
 import $                  from "jquery";
-import log                from "loglevel/dist/loglevel";
+import log                from "loglevel";
 import DefaultBlock       from "./default-block";
 import Promise            from 'es6-promise';
 import loadGoogleMapsAPI  from 'load-google-maps-api';
