@@ -120,18 +120,18 @@ export NC='\033[0m';
 
 cd ~/path/to/themes;
 mv BaseTheme ${THEME_PREFIX}Theme;
-echo "✅\t${GREEN}Rename theme folder.${NC}";
+echo -e "✅\t${GREEN}Rename theme folder.${NC}";
 
 cd ~/path/to/themes/${THEME_PREFIX}Theme;
 rm -rf ./.git;
-echo "✅\t${GREEN}Delete existing Git history.${NC}";
+echo -e "✅\t${GREEN}Delete existing Git history.${NC}";
 
 mv BaseThemeApp.php ${THEME_PREFIX}ThemeApp.php;
-echo "✅\t${GREEN}Rename theme files against you theme name.${NC}";
+echo -e "✅\t${GREEN}Rename theme files against you theme name.${NC}";
 
 LC_ALL=C find ./ -type f -exec sed -i.bak -e "s/BaseTheme/${THEME_PREFIX}Theme/g" {} \;
 LC_ALL=C find ./ -type f -exec sed -i.bak -e "s/Base theme/${THEME_PREFIX} theme/g" {} \;
 LC_ALL=C find ./static -type f -exec sed -i.bak -e "s/Base/${THEME_PREFIX}/g" {} \;
 LC_ALL=C find ./ -type f -name '*.bak' -exec rm -f {} \;
-echo "✅\t${GREEN}Rename every occurrences of BaseTheme in your theme.${NC}";
+echo -e "✅\t${GREEN}Rename every occurrences of BaseTheme in your theme.${NC}";
 ```
