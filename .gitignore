@@ -85,3 +85,6 @@ sftp-config.json
 ## Network files
 .smbdelete*
 .nfs.*
+
+## Yarn
+yarn.lock

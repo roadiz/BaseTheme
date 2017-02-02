@@ -44,14 +44,21 @@
     "postcss-fixes": "^1.4.1",
     "postcss-reduce-transforms": "^1.0.3",
     "require-dir": "^0.3.0",
-    "vinyl-named": "^1.1.0"
+    "vinyl-named": "^1.1.0",
+    "webpack": "^1.14.0",
+    "webpack-stream": "^3.2.0"
   },
   "dependencies": {
-    "jquery": "^2.2.0",
-    "starting-blocks": "^2.0.1",
-    "load-google-maps-api": "0.0.2",
-    "normalize.css": "^5.0.0",
+    "bootstrap": "^3.3.7",
     "es6-promise": "^3.1.2",
-    "bootstrap": "^3.3.7"
+    "gsap": "^1.19.1",
+    "ismobilejs": "^0.4.0",
+    "jquery": "^2.2.0",
+    "jquery.waitforimages": "^2.2.0",
+    "load-google-maps-api": "0.0.2",
+    "loglevel": "^1.4.1",
+    "normalize.css": "^5.0.0",
+    "starting-blocks": "^2.0.5",
+    "vanilla-lazyload": "^3.0.0"
   }
 }

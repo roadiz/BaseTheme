@@ -1,15 +1,10 @@
-import $                from "jquery";
-import log              from "loglevel/dist/loglevel";
-import polyfills        from "starting-blocks/src/utils/polyfills";
-import gaTrackErrors    from "starting-blocks/src/utils/gaTrackErrors";
-import isMobile         from "ismobilejs/isMobile";
-import Utils            from "starting-blocks/src/utils/utils";
-import Router           from "starting-blocks/src/router";
-import GraphicLoader    from "starting-blocks/src/graphicLoader";
-import Nav              from "./common/nav";
-import ClassFactory     from "./class-factory";
-import TweenLite        from "TweenLite";
-import EasePack         from "gsap/src/uncompressed/easing/EasePack";
+import $ from "jquery";
+import log from "loglevel";
+import {polyfills, gaTrackErrors, Utils, Router, GraphicLoader} from "starting-blocks";
+import isMobile from "ismobilejs/isMobile";
+import Nav from "./common/nav";
+import ClassFactory from "./class-factory";
+import {TweenLite, Expo} from "gsap";
 
 
 /**
