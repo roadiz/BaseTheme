@@ -30,14 +30,17 @@ class SitemapController extends BaseThemeApp
     ) {
         $this->prepareThemeAssignation(null, $this->bindLocaleFromRoute($request, $_locale));
 
+        $nodeTypes = $this->get('em')->getRepository('RZ\Roadiz\Core\Entities\NodeType')
+            ->findBy([
+                'reachable' => true
+            ]);
+
         /*
          * Add your own nodes grouped by their type.
          */
         $this->assignation['pages'] = $this->get('nodeSourceApi')
             ->getBy([
-                'node.nodeType' => [
-                    $this->themeContainer['typePage'],
-                ],
+                'node.nodeType' => $nodeTypes,
                 'node.visible' => true,
             ]);
 
