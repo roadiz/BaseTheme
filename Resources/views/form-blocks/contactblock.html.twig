@@ -1,0 +1,13 @@
+{% for messages in session.messages %}
+    {% for message in messages %}
+        <p class="alert alert-success">{{ message }}</p>
+    {% endfor %}
+{% endfor %}
+
+{% form_theme contactForm 'bootstrap_3_layout.html.twig' %}
+{{ form_start(contactForm) }}
+{{ form_widget(contactForm) }}
+<div class="form-group">
+    <button class="btn btn-primary" type="submit">{% trans %}send{% endtrans %}</button>
+</div>
+{{ form_end(contactForm) }}

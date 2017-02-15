@@ -99,6 +99,11 @@ insert as many `<script>` and `<link>` tags as needed.
 
 BaseTheme will provide you some ready-made *Twig* templates, styles and ES6 classes.
 
+- A basic block is available with its Twig template. All you need is to create the node-type in your Roadiz back-office.
+- A map block is available with its Twig template. All you need is to create the node-type in your Roadiz back-office.
+- A contact form block is available with its controller and Twig templates. All you need is to create the 
+node-type in your Roadiz back-office.
+
 #### ES6 classes
 
 - `basic-block.js`
@@ -113,25 +118,4 @@ BaseTheme will provide you some ready-made *Twig* templates, styles and ES6 clas
 - Rename `BaseThemeApp.php`
 - Find and replace with `find` and `sed` UNIX tools
 
-```shell
-export GREEN='\033[0;32m';
-export THEME_PREFIX='MySuper';
-export NC='\033[0m';
-
-cd ~/path/to/themes;
-mv BaseTheme ${THEME_PREFIX}Theme;
-echo -e "✅\t${GREEN}Rename theme folder.${NC}";
-
-cd ~/path/to/themes/${THEME_PREFIX}Theme;
-rm -rf ./.git;
-echo -e "✅\t${GREEN}Delete existing Git history.${NC}";
-
-mv BaseThemeApp.php ${THEME_PREFIX}ThemeApp.php;
-echo -e "✅\t${GREEN}Rename theme files against you theme name.${NC}";
-
-LC_ALL=C find ./ -type f -exec sed -i.bak -e "s/BaseTheme/${THEME_PREFIX}Theme/g" {} \;
-LC_ALL=C find ./ -type f -exec sed -i.bak -e "s/Base theme/${THEME_PREFIX} theme/g" {} \;
-LC_ALL=C find ./static -type f -exec sed -i.bak -e "s/Base/${THEME_PREFIX}/g" {} \;
-LC_ALL=C find ./ -type f -name '*.bak' -exec rm -f {} \;
-echo -e "✅\t${GREEN}Rename every occurrences of BaseTheme in your theme.${NC}";
-```
+You’ll find a script template on [Roadiz documentation](http://docs.roadiz.io/en/develop/developer/themes/create_theme.html) to rename automatically BaseTheme to fit your needs.
