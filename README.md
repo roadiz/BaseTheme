@@ -119,3 +119,7 @@ node-type in your Roadiz back-office.
 - Find and replace with `find` and `sed` UNIX tools
 
 You’ll find a script template on [Roadiz documentation](http://docs.roadiz.io/en/develop/developer/themes/create_theme.html) to rename automatically BaseTheme to fit your needs.
+
+## Contributing
+
+See [Contributing guidelines](./CONTRIBUTING.md)
