@@ -91,4 +91,3 @@ const router = new Router(
 );
 router.initEvents();
 router.boot($('.page-container').eq(0), 'static', isHome);
-

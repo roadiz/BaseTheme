@@ -22,6 +22,6 @@ gulp.task('webpack', ['clean-build'], (cb) => {
             }
         }))
         .pipe(named())
-        .pipe(webpackStream(webpackConfig))
+        .pipe(webpackStream(webpackConfig, webpack))
         .pipe(gulp.dest(themePaths.distScripts));
 });
