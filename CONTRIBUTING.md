@@ -17,7 +17,7 @@ them available when somebody clone or generate a theme with Roadiz for the first
 time.
 
 - static/build/*.js
-- static/build/*.css
+- static/css/*.css
 - Resources/views/partials/*.twig
 - Resources/views/svg/sprite.svg.twig
 
