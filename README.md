@@ -2,14 +2,22 @@
 
 This theme is meant to get a **fresh start** to create a custom website.
 
-* **Find and replace** every `BaseTheme` occurrences over this folder using your own theme name, verify in:
-    * PHP namespaces
-    * BaseThemeApp class usages
-    * Absolute paths in `bootstrap.js`
-    * In `./config.yml` to change theme name
-* Rename `Base theme` title in `BaseThemeApp.php` and in `./config.yml` to get the good name when you’re installing Roadiz
-* Rename `BaseThemeApp.php` file name.
-* Launch `make` in your theme folder to install *NPM* dependencies and launch *Gulp* tasks for the first time.
+## First use
+
+Make sure that NodeJS and NPM are installed on your machine.
+
+* Generate a new theme with `bin/roadiz themes:generate Test` as *Test* is your theme prefix
+* Go to your theme `static/` folder and install JS dependencies with your favorite tool `npm install` or `yarn`
+* Launch assets building for the first time with `npm run build`
+
+A Makefile is available to ease up process if you are not familiar with `npm` commands. Just type `make` in your theme folder. 
+
+## Usage for development
+
+* Go to your theme `static/` folder
+* Launch `npm run dev`: this will launch a watcher on JS, Less, SVG and images files in `static/` folder
+
+## Starter node-types
 
 A common node-type called *Page* will be installed with this theme, his controller is located 
 in `Controllers/PageController.php` and his twig template in `Resources/views/types/page.html.twig`.
@@ -41,7 +49,6 @@ When you set it up, *Gulp* will generate versioned CSS and JS files to
 be properly served over browser caches.
 
 * Install globally *NodeJS* - http://nodejs.org/
-* Install globally *gulp-cli* - https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md
 * Launch `make` in your theme folder to install *NPM* vendor and launch *Gulp* tasks for the first time.
 
 Then you can launch *Gulp* in background to listen every file update: this command will
