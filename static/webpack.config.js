@@ -15,9 +15,9 @@ const plugins = [
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.ProvidePlugin({
-        jQuery: 'jquery',
-        $: 'jquery',
-        jquery: 'jquery'
+        jQuery: 'jQuery',
+        jquery: 'jquery',
+        $: '$'
     })
 ];
 
@@ -53,9 +53,7 @@ const config = {
     entry: {
         app: sourcePath + '/main.js',
         vendor: [
-            'jquery',
             'starting-blocks/bundle.js',
-            'gsap/TweenMax.js',
             'loglevel/dist/loglevel.js',
             'ismobilejs/isMobile.js'
         ]
@@ -64,6 +62,15 @@ const config = {
         filename: '[name]-[hash].js',
         chunkFilename: '[name]-[chunkhash].js',
         publicPath: 'build/',
+    },
+    externals: {
+        TweenLite: 'TweenLite',
+        TweenMax: 'TweenMax',
+        Expo: 'Expo',
+        CSSPlugin: 'CSSPlugin',
+        jQuery: 'jQuery',
+        jquery: 'jQuery',
+        $: '$'
     },
     module: {
         rules: [{
@@ -75,7 +82,7 @@ const config = {
             ]
         }, {
             test: /\.(js|jsx)$/,
-            // exclude: /node_modules/,
+            exclude: /node_modules/,
             loader: 'babel-loader',
             query: {
                 babelrc: false,

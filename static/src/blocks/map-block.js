@@ -4,7 +4,6 @@
  * @file map-block.js
  * @author Ambroise Maupate <ambroise@rezo-zero.com>
  */
-import $                  from "jquery";
 import log                from "loglevel";
 import DefaultBlock       from "./default-block";
 import Promise            from 'es6-promise';

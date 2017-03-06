@@ -6,7 +6,7 @@
  * @author Maxime Bérard
  */
 import $ from "jquery";
-import {TweenLite} from "gsap";
+import TweenLite from "TweenLite";
 import log from "loglevel";
 import DefaultBlock from "./default-block";
 
