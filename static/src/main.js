@@ -4,8 +4,8 @@ import {polyfills, gaTrackErrors, Utils, Router, GraphicLoader} from "starting-b
 import isMobile from "ismobilejs/isMobile";
 import Nav from "./common/nav";
 import ClassFactory from "./class-factory";
-import {TweenLite, Expo} from "gsap";
-
+import TweenLite from "TweenLite";
+import Expo from "Expo";
 
 /**
  * Set max log level (most verbose) 0 ---> 5
@@ -91,4 +91,3 @@ const router = new Router(
 );
 router.initEvents();
 router.boot($('.page-container').eq(0), 'static', isHome);
-

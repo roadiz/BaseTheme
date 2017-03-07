@@ -1,25 +1,31 @@
-# Blank Roadiz theme
+# Base Roadiz theme
 
-This theme is meant to get a **fresh start** to create a custom website.
+This theme is meant to get a **fresh start** to create a custom website on *Roadiz*.
 
-* **Find and replace** every `BaseTheme` occurrences over this folder using your own theme name, verify in:
-    * PHP namespaces
-    * BaseThemeApp class usages
-    * Absolute paths in `bootstrap.js`
-    * In `./config.yml` to change theme name
-* Rename `Base theme` title in `BaseThemeApp.php` and in `./config.yml` to get the good name when you’re installing Roadiz
-* Rename `BaseThemeApp.php` file name.
-* Launch `make` in your theme folder to install *NPM* dependencies and launch *Gulp* tasks for the first time.
+## First use
 
-A common node-type called *Page* will be installed with this theme, his controller is located 
-in `Controllers/PageController.php` and his twig template in `Resources/views/types/page.html.twig`.
-We also created a LESS (`static/less/pages/page.less`) and a javascript file (`static/src/pages/page.js`) for this node-type.
-If you need others node-type, duplicate theses files and rename them.
+Make sure that NodeJS and NPM are installed on your machine.
+
+```bash
+bin/roadiz themes:generate Test
+```
+
+* Generate a new theme with *Test* as your theme prefix
+
+We provide a starter kit based on ES6 with *Webpack2*, *Babel*, *Less* and *Gulp* as task runner. Feel free to adapt it if you have your own coding workflow. Keep in mind that we inject built CSS and JS into partial *Twig* templates to get versioned file names and ignore them in development stage.
+
+## Usage for development
+
+* Go to your theme `static/` folder and install JS dependencies with your favorite tool `npm install` or `yarn`
+* Launch assets building for the first time with `npm run build`
+* Launch `npm run dev` each time you start coding, this will launch a watcher on JS, Less, SVG and images files in `static/` folder
+
+A *Makefile* is available to ease up process if you are not familiar with `npm` commands. Just type `make` in your theme folder. 
 
 ## External JS framework
 
 Base theme uses *Gulp* and *NPM* to deal with front development files.
-We chose to use **ES6 javascript** transpiled with *Babel* and loaded via *Webpack*.
+We chose to use **ES6 javascript** transpiled with *Babel* and loaded via *Webpack2*.
 
 Then we externalized all the JS logic and routing system into our [*Starting blocks*](https://github.com/rezozero/starting-blocks) framework so that your theme only host specific JS code and will be able to easily upgrade common JS features.
 
@@ -36,12 +42,11 @@ modules files, you even can override *Bootstrap* variables.
 
 ### Gulp
 
-This blank theme uses *Gulp* to handle and package your LESS, JS and CSS files. 
+This blank theme uses *Gulp* as task manager to handle your LESS, JS and CSS files. 
 When you set it up, *Gulp* will generate versioned CSS and JS files to 
 be properly served over browser caches.
 
 * Install globally *NodeJS* - http://nodejs.org/
-* Install globally *gulp-cli* - https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md
 * Launch `make` in your theme folder to install *NPM* vendor and launch *Gulp* tasks for the first time.
 
 Then you can launch *Gulp* in background to listen every file update: this command will
@@ -74,21 +79,17 @@ file, which is your main project stylesheet. For *Bower* stylesheet, just do the
 Do not forget to use `@import (inline)` syntax to force *LESS* compiler to include files contents if 
 you want to import plain CSS files.
 
-#### In development mode
-
-When you work with `make watch` running in background, *Gulp* will only compile your *LESS* files in `static/css/` folder and run *Webpack* with *eval* mode. It won’t optimize nor uglify your JS. 
-
 #### In production mode
 
 When you execute a `make build` command, *Gulp* will compile your *LESS* files
-and it will optimize your *Webpack* app into
+and it will optimize your *Webpack2* app into
 `/static/build` folder. As in *development* mode, *Twig* will automatically inject your assets to
-insert as many `<script>` and `<link>` tags as needed.
+insert as many `<script>` and `<link>` tags as needed into `Resources/view/partials/` folder.
 
 ### Make commands
 
 - `make`: is equivalent to `make configtest && make install && make build`
-- `make configtest`: test if *NPM*, and *Gulp CLI* are available
+- `make configtest`: test if *NPM* is available
 - `make install`: install *NPM* dependencies
 - `make build`: call `npm run build` in `static/` folder
 - `make watch`: call `npm run dev` in `static/` folder
@@ -104,6 +105,13 @@ BaseTheme will provide you some ready-made *Twig* templates, styles and ES6 clas
 - A contact form block is available with its controller and Twig templates. All you need is to create the 
 node-type in your Roadiz back-office.
 
+#### Node-types
+
+A common node-type called *Page* will be installed with this theme, his controller is located 
+in `Controllers/PageController.php` and his twig template in `Resources/views/types/page.html.twig`.
+We also created a LESS (`static/less/pages/page.less`) and a javascript file (`static/src/pages/page.js`) for this node-type.
+If you need others node-type, duplicate theses files and rename them.
+
 #### ES6 classes
 
 - `basic-block.js`
@@ -111,15 +119,7 @@ node-type in your Roadiz back-office.
 - `map-block.js` with a Google Map creation
 - `nav.js` with AJAX update for your active *nav-item*
 
-## Renaming BaseTheme to fit your project
-
-- Remove *Git* history to begin a fresh theme.
-- Rename theme folder `BaseTheme/`
-- Rename `BaseThemeApp.php`
-- Find and replace with `find` and `sed` UNIX tools
-
-You’ll find a script template on [Roadiz documentation](http://docs.roadiz.io/en/develop/developer/themes/create_theme.html) to rename automatically BaseTheme to fit your needs.
-
 ## Contributing
 
 See [Contributing guidelines](./CONTRIBUTING.md)
+

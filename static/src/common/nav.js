@@ -8,7 +8,8 @@
 import $ from 'jquery';
 import log from "loglevel";
 import {Utils, BootstrapMedia, debounce, AbstractNav} from "starting-blocks";
-import {TweenLite, CSSPlugin} from "gsap";
+import TweenLite from "TweenLite";
+import CSSPlugin from "CSSPlugin";
 
 /**
  *
