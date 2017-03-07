@@ -11,9 +11,11 @@ homePageLocale:
         # Use every 2 letter codes (quick and dirty)
         _locale: "[a-z]{2}"
 
-CssDynamicStyles:
-    path:     /css/dynamic-styles.css
-    defaults: { _controller: Themes\BaseTheme\Controllers\CssController::stylesAction }
+# Add a dynamic CSS path if you want to
+# customize styles from back-office.
+#CssDynamicStyles:
+#    path:     /css/dynamic-styles.css
+#    defaults: { _controller: Themes\BaseTheme\Controllers\CssController::stylesAction }
 
 sitemap:
     path: /sitemap.xml

@@ -9,10 +9,8 @@
  */
 namespace Themes\BaseTheme\Controllers;
 
-use Doctrine\Common\Cache\CacheProvider;
-use Doctrine\Common\Cache\VoidCache;
 use RZ\Roadiz\Core\Entities\Node;
-use RZ\Roadiz\Core\Entities\Translation;
+use RZ\Roadiz\Core\Kernel;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Themes\BaseTheme\BaseThemeApp;
@@ -34,43 +32,27 @@ class CssController extends BaseThemeApp
         Request $request,
         $_locale = null
     ) {
-        /**
-         * Use same cache as Doctrine
-         *
-         * @var CacheProvider $cacheDriver
-         */
-        $cacheDriver = $this->get('em')->getConfiguration()->getMetadataCacheImpl();
+        $translation = $this->bindLocaleFromRoute($request, $_locale);
+        $this->prepareThemeAssignation(null, $translation);
 
-        /*
-         * Do not cache CSS in preview mode.
-         */
-        if ($this->get('kernel')->isPreview()) {
-            $cacheDriver = new VoidCache();
+        // Pages
+        $this->assignation['pages'] = $this->getPages();
+
+        $response = new Response();
+        $response->setStatusCode(Response::HTTP_OK);
+        $response->headers->set('Content-Type', 'text/css');
+
+        $response->setContent($this->getTwig()->render('@BaseTheme/css/dynamic-styles.css.twig', $this->assignation));
+
+        /** @var Kernel $kernel */
+        $kernel = $this->get('kernel');
+        if (!$kernel->isPreview() &&
+            !$kernel->isDebug()) {
+            $response->setPublic();
+            $response->setPrivate();
+            $response->setMaxAge(60*60);
         }
 
-        if ($cacheDriver->contains(static::CSS_CACHE_ID)) {
-            $response = $cacheDriver->fetch(static::CSS_CACHE_ID);
-        } else {
-            $response = new Response();
-
-            $translation = $this->bindLocaleFromRoute($request, $_locale);
-            $this->prepareThemeAssignation(null, $translation);
-
-            // Pages
-            $this->assignation['pages'] = $this->getPages();
-
-            $response->setStatusCode(Response::HTTP_OK);
-            $response->headers->set('Content-Type', 'text/css');
-            $this->get('stopwatch')->start('twigRender');
-
-            $result = $this->getTwig()->render('@BaseTheme/css/dynamic-styles.css.twig', $this->assignation);
-
-            $response->setContent($result);
-            /*
-             * Save response object
-             */
-            $cacheDriver->save(static::CSS_CACHE_ID, $response, 1800);
-        }
         return $response;
     }
 
