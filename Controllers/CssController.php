@@ -49,8 +49,8 @@ class CssController extends BaseThemeApp
         if (!$kernel->isPreview() &&
             !$kernel->isDebug()) {
             $response->setPublic();
-            $response->setPrivate();
             $response->setMaxAge(60*60);
+            $response->setSharedMaxAge(60*60);
         }
 
         return $response;
