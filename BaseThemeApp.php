@@ -66,11 +66,7 @@ class BaseThemeApp extends FrontendController
          * Render Homepage manually
          */
         // $this->prepareThemeAssignation($home, $translation);
-        // return new Response(
-        //     $this->getTwig()->render('home.html.twig', $this->assignation),
-        //     Response::HTTP_OK,
-        //     array('content-type' => 'text/html')
-        // );
+        // return $this->render('pages/home.html.twig', $this->assignation);
     }
 
     /**

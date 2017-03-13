@@ -1,8 +1,17 @@
 {% extends '@BaseTheme/pages/base.html.twig' %}
 
+{% block header %}
+    <header class="page-header">
+        {% if headerImage %}
+            <figure class="page-header-image">{{ headerImage|display(themeServices.imageFormats.headerImage) }}</figure>
+        {% endif %}
+        <div class="container">
+            <h1 class="page-title">{{ nodeSource.title }}</h1>
+        </div>
+    </header>
+{% endblock %}
 {% block inner_content %}
-    <h1 class="page-title">{% trans %}hello.world{% endtrans %}</h1>
-    <div>
+    <div class="container">
         {% if node %}
             <p>{{ "node.name.is.%name%"|trans({'%name%':node.nodeSources.first.title }) }}</p>
         {% endif %}
