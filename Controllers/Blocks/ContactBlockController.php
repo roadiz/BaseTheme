@@ -30,8 +30,7 @@ class ContactBlockController extends BaseThemeApp
         $this->assignation['session']['messages'] = $this->get('session')->getFlashBag()->all();
 
         /** @var FormInterface $form */
-        $contactFormManager = $this->createContactFormManager()
-                     ->withDefaultFields();
+        $contactFormManager = $this->createContactFormManager()->withDefaultFields();
 
         /*
          * Define custom receiver.
