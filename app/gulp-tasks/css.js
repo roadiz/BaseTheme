@@ -7,11 +7,12 @@ import postcssReduceTransform from 'postcss-reduce-transforms';
 import autoprefixer from 'autoprefixer';
 import cssMqpacker from 'css-mqpacker';
 import cssnano from 'cssnano';
+import themePaths from './themePaths';
 
 Promise.polyfill();
 const production = process.env.NODE_ENV === 'production';
 
-gulp.task('css', ['less-vendor', 'less'], () => {
+gulp.task('css', ['less'], () => {
     const processors = [
         postcssFixes(),
         postcssFilterGradient(),
@@ -25,11 +26,11 @@ gulp.task('css', ['less-vendor', 'less'], () => {
          * Only use CSS processors in production
          */
         console.log('Optimized and cleaned CSS with PostCSS.');
-        return gulp.src('./css/*.css')
+        return gulp.src(themePaths.distStyles + '/*.css')
             .pipe(postcss(processors))
-            .pipe(gulp.dest('./css'));
+            .pipe(gulp.dest(themePaths.distStyles));
     } else {
         console.log('No CSS optimization.');
-        return gulp.src('./css/*.css').pipe(gulp.dest('./css'));
+        return gulp.src(themePaths.distStyles + '/*.css').pipe(gulp.dest(themePaths.distStyles));
     }
 });

@@ -5,7 +5,7 @@ import plumber from 'gulp-plumber';
 import del from 'del';
 import named from 'vinyl-named';
 import themePaths from './themePaths';
-import webpackConfig from '../webpack.config.js';
+import webpackConfig from '../../webpack.config.js';
 
 const production = process.env.NODE_ENV === 'production';
 

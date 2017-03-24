@@ -1,22 +1,35 @@
 const themePaths = {
-    'entry': 'src/main.js',
-    'distScripts': 'build',
-    'scripts': [
-        'src/**/*.js'
+    'entry': 'app/src/main.js',
+    'entryStyle': [
+        'app/less/style.less',
+        'app/less/vendor.less'
     ],
-    'transScripts': [
-        'dist/**/*.js'
+    'distScripts': 'static/js',
+    'distStyles': 'static/css',
+    'distImages': 'static/img',
+    'scripts': [
+        'app/src/**/*.js'
     ],
     'styles': [
-        //'sass/**/*.sass',
-        'less/**/*.less'
+        'app/less/**/*.less'
     ],
     'svg': [
-        'src-svg/**/*.svg'
+        'app/src-svg/**/*.svg'
     ],
     'images': [
-        'src-img/**/*'
-    ]
+        'app/src-img/**/*'
+    ],
+    'injectedFiles': [
+        'static/build/*',
+        'static/js/*',
+        'static/css/vendor-*.css',
+        'static/css/style-*.css'
+    ],
+    'svgSpriteFolder': './Resources/views/svg',
+    'svgSpriteFilename': 'sprite.svg.twig',
+    'injectFilePath': './Resources/views/partials',
+    'cssFilePath': '/css-inject.html.twig',
+    'jsFilePath': '/js-inject.html.twig',
 };
 
 export default themePaths;

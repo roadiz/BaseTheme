@@ -4,13 +4,14 @@ import path from 'path';
 import del from 'del';
 import rev from 'gulp-rev';
 import plumber from 'gulp-plumber';
+import themePaths from './themePaths';
 
 gulp.task('clean-less', () => {
-    return del(['./css/style*.css']);
+    return del(themePaths.distStyles);
 });
 
 gulp.task('less', ['clean-less'], (cb) => {
-    return gulp.src('./less/style.less')
+    return gulp.src(themePaths.entryStyle)
         .pipe(plumber({
             errorHandler: (err) => {
                 cb(err);
@@ -20,23 +21,5 @@ gulp.task('less', ['clean-less'], (cb) => {
             paths: [ path.join(__dirname, 'less', 'includes') ]
         }))
         .pipe(rev())
-        .pipe(gulp.dest('./css'));
-});
-
-gulp.task('clean-less-vendor', () => {
-    return del(['./css/vendor*.css']);
-});
-
-gulp.task('less-vendor', ['clean-less-vendor'], (cb) => {
-    return gulp.src('./less/vendor.less')
-        .pipe(plumber({
-            errorHandler: (err) => {
-                cb(err);
-            }
-        }))
-        .pipe(less({
-            paths: [ path.join(__dirname, 'less', 'includes') ]
-        }))
-        .pipe(rev())
-        .pipe(gulp.dest('./css'));
+        .pipe(gulp.dest(themePaths.distStyles));
 });

@@ -1,6 +1,6 @@
 import webpack from 'webpack';
 
-const sourcePath = './src';
+const sourcePath = './app/src';
 const nodeEnv = process.env.NODE_ENV;
 const production = nodeEnv === 'production';
 

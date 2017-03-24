@@ -1,8 +1,8 @@
 import gulp from 'gulp';
 import requireDir from 'require-dir';
-import themePaths from './gulp-tasks/themePaths';
+import themePaths from './app/gulp-tasks/themePaths';
 
-requireDir('./gulp-tasks');
+requireDir('./app/gulp-tasks');
 gulp.task('default', ['svgstore', 'imagemin', 'inject']);
 
 /*

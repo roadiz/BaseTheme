@@ -7,7 +7,7 @@ import rename from "gulp-rename";
 import themePaths from './themePaths';
 
 gulp.task('clean-svg', () => {
-    return del(['./../Resources/views/svg/sprite.svg.twig'], {
+    return del([themePaths.svgSpriteFolder + '/' + themePaths.svgSpriteFilename], {
         force: true
     });
 });
@@ -54,6 +54,6 @@ gulp.task('svgstore', ['clean-svg'], () => {
             id:'base-icon-',
             inlineSvg: true
         }))
-        .pipe(rename("sprite.svg.twig"))
-        .pipe(gulp.dest('../Resources/views/svg'));
+        .pipe(rename(themePaths.svgSpriteFilename))
+        .pipe(gulp.dest(themePaths.svgSpriteFolder));
 });
