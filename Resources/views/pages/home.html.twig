@@ -1,8 +1,17 @@
 {% extends '@BaseTheme/pages/base.html.twig' %}
 
+{% block header %}
+    <header class="page-header">
+        {% if headerImage %}
+            <figure class="page-header-image">{{ headerImage|display(themeServices.imageFormats.headerImage) }}</figure>
+        {% endif %}
+        <div class="container">
+            <h1 class="page-title">{{ nodeSource.title }}</h1>
+        </div>
+    </header>
+{% endblock %}
 {% block inner_content %}
-    <h1 class="page-title">{% trans %}hello.world{% endtrans %}</h1>
-    <div>
+    <div class="container">
         {% if node %}
             <p>{{ "node.name.is.%name%"|trans({'%name%':node.nodeSources.first.title }) }}</p>
         {% endif %}
@@ -11,19 +20,25 @@
         {% endif %}
     </div>
 
-    <div class="page-blocks">
-        {# Page blocks pattern implementation #}
-        {% set blocks = nodeSource|children({
+     {% if nodeSource %}
+        <div class="page-blocks">
+            {# Page blocks pattern implementation #}
+            {% set blocks = nodeSource|children({
             'node.nodeType' : ['!=', themeServices.typePage],
             'node.visible': true,
-        }) %}
-        {% for singleBlock in blocks %}
-            <article class="page-block page-block-{{ singleBlock.node.nodeType.name|lower }}"
-                     id="block-{{ singleBlock.node.nodeName }}"
-                     data-index="{{ loop.index0 }}"
-                     data-node-type="{{ singleBlock.node.nodeType.name|lower }}">
+            }) %}
+            {% for singleBlock in blocks %}
+                <article class="page-block page-block-{{ singleBlock.node.nodeType.name|lower }}"
+                         id="block-{{ singleBlock.node.nodeName }}"
+                         data-index="{{ loop.index0 }}"
+                         data-node-type="{{ singleBlock.node.nodeType.name|lower }}">
 
-            </article>
-        {% endfor %}
-    </div>
+                </article>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="container">
+            <p>There is no node attached to this view.</p>
+        </div>
+    {% endif %}
 {% endblock %}

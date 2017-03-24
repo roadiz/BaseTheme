@@ -89,7 +89,15 @@
         "nodes_sources": [
             {
                 "translation": "en",
-                "title": "main-menu",
+                "title": "Main menu",
+                "meta_title": "",
+                "meta_keywords": "",
+                "meta_description": "",
+                "url_aliases": []
+            },
+            {
+                "translation": "fr",
+                "title": "Menu principal",
                 "meta_title": "",
                 "meta_keywords": "",
                 "meta_description": "",

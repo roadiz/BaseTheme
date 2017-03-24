@@ -34,6 +34,23 @@ class PageController extends BaseThemeApp
     ) {
         $this->prepareThemeAssignation($node, $translation);
 
-        return $this->render('pages/page.html.twig', $this->assignation);
+        $response = $this->render('pages/page.html.twig', $this->assignation);
+
+        /*
+         * Set http cache for current request
+         * only if prod mode.
+         *
+         * Be careful! Do not use cache
+         * if page contains form and user content!
+         */
+        // $kernel = $this->get('kernel');
+        // if (!$kernel->isPreview() &&
+        //     !$kernel->isDebug()) {
+        //     $response->setPublic();
+        //     $response->setMaxAge(60*60);
+        //     $response->setSharedMaxAge(60*60);
+        // }
+
+        return $response;
     }
 }

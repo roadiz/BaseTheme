@@ -1,0 +1,15 @@
+{% set blockClassPrefix = nodeType.name|lower %}
+
+{% set blockClasses = [
+'page-block',
+blockClassPrefix
+] %}
+
+<div class="{{ blockClasses|join(' ') }}"
+     id="block-{{ node.nodeName }}"
+     data-index="{{ loop.index0 }}"
+     data-node-type="{{ nodeType.name|lower }}">
+
+    <p class="form-message"></p>
+    {{ nodeSource|render('BaseTheme') }}
+</div>

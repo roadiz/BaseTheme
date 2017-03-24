@@ -11,7 +11,6 @@ namespace Themes\BaseTheme;
 
 use RZ\Roadiz\CMS\Controllers\FrontendController;
 use RZ\Roadiz\Core\Bags\SettingsBag;
-use RZ\Roadiz\Core\Entities\Translation;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Themes\BaseTheme\Services;
@@ -21,7 +20,7 @@ use Themes\BaseTheme\Services;
  */
 class BaseThemeApp extends FrontendController
 {
-    const VERSION = '0.17.0';
+    const VERSION = '0.18.0';
 
     protected static $themeName = 'Base theme';
     protected static $themeAuthor = 'REZO ZERO';
@@ -67,11 +66,7 @@ class BaseThemeApp extends FrontendController
          * Render Homepage manually
          */
         // $this->prepareThemeAssignation($home, $translation);
-        // return new Response(
-        //     $this->getTwig()->render('home.html.twig', $this->assignation),
-        //     Response::HTTP_OK,
-        //     array('content-type' => 'text/html')
-        // );
+        // return $this->render('pages/home.html.twig', $this->assignation);
     }
 
     /**
