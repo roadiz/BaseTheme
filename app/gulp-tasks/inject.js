@@ -1,23 +1,20 @@
 import fs from 'fs';
 import gulp from 'gulp';
 import inject from 'gulp-inject';
+import themePaths from './themePaths';
 /*
  * Needed to invert JS order and
  * load vendor before app
  */
 import naturalSort from 'gulp-natural-sort';
 
-const injectFileBasePath = '../Resources/views/partials';
-const cssFilePath = '/css-inject.html.twig';
-const jsFilePath = '/js-inject.html.twig';
-
 const transformFunc = (filepath) => {
     if (filepath.slice(-3) === '.js') {
-        if (filepath.charAt(0) === '/') filepath = filepath.substr(1);
+        filepath = filepath.replace(/^\/static\//,"");
         return '<script src="{{ head.resourcesUrl }}' + filepath + '"></script>';
     }
     if (filepath.slice(-4) === '.css') {
-        if (filepath.charAt(0) === '/') filepath = filepath.substr(1);
+        filepath = filepath.replace(/^\/static\//,"");
         return '<link rel="stylesheet" href="{{ head.resourcesUrl }}' + filepath + '">';
     }
     // Use the default transform as fallback:
@@ -26,18 +23,18 @@ const transformFunc = (filepath) => {
 
 gulp.task('create-css-inject', () => {
     const cssFileContent = `
-        <!-- inject:css -->
-        <!-- endinject -->
+<!-- inject:css -->
+<!-- endinject -->
     `;
 
     // Create folder if not exist
-    if (!fs.existsSync(injectFileBasePath)) {
-        fs.mkdirSync(injectFileBasePath)
+    if (!fs.existsSync(themePaths.injectFilePath)) {
+        fs.mkdirSync(themePaths.injectFilePath)
     }
 
     // Create file if not exist
-    if (!fs.existsSync(injectFileBasePath + cssFilePath)) {
-        fs.writeFileSync(injectFileBasePath + cssFilePath, cssFileContent, {
+    if (!fs.existsSync(themePaths.injectFilePath + themePaths.cssFilePath)) {
+        fs.writeFileSync(themePaths.injectFilePath + themePaths.cssFilePath, cssFileContent, {
             mode: 0o644
         })
     }
@@ -45,18 +42,18 @@ gulp.task('create-css-inject', () => {
 
 gulp.task('create-js-inject', () => {
     const jsFileContent = `
-        <!-- inject:js -->
-        <!-- endinject -->
+<!-- inject:js -->
+<!-- endinject -->
     `;
 
     // Create folder if not exist
-    if (!fs.existsSync(injectFileBasePath)) {
-        fs.mkdirSync(injectFileBasePath)
+    if (!fs.existsSync(themePaths.injectFilePath)) {
+        fs.mkdirSync(themePaths.injectFilePath)
     }
 
     // Create file if not exist
-    if (!fs.existsSync(injectFileBasePath + jsFilePath)) {
-        fs.writeFileSync(injectFileBasePath + jsFilePath, jsFileContent, {
+    if (!fs.existsSync(themePaths.injectFilePath + themePaths.jsFilePath)) {
+        fs.writeFileSync(themePaths.injectFilePath + themePaths.jsFilePath, jsFileContent, {
             mode: 0o644
         })
     }
@@ -65,23 +62,23 @@ gulp.task('create-js-inject', () => {
 gulp.task('inject', ['inject-js', 'inject-css']);
 
 gulp.task('inject-js', ['create-js-inject', 'webpack'], () => {
-    const builtFiles = gulp.src(['build/*', 'css/vendor-*.css', 'css/style-*.css'], {read: false})
+    const builtFiles = gulp.src(themePaths.injectedFiles, {read: false})
         .pipe(naturalSort('desc'));
 
-    return gulp.src(injectFileBasePath + jsFilePath)
+    return gulp.src(themePaths.injectFilePath + themePaths.jsFilePath)
         .pipe(inject(builtFiles, {
             transform: transformFunc
         }))
-        .pipe(gulp.dest(injectFileBasePath));
+        .pipe(gulp.dest(themePaths.injectFilePath));
 });
 
 gulp.task('inject-css', ['create-css-inject', 'css'], () => {
-    const builtFiles = gulp.src(['build/*', 'css/vendor-*.css', 'css/style-*.css'], {read: false})
+    const builtFiles = gulp.src(themePaths.injectedFiles, {read: false})
         .pipe(naturalSort('desc'));
 
-    return gulp.src(injectFileBasePath + cssFilePath)
+    return gulp.src(themePaths.injectFilePath + themePaths.cssFilePath)
         .pipe(inject(builtFiles, {
             transform: transformFunc
         }))
-        .pipe(gulp.dest(injectFileBasePath));
+        .pipe(gulp.dest(themePaths.injectFilePath));
 });

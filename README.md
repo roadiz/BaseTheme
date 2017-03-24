@@ -16,11 +16,12 @@ We provide a starter kit based on ES6 with *Webpack2*, *Babel*, *Less* and *Gulp
 
 ## Usage for development
 
-* Go to your theme `static/` folder and install JS dependencies with your favorite tool `npm install` or `yarn`
+* Go to your theme folder and install JS dependencies with your favorite tool `npm install` or `yarn`
 * Launch assets building for the first time with `npm run build`
-* Launch `npm run dev` each time you start coding, this will launch a watcher on JS, Less, SVG and images files in `static/` folder
+* Launch `npm run dev` each time you start coding, this will launch a watcher on JS, Less, SVG and images files in `app/` folder
 
-A *Makefile* is available to ease up process if you are not familiar with `npm` commands. Just type `make` in your theme folder. 
+- `app/` folder stores every scripts and styles sources. **This folder should not be visible publicly**.
+- `static/` folder stores only generated JS and CSS and other public assets, such as images. **This folder will be symlinked in your *Roadiz Standard edition* `web/` folder, you should not store sensitive data here.**
 
 ## External JS framework
 
@@ -37,7 +38,7 @@ API documentation at http://startingblocks.rezo-zero.com
 
 We use *Bootstrap 3* right in *BaseTheme* but you can choose what feature to include in your style not to bloat your CSS files. 
 We recommend to use *LESS* development version to ignore unnecessary modules.
-Open your `static/less/bootstrap-custom.less` file and comment/uncomment your *Bootstrap*
+Open your `app/less/bootstrap-custom.less` file and comment/uncomment your *Bootstrap*
 modules files, you even can override *Bootstrap* variables.
 
 ### Gulp
@@ -46,23 +47,23 @@ This blank theme uses *Gulp* as task manager to handle your LESS, JS and CSS fil
 When you set it up, *Gulp* will generate versioned CSS and JS files to 
 be properly served over browser caches.
 
-* Install globally *NodeJS* - http://nodejs.org/
-* Launch `make` in your theme folder to install *NPM* vendor and launch *Gulp* tasks for the first time.
+* Install globally *NodeJS* - http://nodejs.org/ and *Yarn* (optional)
+* Launch `npm install` or `yarn` in your theme folder to install *NPM* vendor and launch *Gulp* tasks for the first time.
 
 Then you can launch *Gulp* in background to listen every file update: this command will
 generate development CSS file (with source-map and not-minified) and transpile your ES6 scripts.
 
 ```shell
-make watch
+npm run dev
 ```
 
 And when you need to prepare files for production: this command will generate production CSS
 files (no source-map and minified) and will uglify and optimize scripts into
-a single JS bundle in `static/build/` folder. 
+a single JS bundle in `static/js/` folder. 
 Build command passes `NODE_ENV=production` environment var to *Gulp*.
 
 ```shell
-make build
+npm run build
 ```
 
 ### Versioning
@@ -70,31 +71,21 @@ make build
 Versioning is really important in order to avoid browser and public cache problems after
 a site update.
 
-Gulp will generate a `build/` folder for optimized JS file and a `css/` for CSS files, all files
+Gulp will generate a `js/` folder for optimized JS file and a `css/` for CSS files, all files
 will have random generated name suffix. Then *Gulp* will inject these files directly into your
 `Resources/views/base.html.twig` template at each change.
 
-For *LESS* files, it’s a bit different. To add a new *LESS* file, just include it in `static/less/style.less`
-file, which is your main project stylesheet. For *Bower* stylesheet, just do the same in `static/less/vendor.less`.
+For *LESS* files, it’s a bit different. To add a new *LESS* file, just include it in `app/less/style.less`
+file, which is your main project stylesheet. For *Bower* stylesheet, just do the same in `app/less/vendor.less`.
 Do not forget to use `@import (inline)` syntax to force *LESS* compiler to include files contents if 
 you want to import plain CSS files.
 
 #### In production mode
 
-When you execute a `make build` command, *Gulp* will compile your *LESS* files
-and it will optimize your *Webpack2* app into
-`/static/build` folder. As in *development* mode, *Twig* will automatically inject your assets to
+When you execute a `npm run build` command, *Gulp* will compile your *LESS* files
+and it will optimize your *Webpack2* app into `/static/js` folder. 
+As in *development* mode, *Twig* will automatically inject your assets to
 insert as many `<script>` and `<link>` tags as needed into `Resources/view/partials/` folder.
-
-### Make commands
-
-- `make`: is equivalent to `make configtest && make install && make build`
-- `make configtest`: test if *NPM* is available
-- `make install`: install *NPM* dependencies
-- `make build`: call `npm run build` in `static/` folder
-- `make watch`: call `npm run dev` in `static/` folder
-- `make clean`: remove any generated CSS and JS files (build and dist folders)
-- `make uninstall`: remove any *NPM* dependencies and `clean` 
 
 ## Boilerplate
 
@@ -109,7 +100,7 @@ node-type in your Roadiz back-office.
 
 A common node-type called *Page* will be installed with this theme, his controller is located 
 in `Controllers/PageController.php` and his twig template in `Resources/views/types/page.html.twig`.
-We also created a LESS (`static/less/pages/page.less`) and a javascript file (`static/src/pages/page.js`) for this node-type.
+We also created a LESS (`app/less/pages/page.less`) and a javascript file (`app/src/pages/page.js`) for this node-type.
 If you need others node-type, duplicate theses files and rename them.
 
 #### ES6 classes

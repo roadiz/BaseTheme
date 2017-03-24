@@ -16,7 +16,7 @@ need to improve this *BaseTheme* you’ll need to `git add --force` these file t
 them available when somebody clone or generate a theme with Roadiz for the first
 time.
 
-- static/build/*.js
+- static/js/*.js
 - static/css/*.css
 - Resources/views/partials/*.twig
 - Resources/views/svg/sprite.svg.twig
