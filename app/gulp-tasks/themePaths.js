@@ -20,10 +20,8 @@ const themePaths = {
         'app/src-img/**/*'
     ],
     'injectedFiles': [
-        'static/build/*',
-        'static/js/*',
-        'static/css/vendor-*.css',
-        'static/css/style-*.css'
+        'static/js/*.js',
+        'static/css/*.css',
     ],
     'svgSpriteFolder': './Resources/views/svg',
     'svgSpriteFilename': 'sprite.svg.twig',
