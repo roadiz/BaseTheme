@@ -1,8 +1,7 @@
 /**
- * Copyright REZO ZERO 2016
+ * Copyright © 2017, Rezo Zero
  *
  * @file contact-block.js
- * @copyright REZO ZERO 2016
  * @author Maxime Bérard
  */
 import $ from "jquery";
