@@ -1,8 +1,7 @@
 /**
- * Copyright © 2016, Ambroise Maupate
+ * Copyright © 2017, Rezo Zero
  *
  * @file page.js
- * @copyright REZO ZERO 2016
  * @author Ambroise Maupate
  */
 import DefaultPage from "./default-page";

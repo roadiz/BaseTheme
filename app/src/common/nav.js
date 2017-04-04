@@ -1,8 +1,7 @@
 /**
- * Copyright REZO ZERO 2016
+ * Copyright © 2017, Rezo Zero
  *
  * @file nav.js
- * @copyright REZO ZERO 2016
  * @author Ambroise Maupate
  */
 import $ from 'jquery';
