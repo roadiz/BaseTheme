@@ -1,5 +1,5 @@
 /**
- * Copyright © 2016, Rezo Zero
+ * Copyright © 2017, Rezo Zero
  *
  * @file class-factory.js
  * @author Ambroise Maupate

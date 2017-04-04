@@ -1,3 +1,9 @@
+/**
+ * Copyright © 2017, Rezo Zero
+ *
+ * @file main.js
+ * @author Ambroise Maupate
+ */
 import $ from "jquery";
 import log from "loglevel";
 import {polyfills, gaTrackErrors, Utils, Router, GraphicLoader} from "starting-blocks";

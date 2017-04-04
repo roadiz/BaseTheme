@@ -1,8 +1,8 @@
 /**
- * Copyright (c) 2017. Rezo Zero
- * ShiftTheme - Shift Capital website - dec. 2016
+ * Copyright © 2017, Rezo Zero
+ *
  * @file map-block.js
- * @author Ambroise Maupate <ambroise@rezo-zero.com>
+ * @author Ambroise Maupate
  */
 import log                from "loglevel";
 import DefaultBlock       from "./default-block";
