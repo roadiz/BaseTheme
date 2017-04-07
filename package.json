@@ -20,19 +20,22 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "better-npm-run dev",
-    "build": "better-npm-run build"
+    "build": "better-npm-run build",
+    "build-svg": "gulp build-svg --silent"
   },
   "betterScripts": {
     "dev": {
-      "command": "gulp watch",
+      "command": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --watch-poll",
       "env": {
-        "NODE_ENV": "development"
+        "NODE_ENV": "development",
+        "DEBUG": "Roadiz-front:*"
       }
     },
     "build": {
-      "command": "gulp",
+      "command": "npm run build-svg && ./node_modules/webpack/bin/webpack.js",
       "env": {
-        "NODE_ENV": "production"
+        "NODE_ENV": "production",
+        "DEBUG": "Roadiz-front:*"
       }
     }
   },
