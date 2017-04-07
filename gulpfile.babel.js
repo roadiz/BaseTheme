@@ -1,3 +1,4 @@
+/*
 import gulp from 'gulp';
 import requireDir from 'require-dir';
 import themePaths from './app/gulp-tasks/themePaths';
@@ -5,9 +6,9 @@ import themePaths from './app/gulp-tasks/themePaths';
 requireDir('./app/gulp-tasks');
 gulp.task('default', ['svgstore', 'imagemin', 'inject']);
 
-/*
+/!*
  * Watch tasks
- */
+ *!/
 gulp.task('watch-js', function (cb) {
     return gulp.watch(themePaths.scripts, ['inject-js']);
 });
@@ -23,3 +24,7 @@ gulp.task('watch-svg', function (cb) {
 
 gulp.task('watch', ['watch-js', 'watch-css', 'watch-svg', 'watch-img']);
 
+*/
+import requireDir from 'require-dir'
+
+requireDir('./build/gulp-tasks')
