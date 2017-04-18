@@ -96,9 +96,9 @@
     "ismobilejs": "^0.4.0",
     "jquery": "^2.2.0",
     "jquery.waitforimages": "^2.2.0",
-    "load-google-maps-api": "0.0.2",
+    "load-google-maps-api": "^0.0.3",
     "loglevel": "^1.4.1",
-    "normalize.css": "^5.0.0",
+    "normalize.css": "^6.0.0",
     "starting-blocks": "^2.0.5",
     "vanilla-lazyload": "^4.0.4"
   }
