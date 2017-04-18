@@ -26,7 +26,7 @@
   },
   "betterScripts": {
     "dev": {
-      "command": "concurrently \"npm run watch-svg\" \"webpack-dev-server --watch-poll\"",
+      "command": "concurrently -r \"npm run watch-svg\" \"webpack-dev-server --watch-poll\"",
       "env": {
         "NODE_ENV": "development",
         "DEBUG": "Roadiz-front:*"
