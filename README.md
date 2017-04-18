@@ -33,17 +33,19 @@ npm run build
 
 ## Structure
 
-### `app/`
+#### `app/`
 
 This folder **is not publicy visible.**. It stores all your source files (fonts, js, less, images and SVG).
 
-### `static/`
+#### `static/`
 
 This **folder will be symlinked in your *Roadiz Standard edition* `web/` folder, you should not store sensitive data here.**
 
-### `build/`
+#### `build/`
 
 This folder store all build configurations, webpack configuration and gulp tasks.
+
+## Features
 
 ### JS + Starting blocks
 
