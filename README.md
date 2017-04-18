@@ -2,68 +2,82 @@
 
 This theme is meant to get a **fresh start** to create a custom website on *Roadiz*.
 
-## First use
+## Get started
 
 Make sure that NodeJS and NPM are installed on your machine.
 
+Generate a new theme with *Test* as your theme prefix
+
 ```bash
 bin/roadiz themes:generate Test
+cd themes/TestTheme
+# Install JS dependencies with npm or Yarn
+yarn 
 ```
-
-* Generate a new theme with *Test* as your theme prefix
 
 We provide a starter kit based on ES6 with *Webpack2*, *Babel*, *Less* and *Gulp* as task runner. Feel free to adapt it if you have your own coding workflow. Keep in mind that we inject built CSS and JS into partial *Twig* templates to get versioned file names and ignore them in development stage.
 
-## Usage for development
+## Scripts
 
-* Go to your theme folder and install JS dependencies with your favorite tool `npm install` or `yarn`
-* Launch assets building for the first time with `npm run build`
-* Launch `npm run dev` each time you start coding, this will launch a watcher on JS, Less, SVG and images files in `app/` folder
+Watch js, less, images and SVG changes in `app/` folder, then build and reload browser. This command should be only used during development.
 
-- `app/` folder stores every scripts and styles sources. **This folder should not be visible publicly**.
-- `static/` folder stores only generated JS and CSS and other public assets, such as images. **This folder will be symlinked in your *Roadiz Standard edition* `web/` folder, you should not store sensitive data here.**
+```shell
+npm run dev
+```
 
-## External JS framework
+Build all assets in `app/` folder, optimized and minified. After a build, you are ready to deploy to production site.
 
-Base theme uses *Gulp* and *NPM* to deal with front development files.
-We chose to use **ES6 javascript** transpiled with *Babel* and loaded via *Webpack2*.
+```shell 
+npm run build
+```
 
-Then we externalized all the JS logic and routing system into our [*Starting blocks*](https://github.com/rezozero/starting-blocks) framework so that your theme only host specific JS code and will be able to easily upgrade common JS features.
+## Structure
+
+#### `app/`
+
+This folder **is not publicly visible.**. It stores all your source files (fonts, js, less, images and SVG).
+
+#### `static/`
+
+This **folder will be symlinked in your *Roadiz Standard edition* `web/` folder, you should not store sensitive data here.**
+
+#### `build/`
+
+This folder stores all build configurations, webpack configuration and gulp tasks.
+
+## Features
+
+### JS + Starting blocks
+
+We externalized all the JS logic and routing system into our [*Starting blocks*](https://github.com/rezozero/starting-blocks) framework so that your theme only host specific JS code and will be able to easily upgrade common JS features.
 
 We encourage you to read [*Starting Blocks* README](https://github.com/rezozero/starting-blocks/blob/master/README.md) 
 to understand how we route and synchronize our *Twig* generated DOM with our ES6 scripts. You can find a detailled
 API documentation at http://startingblocks.rezo-zero.com
 
-### Based on Bootstrap 3
+In *development*, all *JS* files are preprocessed with *Babel*, linted and a sourcemap is created.  
+In *production*, these files are also minified and optimized (uglifyJs, mangle) and the sourcemap is removed.
+
+### Less + Bootstrap 3
+
+When you create a new less file in `app/less/`, you have to include it in `app/less/style.less`, which is your main project stylesheet.
 
 We use *Bootstrap 3* right in *BaseTheme* but you can choose what feature to include in your style not to bloat your CSS files. 
 We recommend to use *LESS* development version to ignore unnecessary modules.
 Open your `app/less/bootstrap-custom.less` file and comment/uncomment your *Bootstrap*
 modules files, you even can override *Bootstrap* variables.
 
-### Gulp
+In *development*, all *LESS* files are merged into one *CSS* file and a sourcemap is created.  
+In *production*, this file is minified and optimized (postcss, autoprefixer) and the sourcemap is removed.
 
-This blank theme uses *Gulp* as task manager to handle your LESS, JS and CSS files. 
-When you set it up, *Gulp* will generate versioned CSS and JS files to 
-be properly served over browser caches.
+### SVG
 
-* Install globally *NodeJS* - http://nodejs.org/ and *Yarn* (optional)
-* Launch `npm install` or `yarn` in your theme folder to install *NPM* vendor and launch *Gulp* tasks for the first time.
+All *SVG* files in `app/src-svg/` folder will be processed by *Gulp*, minified with *SVGO* and injected in `Resources/views/svg/sprite.svg.twig` as `<defs>` element, which is injected in `base.html.twig`.
 
-Then you can launch *Gulp* in background to listen every file update: this command will
-generate development CSS file (with source-map and not-minified) and transpile your ES6 scripts.
+To include a new *SVG* to your site, move your *SVG* to `app/src-svg/myicon.svg` and, in any *Twig* template
 
-```shell
-npm run dev
-```
-
-And when you need to prepare files for production: this command will generate production CSS
-files (no source-map and minified) and will uglify and optimize scripts into
-a single JS bundle in `static/js/` folder. 
-Build command passes `NODE_ENV=production` environment var to *Gulp*.
-
-```shell
-npm run build
+```html
+<use xlink:href="#icon-myicon"/>
 ```
 
 ### Versioning
@@ -71,21 +85,43 @@ npm run build
 Versioning is really important in order to avoid browser and public cache problems after
 a site update.
 
-Gulp will generate a `js/` folder for optimized JS file and a `css/` for CSS files, all files
-will have random generated name suffix. Then *Gulp* will inject these files directly into your
-`Resources/views/base.html.twig` template at each change.
+While you run `npm run build`, *Webpack* will generate a random generated name suffix for each file and require *CSS* and *JS* files in `Resources/views/base.html.twig` template.
 
-For *LESS* files, it’s a bit different. To add a new *LESS* file, just include it in `app/less/style.less`
-file, which is your main project stylesheet. For *Bower* stylesheet, just do the same in `app/less/vendor.less`.
-Do not forget to use `@import (inline)` syntax to force *LESS* compiler to include files contents if 
-you want to import plain CSS files.
+### Customize build tasks
 
-#### In production mode
+All build configurations are in `build/config/`. `base.js` file contains general configurations which you can override according `NODE_ENV` in `environments.js`.
 
-When you execute a `npm run build` command, *Gulp* will compile your *LESS* files
-and it will optimize your *Webpack2* app into `/static/js` folder. 
-As in *development* mode, *Twig* will automatically inject your assets to
-insert as many `<script>` and `<link>` tags as needed into `Resources/view/partials/` folder.
+For example, while you run `npm run build`, `NODE_ENV` is equal to `production` :
+
+```json
+// package.json
+
+"betterScripts": {
+    "build": {
+      "command": "npm run build-svg && ./node_modules/webpack/bin/webpack.js",
+      "env": {
+        "NODE_ENV": "production",
+        "DEBUG": "Roadiz-front:*"
+      }
+    }
+}
+``` 
+
+So the configuration is overriden like this :
+
+```javascript
+// environments.js
+
+export default {
+    production: (config) => ({
+        devtool: false
+    })
+}
+```
+
+Webpack configuration works the same. `build/build/base.js` exports a common webpack configuration which you can override in `build/build/environments.js`
+
+Feel free to add other custom `NODE_ENV` like staging, testing...
 
 ## Boilerplate
 

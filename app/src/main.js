@@ -12,6 +12,7 @@ import Nav from "./common/nav";
 import ClassFactory from "./class-factory";
 import TweenLite from "TweenLite";
 import Expo from "Expo";
+import '../less/style.less'
 
 /**
  * Set max log level (most verbose) 0 ---> 5
