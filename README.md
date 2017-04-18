@@ -35,7 +35,7 @@ npm run build
 
 #### `app/`
 
-This folder **is not publicy visible.**. It stores all your source files (fonts, js, less, images and SVG).
+This folder **is not publicly visible.**. It stores all your source files (fonts, js, less, images and SVG).
 
 #### `static/`
 
@@ -43,7 +43,7 @@ This **folder will be symlinked in your *Roadiz Standard edition* `web/` folder,
 
 #### `build/`
 
-This folder store all build configurations, webpack configuration and gulp tasks.
+This folder stores all build configurations, webpack configuration and gulp tasks.
 
 ## Features
 
@@ -60,7 +60,7 @@ In *production*, these files are also minified and optimized (uglifyJs, mangle) 
 
 ### Less + Bootstrap 3
 
-When you create a new less file in `app/less/`, you have to require it in `app/less/style.less`, which is your main project stylesheet.
+When you create a new less file in `app/less/`, you have to include it in `app/less/style.less`, which is your main project stylesheet.
 
 We use *Bootstrap 3* right in *BaseTheme* but you can choose what feature to include in your style not to bloat your CSS files. 
 We recommend to use *LESS* development version to ignore unnecessary modules.
@@ -107,7 +107,7 @@ For example, while you run `npm run build`, `NODE_ENV` is equal to `production` 
 }
 ``` 
 
-So the configuration is overrided like this :
+So the configuration is overriden like this :
 
 ```javascript
 // environments.js
@@ -121,7 +121,7 @@ export default {
 
 Webpack configuration works the same. `build/build/base.js` exports a common webpack configuration which you can override in `build/build/environments.js`
 
-Fell free to add other custom `NODE_ENV` like staging, testing...
+Feel free to add other custom `NODE_ENV` like staging, testing...
 
 ## Boilerplate
 
