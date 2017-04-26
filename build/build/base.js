@@ -19,20 +19,20 @@ const getWebpackConfigBase = (config) => {
         devServer: {
             stats: config.stats,
             port: config.port,
-            publicPath: config.publicPath,
+            publicPath: config.public_path,
             host: config.address
         },
         name: 'client',
         target: 'web',
         entry: {
             app: paths.client('src/main.js'),
-            vendor: config.jsVendors
+            vendor: config.js_vendors
         },
         output: {
             path: paths.dist(),
-            filename: config.assetsNameJs,
+            filename: config.assets_name_js,
             chunkFilename: '[name].[chunkhash].js',
-            publicPath: config.publicPath
+            publicPath: config.public_path
         },
         module: {
             loaders: [{
@@ -68,20 +68,20 @@ const getWebpackConfigBase = (config) => {
                 loader: 'url-loader',
                 options: {
                     limit: config.limit_image_size,
-                    name: config.assetsNameImg
+                    name: config.assets_name_img
                 }
             }, {
                 test: /\.(eot|svg|ttf|woff|woff2)$/,
                 loader: 'file-loader',
                 options: {
-                    name: config.assetsNameFont
+                    name: config.assets_name_font
                 }
             }
             ]
         },
         plugins: [
             new ExtractTextPlugin({
-                filename: config.assetsNameCss,
+                filename: config.assets_name_css,
                 allChunks: true
             }),
             new webpack.HotModuleReplacementPlugin(),

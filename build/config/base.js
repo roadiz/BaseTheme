@@ -35,7 +35,7 @@ const getConfig = () => {
         // ----------------------------------
         // Inputs
         // ----------------------------------
-        jsVendors: [
+        js_vendors: [
             'starting-blocks/bundle.js',
             'loglevel/dist/loglevel.js',
             'ismobilejs/isMobile.js'
@@ -44,10 +44,10 @@ const getConfig = () => {
         // ----------------------------------
         // Outputs
         // ----------------------------------
-        assetsNameJs: '[name].js',
-        assetsNameImg: '[name].[ext]',
-        assetsNameCss: '[name].css',
-        assetsNameFont: '[name].[ext]',
+        assets_name_js: '[name].js',
+        assets_name_img: '[name].[ext]',
+        assets_name_css: '[name].css',
+        assets_name_font: '[name].[ext]',
 
         // ----------------------------------
         // SVG Structure
@@ -55,11 +55,11 @@ const getConfig = () => {
         svg_paths: 'src-svg/*.svg',
         svg_sprite_name: 'sprite.svg.twig',
         svg_sprite_path: 'svg',
-	
-	// ----------------------------------
-	// Images
-	// ----------------------------------
-	limit_image_size: 8000,
+
+        // ----------------------------------
+        // Images
+        // ----------------------------------
+        limit_image_size: 8000,
 
         // ----------------------------------
         // Externals
@@ -75,7 +75,7 @@ const getConfig = () => {
         }
     }
 
-    config.publicPath = `http://${config.address}:${config.port}/`
+    config.public_path = `http://${config.address}:${config.port}/`
 
 // ------------------------------------
 // Utilities
