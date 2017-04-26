@@ -67,7 +67,7 @@ const getWebpackConfigBase = (config) => {
                 test: /\.(png|jpg)$/,
                 loader: 'url-loader',
                 options: {
-                    limit: 8192,
+                    limit: config.limit_image_size,
                     name: config.assetsNameImg
                 }
             }, {

@@ -55,6 +55,11 @@ const getConfig = () => {
         svg_paths: 'src-svg/*.svg',
         svg_sprite_name: 'sprite.svg.twig',
         svg_sprite_path: 'svg',
+	
+	// ----------------------------------
+	// Images
+	// ----------------------------------
+	limit_image_size: 8000,
 
         // ----------------------------------
         // Externals
