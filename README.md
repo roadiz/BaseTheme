@@ -70,6 +70,25 @@ modules files, you even can override *Bootstrap* variables.
 In *development*, all *LESS* files are merged into one *CSS* file and a sourcemap is created.  
 In *production*, this file is minified and optimized (postcss, autoprefixer) and the sourcemap is removed.
 
+### Images
+
+All images in `app/src-img/` must be required in *CSS*
+
+```less
+background: url('../src-img/mybackground.png');
+```
+or *JS*
+
+```javascript
+import myBackground from '../src-img/mybackground.png'
+```
+
+Otherwise, they never be processed by webpack.  
+If you want to use an image in a *Twig* template, you have to move it in a custom folder in `static/` (not in `static/img` because it will be flushed by the next `npm run build`)
+
+`.png` and `.jpg` files are accepted and they will be versionned when you run `npm run build`.
+Under `config.limit_image_size`, required image will be transformed into dataUrl.
+
 ### SVG
 
 All *SVG* files in `app/src-svg/` folder will be processed by *Gulp*, minified with *SVGO* and injected in `Resources/views/svg/sprite.svg.twig` as `<defs>` element, which is injected in `base.html.twig`.
