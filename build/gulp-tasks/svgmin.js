@@ -13,14 +13,14 @@ dbg.color = debug.colors[4]
 const config = getConfig()
 const paths = config.utils_paths
 
-gulp.task('clean-svg', () => {
+const cleanSvg = () => {
     dbg('🗑  Cleaning sprite.')
     return del(path.resolve(config.svg_sprite_path, config.svg_sprite_name), {
         force: true
     })
-})
+}
 
-gulp.task('build-svg', ['clean-svg'], () => {
+const buildSvg = () => {
     return gulp.src(paths.client(config.svg_paths))
         .on('end', () => {
             dbg(`🔨  ${config.svg_sprite_name} created.`)
@@ -66,10 +66,15 @@ gulp.task('build-svg', ['clean-svg'], () => {
         }))
         .pipe(rename(config.svg_sprite_name))
         .pipe(gulp.dest(paths.views(config.svg_sprite_path)))
-})
+}
 
-gulp.task('watch-svg', () => {
+const watchSvg = () => {
     dbg(`🕶  watching svg source folder : ${paths.client(config.svg_paths)}`)
-    gulp.watch(paths.client(config.svg_paths), ['build-svg'])
-})
+    gulp.watch(paths.client(config.svg_paths), buildSvgTask)
+}
 
+const watchSvgTask = watchSvg
+const buildSvgTask = gulp.series(cleanSvg, buildSvg)
+
+gulp.task('build-svg', buildSvgTask)
+gulp.task('watch-svg', watchSvgTask)
