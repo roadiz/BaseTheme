@@ -33,6 +33,12 @@ const getConfig = () => {
         },
 
         // ----------------------------------
+        // Watch options
+        // ----------------------------------
+        refreshOnChange: true, // auto reload page on file change
+        watchInterval: 1000, // Poll interval in ms
+
+        // ----------------------------------
         // Inputs
         // ----------------------------------
         js_vendors: [

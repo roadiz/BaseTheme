@@ -17,10 +17,15 @@ const getWebpackConfigBase = (config) => {
         stats: config.stats,
         devtool: config.devtool,
         devServer: {
+            lazy: !config.refreshOnChange,
             stats: config.stats,
             port: config.port,
             publicPath: config.public_path,
-            host: config.address
+            host: config.address,
+            watchOptions: {
+                poll: config.watchInterval,
+                ignored: /node_modules/
+            }
         },
         name: 'client',
         target: 'web',
