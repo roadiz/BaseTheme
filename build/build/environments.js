@@ -56,7 +56,30 @@ export default {
                                 importLoaders: 2
                             }
                         }, {
-                            loader: 'postcss-loader'
+                            loader: 'postcss-loader',
+                            options: {
+                                plugins: [
+                                    postcssFixes(),
+                                    postcssFilterGradient(),
+                                    postcssReduceTransform(),
+                                    cssMqpacker(),
+                                    cssnano({
+                                        autoprefixer: {
+                                            add: true,
+                                            remove: true,
+                                            browsers: ['last 2 version', 'ie 11', 'ie 10']
+                                        },
+                                        discardComments: {
+                                            removeAll: true
+                                        },
+                                        discardUnused: false,
+                                        mergeIdents: false,
+                                        reduceIdents: false,
+                                        safe: true,
+                                        sourcemap: false
+                                    })
+                                ]
+                            }
                         }, {
                             loader: 'less-loader',
                             options: {
@@ -86,29 +109,6 @@ export default {
                     options: {
                         eslint: {
                             configFile: './.eslintrc'
-                        },
-                        postcss: {
-                            plugins: [
-                                postcssFixes(),
-                                postcssFilterGradient(),
-                                postcssReduceTransform(),
-                                cssMqpacker(),
-                                cssnano({
-                                    autoprefixer: {
-                                        add: true,
-                                        remove: true,
-                                        browsers: ['last 2 version', 'ie 11', 'ie 10']
-                                    },
-                                    discardComments: {
-                                        removeAll: true
-                                    },
-                                    discardUnused: false,
-                                    mergeIdents: false,
-                                    reduceIdents: false,
-                                    safe: true,
-                                    sourcemap: false
-                                })
-                            ]
                         }
                     }
                 }),
