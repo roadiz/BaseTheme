@@ -53,22 +53,21 @@ const getWebpackConfigBase = (config) => {
                     cacheDirectory: true
                 }
             }, {
-                test: /\.less?$/,
-                loader: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: [{
-                        loader: 'css-loader',
-                        options: {
-                            importLoaders: 2,
-                            sourceMap: true
-                        }
-                    }, {
-                        loader: 'less-loader',
-                        options: {
-                            sourceMap: true
-                        }
-                    }],
-                })
+                test: /\.less$/,
+                use: [{
+                    loader: 'style-loader'
+                }, {
+                    loader: 'css-loader',
+                    options: {
+                        importLoaders: 2,
+                        sourceMap: true
+                    }
+                }, {
+                    loader: 'less-loader',
+                    options: {
+                        sourceMap: true
+                    }
+                }]
             }, {
                 test: /\.(png|jpg)$/,
                 loader: 'url-loader',
