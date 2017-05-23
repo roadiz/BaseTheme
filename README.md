@@ -142,6 +142,8 @@ Webpack configuration works the same. `build/build/base.js` exports a common web
 
 Feel free to add other custom `NODE_ENV` like staging, testing...
 
+**important note** : By default, Webpack watch the files (except `node_modules`) every 1000ms. You can increase this interval in `config.watchInterval` or disable auto reload with `config.refreshOnChange`.
+
 ## Boilerplate
 
 BaseTheme will provide you some ready-made *Twig* templates, styles and ES6 classes.
