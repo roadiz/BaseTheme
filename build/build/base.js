@@ -59,7 +59,8 @@ const getWebpackConfigBase = (config) => {
                     use: [{
                         loader: 'css-loader',
                         options: {
-                            importLoaders: 2
+                            importLoaders: 2,
+                            sourceMap: true
                         }
                     }, {
                         loader: 'less-loader',
