@@ -17,22 +17,27 @@ const getWebpackConfigBase = (config) => {
         stats: config.stats,
         devtool: config.devtool,
         devServer: {
+            lazy: !config.refreshOnChange,
             stats: config.stats,
             port: config.port,
-            publicPath: config.publicPath,
-            host: config.address
+            publicPath: config.public_path,
+            host: config.address,
+            watchOptions: {
+                poll: config.watchInterval,
+                ignored: /node_modules/
+            }
         },
         name: 'client',
         target: 'web',
         entry: {
             app: paths.client('src/main.js'),
-            vendor: config.jsVendors
+            vendor: config.js_vendors
         },
         output: {
             path: paths.dist(),
-            filename: config.assetsNameJs,
+            filename: config.assets_name_js,
             chunkFilename: '[name].[chunkhash].js',
-            publicPath: config.publicPath
+            publicPath: config.public_path
         },
         module: {
             loaders: [{
@@ -67,21 +72,21 @@ const getWebpackConfigBase = (config) => {
                 test: /\.(png|jpg)$/,
                 loader: 'url-loader',
                 options: {
-                    limit: 8192,
-                    name: config.assetsNameImg
+                    limit: config.limit_image_size,
+                    name: config.assets_name_img
                 }
             }, {
                 test: /\.(eot|svg|ttf|woff|woff2)$/,
                 loader: 'file-loader',
                 options: {
-                    name: config.assetsNameFont
+                    name: config.assets_name_font
                 }
             }
             ]
         },
         plugins: [
             new ExtractTextPlugin({
-                filename: config.assetsNameCss,
+                filename: config.assets_name_css,
                 allChunks: true
             }),
             new webpack.HotModuleReplacementPlugin(),

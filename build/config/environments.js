@@ -3,10 +3,10 @@ export default {
 
     production: (config) => ({
         devtool: false,
-        publicPath: '/',
-        assetsNameJs: 'js/[name].[hash].js',
-        assetsNameImg: 'img/[name].[chunkhash].[ext]',
-        assetsNameCss: 'css/[name].[chunkhash].css',
-        assetsNameFont: 'fonts/[name].[hash].[ext]',
+        public_path: '/',
+        assets_name_js: 'js/[name].[hash].js',
+        assets_name_img: 'img/[name].[hash].[ext]',
+        assets_name_css: 'css/[name].[chunkhash].css',
+        assets_name_font: 'fonts/[name].[hash].[ext]',
     })
 }
