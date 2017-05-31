@@ -16,6 +16,7 @@ const getWebpackConfigBase = (config) => {
         cache: true,
         stats: config.stats,
         devtool: config.devtool,
+        watch: true,
         devServer: {
             lazy: !config.refreshOnChange,
             stats: config.stats,
@@ -53,7 +54,7 @@ const getWebpackConfigBase = (config) => {
                     cacheDirectory: true
                 }
             }, {
-                test: /\.less$/,
+                test: /\.scss$/,
                 use: [{
                     loader: 'style-loader'
                 }, {
@@ -63,7 +64,7 @@ const getWebpackConfigBase = (config) => {
                         sourceMap: true
                     }
                 }, {
-                    loader: 'less-loader',
+                    loader: 'sass-loader',
                     options: {
                         sourceMap: true
                     }
@@ -89,18 +90,8 @@ const getWebpackConfigBase = (config) => {
                 filename: config.assets_name_css,
                 allChunks: true
             }),
-            new webpack.HotModuleReplacementPlugin(),
+            // new webpack.HotModuleReplacementPlugin(),
             new webpack.NoEmitOnErrorsPlugin(),
-            new webpack.optimize.CommonsChunkPlugin({
-                name: 'vendor',
-                minChunks: (module) => {
-                    return module.context && module.context.indexOf('node_modules') !== -1
-                }
-            }),
-            new webpack.optimize.CommonsChunkPlugin({
-                name: 'manifest',
-                minChunks: Infinity
-            }),
             new HtmlWebpackPlugin({
                 filename: config.utils_paths.views('partials/css-inject.html.twig'),
                 template: config.utils_paths.views('partials/css-inject-src.html.twig'),

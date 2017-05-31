@@ -7,16 +7,16 @@
  * Styles for browser update bar
  */
 
-@browserUpdateBgColor : #EEEEEE;
-@browserUpdateColorLink : @black;
+$browserUpdateBgColor : #EEEEEE;
+$browserUpdateColorLink : $black;
 
 body .buorg {
     position:fixed;
     top:0; right:0; left:0;
     border-bottom:none;
-    background: @browserUpdateBgColor;
-    color: @black;
-    font-family: @font;
+    background: $browserUpdateBgColor;
+    color: $black;
+    font-family: $font;
     font-size:14px; line-height:16px;
     text-align:center;
     cursor:default;
@@ -26,10 +26,10 @@ body .buorg {
     }
 
     a, a:visited{
-        color:@browserUpdateColorLink;
+        color:$browserUpdateColorLink;
         text-decoration: none;
-        border-bottom:1px solid @browserUpdateColorLink;
-        transition:0.6s border-bottom-color @easeOutExpo;
+        border-bottom:1px solid $browserUpdateColorLink;
+        transition:0.6s border-bottom-color $easeOutExpo;
 
         &:hover, &:focus{
             border-bottom-color: rgba(0,0,0,0);
