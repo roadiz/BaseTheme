@@ -1,0 +1,66 @@
+// ----------------------------------------------------
+// 1. Core scss files
+// ----------------------------------------------------
+
+// Core variables and mixins
+@import '../../node_modules/bootstrap/scss/variables';
+@import '../../node_modules/bootstrap/scss/mixins';
+
+// Reset and dependencies
+@import "../../node_modules/bootstrap/scss/normalize";
+@import "../../node_modules/bootstrap/scss/print";
+
+// Core CSS
+@import "../../node_modules/bootstrap/scss/reboot";
+
+// ----------------------------------------------------
+// 2. Variable overrides / customisation:
+// @see: https://github.com/twbs/bootstrap/blob/v4-dev/scss/_variables.scss
+// ----------------------------------------------------
+
+// Font
+$font-family-sans-serif: $font;
+$font-family-serif: $font;
+$font-family-base: $font;
+
+// Grid
+$grid-gutter-width-base: 0;
+
+// Color
+$brand-primary: $mainColor;
+$link-color: $mainColor;
+$btn-success-bg: $mainColor;
+
+// Link hover color set via `darken()` function.
+$link-hover-color: darken($mainColor, 15%);
+
+//$grid-breakpoints: (
+//  xs: 0,
+//  sm: 544px,
+//  md: 768px,
+//  lg: 992px,
+//  xl: 1200px
+//);
+//@include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
+//$container-max-widths: (
+//  sm: 576px,
+//  md: 720px,
+//  lg: 940px,
+//  xl: 1140px
+//);
+//@include _assert-ascending($container-max-widths, "$container-max-widths");
+
+// ----------------------------------------------------
+// 3. The rest of the required files
+// ----------------------------------------------------
+
+// Grid system
+@import '../../node_modules/bootstrap/scss/grid';
+
+@import '../../node_modules/bootstrap/scss/tables';
+@import '../../node_modules/bootstrap/scss/type';
+@import '../../node_modules/bootstrap/scss/code';
+@import '../../node_modules/bootstrap/scss/nav';
+@import '../../node_modules/bootstrap/scss/navbar';
+@import "../../node_modules/bootstrap/scss/media";
+@import "../../node_modules/bootstrap/scss/utilities";

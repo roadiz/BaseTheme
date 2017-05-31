@@ -9,16 +9,16 @@
 
 @font-face {
   font-family: "basethemecredits";
-  src:url("../../fonts/basethemecredits.eot");
-  src:url("../../fonts/basethemecredits.eot?#iefix") format("embedded-opentype"),
-    url("../../fonts/basethemecredits.woff") format("woff"),
-    url("../../fonts/basethemecredits.ttf") format("truetype"),
-    url("../../fonts/basethemecredits.svg#basethemecredits") format("svg");
+  src:url("../fonts/basethemecredits.eot");
+  src:url("../fonts/basethemecredits.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/basethemecredits.woff") format("woff"),
+    url("../fonts/basethemecredits.ttf") format("truetype"),
+    url("../fonts/basethemecredits.svg#basethemecredits") format("svg");
   font-weight: normal;
   font-style: normal;
 }
 
-.credits-icon(){
+@mixin credits-icon(){
   font-family: "basethemecredits" !important;
   font-style: normal !important;
   font-weight: normal !important;
@@ -31,14 +31,13 @@
 }
 
 [data-icon]:before {
-  .credits-icon();
+  @include credits-icon();
 }
 
 [class^="credits-icon-"]:before,
 [class*=" credits-icon-"]:before {
-  .credits-icon();
+  @include credits-icon();
 }
-
 
 .credits-icon-rezozero:before {
   content: "a";

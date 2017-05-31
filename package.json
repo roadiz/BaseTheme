@@ -25,7 +25,7 @@
   },
   "betterScripts": {
     "dev": {
-      "command": "concurrently -r \"npm run watch-svg\" \"webpack-dev-server\"",
+      "command": "concurrently -r \"npm run watch-svg\" \"webpack\"",
       "env": {
         "NODE_ENV": "development",
         "DEBUG": "Roadiz-front:*"
@@ -90,7 +90,7 @@
     "webpack-stream": "^3.2.0"
   },
   "dependencies": {
-    "bootstrap": "^3.3.7",
+    "bootstrap": "4.0.0-alpha.6",
     "es6-promise": "^4.0.5",
     "gsap": "^1.19.1",
     "ismobilejs": "^0.4.0",
@@ -98,7 +98,9 @@
     "jquery.waitforimages": "^2.2.0",
     "load-google-maps-api": "^0.0.3",
     "loglevel": "^1.4.1",
+    "node-sass": "^4.5.3",
     "normalize.css": "^6.0.0",
+    "sass-loader": "^6.0.5",
     "starting-blocks": "^2.1.7",
     "vanilla-lazyload": "^4.0.4"
   }

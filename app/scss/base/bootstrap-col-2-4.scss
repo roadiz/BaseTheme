@@ -19,19 +19,19 @@
     width: 20%;
 }
 
-@media (min-width: @screen-sm-min) {
+@media (min-width: $screen-sm-min) {
     // 5 colonnes = 2,4 / 12 = 20%
     .col-sm-2-4 {
         width: 20%;
     }
 }
-@media (min-width: @screen-md-min) {
+@media (min-width: $screen-md-min) {
     // 5 colonnes = 2,4 / 12 = 20%
     .col-md-2-4 {
         width: 20%;
     }
 }
-@media (min-width: @screen-lg-min) {
+@media (min-width: $screen-lg-min) {
     // 5 colonnes = 2,4 / 12 = 20%
     .col-lg-2-4 {
         width: 20%;
