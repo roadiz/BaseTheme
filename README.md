@@ -157,15 +157,15 @@ node-type in your Roadiz back-office.
 
 A common node-type called *Page* will be installed with this theme, his controller is located 
 in `Controllers/PageController.php` and his twig template in `Resources/views/types/page.html.twig`.
-We also created a LESS (`app/less/pages/page.less`) and a javascript file (`app/src/pages/page.js`) for this node-type.
+We also created a LESS (`app/less/pages/page.less`) and a javascript file (`app/src/pages/Page.js`) for this node-type.
 If you need others node-type, duplicate theses files and rename them.
 
 #### ES6 classes
 
-- `basic-block.js`
-- `contact-block.js` with an AJAX form submit
-- `map-block.js` with a Google Map creation
-- `nav.js` with AJAX update for your active *nav-item*
+- `BasicBlock.js`
+- `ContactBlock.js` with an AJAX form submit
+- `MapBlock.js` with a Google Map creation
+- `Nav.js` with AJAX update for your active *nav-item*
 
 ## Contributing
 

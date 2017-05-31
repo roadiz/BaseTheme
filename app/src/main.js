@@ -4,34 +4,34 @@
  * @file main.js
  * @author Ambroise Maupate
  */
-import $ from "jquery";
-import log from "loglevel";
-import {polyfills, gaTrackErrors, Utils, Router, GraphicLoader} from "starting-blocks";
-import isMobile from "ismobilejs/isMobile";
-import Nav from "./common/nav";
-import ClassFactory from "./class-factory";
-import TweenLite from "TweenLite";
-import Expo from "Expo";
+import $ from 'jquery'
+import log from 'loglevel'
+import {polyfills, gaTrackErrors, Utils, Router, GraphicLoader} from 'starting-blocks'
+import isMobile from 'ismobilejs/isMobile'
+import Nav from './common/nav'
+import ClassFactory from './ClassFactory'
+import TweenLite from 'TweenLite'
+import Expo from 'Expo'
 import '../less/style.less'
 
 /**
  * Set max log level (most verbose) 0 ---> 5
  * @see https://github.com/pimterry/loglevel
  */
-if (true === window.temp.devMode) {
-    log.setLevel(0);
+if (window.temp.devMode === true) {
+    log.setLevel(0)
 } else {
-    log.setLevel(5);
+    log.setLevel(5)
 }
 
-if (!location.origin) {
-    location.origin = location.protocol + "//" + location.host;
+if (!window.location.origin) {
+    window.location.origin = window.location.protocol + '//' + window.location.host
 }
 
 /**
  * Set default Tween ease
  */
-TweenLite.defaultEase = Expo.easeOut;
+TweenLite.defaultEase = Expo.easeOut
 
 /**
  * Log credits
@@ -40,45 +40,45 @@ Utils.logCredits(
     'BaseTheme',
     '#fff',
     [
-        { name:'Rezo Zero', website:'www.rezo-zero.com' }
+        { name: 'Rezo Zero', website: 'www.rezo-zero.com' }
     ],
     [
-        { name:'roadiz', website:'www.roadiz.io' },
-        { name:'GSAP', website:'www.greensock.com' }
+        { name: 'roadiz', website: 'www.roadiz.io' },
+        { name: 'GSAP', website: 'www.greensock.com' }
     ],
     '#000'
-);
+)
 
 /*
  * Declare polyfills
  */
-polyfills();
+polyfills()
 
 /**
  * Tracks erros with Analytics
  */
-gaTrackErrors();
+gaTrackErrors()
 
 /*
  * Define vars
  */
-const $body = $('body');
-const dataHome = $body[0].getAttribute('data-is-home');
-const isHome = (dataHome == '1');
+const $body = $('body')
+const dataHome = $body[0].getAttribute('data-is-home')
+const isHome = (dataHome === '1')
 
 /*
  * isMobile Test
  */
-let deviceMobile = (isMobile.any !== false);
-if(deviceMobile) Utils.addClass($body[0],'is-mobile');
-else Utils.addClass($body[0],'is-desktop');
+let deviceMobile = (isMobile.any !== false)
+if (deviceMobile) Utils.addClass($body[0], 'is-mobile')
+else Utils.addClass($body[0], 'is-desktop')
 
 /*
  * IE Test
  */
-if(navigator.userAgent.indexOf('MSIE') >= 0 ||
-    navigator.userAgent.indexOf('Trident') >= 0){
-    Utils.addClass($body[0],'ie-browser');
+if (navigator.userAgent.indexOf('MSIE') >= 0 ||
+    navigator.userAgent.indexOf('Trident') >= 0) {
+    Utils.addClass($body[0], 'ie-browser')
 }
 
 /**
@@ -87,14 +87,14 @@ if(navigator.userAgent.indexOf('MSIE') >= 0 ||
 const router = new Router(
     {
         homeHasClass: false,
-        ajaxEnabled: false,
+        ajaxEnabled: true,
         lazyloadEnabled: true,
         pageClass: 'page-container'
     },
     new ClassFactory(),
-    location.origin,
+    window.location.origin,
     new GraphicLoader(),
     new Nav()
-);
-router.initEvents();
-router.boot($('.page-container').eq(0), 'static', isHome);
+)
+router.initEvents()
+router.boot($('.page-container').eq(0), 'static', isHome)
