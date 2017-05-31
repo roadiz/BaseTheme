@@ -10,15 +10,15 @@
  * @author Maxime Berard
  */
 
-@import "vars";
-@import "bootstrap-custom";
+@import "base/vars";
+@import "base/bootstrap-custom";
 
 // Base
 @import "base/elements";
 @import "base/easing";
+@import "base/common";
 
 // Common
-@import "common";
 @import "common/header";
 @import "common/navbar";
 @import "common/nav";
@@ -29,7 +29,6 @@
 @import "icons/icons-credits";
 
 // Pages
-@import "pages/common";
 @import "pages/page";
 
 // Blocks
@@ -41,4 +40,4 @@
 @import "widgets/browser-update";
 
 // Alternative
-@import "style-alternative";
+@import "base/style-alternative";
