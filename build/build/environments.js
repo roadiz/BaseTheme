@@ -16,7 +16,7 @@ dbg.color = debug.colors[5]
 export default {
     development: (base, config) => ({
         plugins: [
-            new webpack.NamedModulesPlugin(),
+            // new webpack.NamedModulesPlugin(),
             new HtmlWebpackPlugin({
                 filename: config.utils_paths.views('partials/css-inject.html.twig'),
                 template: config.utils_paths.views('partials/css-inject-src.html.twig'),
@@ -45,9 +45,10 @@ export default {
         dbg('🎨  Using PostCss')
 
         return {
+            watch: false,
             module: {
                 loaders: [{
-                    test: /\.less?$/,
+                    test: /\.scss?$/,
                     loader: ExtractTextPlugin.extract({
                         fallback: 'style-loader',
                         use: [{
@@ -81,7 +82,7 @@ export default {
                                 ]
                             }
                         }, {
-                            loader: 'less-loader',
+                            loader: 'sass-loader',
                             options: {
                                 sourceMap: true
                             }
@@ -90,6 +91,16 @@ export default {
                     })
                 }]
             }, plugins: [
+                new webpack.optimize.CommonsChunkPlugin({
+                    name: 'vendor',
+                    minChunks: (module) => {
+                        return module.context && module.context.indexOf('node_modules') !== -1
+                    }
+                }),
+                new webpack.optimize.CommonsChunkPlugin({
+                    name: 'manifest',
+                    minChunks: Infinity
+                }),
                 new webpack.optimize.UglifyJsPlugin({
                     beautify: false,
                     mangle: {

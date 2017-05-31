@@ -1,9 +1,11 @@
 export default {
-    development: (config) => ({}),
+    development: (config) => ({
+        public_path: '/'
+    }),
 
     production: (config) => ({
         devtool: false,
-        public_path: '/',
+        public_path: '',
         assets_name_js: 'js/[name].[hash].js',
         assets_name_img: 'img/[name].[hash].[ext]',
         assets_name_css: 'css/[name].[chunkhash].css',

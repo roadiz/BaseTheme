@@ -10,7 +10,7 @@ const getConfig = () => {
         env: process.env.NODE_ENV || 'development',
         address: ip.address(),
         port: '8090',
-        devtool: 'eval-source-map',
+        devtool: 'cheap-module-eval-source-map',
 
         // ----------------------------------
         // Project Structure
@@ -35,7 +35,7 @@ const getConfig = () => {
         // ----------------------------------
         // Watch options
         // ----------------------------------
-        refreshOnChange: true, // auto reload page on file change
+        refreshOnChange: false, // auto reload page on file change
         watchInterval: 1000, // Poll interval in ms
 
         // ----------------------------------
@@ -50,10 +50,10 @@ const getConfig = () => {
         // ----------------------------------
         // Outputs
         // ----------------------------------
-        assets_name_js: '[name].js',
-        assets_name_img: '[name].[ext]',
-        assets_name_css: '[name].css',
-        assets_name_font: '[name].[ext]',
+        assets_name_js: 'js/[name].js',
+        assets_name_img: 'img/[name].[ext]',
+        assets_name_css: 'css/[name].css',
+        assets_name_font: 'fonts/[name].[ext]',
 
         // ----------------------------------
         // SVG Structure
