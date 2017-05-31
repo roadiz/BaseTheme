@@ -14,9 +14,10 @@
     <div id="nav-container" class="container">
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul id="nav-list" class="navbar-nav mr-auto">
+                {# Home #}
                 {% if home %}
                     {% set homeSource = home.nodeSources.first %}
-                    <li class="nav-item nav-item-home {% if node.isHome %}active{% endif %}">
+                    <li class="nav-item nav-item-home {% if node.isHome %}active{% endif %}" id="nav-item-home">
                         <a href="{{ path(homeSource) }}"
                            class="nav-link-home nav-link {% if node.isHome %}active{% endif %}" id="nav-home">{{ homeSource.title|default(home.nodeName) }}</a>
                     </li>
