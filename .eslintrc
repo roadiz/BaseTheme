@@ -1,17 +1,10 @@
 {
-    "extends": "eslint:recommended",
-    "parser": "babel-eslint",
-    "parserOptions": {
-        "ecmaVersion": 6,
-        "sourceType": "module"
-    },
-    "env": {
-        "browser": true,
-        "node": false
-    },
+    "extends": ["standard"],
     "rules": {
-        "no-console": 0,
-        "no-undef": 0,
-        "no-unused-vars": 0
+        // enable additional rules
+        "indent": [
+            "warn",
+            4
+        ]
     }
 }

@@ -15,11 +15,11 @@ cd themes/TestTheme
 yarn 
 ```
 
-We provide a starter kit based on ES6 with *Webpack2*, *Babel*, *Less* and *Gulp* as task runner. Feel free to adapt it if you have your own coding workflow. Keep in mind that we inject built CSS and JS into partial *Twig* templates to get versioned file names and ignore them in development stage.
+We provide a starter kit based on ES6 with *Webpack2*, *Babel*, *Scss* and *Gulp* as task runner. Feel free to adapt it if you have your own coding workflow. Keep in mind that we inject built CSS and JS into partial *Twig* templates to get versioned file names and ignore them in development stage.
 
 ## Scripts
 
-Watch js, less, images and SVG changes in `app/` folder, then build and reload browser. This command should be only used during development.
+Watch js, scss, images and SVG changes in `app/` folder, then build and reload browser. This command should be only used during development.
 
 ```shell
 npm run dev
@@ -35,7 +35,7 @@ npm run build
 
 #### `app/`
 
-This folder **is not publicly visible.**. It stores all your source files (fonts, js, less, images and SVG).
+This folder **is not publicly visible.**. It stores all your source files (fonts, js, scss, images and SVG).
 
 #### `static/`
 
@@ -58,23 +58,23 @@ API documentation at http://startingblocks.rezo-zero.com
 In *development*, all *JS* files are preprocessed with *Babel*, linted and a sourcemap is created.  
 In *production*, these files are also minified and optimized (uglifyJs, mangle) and the sourcemap is removed.
 
-### Less + Bootstrap 3
+### Scss + Bootstrap 3
 
-When you create a new less file in `app/less/`, you have to include it in `app/less/style.less`, which is your main project stylesheet.
+When you create a new *SCSS* file in `app/scss/`, you have to include it in `app/scss/style.scss`, which is your main project stylesheet.
 
 We use *Bootstrap 3* right in *BaseTheme* but you can choose what feature to include in your style not to bloat your CSS files. 
-We recommend to use *LESS* development version to ignore unnecessary modules.
-Open your `app/less/bootstrap-custom.less` file and comment/uncomment your *Bootstrap*
+We recommend to use *SCSS* development version to ignore unnecessary modules.
+Open your `app/scss/bootstrap-custom.scss` file and comment/uncomment your *Bootstrap*
 modules files, you even can override *Bootstrap* variables.
 
-In *development*, all *LESS* files are merged into one *CSS* file and a sourcemap is created.  
+In *development*, all *SCSS* files are merged into one *CSS* file and a sourcemap is created.  
 In *production*, this file is minified and optimized (postcss, autoprefixer) and the sourcemap is removed.
 
 ### Images
 
 All images in `app/src-img/` must be required in *CSS*
 
-```less
+```scss
 background: url('../src-img/mybackground.png');
 ```
 or *JS*
@@ -157,15 +157,15 @@ node-type in your Roadiz back-office.
 
 A common node-type called *Page* will be installed with this theme, his controller is located 
 in `Controllers/PageController.php` and his twig template in `Resources/views/types/page.html.twig`.
-We also created a LESS (`app/less/pages/page.less`) and a javascript file (`app/src/pages/page.js`) for this node-type.
+We also created a SCSS (`app/scss/pages/page.scss`) and a javascript file (`app/src/pages/Page.js`) for this node-type.
 If you need others node-type, duplicate theses files and rename them.
 
 #### ES6 classes
 
-- `basic-block.js`
-- `contact-block.js` with an AJAX form submit
-- `map-block.js` with a Google Map creation
-- `nav.js` with AJAX update for your active *nav-item*
+- `BasicBlock.js`
+- `ContactBlock.js` with an AJAX form submit
+- `MapBlock.js` with a Google Map creation
+- `Nav.js` with AJAX update for your active *nav-item*
 
 ## Contributing
 
