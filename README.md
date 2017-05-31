@@ -58,14 +58,12 @@ API documentation at http://startingblocks.rezo-zero.com
 In *development*, all *JS* files are preprocessed with *Babel*, linted and a sourcemap is created.  
 In *production*, these files are also minified and optimized (uglifyJs, mangle) and the sourcemap is removed.
 
-### Scss + Bootstrap 3
+### Scss + Bootstrap 4
 
 When you create a new *SCSS* file in `app/scss/`, you have to include it in `app/scss/style.scss`, which is your main project stylesheet.
 
-We use *Bootstrap 3* right in *BaseTheme* but you can choose what feature to include in your style not to bloat your CSS files. 
-We recommend to use *SCSS* development version to ignore unnecessary modules.
-Open your `app/scss/bootstrap-custom.scss` file and comment/uncomment your *Bootstrap*
-modules files, you even can override *Bootstrap* variables.
+We use *Bootstrap 4* right in *BaseTheme* but you can choose what feature to include in your style not to bloat your CSS files. 
+Open your `app/scss/bootstrap-custom.scss` file and comment/uncomment/import your *Bootstrap* modules files, you even can override *Bootstrap* variables.
 
 In *development*, all *SCSS* files are merged into one *CSS* file and a sourcemap is created.  
 In *production*, this file is minified and optimized (postcss, autoprefixer) and the sourcemap is removed.
