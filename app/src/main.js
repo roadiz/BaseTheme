@@ -43,8 +43,9 @@ Utils.logCredits(
         { name: 'Rezo Zero', website: 'www.rezo-zero.com' }
     ],
     [
-        { name: 'roadiz', website: 'www.roadiz.io' },
-        { name: 'GSAP', website: 'www.greensock.com' }
+        { name: 'Roadiz', website: 'www.roadiz.io' },
+        { name: 'GSAP', website: 'www.greensock.com' },
+        { name: 'Starting Blocks', website: 'http://startingblocks.rezo-zero.com' }
     ],
     '#000'
 )
