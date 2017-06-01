@@ -95,6 +95,7 @@ yarn.lock
 /static/css
 /static/img
 /static/vendors
+/static/fonts
 /Resources/views/svg/sprite.svg.twig
 
 ## Inject files
