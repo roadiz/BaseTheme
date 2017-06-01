@@ -17,6 +17,7 @@
     "npm": "^3.0.0"
   },
   "scripts": {
+    "add-force": "git add --force static/css/* static/fonts/* static/img/* static/js/* static/vendors/* Resources/views/svg/sprite.svg.twig Resources/views/partials/css-inject.html.twig Resources/views/partials/js-inject.html.twig",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "better-npm-run dev",
     "dev-livereload": "better-npm-run dev-livereload",
