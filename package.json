@@ -100,6 +100,7 @@
     "webpack-stream": "^3.2.0"
   },
   "dependencies": {
+    "bazinga-translator": "^2.6.5",
     "bootstrap": "4.0.0-alpha.6",
     "es6-promise": "^4.0.5",
     "gsap": "^1.19.1",

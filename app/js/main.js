@@ -12,7 +12,42 @@ import Nav from './common/nav'
 import ClassFactory from './ClassFactory'
 import TweenLite from 'TweenLite'
 import Expo from 'Expo'
+import Translator from 'bazinga-translator'
 import '../scss/style.scss'
+
+/**
+ * Get translations from an api
+ */
+Translator.fromJSON({
+    locale: 'en',
+    translations: {
+        en: {
+            messages: {
+                'hello': 'Hello %name%'
+            }
+        }
+    }
+})
+
+/**
+ * Adds a translation entry.
+ *
+ * @param {String} id         The message id
+ * @param {String} message    The message to register for the given id
+ * @param {String} [domain]   The domain for the message or null to use the default
+ * @param {String} [locale]   The locale or null to use the default
+ * @return {Object}           Translator
+ * @api public
+ */
+Translator.add(
+    'bye',
+    'Bye %name%',
+    'messages',
+    'en'
+)
+
+console.log(Translator.trans('hello', { name: 'Adrien' }))
+console.log(Translator.trans('bye', { name: 'Adrien' }))
 
 /**
  * Set max log level (most verbose) 0 ---> 5
