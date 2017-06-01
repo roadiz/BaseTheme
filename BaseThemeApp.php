@@ -10,7 +10,6 @@
 namespace Themes\BaseTheme;
 
 use RZ\Roadiz\CMS\Controllers\FrontendController;
-use RZ\Roadiz\Core\Bags\SettingsBag;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Themes\BaseTheme\Services;
@@ -20,7 +19,7 @@ use Themes\BaseTheme\Services;
  */
 class BaseThemeApp extends FrontendController
 {
-    const VERSION = '0.18.6';
+    const VERSION = '0.18.8';
 
     protected static $themeName = 'Base theme';
     protected static $themeAuthor = 'REZO ZERO';
@@ -136,15 +135,15 @@ class BaseThemeApp extends FrontendController
 
         $this->assignation['themeServices'] = $this->themeContainer;
 
-        $this->assignation['head']['facebookUrl'] = SettingsBag::get('facebook_url');
-        $this->assignation['head']['pinterest_url'] = SettingsBag::get('pinterest_url');
-        $this->assignation['head']['facebookClientId'] = SettingsBag::get('facebook_client_id');
-        $this->assignation['head']['instagramUrl'] = SettingsBag::get('instagram_url');
-        $this->assignation['head']['twitterUrl'] = SettingsBag::get('twitter_url');
-        $this->assignation['head']['googleplusUrl'] = SettingsBag::get('googleplus_url');
-        $this->assignation['head']['googleClientId'] = SettingsBag::get('google_client_id');
-        $this->assignation['head']['twitterAccount'] = SettingsBag::get('twitter_account');
-        $this->assignation['head']['mapsStyle'] = SettingsBag::get('maps_style');
+        $this->assignation['head']['facebookUrl'] = $this->get('settingsBag')->get('facebook_url');
+        $this->assignation['head']['pinterest_url'] = $this->get('settingsBag')->get('pinterest_url');
+        $this->assignation['head']['facebookClientId'] = $this->get('settingsBag')->get('facebook_client_id');
+        $this->assignation['head']['instagramUrl'] = $this->get('settingsBag')->get('instagram_url');
+        $this->assignation['head']['twitterUrl'] = $this->get('settingsBag')->get('twitter_url');
+        $this->assignation['head']['googleplusUrl'] = $this->get('settingsBag')->get('googleplus_url');
+        $this->assignation['head']['googleClientId'] = $this->get('settingsBag')->get('google_client_id');
+        $this->assignation['head']['twitterAccount'] = $this->get('settingsBag')->get('twitter_account');
+        $this->assignation['head']['mapsStyle'] = $this->get('settingsBag')->get('maps_style');
         $this->assignation['head']['themeName'] = static::$themeName;
         $this->assignation['head']['themeVersion'] = static::VERSION;
 
