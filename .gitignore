@@ -89,10 +89,12 @@ sftp-config.json
 ## Yarn
 yarn.lock
 
-## Generated files (css, js, svg)
+## Generated files (css, js, svg, img, vendors)
 /static/js
 /static/build
 /static/css
+/static/img
+/static/vendors
 /Resources/views/svg/sprite.svg.twig
 
 ## Inject files
