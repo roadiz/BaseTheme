@@ -15,15 +15,22 @@ cd themes/TestTheme
 yarn 
 ```
 
-We provide a starter kit based on ES6 with *Webpack2*, *Babel*, *Scss* and *Gulp* as task runner. Feel free to adapt it if you have your own coding workflow. Keep in mind that we inject built CSS and JS into partial *Twig* templates to get versioned file names and ignore them in development stage.
+We provide a starter kit based on ES6 with *Webpack2*, *Babel*, *Scss* and *Gulp* as task runner. Feel free to adapt it if you have your own coding workflow. Keep in mind that we inject built CSS and JS into partial *Twig* templates to get versioned file names.
 
 ## Scripts
 
-Watch js, scss, images and SVG changes in `app/` folder, then build and reload browser. This command should be only used during development.
+Watch js, scss, images and svg changes in `app/` folder, then build.
 
 ```shell
 npm run dev
 ```
+
+If you want live reload use
+```shell
+npm run dev-livereload
+```
+
+Those above commands should be only used during development.
 
 Build all assets in `app/` folder, optimized and minified. After a build, you are ready to deploy to production site.
 
@@ -35,11 +42,13 @@ npm run build
 
 #### `app/`
 
-This folder **is not publicly visible.**. It stores all your source files (fonts, js, scss, images and SVG).
+This folder **is not publicly visible.**. It stores all your source files (fonts, js, scss, images and svg).
 
 #### `static/`
 
 This **folder will be symlinked in your *Roadiz Standard edition* `web/` folder, you should not store sensitive data here.**
+
+**IMPORTANT**: Do not add any files in `static/img`, `static/js`, `static/svg`, `static/css`, `static/fonts`, `static/vendors` 
 
 #### `build/`
 
@@ -70,28 +79,30 @@ In *production*, this file is minified and optimized (postcss, autoprefixer) and
 
 ### Images
 
-All images in `app/src-img/` must be required in *CSS*
+All images in `app/img/` can be required in *CSS*, *JS* or in *Twig* files.
 
 ```scss
-background: url('../src-img/mybackground.png');
+// app/scss/base/_common.scss
+...
+background: url('../../img/mybackground.png');
+...
 ```
+
 or *JS*
 
 ```javascript
-import myBackground from '../src-img/mybackground.png'
+import myBackground from '../img/mybackground.png'
 ```
 
-Otherwise, they never be processed by webpack.  
-If you want to use an image in a *Twig* template, you have to move it in a custom folder in `static/` (not in `static/img` because it will be flushed by the next `npm run build`)
+Images are automatically processed by webpack and copied in `static/img`. So you can easly use in *Twig* files.
 
-`.png` and `.jpg` files are accepted and they will be versionned when you run `npm run build`.
 Under `config.limit_image_size`, required image will be transformed into dataUrl.
 
 ### SVG
 
-All *SVG* files in `app/src-svg/` folder will be processed by *Gulp*, minified with *SVGO* and injected in `Resources/views/svg/sprite.svg.twig` as `<defs>` element, which is injected in `base.html.twig`.
+All *SVG* files in `app/svg/` folder will be processed by *Gulp*, minified with *SVGO* and injected in `Resources/views/svg/sprite.svg.twig` as `<defs>` element, which is injected in `base.html.twig`.
 
-To include a new *SVG* to your site, move your *SVG* to `app/src-svg/myicon.svg` and, in any *Twig* template
+To include a new *SVG* to your site, move your *SVG* to `app/svg/myicon.svg` and, in any *Twig* template
 
 ```html
 <use xlink:href="#icon-myicon"/>
@@ -99,8 +110,7 @@ To include a new *SVG* to your site, move your *SVG* to `app/src-svg/myicon.svg`
 
 ### Versioning
 
-Versioning is really important in order to avoid browser and public cache problems after
-a site update.
+Versioning is really important in order to avoid browser and public cache problems after a site update.
 
 While you run `npm run build`, *Webpack* will generate a random generated name suffix for each file and require *CSS* and *JS* files in `Resources/views/base.html.twig` template.
 
@@ -115,7 +125,7 @@ For example, while you run `npm run build`, `NODE_ENV` is equal to `production` 
 
 "betterScripts": {
     "build": {
-      "command": "npm run build-svg && ./node_modules/webpack/bin/webpack.js",
+      "command": "npm run build-svg && webpack",
       "env": {
         "NODE_ENV": "production",
         "DEBUG": "Roadiz-front:*"
@@ -140,7 +150,7 @@ Webpack configuration works the same. `build/build/base.js` exports a common web
 
 Feel free to add other custom `NODE_ENV` like staging, testing...
 
-**important note** : By default, Webpack watch the files (except `node_modules`) every 1000ms. You can increase this interval in `config.watchInterval` or disable auto reload with `config.refreshOnChange`.
+**important note** : In `npm run dev-livereload`, Webpack watch the files every 1000ms. You can change this interval in `config.watchInterval`.
 
 ## Boilerplate
 
