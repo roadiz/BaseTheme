@@ -35,7 +35,7 @@ const getConfig = () => {
         // ----------------------------------
         // Watch options
         // ----------------------------------
-        refreshOnChange: false, // auto reload page on file change
+        refreshOnChange: process.env.REFRESH_ON_CHANGE === 'true',
         watchInterval: 1000, // Poll interval in ms
 
         // ----------------------------------
@@ -81,7 +81,7 @@ const getConfig = () => {
         }
     }
 
-    config.public_path = `http://${config.address}:${config.port}/`
+    config.public_path = ''
 
 // ------------------------------------
 // Utilities

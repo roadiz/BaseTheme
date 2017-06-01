@@ -5,8 +5,6 @@ import configOverrides from './environments'
 const dbg = debug('Roadiz-front:config  ')
 dbg.color = debug.colors[1]
 
-let config = null
-
 const getConfig = () => {
     dbg('👷‍♂️  Creating configuration.')
     let configBase = getConfigBase()

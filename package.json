@@ -19,6 +19,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "better-npm-run dev",
+    "dev-livereload": "better-npm-run dev-livereload",
     "watch-svg": "gulp watch-svg --silent",
     "build": "better-npm-run build",
     "build-svg": "gulp build-svg --silent"
@@ -28,7 +29,16 @@
       "command": "concurrently -r \"npm run watch-svg\" \"webpack\"",
       "env": {
         "NODE_ENV": "development",
-        "DEBUG": "Roadiz-front:*"
+        "DEBUG": "Roadiz-front:*",
+        "REFRESH_ON_CHANGE": false
+      }
+    },
+    "dev-livereload": {
+      "command": "concurrently -r \"npm run watch-svg\" \"webpack-dev-server\"",
+      "env": {
+        "NODE_ENV": "development",
+        "DEBUG": "Roadiz-front:*",
+        "REFRESH_ON_CHANGE": true
       }
     },
     "build": {
@@ -75,13 +85,12 @@
     "html-webpack-harddisk-plugin": "^0.1.0",
     "html-webpack-plugin": "^2.28.0",
     "ip": "^1.1.5",
-    "less": "^2.7.2",
-    "less-loader": "^4.0.3",
     "postcss-filter-gradient": "^1.0.0",
     "postcss-fixes": "^1.4.1",
     "postcss-loader": "^2.0.5",
     "postcss-reduce-transforms": "^1.0.3",
     "require-dir": "^0.3.0",
+    "resolve-url-loader": "^2.0.2",
     "style-loader": "^0.18.1",
     "url-loader": "^0.5.8",
     "webpack": "^2.6.0",

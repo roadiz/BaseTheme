@@ -2,10 +2,10 @@ import webpack from 'webpack'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 import cssnano from 'cssnano'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import postcssFixes from 'postcss-fixes';
-import postcssFilterGradient from 'postcss-filter-gradient';
-import postcssReduceTransform from 'postcss-reduce-transforms';
-import cssMqpacker from 'css-mqpacker';
+import postcssFixes from 'postcss-fixes'
+import postcssFilterGradient from 'postcss-filter-gradient'
+import postcssReduceTransform from 'postcss-reduce-transforms'
+import cssMqpacker from 'css-mqpacker'
 import Harddisk from 'html-webpack-harddisk-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import debug from 'debug'
@@ -15,16 +15,26 @@ dbg.color = debug.colors[5]
 
 export default {
     development: (base, config) => ({
+        watch: true,
+        devServer: {
+            stats: config.stats,
+            port: config.port,
+            publicPath: config.public_path,
+            host: config.address,
+            watchOptions: {
+                poll: config.watchInterval,
+                ignored: /node_modules/
+            }
+        },
         plugins: [
-            // new webpack.NamedModulesPlugin(),
+            new webpack.NamedModulesPlugin(),
             new HtmlWebpackPlugin({
                 filename: config.utils_paths.views('partials/css-inject.html.twig'),
                 template: config.utils_paths.views('partials/css-inject-src.html.twig'),
                 cache: true,
                 inject: false,
                 alwaysWriteToDisk: true,
-                // datas
-                env: config.env
+                refreshOnChange: config.refreshOnChange
             }),
             new HtmlWebpackPlugin({
                 filename: config.utils_paths.views('partials/js-inject.html.twig'),
@@ -32,8 +42,7 @@ export default {
                 cache: true,
                 inject: false,
                 alwaysWriteToDisk: true,
-                // datas
-                env: config.env
+                refreshOnChange: config.refreshOnChange
             }),
             new Harddisk()
         ]
@@ -45,7 +54,6 @@ export default {
         dbg('🎨  Using PostCss')
 
         return {
-            watch: false,
             module: {
                 loaders: [{
                     test: /\.scss?$/,
@@ -54,7 +62,8 @@ export default {
                         use: [{
                             loader: 'css-loader',
                             options: {
-                                importLoaders: 2
+                                importLoaders: 2,
+                                sourceMap: false
                             }
                         }, {
                             loader: 'postcss-loader',
@@ -82,25 +91,17 @@ export default {
                                 ]
                             }
                         }, {
+                            loader: 'resolve-url-loader'
+                        }, {
                             loader: 'sass-loader',
                             options: {
                                 sourceMap: true
                             }
-                        }
-                        ],
+                        }]
                     })
                 }]
-            }, plugins: [
-                new webpack.optimize.CommonsChunkPlugin({
-                    name: 'vendor',
-                    minChunks: (module) => {
-                        return module.context && module.context.indexOf('node_modules') !== -1
-                    }
-                }),
-                new webpack.optimize.CommonsChunkPlugin({
-                    name: 'manifest',
-                    minChunks: Infinity
-                }),
+            },
+            plugins: [
                 new webpack.optimize.UglifyJsPlugin({
                     beautify: false,
                     mangle: {
@@ -114,18 +115,31 @@ export default {
                     comments: false
                 }),
                 new webpack.HashedModuleIdsPlugin(),
-                new webpack.LoaderOptionsPlugin({
-                    minimize: true,
-                    debug: false,
-                    options: {
-                        eslint: {
-                            configFile: './.eslintrc'
-                        }
-                    }
-                }),
                 new CleanWebpackPlugin(['css', 'img', 'js', 'fonts'], {
                     root: config.utils_paths.dist(),
                     verbose: false
+                }),
+                new HtmlWebpackPlugin({
+                    filename: config.utils_paths.views('partials/css-inject.html.twig'),
+                    template: config.utils_paths.views('partials/css-inject-src.html.twig'),
+                    cache: true,
+                    inject: false
+                }),
+                new HtmlWebpackPlugin({
+                    filename: config.utils_paths.views('partials/js-inject.html.twig'),
+                    template: config.utils_paths.views('partials/js-inject-src.html.twig'),
+                    cache: true,
+                    inject: false
+                }),
+                new webpack.optimize.CommonsChunkPlugin({
+                    name: 'vendor',
+                    minChunks: (module) => {
+                        return module.context && module.context.indexOf('node_modules') !== -1
+                    }
+                }),
+                new webpack.optimize.CommonsChunkPlugin({
+                    name: 'manifest',
+                    minChunks: Infinity
                 })
             ]
         }

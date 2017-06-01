@@ -1,35 +1,22 @@
 import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
 import debug from 'debug'
 
 const dbg = debug('Roadiz-front:webpack-config:base  ')
 dbg.color = debug.colors[3]
 
 const getWebpackConfigBase = (config) => {
-
     const paths = config.utils_paths
 
     dbg('⚙  Exporting default webpack configuration.')
 
-    return {
+    let webpackConfig = {
         cache: true,
         stats: config.stats,
         devtool: config.devtool,
-        watch: true,
-        devServer: {
-            lazy: !config.refreshOnChange,
-            stats: config.stats,
-            port: config.port,
-            publicPath: config.public_path,
-            host: config.address,
-            watchOptions: {
-                poll: config.watchInterval,
-                ignored: /node_modules/
-            }
-        },
         name: 'client',
         target: 'web',
+        context: paths.dist(),
         entry: {
             app: paths.client('src/main.js'),
             vendor: config.js_vendors
@@ -54,26 +41,30 @@ const getWebpackConfigBase = (config) => {
                     cacheDirectory: true
                 }
             }, {
-                test: /\.scss$/,
-                use: [{
-                    loader: 'style-loader'
-                }, {
-                    loader: 'css-loader',
-                    options: {
-                        importLoaders: 2,
-                        sourceMap: true
-                    }
-                }, {
-                    loader: 'sass-loader',
-                    options: {
-                        sourceMap: true
-                    }
-                }]
+                test: /\.scss?$/,
+                loader: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: [{
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 2,
+                            sourceMap: true
+                        }
+                    }, {
+                        loader: 'resolve-url-loader'
+                    }, {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    }]
+                })
             }, {
                 test: /\.(png|jpg)$/,
                 loader: 'url-loader',
                 options: {
                     limit: config.limit_image_size,
+                    publicPath: '../',
                     name: config.assets_name_img
                 }
             }, {
@@ -90,30 +81,19 @@ const getWebpackConfigBase = (config) => {
                 filename: config.assets_name_css,
                 allChunks: true
             }),
-            // new webpack.HotModuleReplacementPlugin(),
-            new webpack.NoEmitOnErrorsPlugin(),
-            new HtmlWebpackPlugin({
-                filename: config.utils_paths.views('partials/css-inject.html.twig'),
-                template: config.utils_paths.views('partials/css-inject-src.html.twig'),
-                cache: true,
-                inject: false,
-                // datas
-                env: config.env
-            }),
-            new HtmlWebpackPlugin({
-                filename: config.utils_paths.views('partials/js-inject.html.twig'),
-                template: config.utils_paths.views('partials/js-inject-src.html.twig'),
-                cache: true,
-                inject: false,
-                // datas
-                env: config.env
-            })
+            new webpack.NoEmitOnErrorsPlugin()
         ],
         resolve: {
             extensions: ['.js']
         },
         externals: config.externals
     }
+
+    if (config.refreshOnChange) {
+        webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin())
+    }
+
+    return webpackConfig
 }
 
 export default getWebpackConfigBase
