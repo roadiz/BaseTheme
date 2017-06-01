@@ -33,7 +33,7 @@ const getWebpackConfigBase = (config) => {
                 test: /\.js$/,
                 enforce: 'pre',
                 loader: 'eslint-loader',
-                exclude: [/node_modules/]
+                exclude: [/node_modules/, /app\/vendors/]
             }, {
                 test: /\.js?$/,
                 exclude: /(node_modules)/,
