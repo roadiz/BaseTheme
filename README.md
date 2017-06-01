@@ -18,25 +18,29 @@ yarn
 We provide a starter kit based on ES6 with *Webpack2*, *Babel*, *Scss* and *Gulp* as task runner. Feel free to adapt it if you have your own coding workflow. Keep in mind that we inject built CSS and JS into partial *Twig* templates to get versioned file names.
 
 ## Scripts
-
-Watch js, scss, images and svg changes in `app/` folder, then build.
+### Development
 
 ```shell
 npm run dev
 ```
 
-If you want live reload use
+Watch js, scss, images and svg changes in `app/` folder, then build.
+
 ```shell
 npm run dev-livereload
 ```
 
-Those above commands should be only used during development.
+Same functionnalities as above but with browser livereload.
 
-Build all assets in `app/` folder, optimized and minified. After a build, you are ready to deploy to production site.
+### Production
 
 ```shell 
 npm run build
 ```
+
+Build all assets in `app/` folder, optimized and minified. After a build, you are ready to deploy to production site.
+
+
 
 ## Structure
 
@@ -48,7 +52,7 @@ This folder **is not publicly visible.**. It stores all your source files (fonts
 
 This **folder will be symlinked in your *Roadiz Standard edition* `web/` folder, you should not store sensitive data here.**
 
-**IMPORTANT**: Do not add any files in `static/img`, `static/js`, `static/svg`, `static/css`, `static/fonts`, `static/vendors` 
+**IMPORTANT**: Do not add any files in `static/img`, `static/js`, `static/svg`, `static/css`, `static/fonts`, `static/vendors`.
 
 #### `build/`
 
@@ -150,7 +154,7 @@ Webpack configuration works the same. `build/build/base.js` exports a common web
 
 Feel free to add other custom `NODE_ENV` like staging, testing...
 
-**important note** : In `npm run dev-livereload`, Webpack watch the files every 1000ms. You can change this interval in `config.watchInterval`.
+**important note** : When you start `npm run dev-livereload` task, Webpack watch the files every 1000ms. You can change this interval in `config.watchInterval`.
 
 ## Boilerplate
 
