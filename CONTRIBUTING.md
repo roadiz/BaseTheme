@@ -1,12 +1,11 @@
 # Contributing to BaseTheme
 
-BaseTheme is built upon `Twig`, `Webpack`, `ES6` and `LESS`. If you want to 
+BaseTheme is built upon `Twig`, `Webpack`, `ES6` and `SCSS`. If you want to 
 take part in improving our *Roadiz* theme boilerplate, we encourage you to know 
 a minimum about these frontend technologies.
 
 We keep this theme starter as fresh as possible and some technology choices 
-may changes among time. For example, we are waiting for *Bootstrap 4* to
-release as a stable version to switch to `Sass` for CSS preprocessing.
+may changes among time. 
 
 ## Ignored files
 
@@ -24,7 +23,7 @@ time.
 These files **MUST** be available on `master` or `develop` branch at any time.
 Even if they are *gitignored*, they are needed for *Roadiz* to display your theme.
 
-## Use EditorConfig 
+## Use EditorConfig 
 
 We added an `.editorconfig` file to make developers use the same codestyle. Please
 install the plugin if you’re working with *Atom*, *Sublime Text*, … editors.
