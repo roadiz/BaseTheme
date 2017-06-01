@@ -115,7 +115,7 @@ export default {
                     comments: false
                 }),
                 new webpack.HashedModuleIdsPlugin(),
-                new CleanWebpackPlugin(['css', 'img', 'js', 'fonts'], {
+                new CleanWebpackPlugin(['css', 'img', 'js', 'fonts', 'vendors'], {
                     root: config.utils_paths.dist(),
                     verbose: false
                 }),

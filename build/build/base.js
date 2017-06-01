@@ -1,5 +1,6 @@
 import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import CopyWebpackPlugin from 'copy-webpack-plugin'
 import debug from 'debug'
 
 const dbg = debug('Roadiz-front:webpack-config:base  ')
@@ -18,7 +19,7 @@ const getWebpackConfigBase = (config) => {
         target: 'web',
         context: paths.dist(),
         entry: {
-            app: paths.client('src/main.js'),
+            app: paths.client('js/main.js'),
             vendor: config.js_vendors
         },
         output: {
@@ -77,6 +78,13 @@ const getWebpackConfigBase = (config) => {
             ]
         },
         plugins: [
+            new CopyWebpackPlugin([{
+                from: paths.client('img'),
+                to: paths.dist('img')
+            }, {
+                from: paths.client('vendors'),
+                to: paths.dist('vendors')
+            }]),
             new ExtractTextPlugin({
                 filename: config.assets_name_css,
                 allChunks: true
