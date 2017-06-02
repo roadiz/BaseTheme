@@ -6,5 +6,10 @@
             "warn",
             4
         ]
+    },
+    "globals" : {
+        "DEV": false,
+        "PROD": false,
+        "ENV": false
     }
 }

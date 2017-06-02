@@ -6,8 +6,12 @@ const dbg = debug('Roadiz-front:config:base  ')
 dbg.color = debug.colors[2]
 
 const getConfig = () => {
-    const config = {
-        env: process.env.NODE_ENV || 'development',
+    let config = {
+        env: process.env.NODE_ENV || 'development'
+    }
+
+    config = {
+        ...config,
         address: ip.address(),
         port: '8090',
         devtool: 'source-map',
@@ -83,6 +87,7 @@ const getConfig = () => {
         // ----------------------------------
         // Globals
         // ----------------------------------
+        // ⚠️ : You have to add these constants to .eslintrc file
         globals: {
             'DEVELOPMENT': JSON.stringify(config.env === 'development'),
             'PRODUCTION': JSON.stringify(config.env === 'production'),
