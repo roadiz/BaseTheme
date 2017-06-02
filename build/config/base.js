@@ -10,7 +10,7 @@ const getConfig = () => {
         env: process.env.NODE_ENV || 'development',
         address: ip.address(),
         port: '8090',
-        devtool: 'cheap-module-eval-source-map',
+        devtool: 'source-map',
 
         // ----------------------------------
         // Project Structure
