@@ -78,6 +78,15 @@ const getConfig = () => {
             jQuery: 'jQuery',
             jquery: 'jQuery',
             $: '$'
+        },
+
+        // ----------------------------------
+        // Globals
+        // ----------------------------------
+        globals: {
+            'DEVELOPMENT': JSON.stringify(config.env === 'development'),
+            'PRODUCTION': JSON.stringify(config.env === 'production'),
+            'ENV': JSON.stringify(config.env)
         }
     }
 

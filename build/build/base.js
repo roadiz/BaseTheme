@@ -78,6 +78,7 @@ const getWebpackConfigBase = (config) => {
             ]
         },
         plugins: [
+            new webpack.DefinePlugin(config.globals),
             new CopyWebpackPlugin([{
                 from: paths.client('img'),
                 to: paths.dist('img')

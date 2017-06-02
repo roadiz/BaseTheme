@@ -156,6 +156,32 @@ Feel free to add other custom `NODE_ENV` like staging, testing...
 
 **important note** : When you start `npm run dev-livereload` task, Webpack watch the files every 1000ms. You can change this interval in `config.watchInterval`.
 
+### Constants
+
+By default, you have access to 3 constants in your *Javascript* code. These can be useful to display or not a loader, an authentification form, etc... or to set API paths and override them in production configuration :
+
+```javascript
+// build/config/base.js
+  
+{
+    globals: {
+        'DEVELOPMENT': JSON.stringify(config.env === 'development'),
+        'PRODUCTION': JSON.stringify(config.env === 'production'),
+        'ENV': JSON.stringify(config.env)
+    }
+  
+}
+```
+
+```javascript
+// any js file  
+  
+if (PRODUCTION) {
+  // show loader
+}
+```
+
+
 ## Boilerplate
 
 BaseTheme will provide you some ready-made *Twig* templates, styles and ES6 classes.
