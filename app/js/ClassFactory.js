@@ -5,8 +5,8 @@
  * @author Ambroise Maupate
  */
 import log from 'loglevel'
-import Page from './pages/page'
-import Home from './pages/home'
+import Page from './pages/Page'
+import Home from './pages/Home'
 import ContactBlock from './blocks/ContactBlock'
 import BasicBlock from './blocks/BasicBlock'
 import MapBlock from './blocks/MapBlock'
