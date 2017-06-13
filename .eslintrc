@@ -1,11 +1,17 @@
 {
     "extends": ["standard"],
+    "plugins": [
+        "dependencies"
+    ],
     "rules": {
         // enable additional rules
         "indent": [
             "warn",
             4
-        ]
+        ],
+        "dependencies/case-sensitive": 1,
+        "dependencies/no-cycles": 1,
+        "dependencies/require-json-ext": 1
     },
     "globals" : {
         "DEVELOPMENT": false,

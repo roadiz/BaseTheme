@@ -105,6 +105,7 @@
   "dependencies": {
     "bootstrap": "4.0.0-alpha.6",
     "es6-promise": "^4.0.5",
+    "eslint-plugin-dependencies": "^2.3.0",
     "gsap": "^1.19.1",
     "ismobilejs": "^0.4.0",
     "jquery": "^2.2.0",
