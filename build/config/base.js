@@ -87,11 +87,11 @@ const getConfig = () => {
         // ----------------------------------
         // Globals
         // ----------------------------------
-        // ⚠️ : You have to add these constants to .eslintrc file
+        // ⚠️ : You have to add all these constants to .eslintrc file
         globals: {
             'DEVELOPMENT': JSON.stringify(config.env === 'development'),
             'PRODUCTION': JSON.stringify(config.env === 'production'),
-            'ENV': JSON.stringify(config.env)
+            'ENVIRONMENT': JSON.stringify(config.env)
         }
     }
 

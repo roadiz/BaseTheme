@@ -8,8 +8,8 @@
         ]
     },
     "globals" : {
-        "DEV": false,
-        "PROD": false,
-        "ENV": false
+        "DEVELOPMENT": false,
+        "PRODUCTION": false,
+        "ENVIRONMENT": false
     }
 }
