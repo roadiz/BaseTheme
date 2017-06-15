@@ -29,9 +29,9 @@ export default class MapBlock extends DefaultBlock {
                     MapBlock.googleMaps = googleMaps
                     this.createMap()
                 })
-                .catch((err) => {
-                    log.debug(err)
-                })
+                    .catch((err) => {
+                        log.debug(err)
+                    })
             } else {
                 this.createMap()
             }
