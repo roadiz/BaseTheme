@@ -74,7 +74,7 @@
     "eslint": "^4.0.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-loader": "^1.8.0",
-    "eslint-plugin-dependencies": "https://github.com/quentinneyraud/eslint-plugin-dependencies",
+    "eslint-plugin-dependencies": "^2.4.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-node": "^5.0.0",
     "eslint-plugin-promise": "^3.5.0",
