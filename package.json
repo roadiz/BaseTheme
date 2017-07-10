@@ -21,13 +21,13 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "better-npm-run dev",
     "dev-livereload": "better-npm-run dev-livereload",
-    "watch-svg": "gulp watch-svg --silent",
     "build": "better-npm-run build",
+    "watch-svg": "gulp watch-svg --silent",
     "build-svg": "gulp build-svg --silent"
   },
   "betterScripts": {
     "dev": {
-      "command": "concurrently -r \"npm run watch-svg\" \"webpack\"",
+      "command": "npm run build-svg && concurrently -r \"npm run watch-svg\" \"webpack\"",
       "env": {
         "NODE_ENV": "development",
         "DEBUG": "Roadiz-front:*",
@@ -35,7 +35,7 @@
       }
     },
     "dev-livereload": {
-      "command": "concurrently -r \"npm run watch-svg\" \"webpack-dev-server\"",
+      "command": "npm run build-svg && concurrently -r \"npm run watch-svg\" \"webpack-dev-server\"",
       "env": {
         "NODE_ENV": "development",
         "DEBUG": "Roadiz-front:*",
