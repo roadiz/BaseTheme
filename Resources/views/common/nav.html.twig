@@ -26,10 +26,11 @@
                 {% if themeServices.navigation and themeServices.navigation|length %}
                     {% for source in themeServices.navigation %}
                         {% include '@BaseTheme/common/nav-item.html.twig' with {
-                        'source' : source,
-                        'active' : node,
-                        'home' : home,
-                        'themeServices':themeServices
+                            'source' : source,
+                            'active' : node,
+                            'home' : home,
+                            'themeServices':themeServices,
+                            'bags': bags
                         } only %}
                     {% endfor %}
                 {% endif %}

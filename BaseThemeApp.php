@@ -130,7 +130,6 @@ class BaseThemeApp extends FrontendController
          * Register services
          */
         $this->themeContainer->register(new Services\NodeServiceProvider($this->getContainer(), $this->translation));
-        $this->themeContainer->register(new Services\NodeTypeServiceProvider($this->get('nodeTypeApi')));
         $this->themeContainer->register(new Services\AssetsServiceProvider());
 
         $this->assignation['themeServices'] = $this->themeContainer;

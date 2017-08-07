@@ -42,7 +42,7 @@ class CssController extends BaseThemeApp
         $response->setStatusCode(Response::HTTP_OK);
         $response->headers->set('Content-Type', 'text/css');
 
-        $response->setContent($this->getTwig()->render('@BaseTheme/css/dynamic-styles.css.twig', $this->assignation));
+        $response->setContent($this->getTwig()->render('css/dynamic-styles.css.twig', $this->assignation));
 
         /** @var Kernel $kernel */
         $kernel = $this->get('kernel');
@@ -62,10 +62,10 @@ class CssController extends BaseThemeApp
     protected function getPages()
     {
         $pages = $this->get('nodeSourceApi')
-            ->getBy(array(
-                'node.nodeType' => $this->themeContainer['typePage'],
+            ->getBy([
+                'node.nodeType' => $this->get('nodeTypesBag')->get('Page'),
                 'translation' => $this->translation
-            ));
+            ]);
 
         return $pages;
     }
