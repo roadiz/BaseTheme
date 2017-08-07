@@ -90,7 +90,7 @@ const router = new Router(
         homeHasClass: false,
         ajaxEnabled: true,
         lazyloadEnabled: true,
-        pageClass: 'page-container'
+        pageClass: 'page-container' // Override page class to match theme naming policy
     },
     new ClassFactory(),
     window.location.origin,
