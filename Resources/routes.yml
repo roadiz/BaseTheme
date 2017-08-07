@@ -1,9 +1,10 @@
 # This route is required!
 homePage:
-    path:     /
-    defaults: { _controller: Themes\BaseTheme\BaseThemeApp::homeAction }
+    path: /
+    defaults:
+        _controller: Themes\BaseTheme\BaseThemeApp::homeAction
 homePageLocale:
-    path:     /{_locale}
+    path: /{_locale}
     defaults:
         _controller: Themes\BaseTheme\BaseThemeApp::homeAction
         _locale: fr
@@ -15,15 +16,18 @@ homePageLocale:
 # customize styles from back-office.
 #CssDynamicStyles:
 #    path:     /css/dynamic-styles.css
-#    defaults: { _controller: Themes\BaseTheme\Controllers\CssController::stylesAction }
+#    defaults:
+#        _controller: Themes\BaseTheme\Controllers\CssController::stylesAction
 
 sitemap:
     path: /sitemap.xml
-    defaults: { _controller: Themes\BaseTheme\Controllers\SitemapController::sitemapAction }
+    defaults:
+        _controller: Themes\BaseTheme\Controllers\SitemapController::sitemapAction
 
 defaultRemoveTrailingSlash:
     path: /{url}
-    defaults: { _controller: Themes\BaseTheme\BaseThemeApp::removeTrailingSlashAction }
+    defaults:
+        _controller: Themes\BaseTheme\BaseThemeApp::removeTrailingSlashAction
     requirements:
-        url: .*/$
+        url: ".*/$"
     methods: [GET]

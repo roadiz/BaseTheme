@@ -46,7 +46,7 @@
              # Page blocks pattern implementation
              #}
             {% set blocks = nodeSource|children({
-            'node.nodeType' : ['!=', themeServices.typePage],
+            'node.nodeType' : ['!=', bags.nodeTypes.get('Page')],
             'node.visible': true,
             }) %}
             {% for singleBlock in blocks %}
@@ -58,7 +58,8 @@
                 'node': singleBlock.node,
                 'nodeType': singleBlock.node.nodeType,
                 'loop': loop,
-                'blocksLength':blocks|length
+                'blocksLength':blocks|length,
+                'bags': bags
                 } only %}
             {% endfor %}
         </div>
