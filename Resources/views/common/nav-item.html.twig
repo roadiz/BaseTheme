@@ -16,14 +16,15 @@
 {% if source.node != home %}
     <li class="{{ itemClasses|join(' ') }}"
         id="nav-item-{{ source.node.nodeName }}"
-        data-node-id="{{ source.node.id }}">
+        data-node-id="{{ source.node.id }}"
+        role="menuitem">
 
         <a class="{{ linkClasses|join(' ') }}"
            id="nav-link-{{ source.node.nodeName }}"
            href="{{ path(source) }}">{{ source.title|default(source.node.nodeName) }}</a>
 
         {# {% if children|length %}
-        <ul class="dropdown-menu nav-children">
+        <ul class="dropdown-menu nav-children" role="menu">
             {% for subsource in children %}
                 {% include '@BaseTheme/common/nav-item.html.twig' with {
                     'source' : subsource,
@@ -34,6 +35,5 @@
             {% endfor %}
         </ul>
         {% endif %} #}
-
     </li>
 {% endif %}
