@@ -40,7 +40,7 @@
                 <ul id="nav-lang" class="navbar-nav" role="menubar">
                     {% for id, trans in translation|menu %}
                         <li class="nav-item nav-item-lang{% if trans.active %} active{% endif %}" role="menuitem">
-                            <a class="nav-link nav-link-lang{% if trans.active %} active{% endif %}" href="{{ trans.url }}">{{ trans.translation }}</a>
+                            <a class="no-ajax-link nav-link nav-link-lang{% if trans.active %} active{% endif %}" href="{{ trans.url }}">{{ trans.translation }}</a>
                         </li>
                     {% endfor %}
                 </ul>
