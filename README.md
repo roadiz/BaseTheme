@@ -15,7 +15,7 @@ cd themes/TestTheme
 yarn 
 ```
 
-We provide a starter kit based on ES6 with *Webpack2*, *Babel*, *Scss* and *Gulp* as task runner. Feel free to adapt it if you have your own coding workflow. Keep in mind that we inject built CSS and JS into partial *Twig* templates to get versioned file names.
+We provide a starter kit based on ES6 with *Webpack3*, *Babel*, *Scss* and *Gulp* as task runner. Feel free to adapt it if you have your own coding workflow. Keep in mind that we inject built CSS and JS into partial *Twig* templates to get versioned file names.
 
 ## Scripts
 ### Development

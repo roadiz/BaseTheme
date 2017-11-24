@@ -40,7 +40,7 @@ const getConfig = () => {
         // Watch options
         // ----------------------------------
         refreshOnChange: process.env.REFRESH_ON_CHANGE === 'true',
-        watchInterval: 1000, // Poll interval in ms
+        watchInterval: 200, // Poll interval in ms
 
         // ----------------------------------
         // Inputs

@@ -22,7 +22,7 @@ export default {
             publicPath: config.public_path,
             host: config.address,
             watchOptions: {
-                poll: config.watchInterval,
+                aggregateTimeout: 50,
                 ignored: /node_modules/
             }
         },
