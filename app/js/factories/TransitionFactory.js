@@ -22,20 +22,39 @@
  * be used in advertising or otherwise to promote the sale, use or other dealings
  * in this Software without prior written authorization from Ambroise Maupate and Julien Blanchet.
  *
- * @file main.js
+ * @file TransitionFactory.js
  * @author Adrien Scholaert <adrien@rezo-zero.com>
  *
  */
 
-import $ from 'jquery'
-import App from './App'
-import Router from './Router'
-import '../scss/style.scss'
+import DefaultTransition from '../transitions/DefaultTransition'
+import FadeTransition from '../transitions/FadeTransition'
 
-(() => {
-    /** Create the app **/
-    const app = new App() // eslint-disable-line
-    app.init()
-    /** Launch Router **/
-    Router.boot($(`.${Router.options.pageClass}`).eq(0), 'static', app.isHome)
-})()
+/**
+ * Transition mapper class.
+ * This class maps your `data-transition` with your *ES6* classes.
+ */
+export default class TransitionFactory {
+    /**
+     * Get Transition
+     *
+     * @param {Object} previousState
+     * @param {Object} state
+     * @param {String} direction ('back' or 'forward')
+     * @returns {AbstractTransition}
+     */
+    getTransition (previousState, state, direction = null) {
+        let transition
+
+        switch (state.transitionName) {
+        case 'fade':
+            transition = new FadeTransition()
+            break
+        default:
+            transition = new DefaultTransition()
+            break
+        }
+
+        return transition
+    }
+}

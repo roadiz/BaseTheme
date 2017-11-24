@@ -74,15 +74,7 @@ const getConfig = () => {
         // ----------------------------------
         // Externals
         // ----------------------------------
-        externals: {
-            TweenLite: 'TweenLite',
-            TweenMax: 'TweenMax',
-            Expo: 'Expo',
-            CSSPlugin: 'CSSPlugin',
-            jQuery: 'jQuery',
-            jquery: 'jQuery',
-            $: '$'
-        },
+        externals: {},
 
         // ----------------------------------
         // Globals
