@@ -22,20 +22,37 @@
  * be used in advertising or otherwise to promote the sale, use or other dealings
  * in this Software without prior written authorization from Ambroise Maupate and Julien Blanchet.
  *
- * @file main.js
+ * @file Router.js
  * @author Adrien Scholaert <adrien@rezo-zero.com>
  *
  */
 
-import $ from 'jquery'
-import App from './App'
-import Router from './Router'
-import '../scss/style.scss'
+import { GraphicLoader, Router } from 'starting-blocks'
+import Nav from './common/Nav'
+import ClassFactory from './factories/ClassFactory'
+import TransitionFactory from './factories/TransitionFactory'
 
-(() => {
-    /** Create the app **/
-    const app = new App() // eslint-disable-line
-    app.init()
-    /** Launch Router **/
-    Router.boot($(`.${Router.options.pageClass}`).eq(0), 'static', app.isHome)
-})()
+const origin = window.location.origin
+const nav = new Nav()
+const graphicLoader = new GraphicLoader()
+const classFactory = new ClassFactory()
+const transitionFactory = new TransitionFactory()
+const routerOptions = {
+    homeHasClass: false,
+    ajaxEnabled: true,
+    useCache: true,
+    lazyloadEnabled: true
+}
+
+/**
+ * App Router class. Extends base Router.
+ * @extends {Router}
+ */
+class AppRouter extends Router {
+    constructor (routerOptions, classFactory, origin, graphicLoader, nav, transitionFactory) {
+        super(routerOptions, classFactory, origin, graphicLoader, nav, transitionFactory)
+        this.initEvents()
+    }
+}
+
+export default new AppRouter(routerOptions, classFactory, origin, graphicLoader, nav, transitionFactory)

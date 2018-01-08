@@ -22,20 +22,28 @@
  * be used in advertising or otherwise to promote the sale, use or other dealings
  * in this Software without prior written authorization from Ambroise Maupate and Julien Blanchet.
  *
- * @file main.js
+ * @file DefaultTransition.js
  * @author Adrien Scholaert <adrien@rezo-zero.com>
  *
  */
 
-import $ from 'jquery'
-import App from './App'
-import Router from './Router'
-import '../scss/style.scss'
+import { AbstractTransition } from 'starting-blocks'
 
-(() => {
-    /** Create the app **/
-    const app = new App() // eslint-disable-line
-    app.init()
-    /** Launch Router **/
-    Router.boot($(`.${Router.options.pageClass}`).eq(0), 'static', app.isHome)
-})()
+/**
+ * Default Transition. Show / Hide content.
+ *
+ * @extends {AbstractTransition}
+ */
+export default class DefaultTransition extends AbstractTransition {
+    start () {
+        Promise.all([this.newPageLoading])
+            .then(this.finish.bind(this))
+    }
+
+    finish () {
+        // Scroll top
+        document.body.scrollTop = 0
+
+        this.done()
+    }
+}

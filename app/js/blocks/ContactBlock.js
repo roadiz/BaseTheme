@@ -5,7 +5,7 @@
  * @author Maxime Bérard
  */
 import $ from 'jquery'
-import TweenLite from 'TweenLite'
+import { TweenLite } from 'gsap'
 import log from 'loglevel'
 import DefaultBlock from './DefaultBlock'
 

@@ -11,7 +11,7 @@ import {
     debounce,
     AbstractNav
 } from 'starting-blocks'
-import TweenLite from 'TweenLite'
+import { TweenLite } from 'gsap'
 
 /**
  *

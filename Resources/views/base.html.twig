@@ -113,11 +113,11 @@
      # Using gulp-inject
      # @see static/gulp-tasks/inject.js
      #}
-    {% include 'partials/css-inject.html.twig' %}
+    {% include '@BaseTheme/partials/css-inject.html.twig' %}
     {#
      # Roadiz font-face CSS (comment it if no fonts available) -----------------
      #}
-    <link rel="stylesheet" href="{{ path('FontFaceCSS', {"token": head.fontToken}) }}" />
+    <link rel="stylesheet" href="{{ path('FontFaceCSS') }}" />
     {#
      # Dynamic CSS styles - uncomment next line to activate it -----------------
      #}
@@ -127,17 +127,24 @@
      # Modernizr ---------------------------------------------------------------
      #}
     <script src="{{ head.resourcesUrl }}vendors/modernizr.custom.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/MutationObserver.js/0.3.2/mutationobserver.min.js"></script>
+
+    {% if head.devMode %}
+        <script src="{{ head.resourcesUrl }}vendors/mutationobserver.min.js"></script>
+    {% else %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/MutationObserver.js/0.3.2/mutationobserver.min.js"></script>
+    {% endif %}
+
     <script src="{{ head.resourcesUrl }}vendors/ArrayFromPolyfill.js"></script>
+    <!--[if gte IE 11]><!--><script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js"></script><!--<![endif]-->
     <!--[if gte IE 8]><!--><script src="{{ head.resourcesUrl }}vendors/EventListener.js"></script><!--<![endif]-->
 </head>
 
 {% set bodyClasses = [] %}
 {% if node %}
     {% set bodyClasses = bodyClasses|merge([
-    nodeTypeName|lower,
-    nodeName,
-    formattedLocale
+        nodeTypeName|lower,
+        nodeName,
+        formattedLocale
     ]) %}
 {% endif %}
 
@@ -165,19 +172,17 @@
     {% include '@BaseTheme/common/footer.html.twig' %}
 
     <div id="cookiesconsent"></div>
-    {#
-     # JS scripts inclusions ---------------------------------------------------
-     # Using gulp-inject
-     # @see static/gulp-tasks/inject.js
-     #}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
+
+    {% if head.devMode %}
+        <script src="{{ head.resourcesUrl }}vendors/cookieconsent.min.js"></script>
+    {% else %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.4/cookieconsent.min.js"></script>
+    {% endif %}
+
     <noscript><div id="no-js-message">{% trans %}no_javascript_message{% endtrans %}</div></noscript>
     <script type="text/javascript">
-        {#
-         # Passing server vars to JS framework ---------------------------------
-         #}
+        {# Passing server vars to JS framework #}
         window.temp = {
             devMode: {% if head.devMode %}true{% else %}false{% endif %},
             locale: '{{ request.locale }}',
@@ -187,32 +192,37 @@
             mapsStyle: {% if head.mapsStyle %}JSON.parse('{{ head.mapsStyle|raw }}'){% else %}null{% endif %}
         };
 
-        {#
-         # Cookie consent ------------------------------------------------------
-         #}
-        window.cookieconsent_options = {
-            "message":"{% trans %}cookie_choice.consent_message{% endtrans %}",
-            "container":"#cookiesconsent",
-            "dismiss":"{% trans %}cookie_choice.close_message{% endtrans %}",
-            "learnMore":"{% trans %}cookie_choice.find_out_more_message{% endtrans %}",
-            "link":'/legals', /* Adapt this link to your legals page */
-            "theme":"dark-bottom"
-        };
+        {# Cookie consent #}
+        window.addEventListener('load', function () {
+            window.cookieconsent.initialise({
+                container: document.getElementById("cookiesconsent"),
+                location: true,
+                revokable: true,
+                content: {
+                    dismiss: "{% trans %}cookie_choice.close_message{% endtrans %}",
+                    link: "{% trans %}cookie_choice.find_out_more_message{% endtrans %}",
+                    href: '/legals'
+                }
+            })
+        });
 
-        {#
-         # Browser update — www.browser-update.org/customize.html --------------
-         #}
+        {# Browser update — www.browser-update.org/customize.html #}
         var $buoop = {
-            vs:{i:9,f:15,o:12.1,s:5.1,c:2},
+            vs: { i:9, f: 15, o: 12.1, s: 5.1, c: 2 },
             text:'{{ 'browser_update.message'|trans|escape }} <a href="http://browser-update.org/update-browser.html" target="_blank">{{ 'browser_update.link'|trans|escape }}</a>'
         };
+
         function $buo_f(){
             var e = document.createElement("script");
             e.src = "//browser-update.org/update.js";
             document.body.appendChild(e);
-        };
-        try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
-        catch(e){window.attachEvent("onload", $buo_f)}
+        }
+
+        try {
+            document.addEventListener("DOMContentLoaded", $buo_f,false)
+        } catch (e){
+            window.attachEvent("onload", $buo_f)
+        }
 
         {#
          # Google Analytics ----------------------------------------------------
@@ -235,6 +245,6 @@
      # Using gulp-inject
      # @see static/gulp-tasks/inject.js
      #}
-    {% include 'partials/js-inject.html.twig' %}
+    {% include '@BaseTheme/partials/js-inject.html.twig' %}
 </body>
 </html>

@@ -40,7 +40,7 @@ const getConfig = () => {
         // Watch options
         // ----------------------------------
         refreshOnChange: process.env.REFRESH_ON_CHANGE === 'true',
-        watchInterval: 1000, // Poll interval in ms
+        watchInterval: 200, // Poll interval in ms
 
         // ----------------------------------
         // Inputs
@@ -74,15 +74,7 @@ const getConfig = () => {
         // ----------------------------------
         // Externals
         // ----------------------------------
-        externals: {
-            TweenLite: 'TweenLite',
-            TweenMax: 'TweenMax',
-            Expo: 'Expo',
-            CSSPlugin: 'CSSPlugin',
-            jQuery: 'jQuery',
-            jquery: 'jQuery',
-            $: '$'
-        },
+        externals: {},
 
         // ----------------------------------
         // Globals
