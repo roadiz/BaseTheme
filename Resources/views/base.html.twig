@@ -113,11 +113,11 @@
      # Using gulp-inject
      # @see static/gulp-tasks/inject.js
      #}
-    {% include 'partials/css-inject.html.twig' %}
+    {% include '@BaseTheme/partials/css-inject.html.twig' %}
     {#
      # Roadiz font-face CSS (comment it if no fonts available) -----------------
      #}
-    <link rel="stylesheet" href="{{ path('FontFaceCSS', {"token": head.fontToken}) }}" />
+    <link rel="stylesheet" href="{{ path('FontFaceCSS') }}" />
     {#
      # Dynamic CSS styles - uncomment next line to activate it -----------------
      #}
@@ -245,6 +245,6 @@
      # Using gulp-inject
      # @see static/gulp-tasks/inject.js
      #}
-    {% include 'partials/js-inject.html.twig' %}
+    {% include '@BaseTheme/partials/js-inject.html.twig' %}
 </body>
 </html>
