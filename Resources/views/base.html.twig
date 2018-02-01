@@ -199,6 +199,7 @@
                 location: true,
                 revokable: true,
                 content: {
+                    message: "{{ 'cookie_choice.consent_message'|trans|escape }}",
                     dismiss: "{% trans %}cookie_choice.close_message{% endtrans %}",
                     link: "{% trans %}cookie_choice.find_out_more_message{% endtrans %}",
                     href: '/legals'
