@@ -32,16 +32,15 @@ import Nav from './common/Nav'
 import ClassFactory from './factories/ClassFactory'
 import TransitionFactory from './factories/TransitionFactory'
 
-const origin = window.location.origin
-const nav = new Nav()
-const graphicLoader = new GraphicLoader()
-const classFactory = new ClassFactory()
-const transitionFactory = new TransitionFactory()
 const routerOptions = {
     homeHasClass: false,
     ajaxEnabled: true,
     useCache: true,
-    lazyloadEnabled: true
+    lazyloadEnabled: true,
+    classFactory: new ClassFactory(),
+    graphicLoader: new GraphicLoader(),
+    transitionFactory: new TransitionFactory(),
+    nav: new Nav()
 }
 
 /**
@@ -49,10 +48,9 @@ const routerOptions = {
  * @extends {Router}
  */
 class AppRouter extends Router {
-    constructor (routerOptions, classFactory, origin, graphicLoader, nav, transitionFactory) {
-        super(routerOptions, classFactory, origin, graphicLoader, nav, transitionFactory)
-        this.initEvents()
+    constructor (routerOptions) {
+        super(routerOptions)
     }
 }
 
-export default new AppRouter(routerOptions, classFactory, origin, graphicLoader, nav, transitionFactory)
+export default new AppRouter(routerOptions)

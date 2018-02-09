@@ -24,18 +24,13 @@
  *
  * @file main.js
  * @author Adrien Scholaert <adrien@rezo-zero.com>
- *
  */
 
-import $ from 'jquery'
 import App from './App'
-import Router from './Router'
 import '../scss/style.scss'
 
 (() => {
     /** Create the app **/
     const app = new App() // eslint-disable-line
     app.init()
-    /** Launch Router **/
-    Router.boot($(`.${Router.options.pageClass}`).eq(0), 'static', app.isHome)
 })()

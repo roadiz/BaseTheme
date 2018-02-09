@@ -23,7 +23,6 @@ export default class Nav extends AbstractNav {
         this.$cont = $('#nav')
         this.$list = $('#nav-list')
         this.$item = this.$list.find('.nav-item')
-        this.$link = this.$list.find('.nav-link')
         this.$links = this.$cont.find('a').not('[target="_blank"]')
 
         this.$btn = $('#nav-btn')
@@ -36,11 +35,7 @@ export default class Nav extends AbstractNav {
 
     initEvents (router) {
         super.initEvents(router)
-
-        if (router.options.ajaxEnabled) {
-            this.$links.on('click', router.onLinkClick.bind(router))
-        }
-
+        
         this.$btn.on('click', this.btnClick.bind(this))
         this.$overlay.on('click', this.close.bind(this))
 

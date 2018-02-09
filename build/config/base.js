@@ -46,9 +46,8 @@ const getConfig = () => {
         // Inputs
         // ----------------------------------
         js_vendors: [
-            'starting-blocks/bundle.js',
-            'loglevel/dist/loglevel.js',
-            'ismobilejs/isMobile.js'
+            'starting-blocks/main.js',
+            'loglevel/lib/loglevel.js'
         ],
 
         // ----------------------------------
