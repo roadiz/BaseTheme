@@ -40,8 +40,6 @@ npm run build
 
 Build all assets in `app/` folder, optimized and minified. After a build, you are ready to deploy to production site.
 
-
-
 ## Structure
 
 #### `app/`
@@ -70,6 +68,8 @@ API documentation at http://startingblocks.rezo-zero.com
 
 In *development*, all *JS* files are preprocessed with *Babel*, linted and a sourcemap is created.  
 In *production*, these files are also minified and optimized (uglifyJs, mangle) and the sourcemap is removed.
+
+**Attention: Starting-Block is using window.fetch since version 4.0.0.** Make sure your compatibility chart will match or simply use a *polyfill*. 
 
 ### Scss + Bootstrap 4
 
