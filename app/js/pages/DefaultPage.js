@@ -12,5 +12,8 @@ import { AbstractPage } from 'starting-blocks'
 export default class DefaultPage extends AbstractPage {
     init () {
         super.init()
+
+        // Update main mav
+        this.router.options.nav.update(this)
     }
 }

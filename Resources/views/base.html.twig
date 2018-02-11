@@ -127,16 +127,18 @@
      # Modernizr ---------------------------------------------------------------
      #}
     <script src="{{ head.resourcesUrl }}vendors/modernizr.custom.js"></script>
-
-    {% if head.devMode %}
-        <script src="{{ head.resourcesUrl }}vendors/mutationobserver.min.js"></script>
-    {% else %}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/MutationObserver.js/0.3.2/mutationobserver.min.js"></script>
-    {% endif %}
-
     <script src="{{ head.resourcesUrl }}vendors/ArrayFromPolyfill.js"></script>
-    <!--[if gte IE 11]><!--><script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js"></script><!--<![endif]-->
-    <!--[if gte IE 8]><!--><script src="{{ head.resourcesUrl }}vendors/EventListener.js"></script><!--<![endif]-->
+    <!--[if gte IE 11]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.min.js"
+            integrity="sha256-45YA33UQCDcJsntBst2bhka2t/LBNHP7RNvpllHPkQ0="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/MutationObserver.js/0.3.2/mutationobserver.min.js"
+            integrity="sha256-BnmK1H6/rOiNcr4iGCjIyQqSO9hnMBZGJ0inXObQrTY="
+            crossorigin="anonymous"></script>
+    <![endif]-->
+    <!--[if gte IE 8]>
+    <script src="{{ head.resourcesUrl }}vendors/EventListener.js"></script>
+    <![endif]-->
 </head>
 
 {% set bodyClasses = [] %}
@@ -173,11 +175,29 @@
 
     <div id="cookiesconsent"></div>
 
+
     {% if head.devMode %}
         <script src="{{ head.resourcesUrl }}vendors/cookieconsent.min.js"></script>
+        <script src="{{ head.resourcesUrl }}vendors/jquery.min.js"></script>
+        <script src="{{ head.resourcesUrl }}vendors/jquery.waitforimages.min.js"></script>
+        <script src="{{ head.resourcesUrl }}vendors/loglevel.min.js"></script>
     {% else %}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.4/cookieconsent.min.js"></script>
+        {#
+         # Better use CDN JS libs if you are planning to use HTTP/2
+         # protocol. cdnjs.cloudflare.com serves libs as H2 for better performances.
+         #}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.6/cookieconsent.min.js"
+                integrity="sha256-bPOd70Y8ohKatGmjL6tszdveppYZCunsUfLOq7v8JBw="
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.waitforimages/2.2.0/jquery.waitforimages.min.js"
+                integrity="sha256-b9bqxZdvRHQNAL/WJysGQ/mFHym7gGjEtruZ6zTNm7c="
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/loglevel/1.6.1/loglevel.min.js"
+                integrity="sha256-AfynOKFjHWwlIEH3xY8lNK2sm2P2rxyiA749uLUXPh4="
+                crossorigin="anonymous"></script>
     {% endif %}
 
     <noscript><div id="no-js-message">{% trans %}no_javascript_message{% endtrans %}</div></noscript>
@@ -215,7 +235,7 @@
 
         function $buo_f(){
             var e = document.createElement("script");
-            e.src = "//browser-update.org/update.js";
+            e.src = "https://browser-update.org/update.js";
             document.body.appendChild(e);
         }
 

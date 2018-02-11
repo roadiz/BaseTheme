@@ -30,6 +30,7 @@
 import * as log from 'loglevel'
 import {gaTrackErrors, polyfills, Utils} from 'starting-blocks'
 import {Expo, TweenLite} from 'gsap'
+import AppRouter from './Router'
 
 /**
  * App entry.
@@ -40,11 +41,14 @@ export default class App {
         this.$body = document.getElementsByTagName('body')[0]
         this.dataHome = this.$body.getAttribute('data-is-home')
         this.isHome = (this.dataHome === '1')
+        this.router = AppRouter
     }
 
     init () {
         this.setCredits()
         this.initConfig()
+        // Start app router.
+        this.router.init()
     }
 
     /**

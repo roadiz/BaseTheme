@@ -8,34 +8,30 @@ import $ from 'jquery'
 import {
     Utils,
     BootstrapMedia,
-    debounce,
-    AbstractNav
+    debounce
 } from 'starting-blocks'
 import { TweenLite } from 'gsap'
 
 /**
  *
  */
-export default class Nav extends AbstractNav {
+export default class Nav {
     constructor () {
-        super()
-
         this.$cont = $('#nav')
         this.$list = $('#nav-list')
         this.$item = this.$list.find('.nav-item')
-        this.$links = this.$cont.find('a').not('[target="_blank"]')
-
+        this.$link = this.$list.find('.nav-link')
         this.$btn = $('#nav-btn')
         this.$overlay = $('#nav-overlay')
-
         this.minifyLimit = BootstrapMedia.isMinMD() ? 165 : 50
-
         this.opened = false
     }
 
+    /**
+     *
+     * @param {Router} router
+     */
     initEvents (router) {
-        super.initEvents(router)
-        
         this.$btn.on('click', this.btnClick.bind(this))
         this.$overlay.on('click', this.close.bind(this))
 
@@ -53,17 +49,8 @@ export default class Nav extends AbstractNav {
         /*
          * Remove active link on previous page.
          */
-        if (this.page) {
-            const $previousItem = $('#nav-item-' + this.page.name)
-            if ($previousItem.length) {
-                const $previousLink = $previousItem.find('.nav-link').eq(0)
-
-                $previousLink.removeClass('active')
-                $previousItem.removeClass('active')
-            }
-        }
-
-        super.update(page)
+        this.$item.removeClass('active')
+        this.$link.removeClass('active')
 
         /*
          * Add active on new page.
@@ -79,12 +66,6 @@ export default class Nav extends AbstractNav {
     }
 
     destroyEvents (router) {
-        super.destroyEvents(router)
-
-        if (router.options.ajaxEnabled) {
-            this.$links.off('click', router.onLinkClick.bind(router))
-        }
-
         this.$btn.off('click', this.btnClick.bind(this))
         this.$overlay.off('click', this.close.bind(this))
 

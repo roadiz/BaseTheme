@@ -35,8 +35,9 @@ import TransitionFactory from './factories/TransitionFactory'
 const routerOptions = {
     homeHasClass: false,
     ajaxEnabled: true,
-    useCache: true,
+    useCache: false,
     lazyloadEnabled: true,
+    ajaxWrapperId: 'main-container',
     classFactory: new ClassFactory(),
     graphicLoader: new GraphicLoader(),
     transitionFactory: new TransitionFactory(),
@@ -48,9 +49,7 @@ const routerOptions = {
  * @extends {Router}
  */
 class AppRouter extends Router {
-    constructor (routerOptions) {
-        super(routerOptions)
-    }
+
 }
 
 export default new AppRouter(routerOptions)
