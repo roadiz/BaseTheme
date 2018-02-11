@@ -26,7 +26,7 @@
  * @author Adrien Scholaert <adrien@rezo-zero.com>
  *
  */
-import log from 'loglevel'
+import * as log from 'loglevel'
 import Page from '../pages/Page'
 import Home from '../pages/Home'
 import ContactBlock from '../blocks/ContactBlock'

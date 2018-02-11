@@ -27,17 +27,10 @@
  *
  */
 
-import log from 'loglevel'
-import isMobile from 'ismobilejs/isMobile'
-import {
-    polyfills,
-    gaTrackErrors,
-    Utils
-} from 'starting-blocks'
-import {
-    TweenLite,
-    Expo
-} from 'gsap'
+import * as log from 'loglevel'
+import {gaTrackErrors, polyfills, Utils} from 'starting-blocks'
+import {Expo, TweenLite} from 'gsap'
+import AppRouter from './Router'
 
 /**
  * App entry.
@@ -48,11 +41,14 @@ export default class App {
         this.$body = document.getElementsByTagName('body')[0]
         this.dataHome = this.$body.getAttribute('data-is-home')
         this.isHome = (this.dataHome === '1')
+        this.router = AppRouter
     }
 
     init () {
         this.setCredits()
         this.initConfig()
+        // Start app router.
+        this.router.init()
     }
 
     /**
@@ -60,8 +56,6 @@ export default class App {
      */
     initConfig () {
         this.setLogLevel()
-        this.setLocationOrigin()
-        this.setIsMobile()
         this.setIsIE()
 
         /** Declare polyfills **/
@@ -85,18 +79,6 @@ export default class App {
     }
 
     /**
-     * isMobile Test
-     */
-    setIsMobile () {
-        let deviceMobile = (isMobile.any !== false)
-        if (deviceMobile) {
-            Utils.addClass(this.$body, 'is-mobile')
-        } else {
-            Utils.addClass(this.$body, 'is-desktop')
-        }
-    }
-
-    /**
      * Log credits
      */
     setCredits () {
@@ -115,7 +97,7 @@ export default class App {
                 website: 'www.greensock.com'
             }, {
                 name: 'Starting Blocks',
-                website: 'http://startingblocks.rezo-zero.com'
+                website: 'https://startingblocks.rezo-zero.com'
             }],
             '#000'
         )
@@ -130,15 +112,6 @@ export default class App {
             log.setLevel(0)
         } else {
             log.setLevel(5)
-        }
-    }
-
-    /**
-     * Set location origin if not exist
-     */
-    setLocationOrigin () {
-        if (!window.location.origin) {
-            window.location.origin = window.location.protocol + '//' + window.location.host
         }
     }
 }
