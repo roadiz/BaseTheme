@@ -127,18 +127,18 @@
      # Modernizr ---------------------------------------------------------------
      #}
     <script src="{{ head.resourcesUrl }}vendors/modernizr.custom.js"></script>
-    <script src="{{ head.resourcesUrl }}vendors/ArrayFromPolyfill.js"></script>
-    <!--[if gte IE 11]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.min.js"
-            integrity="sha256-45YA33UQCDcJsntBst2bhka2t/LBNHP7RNvpllHPkQ0="
+    {#
+     # Polyfills sections 😱😱--------------------------------------------------
+     #}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js"
+            integrity="sha256-OI3N9zCKabDov2rZFzl8lJUXCcP7EmsGcGoP6DMXQCo="
             crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/MutationObserver.js/0.3.2/mutationobserver.min.js"
             integrity="sha256-BnmK1H6/rOiNcr4iGCjIyQqSO9hnMBZGJ0inXObQrTY="
             crossorigin="anonymous"></script>
-    <![endif]-->
-    <!--[if gte IE 8]>
-    <script src="{{ head.resourcesUrl }}vendors/EventListener.js"></script>
-    <![endif]-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"
+            integrity="sha256-aB35laj7IZhLTx58xw/Gm1EKOoJJKZt6RY+bH1ReHxs="
+            crossorigin="anonymous"></script>
 </head>
 
 {% set bodyClasses = [] %}
