@@ -2,6 +2,8 @@
 
 This theme is meant to get a **fresh start** to create a custom website on *Roadiz*.
 
+**Compatible with Internet Explorer 10+**
+
 ## Get started
 
 Make sure that NodeJS and NPM are installed on your machine.
