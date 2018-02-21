@@ -104,7 +104,7 @@
     "webpack-stream": "^4.0.0"
   },
   "dependencies": {
-    "bootstrap": "^4.0.1",
+    "bootstrap": "^4.0.0",
     "es6-promise": "^4.1.1",
     "gsap": "^1.20.3",
     "ismobilejs": "^0.4.1",
@@ -112,7 +112,7 @@
     "jquery.waitforimages": "^2.2.0",
     "load-google-maps-api": "^1.0.0",
     "loglevel": "^1.6.1",
-    "starting-blocks": "^4.0.5",
+    "starting-blocks": "^4.1.1",
     "vanilla-lazyload": "^10.3.5"
   }
 }

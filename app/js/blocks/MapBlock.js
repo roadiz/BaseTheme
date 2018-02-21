@@ -4,6 +4,7 @@
  * @file map-block.js
  * @author Ambroise Maupate
  */
+
 import log from 'loglevel'
 import DefaultBlock from './DefaultBlock'
 import Promise from 'es6-promise'

@@ -4,6 +4,7 @@
  * @file Page.js
  * @author Ambroise Maupate
  */
+
 import DefaultPage from './DefaultPage'
 
 export default class Page extends DefaultPage {

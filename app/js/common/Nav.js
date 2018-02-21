@@ -3,12 +3,15 @@
  *
  * @file Nav.js
  * @author Ambroise Maupate
+ * @author Adrien Scholaert
  */
+
 import $ from 'jquery'
 import {
     Utils,
     BootstrapMedia,
-    debounce
+    debounce,
+    EventTypes
 } from 'starting-blocks'
 import { TweenLite } from 'gsap'
 
@@ -25,6 +28,16 @@ export default class Nav {
         this.$overlay = $('#nav-overlay')
         this.minifyLimit = BootstrapMedia.isMinMD() ? 165 : 50
         this.opened = false
+
+        this.btnClick = this.btnClick.bind(this)
+        this.close = this.close.bind(this)
+        this.onScroll = this.onScroll.bind(this)
+        this.onResize = this.onResize.bind(this)
+        this.update = this.update.bind(this)
+    }
+
+    init () {
+        this.initEvents()
     }
 
     /**
@@ -32,29 +45,30 @@ export default class Nav {
      * @param {Router} router
      */
     initEvents (router) {
-        this.$btn.on('click', this.btnClick.bind(this))
-        this.$overlay.on('click', this.close.bind(this))
-
-        window.addEventListener('scroll', this.onScroll.bind(this))
-        window.addEventListener('resize', debounce(this.onResize.bind(this), 100, false))
+        this.$btn.on('click', this.btnClick)
+        this.$overlay.on('click', this.close)
+        window.addEventListener(EventTypes.AFTER_PAGE_BOOT, this.update)
+        window.addEventListener('scroll', this.onScroll)
+        window.addEventListener('resize', debounce(this.onResize, 100, false))
     }
 
     /**
      * Update navigation state against a DOM container.
      *
      * @abstract
-     * @param {AbstractPage} page
+     * @param {CustomEvent} e
      */
-    update (page) {
-        /*
-         * Remove active link on previous page.
+    update (e) {
+        /**
+         * @type {AbstractPage}
          */
+        const page = e.detail
+
+        // Remove active link on previous page.
         this.$item.removeClass('active')
         this.$link.removeClass('active')
 
-        /*
-         * Add active on new page.
-         */
+        // Add active on new page.
         const $currentItem = $('#nav-item-' + page.name)
         if ($currentItem.length) {
             const $currentLink = $currentItem.find('.nav-link').eq(0)
@@ -63,14 +77,6 @@ export default class Nav {
             $currentItem.addClass('active')
         }
         this.close()
-    }
-
-    destroyEvents (router) {
-        this.$btn.off('click', this.btnClick.bind(this))
-        this.$overlay.off('click', this.close.bind(this))
-
-        window.removeEventListener('scroll', this.onScroll.bind(this))
-        window.removeEventListener('resize', debounce(this.onResize.bind(this), 100, false))
     }
 
     /**

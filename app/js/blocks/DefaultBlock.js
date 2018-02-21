@@ -4,6 +4,7 @@
  * @file DefaultBlock.js
  * @author Maxime Bérard
  */
+
 import { AbstractBlock } from 'starting-blocks'
 
 /**
