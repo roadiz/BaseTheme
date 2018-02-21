@@ -3,6 +3,7 @@
  *
  * @file DefaultPage.js
  * @author Maxime Bérard
+ * @author Adrien Scholaert <adrien@rezo-zero.com>
  */
 import { AbstractPage } from 'starting-blocks'
 
@@ -12,8 +13,5 @@ import { AbstractPage } from 'starting-blocks'
 export default class DefaultPage extends AbstractPage {
     init () {
         super.init()
-
-        // Update main mav
-        this.router.options.nav.update(this)
     }
 }

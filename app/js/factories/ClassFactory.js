@@ -41,21 +41,19 @@ export default class ClassFactory {
      * Returns an AbstractPage child class instance
      * according to the nodeTypeName or an AbstractPage as default.
      *
-     * @param  {String}  nodeTypeName
      * @param  {Router}  router
      * @param  {jQuery}  $cont
      * @param  {String}  context
      * @param  {String}  nodeType
-     * @param  {Boolean} isHome
      * @return {AbstractPage}
      */
-    getPageInstance (nodeTypeName, router, $cont, context, nodeType, isHome) {
-        switch (nodeTypeName) {
+    getPageInstance (router, $cont, context, nodeType) {
+        switch (nodeType) {
         case 'home':
-            return new Home(router, $cont, context, nodeType, isHome)
+            return new Home(router, $cont, context, nodeType)
         default:
-            log.info('"' + nodeTypeName + '" has no defined route, using Page.')
-            return new Page(router, $cont, context, nodeType, isHome)
+            log.info('"' + nodeType + '" has no defined route, using Page.')
+            return new Page(router, $cont, context, nodeType)
         }
     }
 

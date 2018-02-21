@@ -4,6 +4,7 @@
  * @file ContactBlock.js
  * @author Maxime Bérard
  */
+
 import $ from 'jquery'
 import { TweenLite } from 'gsap'
 import log from 'loglevel'

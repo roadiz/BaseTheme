@@ -16,11 +16,7 @@
 {% endif %}
 {# No whitespace before DOCTYPE #}
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html itemscope itemtype="http://schema.org/WebPage" class="no-js lt-ie9 lt-ie8 lt-ie7" lang="{{ formattedLocale }}"> <![endif]-->
-<!--[if IE 7]>         <html itemscope itemtype="http://schema.org/WebPage" class="no-js lt-ie9 lt-ie8" lang="{{ formattedLocale }}"> <![endif]-->
-<!--[if IE 8]>         <html itemscope itemtype="http://schema.org/WebPage" class="no-js lt-ie9" lang="{{ formattedLocale }}"> <![endif]-->
-<!--[if IE 9]>         <html itemscope itemtype="http://schema.org/WebPage" class="no-js ie9" lang="{{ formattedLocale }}"> <![endif]-->
-<!--[if gt IE 9]><!--> <html itemscope itemtype="http://schema.org/WebPage" class="no-js" lang="{{ formattedLocale }}"> <!--<![endif]-->
+<html itemscope itemtype="http://schema.org/WebPage" class="no-js" lang="{{ formattedLocale }}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -127,18 +123,6 @@
      # Modernizr ---------------------------------------------------------------
      #}
     <script src="{{ head.resourcesUrl }}vendors/modernizr.custom.js"></script>
-    {#
-     # Polyfills sections 😱😱--------------------------------------------------
-     #}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js"
-            integrity="sha256-OI3N9zCKabDov2rZFzl8lJUXCcP7EmsGcGoP6DMXQCo="
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/MutationObserver.js/0.3.2/mutationobserver.min.js"
-            integrity="sha256-BnmK1H6/rOiNcr4iGCjIyQqSO9hnMBZGJ0inXObQrTY="
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"
-            integrity="sha256-aB35laj7IZhLTx58xw/Gm1EKOoJJKZt6RY+bH1ReHxs="
-            crossorigin="anonymous"></script>
 </head>
 
 {% set bodyClasses = [] %}
@@ -175,6 +159,18 @@
 
     <div id="cookiesconsent"></div>
 
+    {#
+     # Polyfills sections 😱😱--------------------------------------------------
+     #}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js"
+            integrity="sha256-OI3N9zCKabDov2rZFzl8lJUXCcP7EmsGcGoP6DMXQCo="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/MutationObserver.js/0.3.2/mutationobserver.min.js"
+            integrity="sha256-BnmK1H6/rOiNcr4iGCjIyQqSO9hnMBZGJ0inXObQrTY="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"
+            integrity="sha256-aB35laj7IZhLTx58xw/Gm1EKOoJJKZt6RY+bH1ReHxs="
+            crossorigin="anonymous"></script>
 
     {% if head.devMode %}
         <script src="{{ head.resourcesUrl }}vendors/cookieconsent.min.js"></script>
