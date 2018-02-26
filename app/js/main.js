@@ -12,5 +12,6 @@ import '../scss/style.scss'
 (() => {
     /** Create the app **/
     const app = new App() // eslint-disable-line
+    console.log('coucou')
     app.init()
 })()

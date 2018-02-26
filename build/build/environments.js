@@ -16,6 +16,7 @@ dbg.color = debug.colors[5]
 export default {
     development: (base, config) => ({
         watch: true,
+        mode: 'development',
         devServer: {
             stats: config.stats,
             port: config.port,
@@ -44,7 +45,7 @@ export default {
                 alwaysWriteToDisk: true,
                 refreshOnChange: config.refreshOnChange
             }),
-            new Harddisk()
+            // new Harddisk()
         ]
     }),
 
@@ -54,8 +55,9 @@ export default {
         dbg('🎨  Using PostCss')
 
         return {
+            mode: 'production',
             module: {
-                loaders: [{
+                rules: [{
                     test: /\.scss?$/,
                     loader: ExtractTextPlugin.extract({
                         fallback: 'style-loader',
@@ -90,8 +92,8 @@ export default {
                                     })
                                 ]
                             }
-                        }, {
-                            loader: 'resolve-url-loader'
+                        // }, {
+                        //     loader: 'resolve-url-loader'
                         }, {
                             loader: 'sass-loader',
                             options: {
@@ -102,18 +104,18 @@ export default {
                 }]
             },
             plugins: [
-                new webpack.optimize.UglifyJsPlugin({
-                    beautify: false,
-                    mangle: {
-                        screw_ie8: true,
-                        keep_fnames: true
-                    },
-                    compress: {
-                        screw_ie8: true,
-                        warnings: false
-                    },
-                    comments: false
-                }),
+                // new webpack.optimize.UglifyJsPlugin({
+                //     beautify: false,
+                //     mangle: {
+                //         screw_ie8: true,
+                //         keep_fnames: true
+                //     },
+                //     compress: {
+                //         screw_ie8: true,
+                //         warnings: false
+                //     },
+                //     comments: false
+                // }),
                 new webpack.HashedModuleIdsPlugin(),
                 new CleanWebpackPlugin(['css', 'img', 'js', 'fonts', 'vendors'], {
                     root: config.utils_paths.dist(),
@@ -130,18 +132,14 @@ export default {
                     template: config.utils_paths.views('partials/js-inject-src.html.twig'),
                     cache: true,
                     inject: false
-                }),
-                new webpack.optimize.CommonsChunkPlugin({
-                    name: 'vendor',
-                    minChunks: (module) => {
-                        return module.context && module.context.indexOf('node_modules') !== -1
-                    }
-                }),
-                new webpack.optimize.CommonsChunkPlugin({
-                    name: 'manifest',
-                    minChunks: Infinity
                 })
-            ]
+            ],
+            optimization: {
+                minimize: true,
+                splitChunks: {
+                    chunks: "all"
+                }
+            }
         }
     }
 }

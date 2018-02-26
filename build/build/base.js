@@ -19,8 +19,7 @@ const getWebpackConfigBase = (config) => {
         target: 'web',
         context: paths.dist(),
         entry: {
-            app: paths.client('js/main.js'),
-            vendor: config.js_vendors
+            app: paths.client('js/main.js')
         },
         output: {
             path: paths.dist(),
@@ -29,7 +28,7 @@ const getWebpackConfigBase = (config) => {
             publicPath: config.public_path
         },
         module: {
-            loaders: [{
+            rules: [{
                 test: /\.js$/,
                 enforce: 'pre',
                 loader: 'eslint-loader',
@@ -51,8 +50,8 @@ const getWebpackConfigBase = (config) => {
                             importLoaders: 2,
                             sourceMap: true
                         }
-                    }, {
-                        loader: 'resolve-url-loader'
+                    // }, {
+                    //     loader: 'resolve-url-loader'
                     }, {
                         loader: 'sass-loader',
                         options: {
@@ -89,8 +88,7 @@ const getWebpackConfigBase = (config) => {
             new ExtractTextPlugin({
                 filename: config.assets_name_css,
                 allChunks: true
-            }),
-            new webpack.NoEmitOnErrorsPlugin()
+            })
         ],
         resolve: {
             extensions: ['.js']
