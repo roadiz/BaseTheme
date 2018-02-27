@@ -12,6 +12,21 @@ import '../scss/style.scss'
 (() => {
     /** Create the app **/
     const app = new App() // eslint-disable-line
-    console.log('coucou')
     app.init()
+
+    console.log('App initiated')
+
+    window.setTimeout(() => {
+        import('./lazyloadModule'/* webpackChunkName: "lazyloadModule" */)
+            .then(module => {
+                console.log(module.test1())
+            })
+    }, 3000)
+
+    window.setTimeout(() => {
+        import('./lazyloadModule'/* webpackChunkName: "lazyloadModule" */)
+            .then(module => {
+                console.log(module.test2())
+            })
+    }, 5000)
 })()

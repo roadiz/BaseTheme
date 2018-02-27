@@ -20,7 +20,6 @@
     "add-force": "git add --force static/css/* static/fonts/* static/img/* static/js/* static/vendors/* Resources/views/svg/sprite.svg.twig Resources/views/partials/css-inject.html.twig Resources/views/partials/js-inject.html.twig",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack",
-    "dev-livereload": "better-npm-run dev-livereload",
     "build": "better-npm-run build",
     "watch-svg": "gulp watch-svg --silent",
     "build-svg": "gulp build-svg --silent"
@@ -32,14 +31,6 @@
         "NODE_ENV": "development",
         "DEBUG": "Roadiz-front:*",
         "REFRESH_ON_CHANGE": false
-      }
-    },
-    "dev-livereload": {
-      "command": "npm run build-svg && concurrently -r \"npm run watch-svg\" \"webpack-dev-server\"",
-      "env": {
-        "NODE_ENV": "development",
-        "DEBUG": "Roadiz-front:*",
-        "REFRESH_ON_CHANGE": true
       }
     },
     "build": {
@@ -85,7 +76,6 @@
     "gulp-rename": "^1.2.2",
     "gulp-svgmin": "^1.2.4",
     "gulp-svgstore": "^6.1.1",
-    "html-webpack-harddisk-plugin": "^0.1.0",
     "html-webpack-plugin": "webpack-contrib/html-webpack-plugin",
     "ip": "^1.1.5",
     "node-sass": "^4.5.3",
@@ -96,11 +86,11 @@
     "require-dir": "^1.0.0",
     "resolve-url-loader": "^2.2.1",
     "sass-loader": "^6.0.6",
-    "style-loader": "^0.20.1",
+    "style-loader": "^0.20.2",
+    "tapable": "^1.0.0",
     "url-loader": "^0.6.2",
     "webpack": "^4.0.0",
     "webpack-cli": "^2.0.9",
-    "webpack-dev-server": "^3.0.0",
     "webpack-merge": "^4.1.2",
     "webpack-stream": "^4.0.2"
   },
