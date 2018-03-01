@@ -2,7 +2,7 @@ export default {
     development: (config) => {
         let override = {}
         if (config.refreshOnChange) {
-            override.public_path = `http://${config.address}:${config.port}`
+            override.public_path = `http://${config.address}:${config.port}/`
         }
 
         return override

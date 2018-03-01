@@ -76,14 +76,14 @@ export default class ClassFactory {
         }
 
         // switch (nodeTypeName) {
-            // case 'contactblock':
-            //     return new ContactBlock(page, $cont, nodeTypeName)
-            // case 'mapblock':
-            //     return new MapBlock(page, $cont, nodeTypeName)
-            // case 'basicblock':
-            //     return new BasicBlock(page, $cont, nodeTypeName)
-            // default:
-            /* log.info('    "' + nodeTypeName + '" has no defined route, using AbstractBlock.');
+        // case 'contactblock':
+        //     return new ContactBlock(page, $cont, nodeTypeName)
+        // case 'mapblock':
+        //     return new MapBlock(page, $cont, nodeTypeName)
+        // case 'basicblock':
+        //     return new BasicBlock(page, $cont, nodeTypeName)
+        // default:
+        /* log.info('    "' + nodeTypeName + '" has no defined route, using AbstractBlock.');
             return new AbstractBlock(page, $cont, nodeTypeName); */
         // }
     }

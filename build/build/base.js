@@ -3,6 +3,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import debug from 'debug'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
+import WriteFilePlugin from 'write-file-webpack-plugin'
 
 const dbg = debug('Roadiz-front:webpack-config:base  ')
 dbg.color = debug.colors[3]
@@ -30,7 +31,7 @@ const getWebpackConfigBase = (config) => {
             path: paths.dist(),
             filename: config.assets_name_js,
             chunkFilename: '[name].[chunkhash].js',
-            publicPath: '/themes/BaseTheme/static/'
+            publicPath: config.public_path
         },
         module: {
             rules: [{
@@ -88,6 +89,7 @@ const getWebpackConfigBase = (config) => {
     }
 
     if (config.refreshOnChange) {
+        webpackConfig.plugins.push(new WriteFilePlugin())
         webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin())
     }
 

@@ -78,12 +78,16 @@ export default {
         watch: true,
         mode: 'development',
         devServer: {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+                'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
+            },
             stats: config.stats,
             port: config.port,
             publicPath: config.public_path,
             host: config.address,
             hot: true,
-            inline: true,
             watchOptions: {
                 aggregateTimeout: 50,
                 ignored: /node_modules/
@@ -93,7 +97,6 @@ export default {
             rules: [scssConfig]
         },
         plugins: [
-            new webpack.HotModuleReplacementPlugin(),
             new HtmlWebpackPlugin({
                 filename: config.utils_paths.views('partials/css-inject.html.twig'),
                 template: config.utils_paths.views('partials/css-inject-src.html.twig'),

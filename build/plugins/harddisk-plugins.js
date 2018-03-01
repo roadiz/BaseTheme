@@ -36,17 +36,6 @@ function HtmlWebpackHarddiskPlugin (options) {
     this.outputPath = options.outputPath
 }
 
-// const wirePluginEvent = (event, compilation, fn) => {
-//     compilation.plugin(event, (pluginArgs, callback) => {
-//         try {
-//             fn(pluginArgs)
-//             callback(null, pluginArgs)
-//         } catch (err) {
-//             callback(err)
-//         }
-//     })
-// }
-
 HtmlWebpackHarddiskPlugin.prototype.apply = function (compiler) {
     if (compiler.hooks) {
         // compiler.hooks.afterPlugins.tap('SriPlugin', this.afterPlugins.bind(this));

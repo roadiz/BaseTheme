@@ -117,6 +117,7 @@
     "load-google-maps-api": "^1.1.1",
     "loglevel": "^1.6.1",
     "starting-blocks": "file:../../../../Experiments/starting-blocks",
-    "vanilla-lazyload": "^10.4.2"
+    "vanilla-lazyload": "^10.4.2",
+    "write-file-webpack-plugin": "^4.2.0"
   }
 }

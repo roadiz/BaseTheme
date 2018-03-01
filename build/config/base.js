@@ -94,7 +94,7 @@ const getConfig = () => {
         }
     }
 
-    config.public_path = ''
+    config.public_path = '/themes/BaseTheme/static/'
 
 // ------------------------------------
 // Utilities
