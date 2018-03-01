@@ -6,6 +6,7 @@ import postcssFilterGradient from 'postcss-filter-gradient'
 import postcssReduceTransform from 'postcss-reduce-transforms'
 import cssMqpacker from 'css-mqpacker'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import Harddisk from '../plugins/harddisk-plugins'
 import debug from 'debug'
 
 const dbg = debug('Roadiz-front:webpack-config:environments  ')
@@ -81,6 +82,8 @@ export default {
             port: config.port,
             publicPath: config.public_path,
             host: config.address,
+            hot: true,
+            inline: true,
             watchOptions: {
                 aggregateTimeout: 50,
                 ignored: /node_modules/
@@ -90,6 +93,7 @@ export default {
             rules: [scssConfig]
         },
         plugins: [
+            new webpack.HotModuleReplacementPlugin(),
             new HtmlWebpackPlugin({
                 filename: config.utils_paths.views('partials/css-inject.html.twig'),
                 template: config.utils_paths.views('partials/css-inject-src.html.twig'),
@@ -105,7 +109,8 @@ export default {
                 inject: false,
                 alwaysWriteToDisk: true,
                 refreshOnChange: config.refreshOnChange
-            })
+            }),
+            new Harddisk()
         ],
         optimization
     }),

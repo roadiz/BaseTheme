@@ -22,9 +22,9 @@ const getWebpackConfigBase = (config) => {
         entry: {
             app: paths.client('js/main.js'),
             'vendor': [
-                "style-loader/lib/addStyles",
-                "css-loader/lib/css-base",
-            ],
+                'style-loader/lib/addStyles',
+                'css-loader/lib/css-base'
+            ]
         },
         output: {
             path: paths.dist(),
@@ -64,7 +64,7 @@ const getWebpackConfigBase = (config) => {
         },
         plugins: [
             new webpack.DefinePlugin(config.globals),
-            new CleanWebpackPlugin(['css', 'img', 'js', 'fonts', 'vendors' , '*.*'], {
+            new CleanWebpackPlugin(['css', 'img', 'js', 'fonts', 'vendors', '*.*'], {
                 root: config.utils_paths.dist(),
                 verbose: false
             }),

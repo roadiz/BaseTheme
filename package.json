@@ -21,6 +21,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack",
     "build": "better-npm-run build",
+    "dev-livereload": "better-npm-run dev-livereload",
     "watch-svg": "gulp watch-svg --silent",
     "build-svg": "gulp build-svg --silent"
   },
@@ -31,6 +32,14 @@
         "NODE_ENV": "development",
         "DEBUG": "Roadiz-front:*",
         "REFRESH_ON_CHANGE": false
+      }
+    },
+    "dev-livereload": {
+      "command": "npm run build-svg && concurrently -r \"npm run watch-svg\" \"webpack-dev-server\"",
+      "env": {
+        "NODE_ENV": "development",
+        "DEBUG": "Roadiz-front:*",
+        "REFRESH_ON_CHANGE": true
       }
     },
     "build": {
@@ -66,17 +75,19 @@
     "eslint-config-standard": "^11.0.0",
     "eslint-loader": "^2.0.0",
     "eslint-plugin-dependencies": "^2.4.0",
+    "eslint-plugin-html": "^4.0.2",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
-    "extract-text-webpack-plugin": "^4.0.0-alpha.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^1.1.9",
     "gulp": "gulpjs/gulp#4.0",
     "gulp-rename": "^1.2.2",
     "gulp-svgmin": "^1.2.4",
     "gulp-svgstore": "^6.1.1",
-    "html-webpack-plugin": "webpack-contrib/html-webpack-plugin",
+    "html-webpack-harddisk-plugin": "^0.1.0",
+    "html-webpack-plugin": "3.0.3",
     "ip": "^1.1.5",
     "node-sass": "^4.5.3",
     "postcss-filter-gradient": "^1.0.0",
@@ -91,6 +102,8 @@
     "url-loader": "^0.6.2",
     "webpack": "^4.0.0",
     "webpack-cli": "^2.0.9",
+    "webpack-dev-server": "^3.1.0",
+    "webpack-disk-plugin": "^0.0.2",
     "webpack-merge": "^4.1.2",
     "webpack-stream": "^4.0.2"
   },
@@ -103,7 +116,7 @@
     "jquery.waitforimages": "^2.4.0",
     "load-google-maps-api": "^1.1.1",
     "loglevel": "^1.6.1",
-    "starting-blocks": "^4.1.1",
+    "starting-blocks": "file:../../../../Experiments/starting-blocks",
     "vanilla-lazyload": "^10.4.2"
   }
 }
