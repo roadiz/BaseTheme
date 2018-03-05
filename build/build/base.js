@@ -30,7 +30,7 @@ const getWebpackConfigBase = (config) => {
         output: {
             path: paths.dist(),
             filename: config.assets_name_js,
-            chunkFilename: '[name].[chunkhash].js',
+            chunkFilename: config.assets_chunkfilename,
             publicPath: config.public_path
         },
         module: {

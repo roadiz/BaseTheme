@@ -103,7 +103,7 @@
     "stylelint-scss": "^2.4.0",
     "tapable": "^1.0.0",
     "url-loader": "^1.0.1",
-    "webpack": "^4.0.0",
+    "webpack": "^4.1.0",
     "webpack-cli": "^2.0.9",
     "webpack-dev-server": "^3.1.0",
     "webpack-disk-plugin": "^0.0.2",

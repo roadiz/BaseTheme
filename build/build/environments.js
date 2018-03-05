@@ -13,7 +13,7 @@ const dbg = debug('Roadiz-front:webpack-config:environments  ')
 dbg.color = debug.colors[5]
 
 const scssConfig = {
-    test: /\.scss?$/,
+    test: /\.s?css?$/,
     loader: ExtractTextPlugin.extract({
         fallback: 'style-loader',
         use: [{
@@ -21,7 +21,7 @@ const scssConfig = {
             options: {
                 modules: false,
                 filename: '[name].[contenthash].css',
-                importLoaders: 2,
+                importLoaders: 3,
                 sourceMap: false
             }
         }, {
@@ -51,7 +51,10 @@ const scssConfig = {
                 ]
             }
         }, {
-            loader: 'resolve-url-loader'
+            loader: 'resolve-url-loader',
+            options: {
+                sourceMap: true
+            }
         }, {
             loader: 'sass-loader',
             options: {
@@ -67,9 +70,10 @@ const optimization = {
         cacheGroups: {
             commons: {
                 name: 'commons',
-                chunks: 'initial',
+                chunks: 'all',
                 minChunks: 2,
-                minSize: 0
+                minSize: 0,
+                enforce: true
             }
         }
     }
@@ -117,7 +121,9 @@ export default {
             }),
             new Harddisk()
         ],
-        optimization
+        optimization: {
+            ...optimization
+        }
     }),
 
     production: (base, config) => {

@@ -53,6 +53,7 @@ const getConfig = () => {
         // Outputs
         // ----------------------------------
         assets_name_js: 'js/[name].js',
+        assets_chunkfilename: 'js/[name].js',
         assets_name_img: 'img/[name].[ext]',
         assets_name_css: 'css/[name].css',
         assets_name_font: 'fonts/[name].[ext]',

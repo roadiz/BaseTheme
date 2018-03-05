@@ -29,10 +29,6 @@
 import * as log from 'loglevel'
 import Page from '../pages/Page'
 import Home from '../pages/Home'
-// import TextBlock from '../blocks/TextBlock'
-// import ContactBlock from '../blocks/ContactBlock'
-// import BasicBlock from '../blocks/BasicBlock'
-// import MapBlock from '../blocks/MapBlock'
 
 /**
  * This class need to be redefined for each of your projects.
@@ -89,7 +85,7 @@ export default class ClassFactory {
     }
 
     async getModule (moduleName) {
-        return import(`../blocks/${moduleName}`)
+        return import(`../blocks/${moduleName}` /* webpackChunkName: "block-" */)
             .then(block => {
                 return block.default
             })
