@@ -87,7 +87,8 @@ sftp-config.json
 .nfs.*
 
 ## Yarn
-# yarn.lock
+yarn.lock
+package-lock.json
 
 ## Generated files (css, js, svg, img, vendors)
 /static/js
