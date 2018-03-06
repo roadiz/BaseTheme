@@ -93,6 +93,11 @@ const getWebpackConfigBase = (config) => {
         webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin())
     }
 
+    if (config.bundleAnalyzerReport) {
+        const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+        webpackConfig.plugins.push(new BundleAnalyzerPlugin())
+    }
+
     return webpackConfig
 }
 
