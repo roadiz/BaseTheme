@@ -11,6 +11,6 @@ import '../scss/style.scss'
 
 (() => {
     /** Create the app **/
-    const app = new App() // eslint-disable-line
+    const app = new App()
     app.init()
 })()

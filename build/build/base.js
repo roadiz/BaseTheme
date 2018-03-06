@@ -2,6 +2,8 @@ import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import debug from 'debug'
+import CleanWebpackPlugin from 'clean-webpack-plugin'
+import WriteFilePlugin from 'write-file-webpack-plugin'
 
 const dbg = debug('Roadiz-front:webpack-config:base  ')
 dbg.color = debug.colors[3]
@@ -20,16 +22,19 @@ const getWebpackConfigBase = (config) => {
         context: paths.dist(),
         entry: {
             app: paths.client('js/main.js'),
-            vendor: config.js_vendors
+            vendor: [
+                'style-loader/lib/addStyles',
+                'css-loader/lib/css-base'
+            ]
         },
         output: {
             path: paths.dist(),
             filename: config.assets_name_js,
-            chunkFilename: '[name].[chunkhash].js',
+            chunkFilename: config.assets_chunkfilename,
             publicPath: config.public_path
         },
         module: {
-            loaders: [{
+            rules: [{
                 test: /\.js$/,
                 enforce: 'pre',
                 loader: 'eslint-loader',
@@ -41,25 +46,6 @@ const getWebpackConfigBase = (config) => {
                 query: {
                     cacheDirectory: true
                 }
-            }, {
-                test: /\.scss?$/,
-                loader: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: [{
-                        loader: 'css-loader',
-                        options: {
-                            importLoaders: 2,
-                            sourceMap: true
-                        }
-                    }, {
-                        loader: 'resolve-url-loader'
-                    }, {
-                        loader: 'sass-loader',
-                        options: {
-                            sourceMap: true
-                        }
-                    }]
-                })
             }, {
                 test: /\.(png|jpg)$/,
                 loader: 'url-loader',
@@ -79,6 +65,10 @@ const getWebpackConfigBase = (config) => {
         },
         plugins: [
             new webpack.DefinePlugin(config.globals),
+            new CleanWebpackPlugin(['css', 'img', 'js', 'fonts', 'vendors', '*.*'], {
+                root: config.utils_paths.dist(),
+                verbose: false
+            }),
             new CopyWebpackPlugin([{
                 from: paths.client('img'),
                 to: paths.dist('img')
@@ -88,9 +78,9 @@ const getWebpackConfigBase = (config) => {
             }]),
             new ExtractTextPlugin({
                 filename: config.assets_name_css,
-                allChunks: true
-            }),
-            new webpack.NoEmitOnErrorsPlugin()
+                ignoreOrder: true,
+                allChunks: false
+            })
         ],
         resolve: {
             extensions: ['.js']
@@ -99,7 +89,13 @@ const getWebpackConfigBase = (config) => {
     }
 
     if (config.refreshOnChange) {
+        webpackConfig.plugins.push(new WriteFilePlugin())
         webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin())
+    }
+
+    if (config.bundleAnalyzerReport) {
+        const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+        webpackConfig.plugins.push(new BundleAnalyzerPlugin())
     }
 
     return webpackConfig

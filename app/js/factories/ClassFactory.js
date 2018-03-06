@@ -29,9 +29,6 @@
 import * as log from 'loglevel'
 import Page from '../pages/Page'
 import Home from '../pages/Home'
-import ContactBlock from '../blocks/ContactBlock'
-import BasicBlock from '../blocks/BasicBlock'
-import MapBlock from '../blocks/MapBlock'
 
 /**
  * This class need to be redefined for each of your projects.
@@ -61,22 +58,37 @@ export default class ClassFactory {
      * Returns an AbstractBlock child class instance
      * according to the nodeTypeName or an AbstractBlock as default.
      *
-     * @param  {String}  nodeTypeName
      * @param  {AbstractPage} page
      * @param  {jQuery}  $cont
+     * @param  {String}  nodeType
      * @return {AbstractBlock}
      */
-    getBlockInstance (nodeTypeName, page, $cont) {
-        switch (nodeTypeName) {
-        case 'contactblock':
-            return new ContactBlock(page, $cont, nodeTypeName)
-        case 'mapblock':
-            return new MapBlock(page, $cont, nodeTypeName)
-        case 'basicblock':
-            return new BasicBlock(page, $cont, nodeTypeName)
-        default:
-                /* log.info('    "' + nodeTypeName + '" has no defined route, using AbstractBlock.');
-                return new AbstractBlock(page, $cont, nodeTypeName); */
+    async getBlockInstance (page, $cont, nodeType) {
+        try {
+            const Block = await this.getModule(nodeType)
+            return new Block(page, $cont, nodeType)
+        } catch (e) {
+            console.error(e.message)
         }
+
+        // Standard import
+        // switch (nodeTypeName) {
+        // case 'contactblock':
+        //     return new ContactBlock(page, $cont, nodeType)
+        // case 'mapblock':
+        //     return new MapBlock(page, $cont, nodeType)
+        // case 'basicblock':
+        //     return new BasicBlock(page, $cont, nodeType)
+        // default:
+        //     log.info('    "' + nodeTypeName + '" has no defined route, using AbstractBlock.')
+        //     return new AbstractBlock(page, $cont, nodeType)
+        // }
+    }
+
+    async getModule (moduleName) {
+        return import(`../blocks/${moduleName}` /* webpackChunkName: "block-" */)
+            .then(block => {
+                return block.default
+            })
     }
 }

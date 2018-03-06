@@ -17,15 +17,16 @@ body {
 a {
     text-decoration: none;
 
-    &:hover, &:focus{
+    &:hover,
+    &:focus {
         text-decoration: none;
-        color:inherit;
+        color: inherit;
     }
 }
 
 button {
     background: none;
-    border: none;
+    border: 0;
     outline: none;
 }
 

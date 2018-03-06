@@ -1,4 +1,5 @@
 {
+    "parser": "babel-eslint",
     "extends": ["standard"],
     "plugins": [
         "dependencies"
@@ -12,6 +13,11 @@
         "dependencies/case-sensitive": 1,
         "dependencies/no-cycles": 1,
         "dependencies/require-json-ext": 1
+    },
+    "parserOptions": {
+        "sourceType": "module",
+        "allowImportExportEverywhere": false,
+        "codeFrame": false
     },
     "globals" : {
         "DEVELOPMENT": false,
