@@ -58,29 +58,30 @@ export default class ClassFactory {
      * Returns an AbstractBlock child class instance
      * according to the nodeTypeName or an AbstractBlock as default.
      *
-     * @param  {String}  nodeTypeName
      * @param  {AbstractPage} page
      * @param  {jQuery}  $cont
+     * @param  {String}  nodeType
      * @return {AbstractBlock}
      */
-    async getBlockInstance (nodeTypeName, page, $cont) {
+    async getBlockInstance (page, $cont, nodeType) {
         try {
-            const Block = await this.getModule(nodeTypeName)
-            return new Block(page, $cont, nodeTypeName)
+            const Block = await this.getModule(nodeType)
+            return new Block(page, $cont, nodeType)
         } catch (e) {
             console.error(e.message)
         }
 
+        // Standard import
         // switch (nodeTypeName) {
         // case 'contactblock':
-        //     return new ContactBlock(page, $cont, nodeTypeName)
+        //     return new ContactBlock(page, $cont, nodeType)
         // case 'mapblock':
-        //     return new MapBlock(page, $cont, nodeTypeName)
+        //     return new MapBlock(page, $cont, nodeType)
         // case 'basicblock':
-        //     return new BasicBlock(page, $cont, nodeTypeName)
+        //     return new BasicBlock(page, $cont, nodeType)
         // default:
-        /* log.info('    "' + nodeTypeName + '" has no defined route, using AbstractBlock.');
-            return new AbstractBlock(page, $cont, nodeTypeName); */
+        //     log.info('    "' + nodeTypeName + '" has no defined route, using AbstractBlock.')
+        //     return new AbstractBlock(page, $cont, nodeType)
         // }
     }
 

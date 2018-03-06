@@ -24,6 +24,8 @@ const getConfig = () => {
         dir_dist: 'static',
         dir_views: 'Resources/views',
 
+        bundleAnalyzerReport: false,
+
         // ----------------------------------
         // Stats
         // ----------------------------------
@@ -97,9 +99,9 @@ const getConfig = () => {
 
     config.public_path = '/themes/BaseTheme/static/'
 
-// ------------------------------------
-// Utilities
-// ------------------------------------
+    // ------------------------------------
+    // Utilities
+    // ------------------------------------
     const resolve = path.resolve
     const base = (...args) =>
         Reflect.apply(resolve, null, [config.path_base, ...args])

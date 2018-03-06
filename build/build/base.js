@@ -22,7 +22,7 @@ const getWebpackConfigBase = (config) => {
         context: paths.dist(),
         entry: {
             app: paths.client('js/main.js'),
-            'vendor': [
+            vendor: [
                 'style-loader/lib/addStyles',
                 'css-loader/lib/css-base'
             ]

@@ -6,8 +6,11 @@ import postcssFilterGradient from 'postcss-filter-gradient'
 import postcssReduceTransform from 'postcss-reduce-transforms'
 import cssMqpacker from 'css-mqpacker'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import UglifyJsWebpackPlugin from 'uglifyjs-webpack-plugin'
 import Harddisk from '../plugins/harddisk-plugins'
 import debug from 'debug'
+import WebpackNotifierPlugin from 'webpack-notifier'
+import OptimizeCSSPlugin from 'optimize-css-assets-webpack-plugin'
 
 const dbg = debug('Roadiz-front:webpack-config:environments  ')
 dbg.color = debug.colors[5]
@@ -119,7 +122,8 @@ export default {
                 alwaysWriteToDisk: true,
                 refreshOnChange: config.refreshOnChange
             }),
-            new Harddisk()
+            new Harddisk(),
+            new WebpackNotifierPlugin({alwaysNotify: true})
         ],
         optimization: {
             ...optimization
@@ -137,6 +141,20 @@ export default {
                 rules: [scssConfig]
             },
             plugins: [
+                new webpack.DefinePlugin({
+                    'process.env': {
+                        NODE_ENV: '"production"'
+                    }
+                }),
+                // Compress extracted CSS. We are using this plugin so that possible
+                // duplicated CSS from different components can be deduped.
+                new OptimizeCSSPlugin({
+                    cssProcessorOptions: {
+                        safe: true,
+                        cssProcessor: require('cssnano'),
+                        discardComments: { removeAll: true }
+                    }
+                }),
                 new webpack.HashedModuleIdsPlugin(),
                 new HtmlWebpackPlugin({
                     filename: config.utils_paths.views('partials/css-inject.html.twig'),
@@ -154,7 +172,18 @@ export default {
             optimization: {
                 ...optimization,
                 minimize: true,
-                occurrenceOrder: true
+                occurrenceOrder: true,
+                minimizer: [
+                    new UglifyJsWebpackPlugin({
+                        parallel: true,
+                        uglifyOptions: {
+                            output: {
+                                comments: false,
+                                beautify: false
+                            }
+                        }
+                    })
+                ]
             }
         }
     }
