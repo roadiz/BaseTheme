@@ -24,6 +24,8 @@ const getConfig = () => {
         dir_dist: 'static',
         dir_views: 'Resources/views',
 
+        bundleAnalyzerReport: false,
+
         // ----------------------------------
         // Stats
         // ----------------------------------
@@ -53,6 +55,7 @@ const getConfig = () => {
         // Outputs
         // ----------------------------------
         assets_name_js: 'js/[name].js',
+        assets_chunkfilename: 'js/[name].js',
         assets_name_img: 'img/[name].[ext]',
         assets_name_css: 'css/[name].css',
         assets_name_font: 'fonts/[name].[ext]',
@@ -94,11 +97,11 @@ const getConfig = () => {
         }
     }
 
-    config.public_path = ''
+    config.public_path = '/themes/BaseTheme/static/'
 
-// ------------------------------------
-// Utilities
-// ------------------------------------
+    // ------------------------------------
+    // Utilities
+    // ------------------------------------
     const resolve = path.resolve
     const base = (...args) =>
         Reflect.apply(resolve, null, [config.path_base, ...args])

@@ -19,7 +19,7 @@ use Themes\BaseTheme\Services;
  */
 class BaseThemeApp extends FrontendController
 {
-    const VERSION = '0.21.3';
+    const VERSION = '0.21.4';
 
     protected static $themeName = 'Base theme';
     protected static $themeAuthor = 'REZO ZERO';

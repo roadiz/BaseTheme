@@ -12,7 +12,7 @@ import TransitionFactory from './factories/TransitionFactory'
 
 const routerOptions = {
     ajaxEnabled: true,
-    useCache: false,
+    useCache: true,
     lazyloadEnabled: true,
     ajaxWrapperId: 'main-container',
     classFactory: new ClassFactory(),
