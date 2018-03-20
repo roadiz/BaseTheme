@@ -19,7 +19,7 @@ use Themes\BaseTheme\Services;
  */
 class BaseThemeApp extends FrontendController
 {
-    const VERSION = '0.21.5';
+    const VERSION = '0.22.0';
 
     protected static $themeName = 'Base theme';
     protected static $themeAuthor = 'REZO ZERO';
@@ -133,7 +133,6 @@ class BaseThemeApp extends FrontendController
         $this->themeContainer->register(new Services\AssetsServiceProvider());
 
         $this->assignation['themeServices'] = $this->themeContainer;
-
         $this->assignation['head']['facebookUrl'] = $this->get('settingsBag')->get('facebook_url');
         $this->assignation['head']['pinterest_url'] = $this->get('settingsBag')->get('pinterest_url');
         $this->assignation['head']['facebookClientId'] = $this->get('settingsBag')->get('facebook_client_id');
