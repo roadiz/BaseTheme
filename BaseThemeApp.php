@@ -133,7 +133,6 @@ class BaseThemeApp extends FrontendController
         $this->themeContainer->register(new Services\AssetsServiceProvider());
 
         $this->assignation['themeServices'] = $this->themeContainer;
-
         $this->assignation['head']['facebookUrl'] = $this->get('settingsBag')->get('facebook_url');
         $this->assignation['head']['pinterest_url'] = $this->get('settingsBag')->get('pinterest_url');
         $this->assignation['head']['facebookClientId'] = $this->get('settingsBag')->get('facebook_client_id');
