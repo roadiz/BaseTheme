@@ -8,7 +8,7 @@
 <div class="{{ blockClasses|join(' ') }}"
      id="block-{{ node.nodeName }}"
      data-index="{{ loop.index0 }}"
-     data-node-type="{{ nodeType.name|lower }}">
+     data-node-type="{{ nodeType.name }}">
 
     <p class="form-message"></p>
     {{ nodeSource|render('BaseTheme') }}
