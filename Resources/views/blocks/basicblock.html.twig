@@ -1,19 +1,10 @@
-{% set blockClassPrefix = nodeType.name|lower %}
+{% extends "@BaseTheme/blocks/base.html.twig" %}
 
-{% set blockClasses = [
-    'page-block',
-    blockClassPrefix
-] %}
-
-<div class="{{ blockClasses|join(' ') }}"
-     id="block-{{ node.nodeName }}"
-     data-index="{{ loop.index0 }}"
-     data-node-type="{{ nodeType.name }}">
-
+{% block innerContent %}
     <div class="container">
         <h2 class="page-block-title {{ blockClassPrefix }}-title">{{ nodeSource.title }}</h2>
         <div class="page-block-content {{ blockClassPrefix }}-content">
             {{ nodeSource.content|markdown }}
         </div>
     </div>
-</div>
+{% endblock %}
