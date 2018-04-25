@@ -45,7 +45,7 @@ export default class ClassFactory {
      * @return {AbstractPage}
      */
     getPageInstance (router, $cont, context, nodeType) {
-        switch (nodeType) {
+        switch (nodeType.toLowerCase()) {
         case 'home':
             return new Home(router, $cont, context, nodeType)
         default:
@@ -72,7 +72,7 @@ export default class ClassFactory {
         }
 
         // Standard import
-        // switch (nodeTypeName) {
+        // switch (nodeType.toLowerCase()) {
         // case 'contactblock':
         //     return new ContactBlock(page, $cont, nodeType)
         // case 'mapblock':

@@ -1,0 +1,14 @@
+# Roadiz travis setup
+# Ambroise Maupate
+language: node_js
+node_js:
+  - node
+  - 6
+  - 8
+  - lts/*
+
+script:
+  - npm run test
+  - npm run build
+
+

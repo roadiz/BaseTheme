@@ -1,15 +1,6 @@
-{% set blockClassPrefix = nodeType.name|lower %}
+{% extends "@BaseTheme/blocks/base.html.twig" %}
 
-{% set blockClasses = [
-    'page-block',
-    blockClassPrefix
-] %}
-
-<div class="{{ blockClasses|join(' ') }}"
-     id="block-{{ node.nodeName }}"
-     data-index="{{ loop.index0 }}"
-     data-node-type="{{ nodeType.name|lower }}">
-
+{% block innerContent %}
     <p class="form-message"></p>
     {{ nodeSource|render('BaseTheme') }}
-</div>
+{% endblock %}

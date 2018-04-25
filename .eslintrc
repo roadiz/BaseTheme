@@ -13,6 +13,8 @@
         "dependencies/case-sensitive": 1,
         "dependencies/no-cycles": 1,
         "dependencies/require-json-ext": 1
+        // Allow using semicolon at lines ends
+        //"semi": 0
     },
     "parserOptions": {
         "sourceType": "module",

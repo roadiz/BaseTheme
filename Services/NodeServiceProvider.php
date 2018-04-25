@@ -70,6 +70,18 @@ class NodeServiceProvider implements ServiceProviderInterface
             return null;
         };
 
+        /*
+         * Register legals page
+         */
+        $container['nodeSourceLegals'] = function () {
+            return $this->coreServices['nodeSourceApi']
+                ->getOneBy([
+                    'node.nodeName' => 'legals',
+                    'node.visible' => true,
+                    'translation' => $this->translation,
+                ]);
+        };
+
         return $container;
     }
 }

@@ -1,15 +1,6 @@
-{% set blockClassPrefix = nodeType.name|lower %}
+{% extends "@BaseTheme/blocks/base.html.twig" %}
 
-{% set blockClasses = [
-    'page-block',
-    blockClassPrefix
-] %}
-
-<div class="{{ blockClasses|join(' ') }}"
-     id="block-{{ node.nodeName }}"
-     data-index="{{ loop.index0 }}"
-     data-node-type="{{ nodeType.name|lower }}">
-
+{% block innerContent %}
     {% if nodeSource.geoloc %}
         <div class="{{ blockClassPrefix }}-canvas-cont">
             <div class="{{ blockClassPrefix }}-canvas" id="map-{{ nodeSource.id }}" data-geoloc="{{ nodeSource.geoloc }}"></div>
@@ -21,4 +12,4 @@
             {% endspaceless %}
         </div>
     {% endif %}
-</div>
+{% endblock %}
