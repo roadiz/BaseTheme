@@ -23,7 +23,7 @@
     <title>{{ pageMetaTitle }}</title>
     <meta name="description" content="{{ pageMetaDescription }}" />
     {% if pageMeta.keywords %}<meta name="keywords" content="{{ pageMeta.keywords }}" />{% endif %}
-    <meta name="generator" content="Roadiz {{ head.cmsVersion }} {{ head.cmsVersionNumber }} - {{ head.themeName }} v{{ head.themeVersion }}" />
+    <meta name="generator" content="Roadiz {{ cms_prefix }} {{ cms_version }} - {{ head.themeName }} v{{ head.themeVersion }}" />
     {#
      # This will enable mobile viewports
      #}
@@ -123,6 +123,16 @@
      # Modernizr ---------------------------------------------------------------
      #}
     <script src="{{ head.resourcesUrl }}vendors/modernizr.custom.js"></script>
+
+    {% if head.googleTagManagerId %}
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','{{ head.googleTagManagerId }}');</script>
+    <!-- End Google Tag Manager -->
+    {% endif %}
 </head>
 
 {% set bodyClasses = [] %}
@@ -135,7 +145,12 @@
 {% endif %}
 
 <body {% block body_attributes %}{% if node %}class="{{ bodyClasses|join(' ') }}" id="{{nodeName }}" data-node-type="{{ nodeTypeName|lower }}" data-is-home="{{ nodeHome }}"{% endif %}{% endblock %}>
-
+    {% if head.googleTagManagerId %}
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ head.googleTagManagerId }}"
+                      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+    {% endif %}
     <div id="svg-sprite" style="display:none;">{% include '@BaseTheme/svg/sprite.svg.twig' %}</div>
     <div id="loading"><div id="loading-inner"></div></div>
 
@@ -203,7 +218,6 @@
             devMode: {% if head.devMode %}true{% else %}false{% endif %},
             locale: '{{ request.locale }}',
             resourcesUrl: '{{ head.resourcesUrl }}',
-            ajaxToken: "{{ head.ajaxToken }}",
             googleClientId: '{{ head.googleClientId }}',
             mapsStyle: {% if head.mapsStyle %}JSON.parse('{{ head.mapsStyle|raw }}'){% else %}null{% endif %}
         };
@@ -218,14 +232,14 @@
                     message: "{{ 'cookie_choice.consent_message'|trans|escape }}",
                     dismiss: "{% trans %}cookie_choice.close_message{% endtrans %}",
                     link: "{% trans %}cookie_choice.find_out_more_message{% endtrans %}",
-                    href: '/legals'
+                    href: '{{ path(themeServices.nodeSourceLegals) }}'
                 }
             })
         });
 
         {# Browser update — www.browser-update.org/customize.html #}
         var $buoop = {
-            vs: { i:9, f: 15, o: 12.1, s: 5.1, c: 2 },
+            vs: { i: -6, f: -6, o: -6, s: -4, c: -6 },
             text:'{{ 'browser_update.message'|trans|escape }} <a href="http://browser-update.org/update-browser.html" target="_blank">{{ 'browser_update.link'|trans|escape }}</a>'
         };
 
@@ -241,12 +255,8 @@
             window.attachEvent("onload", $buo_f)
         }
 
-        {#
-         # Google Analytics ----------------------------------------------------
-         #}
-        {% if head.universalAnalyticsId %}
+        {% if head.universalAnalyticsId and not head.googleTagManagerId %}
         {# Google Analytics: change head.universalAnalyticsId to be your site ID.  #}
-
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)

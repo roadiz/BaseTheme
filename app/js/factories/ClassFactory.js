@@ -45,12 +45,12 @@ export default class ClassFactory {
      * @return {AbstractPage}
      */
     getPageInstance (router, $cont, context, nodeType) {
-        switch (nodeType) {
-        case 'home':
-            return new Home(router, $cont, context, nodeType)
-        default:
-            log.info('"' + nodeType + '" has no defined route, using Page.')
-            return new Page(router, $cont, context, nodeType)
+        switch (nodeType.toLowerCase()) {
+            case 'home':
+                return new Home(router, $cont, context, nodeType)
+            default:
+                log.info('"' + nodeType + '" has no defined route, using Page.')
+                return new Page(router, $cont, context, nodeType)
         }
     }
 
@@ -72,7 +72,7 @@ export default class ClassFactory {
         }
 
         // Standard import
-        // switch (nodeTypeName) {
+        // switch (nodeType.toLowerCase()) {
         // case 'contactblock':
         //     return new ContactBlock(page, $cont, nodeType)
         // case 'mapblock':
