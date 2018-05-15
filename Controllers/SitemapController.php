@@ -9,6 +9,7 @@
  */
 namespace Themes\BaseTheme\Controllers;
 
+use RZ\Roadiz\Core\Entities\NodeType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Themes\BaseTheme\BaseThemeApp;
@@ -30,7 +31,7 @@ class SitemapController extends BaseThemeApp
     ) {
         $this->prepareThemeAssignation(null, $this->bindLocaleFromRoute($request, $_locale));
 
-        $nodeTypes = $this->get('em')->getRepository('RZ\Roadiz\Core\Entities\NodeType')
+        $nodeTypes = $this->get('em')->getRepository(NodeType::class)
             ->findBy([
                 'reachable' => true
             ]);
@@ -47,7 +48,7 @@ class SitemapController extends BaseThemeApp
         return new Response(
             trim($this->getTwig()->render('sitemap/sitemap.xml.twig', $this->assignation)),
             Response::HTTP_OK,
-            array('content-type' => 'application/xml')
+            ['content-type' => 'application/xml']
         );
     }
 }

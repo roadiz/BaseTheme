@@ -9,17 +9,19 @@
  */
 namespace Themes\BaseTheme;
 
+use Pimple\Container;
 use RZ\Roadiz\CMS\Controllers\FrontendController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Themes\BaseTheme\Services;
+use Themes\BaseTheme\Twig\ImageFormatsExtension;
 
 /**
  * BaseThemeApp class
  */
 class BaseThemeApp extends FrontendController
 {
-    const VERSION = '0.22.1';
+    const VERSION = '0.22.2';
 
     protected static $themeName = 'Base theme';
     protected static $themeAuthor = 'REZO ZERO';
@@ -71,7 +73,7 @@ class BaseThemeApp extends FrontendController
     /**
      * Return a Response with default backend 404 error page.
      *
-     * @param string $message Additionnal message to describe 404 error.
+     * @param string $message Additional message to describe 404 error.
      *
      * @return Response
      */
@@ -93,7 +95,7 @@ class BaseThemeApp extends FrontendController
         return new Response(
             $this->renderView('@BaseTheme/pages/404.html.twig', $this->assignation),
             Response::HTTP_NOT_FOUND,
-            array('content-type' => 'text/html')
+            ['content-type' => 'text/html']
         );
     }
 
@@ -130,7 +132,6 @@ class BaseThemeApp extends FrontendController
          * Register services
          */
         $this->themeContainer->register(new Services\NodeServiceProvider($this->getContainer(), $this->translation));
-        $this->themeContainer->register(new Services\AssetsServiceProvider());
 
         $this->assignation['themeServices'] = $this->themeContainer;
         $this->assignation['head']['facebookUrl'] = $this->get('settingsBag')->get('facebook_url');
@@ -149,6 +150,20 @@ class BaseThemeApp extends FrontendController
         // Get session messages
         // Remove FlashBag assignation from here if you handle your forms
         // in sub-requests block renders.
-        $this->assignation['session']['messages'] = $this->get('session')->getFlashBag()->all();
+        // $this->assignation['session']['messages'] = $this->get('session')->getFlashBag()->all();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public static function setupDependencyInjection(Container $container)
+    {
+        parent::setupDependencyInjection($container);
+
+        $container->extend('twig.extensions', function ($extensions, $c) {
+            $extensions->add(new ImageFormatsExtension());
+
+            return $extensions;
+        });
     }
 }
