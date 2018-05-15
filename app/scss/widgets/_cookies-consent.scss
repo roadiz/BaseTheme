@@ -30,6 +30,7 @@
     .cc-banner {
         display: flex;
         align-items: center;
+        justify-content: space-between;
     }
 
     .cc-message {
@@ -49,13 +50,12 @@
 
     .cc-btn {
         display: inline-block;
-        padding: 8px 24px 8px;
+        padding: 8px 24px;
         background-color: $mainColor;
         cursor: pointer;
         border-radius: 34px;
         font: normal 14px/17px $font;
         transition: 0.6s background-color $easeOutExpo;
-        margin-top: 5px;
         color: #fff;
 
         &:hover {
