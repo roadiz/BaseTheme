@@ -13,6 +13,8 @@
 {% set content = content|default(nodeSource.content) %}
 {% if nodeSource and nodeSource.headerImage|length > 0 %}
     {% set headerImage = nodeSource.headerImage[0] %}
+{% elseif nodeSource and nodeSource.headerImages|length > 0 %}
+    {% set headerImage = nodeSource.headerImages[0] %}
 {% endif %}
 {# No whitespace before DOCTYPE #}
 <!DOCTYPE html>
@@ -227,7 +229,11 @@
             window.cookieconsent.initialise({
                 container: document.getElementById("cookiesconsent"),
                 location: true,
-                revokable: true,
+                revokable: false,
+                law: {
+                    countryCode: 'FR',
+                    regionalLaw: false,
+                },
                 content: {
                     message: "{{ 'cookie_choice.consent_message'|trans|escape }}",
                     dismiss: "{% trans %}cookie_choice.close_message{% endtrans %}",
