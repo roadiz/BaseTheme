@@ -78,7 +78,7 @@
     {% block share_metas %}
 
         {% if headerImage %}
-            {% set previewImageUrl = headerImage|url(themeServices.imageFormats.shareImage) %}
+            {% set previewImageUrl = headerImage|url(imageFormats.shareImage) %}
         {% else %}
             {% set previewImageUrl = head.absoluteResourcesUrl ~ 'img/share.png' %}
         {% endif %}
@@ -231,7 +231,7 @@
                 location: true,
                 revokable: false,
                 law: {
-                    countryCode: 'FR',
+                    countryCode: 'FR', {# Adapt it to your country #}
                     regionalLaw: false,
                 },
                 content: {

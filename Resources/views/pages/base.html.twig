@@ -23,7 +23,7 @@
     {% block header %}
         {% if headerImage %}
         <header class="page-header">
-                <figure class="page-header-image">{{ headerImage|display(themeServices.imageFormats.headerImage) }}</figure>
+                <figure class="page-header-image">{{ headerImage|display(imageFormats.headerImage) }}</figure>
         </header>
         {% endif %}
     {% endblock %}
