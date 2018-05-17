@@ -1,5 +1,10 @@
 {# For performance matters, recursive nav is not enable by default. #}
-{# {% set children = source|children %} #}
+{# {% set children = source|children({
+    'node.nodeType': [
+        bags.nodeTypes.get('Page')
+    ],
+    'node.visible': true
+}) %} #}
 
 {% set itemClasses = ['nav-item'] %}
 {% set linkClasses = ['nav-link'] %}
@@ -11,6 +16,7 @@
 
 {# {% if children|length %}
     {% set itemClasses = itemClasses|merge(['dropdown', 'has-children']) %}
+    {% set linkClasses = linkClasses|merge(['dropdown-toggle']) %}
 {% endif %} #}
 
 {% if source.node != home %}
@@ -19,12 +25,18 @@
         data-node-id="{{ source.node.id }}"
         role="menuitem">
 
-        <a class="{{ linkClasses|join(' ') }}"
-           id="nav-link-{{ source.node.nodeName }}"
-           href="{{ path(source) }}">{{ source.title|default(source.node.nodeName) }}</a>
+        {% if source.node.nodeType.Reachable %}
+            <a class="{{ linkClasses|join(' ') }}"
+               id="nav-link-{{ source.node.nodeName }}"
+               href="{{ path(source) }}">{{ source.title|default(source.node.nodeName) }}</a>
+        {% elseif children and children|length %}
+            <span class="{{ linkClasses|join(' ') }}"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                  id="nav-link-{{ source.node.nodeName }}">{{ source.title|default(source.node.nodeName) }}</span>
+        {% endif %}
 
         {# {% if children|length %}
-        <ul class="dropdown-menu nav-children" role="menu">
+        <ul class="dropdown-menu nav-children" role="menu" aria-labelledby="nav-link-{{ source.node.nodeName }}">
             {% for subsource in children %}
                 {% include '@BaseTheme/common/nav-item.html.twig' with {
                     'source' : subsource,
