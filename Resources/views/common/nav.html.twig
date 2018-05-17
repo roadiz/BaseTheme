@@ -13,7 +13,7 @@
 <nav id="nav" data-active-node="{{ node.id }}" class="navbar navbar-toggleable-md navbar-light bg-faded">
     <div id="nav-container" class="container">
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul id="nav-list" class="navbar-nav mr-auto" role="menubar">
+            <ul id="nav-list" class="nav navbar-nav mr-auto" role="menubar">
                 {# Home #}
                 {% if home %}
                     {% set homeSource = home.nodeSources.first %}
@@ -37,7 +37,7 @@
             </ul>
 
             {% if translation %}
-                <ul id="nav-lang" class="navbar-nav" role="menubar">
+                <ul id="nav-lang" class="nav navbar-nav" role="menubar">
                     {% for id, trans in translation|menu %}
                         <li class="nav-item nav-item-lang{% if trans.active %} active{% endif %}" role="menuitem">
                             <a class="no-ajax-link nav-link nav-link-lang{% if trans.active %} active{% endif %}" href="{{ trans.url }}">{{ trans.translation }}</a>
