@@ -43,15 +43,7 @@ class CssController extends BaseThemeApp
         $response->headers->set('Content-Type', 'text/css');
 
         $response->setContent($this->getTwig()->render('css/dynamic-styles.css.twig', $this->assignation));
-
-        /** @var Kernel $kernel */
-        $kernel = $this->get('kernel');
-        if (!$kernel->isPreview() &&
-            !$kernel->isDebug()) {
-            $response->setPublic();
-            $response->setMaxAge(60*60);
-            $response->setSharedMaxAge(60*60);
-        }
+        $this->makeResponseCachable($request, $response, 60);
 
         return $response;
     }
