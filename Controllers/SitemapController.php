@@ -45,10 +45,13 @@ class SitemapController extends BaseThemeApp
                 'node.visible' => true,
             ]);
 
-        return new Response(
+        $response = new Response(
             trim($this->getTwig()->render('sitemap/sitemap.xml.twig', $this->assignation)),
             Response::HTTP_OK,
             ['content-type' => 'application/xml']
         );
+        
+        $this->makeResponseCachable($request, $response, 60);
+        return $response;
     }
 }
