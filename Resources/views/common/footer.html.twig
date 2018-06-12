@@ -1,3 +1,14 @@
 <footer id="footer">
-    
+    <div class="container">
+        <ul class="socials">
+            {% for socialNetwork in head.socials %}
+                <li class="socials-item {{ socialNetwork.slug }}">
+                    <a rel="noopener"
+                       target="_blank"
+                       class="socials-link {{ socialNetwork.slug }}"
+                       href="{{ socialNetwork.url }}"><i class="fa fa-{{ socialNetwork.slug }}"></i> {{ socialNetwork.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 </footer>
