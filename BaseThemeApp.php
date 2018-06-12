@@ -134,18 +134,31 @@ class BaseThemeApp extends FrontendController
         $this->themeContainer->register(new Services\NodeServiceProvider($this->getContainer(), $this->translation));
 
         $this->assignation['themeServices'] = $this->themeContainer;
-        $this->assignation['head']['facebookUrl'] = $this->get('settingsBag')->get('facebook_url');
-        $this->assignation['head']['pinterest_url'] = $this->get('settingsBag')->get('pinterest_url');
         $this->assignation['head']['facebookClientId'] = $this->get('settingsBag')->get('facebook_client_id');
-        $this->assignation['head']['instagramUrl'] = $this->get('settingsBag')->get('instagram_url');
-        $this->assignation['head']['twitterUrl'] = $this->get('settingsBag')->get('twitter_url');
-        $this->assignation['head']['googleplusUrl'] = $this->get('settingsBag')->get('googleplus_url');
         $this->assignation['head']['googleClientId'] = $this->get('settingsBag')->get('google_client_id');
         $this->assignation['head']['twitterAccount'] = $this->get('settingsBag')->get('twitter_account');
         $this->assignation['head']['mapsStyle'] = $this->get('settingsBag')->get('maps_style');
         $this->assignation['head']['googleTagManagerId'] = $this->get('settingsBag')->get('google_tag_manager_id');
         $this->assignation['head']['themeName'] = static::$themeName;
         $this->assignation['head']['themeVersion'] = static::VERSION;
+        
+        /*
+         * Get social networks url from Roadiz parameters.
+         */
+        $socials = ['Twitter', 'Facebook', 'Instagram', 'YouTube', 'Pinterest', 'GooglePlus'];
+        $this->assignation['head']['socials'] = [];
+        foreach ($socials as $social) {
+            $setting = $this->get('settingsBag')->get(strtolower($social) . '_url');
+            // If setting is empty
+            if (empty($setting)) {
+                break;
+            }
+            $this->assignation['head']['socials'][strtolower($social)] = [
+                'name'  => $social,
+                'slug'  => strtolower($social),
+                'url'   => $setting,
+            ];
+        }
 
         // Get session messages
         // Remove FlashBag assignation from here if you handle your forms
