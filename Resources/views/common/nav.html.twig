@@ -17,9 +17,11 @@
                 {# Home #}
                 {% if home %}
                     {% set homeSource = home.nodeSources.first %}
-                    <li class="nav-item nav-item-home {% if node.isHome %}active{% endif %}" id="nav-item-home">
+                    <li class="nav-item nav-item-home {% if node.isHome %}active{% endif %}" id="nav-item-home" role="none">
                         <a href="{{ path(homeSource) }}"
-                           class="nav-link-home nav-link {% if node.isHome %}active{% endif %}" id="nav-home">{{ homeSource.title|default(home.nodeName) }}</a>
+                           role="menuitem"
+                           class="nav-link-home nav-link {% if node.isHome %}active{% endif %}" 
+                           id="nav-home">{{ homeSource.title|default(home.nodeName) }}</a>
                     </li>
                 {% endif %}
 
@@ -39,8 +41,10 @@
             {% if translation %}
                 <ul id="nav-lang" class="nav navbar-nav" role="menubar">
                     {% for id, trans in translation|menu %}
-                        <li class="nav-item nav-item-lang{% if trans.active %} active{% endif %}" role="menuitem">
-                            <a class="no-ajax-link nav-link nav-link-lang{% if trans.active %} active{% endif %}" href="{{ trans.url }}">{{ trans.translation }}</a>
+                        <li class="nav-item nav-item-lang{% if trans.active %} active{% endif %}" role="none">
+                            <a class="no-ajax-link nav-link nav-link-lang{% if trans.active %} active{% endif %}" 
+                               role="menuitem"
+                               href="{{ trans.url }}">{{ trans.translation }}</a>
                         </li>
                     {% endfor %}
                 </ul>
