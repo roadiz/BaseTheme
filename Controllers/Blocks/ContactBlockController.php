@@ -12,7 +12,7 @@ namespace Themes\BaseTheme\Controllers\Blocks;
 //use GeneratedNodeSources\NSContactBlock;
 use RZ\Roadiz\Core\Entities\NodesSources;
 use RZ\Roadiz\Core\Exceptions\ForceResponseException;
-use Symfony\Component\Form\FormInterface;
+use RZ\Roadiz\Utils\ContactFormManager;
 use Symfony\Component\HttpFoundation\Request;
 use Themes\BaseTheme\BaseThemeApp;
 
@@ -29,7 +29,7 @@ class ContactBlockController extends BaseThemeApp
 
         $this->assignation['session']['messages'] = $this->get('session')->getFlashBag()->all();
 
-        /** @var FormInterface $form */
+        /** @var ContactFormManager $contactFormManager */
         $contactFormManager = $this->createContactFormManager()->withDefaultFields();
 
         /*
