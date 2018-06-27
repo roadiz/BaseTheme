@@ -22,7 +22,7 @@ use Themes\BaseTheme\BaseThemeApp;
  */
 class ContactBlockController extends BaseThemeApp
 {
-    function blockAction(Request $request, NodesSources $source, $assignation)
+    public function blockAction(Request $request, NodesSources $source, $assignation)
     {
         $this->prepareNodeSourceAssignation($source, $source->getTranslation());
         $this->assignation = array_merge($this->assignation, $assignation);
