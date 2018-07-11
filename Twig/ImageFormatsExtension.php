@@ -3,7 +3,7 @@
 namespace Themes\BaseTheme\Twig;
 
 
-class ImageFormatsExtension extends \Twig_Extension
+class ImageFormatsExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
 {
     /**
      * @inheritDoc
@@ -36,13 +36,5 @@ class ImageFormatsExtension extends \Twig_Extension
                 ]
             ]
         ];
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getName()
-    {
-        return 'BaseThemeImageFormats';
     }
 }
