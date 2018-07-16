@@ -80,7 +80,7 @@ class BaseThemeApp extends FrontendController
     public function throw404($message = '')
     {
         $translation = $this->bindLocaleFromRoute(
-            $this->get('request'), 
+            $this->get('request'),
             $this->get('request')->getLocale()
         );
         $this->prepareThemeAssignation(null, $translation);
@@ -143,7 +143,7 @@ class BaseThemeApp extends FrontendController
         $this->assignation['head']['googleTagManagerId'] = $this->get('settingsBag')->get('google_tag_manager_id');
         $this->assignation['head']['themeName'] = static::$themeName;
         $this->assignation['head']['themeVersion'] = static::VERSION;
-        
+
         /*
          * Get social networks url from Roadiz parameters.
          */
@@ -177,7 +177,6 @@ class BaseThemeApp extends FrontendController
 
         $container->extend('twig.extensions', function ($extensions, $c) {
             $extensions->add(new ImageFormatsExtension());
-
             return $extensions;
         });
     }

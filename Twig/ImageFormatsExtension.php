@@ -2,8 +2,10 @@
 
 namespace Themes\BaseTheme\Twig;
 
+use Twig\Extension\AbstractExtension;
+use Twig\Extension\GlobalsInterface;
 
-class ImageFormatsExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
+class ImageFormatsExtension extends AbstractExtension implements GlobalsInterface
 {
     /**
      * @inheritDoc

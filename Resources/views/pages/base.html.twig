@@ -50,15 +50,14 @@
             }) %}
             {% for singleBlock in blocks %}
                 {% include '@BaseTheme/blocks/' ~ singleBlock.node.nodeType.name|lower ~ '.html.twig' ignore missing with {
-                'nodeSource': singleBlock,
-                'parentNodeSource': nodeSource,
-                'themeServices': themeServices,
-                'head': head,
-                'node': singleBlock.node,
-                'nodeType': singleBlock.node.nodeType,
-                'loop': loop,
-                'blocksLength':blocks|length,
-                'bags': bags
+                    'nodeSource': singleBlock,
+                    'parentNodeSource': nodeSource,
+                    'themeServices': themeServices,
+                    'head': head,
+                    'node': singleBlock.node,
+                    'nodeType': singleBlock.node.nodeType,
+                    'loop': loop,
+                    'blocksLength':blocks|length
                 } only %}
             {% endfor %}
         </div>
