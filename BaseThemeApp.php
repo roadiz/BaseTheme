@@ -151,15 +151,13 @@ class BaseThemeApp extends FrontendController
         $this->assignation['head']['socials'] = [];
         foreach ($socials as $social) {
             $setting = $this->get('settingsBag')->get(strtolower($social) . '_url');
-            // If setting is empty
-            if (empty($setting)) {
-                break;
+            if ($setting) {
+                $this->assignation['head']['socials'][strtolower($social)] = [
+                    'name'  => $social,
+                    'slug'  => strtolower($social),
+                    'url'   => $setting,
+                ];
             }
-            $this->assignation['head']['socials'][strtolower($social)] = [
-                'name'  => $social,
-                'slug'  => strtolower($social),
-                'url'   => $setting,
-            ];
         }
 
         // Get session messages
