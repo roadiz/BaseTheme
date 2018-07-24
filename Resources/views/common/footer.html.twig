@@ -7,7 +7,7 @@
                        target="_blank"
                        class="socials-link {{ socialNetwork.slug }}"
                        href="{{ socialNetwork.url }}">
-                        {% include 'svg/use.svg.twig' with { icon: 'icon-' ~ socialNetwork.slug } only %}
+                        {% include '@BaseTheme/svg/use.svg.twig' with { icon: 'icon-' ~ socialNetwork.slug } only %}
                         {{ socialNetwork.name -}}
                     </a>
                 </li>
