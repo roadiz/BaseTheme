@@ -12,7 +12,7 @@ namespace Themes\BaseTheme\Controllers\Blocks;
 //use GeneratedNodeSources\NSContactBlock;
 use RZ\Roadiz\Core\Entities\NodesSources;
 use RZ\Roadiz\Core\Exceptions\ForceResponseException;
-use Symfony\Component\Form\FormInterface;
+use RZ\Roadiz\Utils\ContactFormManager;
 use Symfony\Component\HttpFoundation\Request;
 use Themes\BaseTheme\BaseThemeApp;
 
@@ -22,14 +22,22 @@ use Themes\BaseTheme\BaseThemeApp;
  */
 class ContactBlockController extends BaseThemeApp
 {
-    function blockAction(Request $request, NodesSources $source, $assignation)
+    /**
+     * @param Request $request
+     * @param NodesSources $source
+     * @param $assignation
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws ForceResponseException
+     */
+    public function blockAction(Request $request, NodesSources $source, $assignation)
     {
         $this->prepareNodeSourceAssignation($source, $source->getTranslation());
         $this->assignation = array_merge($this->assignation, $assignation);
 
         $this->assignation['session']['messages'] = $this->get('session')->getFlashBag()->all();
 
-        /** @var FormInterface $form */
+        /** @var ContactFormManager $contactFormManager */
         $contactFormManager = $this->createContactFormManager()->withDefaultFields();
 
         /*
@@ -49,7 +57,7 @@ class ContactBlockController extends BaseThemeApp
 
         $form = $contactFormManager->getForm();
 
-        // Assignate your form view to display it in Twig.
+        // Assign your form view to display it in Twig.
         $this->assignation['contactForm'] = $form->createView();
 
         return $this->render('form-blocks/contactblock.html.twig', $this->assignation);

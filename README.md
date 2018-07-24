@@ -2,7 +2,7 @@
 
 This theme is meant to get a **fresh start** to create a custom website on *Roadiz*.
 
-**Compatible with Internet Explorer 10+**
+**Compatible with Internet Explorer 11+**
 
 ## Get started
 
@@ -23,13 +23,13 @@ We provide a starter kit based on ES6 with *Webpack3*, *Babel*, *Scss* and *Gulp
 ### Development
 
 ```shell
-npm run dev
+yarn run dev
 ```
 
 Watch js, scss, images and svg changes in `app/` folder, then build.
 
 ```shell
-npm run dev-livereload
+yarn run dev-livereload
 ```
 
 Same functionnalities as above but with browser livereload.
@@ -37,7 +37,7 @@ Same functionnalities as above but with browser livereload.
 ### Production
 
 ```shell 
-npm run build
+yarn run build
 ```
 
 Build all assets in `app/` folder, optimized and minified. After a build, you are ready to deploy to production site.

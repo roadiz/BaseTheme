@@ -2,8 +2,10 @@
 
 namespace Themes\BaseTheme\Twig;
 
+use Twig\Extension\AbstractExtension;
+use Twig\Extension\GlobalsInterface;
 
-class ImageFormatsExtension extends \Twig_Extension
+class ImageFormatsExtension extends AbstractExtension implements GlobalsInterface
 {
     /**
      * @inheritDoc
@@ -36,13 +38,5 @@ class ImageFormatsExtension extends \Twig_Extension
                 ]
             ]
         ];
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getName()
-    {
-        return 'BaseThemeImageFormats';
     }
 }

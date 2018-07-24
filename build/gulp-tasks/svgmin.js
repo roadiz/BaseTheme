@@ -42,7 +42,6 @@ const buildSvg = () => {
                 }, {
                     removeAttrs: {
                         attrs: [
-                            'fill',
                             'fill-rule',
                             'clip-rule',
                             'sketch:type',
