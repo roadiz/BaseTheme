@@ -6,7 +6,10 @@
                     <a rel="noopener"
                        target="_blank"
                        class="socials-link {{ socialNetwork.slug }}"
-                       href="{{ socialNetwork.url }}"><i class="fa fa-{{ socialNetwork.slug }}"></i> {{ socialNetwork.name }}</a>
+                       href="{{ socialNetwork.url }}">
+                        {% include 'svg/use.svg.twig' with { icon: 'icon-' ~ socialNetwork.slug } only %}
+                        {{ socialNetwork.name -}}
+                    </a>
                 </li>
             {% endfor %}
         </ul>
