@@ -1,0 +1,23 @@
+/*
+ * Footer social icons
+ */
+.socials {
+    display: flex;
+    margin: 0 -10px;
+    padding: 0;
+
+    &-item {
+        display: inline-flex;
+        list-style: none;
+        align-items: center;
+        padding: 0 10px;
+
+        svg {
+            display: inline;
+            width: 18px;
+            height: 18px;
+            vertical-align: middle;
+            color: currentColor;
+        }
+    }
+}
