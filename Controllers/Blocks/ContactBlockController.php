@@ -22,6 +22,14 @@ use Themes\BaseTheme\BaseThemeApp;
  */
 class ContactBlockController extends BaseThemeApp
 {
+    /**
+     * @param Request $request
+     * @param NodesSources $source
+     * @param $assignation
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws ForceResponseException
+     */
     public function blockAction(Request $request, NodesSources $source, $assignation)
     {
         $this->prepareNodeSourceAssignation($source, $source->getTranslation());
@@ -49,7 +57,7 @@ class ContactBlockController extends BaseThemeApp
 
         $form = $contactFormManager->getForm();
 
-        // Assignate your form view to display it in Twig.
+        // Assign your form view to display it in Twig.
         $this->assignation['contactForm'] = $form->createView();
 
         return $this->render('form-blocks/contactblock.html.twig', $this->assignation);
