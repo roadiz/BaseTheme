@@ -79,9 +79,11 @@ class BaseThemeApp extends FrontendController
      */
     public function throw404($message = '')
     {
+        /** @var Request $request */
+        $request = $this->get('requestStack')->getCurrentRequest();
         $translation = $this->bindLocaleFromRoute(
-            $this->get('request'),
-            $this->get('request')->getLocale()
+            $request,
+            $request->getLocale()
         );
         $this->prepareThemeAssignation(null, $translation);
         $this->get('logger')->warn($message);
