@@ -57,7 +57,7 @@ const getWebpackConfigBase = (config) => {
                     }
                 ]
             }, {
-                test: /\.js$/,
+                test: /js\/.*\.js$/,
                 enforce: 'pre',
                 loader: 'eslint-loader',
                 exclude: [/node_modules/, /app\/vendors/]
@@ -85,7 +85,7 @@ const getWebpackConfigBase = (config) => {
             }]
         },
         plugins: [
-            // new CleanTerminalPlugin(),
+            new CleanTerminalPlugin(),
             new webpack.DefinePlugin(config.globals),
             new CleanWebpackPlugin(['css', 'img', 'js', 'fonts', 'vendors', '*.*'], {
                 root: config.utils_paths.dist(),
