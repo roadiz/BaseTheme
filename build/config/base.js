@@ -25,6 +25,7 @@ const getConfig = () => {
         dir_views: 'Resources/views',
 
         bundleAnalyzerReport: false,
+        dynamicImportStyle: false,
 
         // ----------------------------------
         // Stats

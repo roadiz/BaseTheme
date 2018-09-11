@@ -7,8 +7,8 @@
  */
 
 import * as log from 'loglevel'
-import {gaTrackErrors, polyfills, Utils} from 'starting-blocks'
-import {Expo, TweenLite} from 'gsap'
+import { gaTrackErrors, polyfills, Utils } from 'starting-blocks'
+import { Expo, TweenLite } from 'gsap'
 import AppRouter from './Router'
 import Nav from './common/Nav'
 
@@ -26,11 +26,17 @@ export default class App {
     }
 
     init () {
+        this.loadSvg(require.context('../svg/', true, /\.svg$/))
         this.setCredits()
         this.initConfig()
         // Start app router.
         this.nav.init()
         this.router.init()
+    }
+
+    // Require all svg
+    loadSvg (r) {
+        r.keys().forEach(r)
     }
 
     /**

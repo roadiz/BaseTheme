@@ -16,7 +16,7 @@ import {
 import { TweenLite } from 'gsap'
 
 /**
- *
+ * Nav Class
  */
 export default class Nav {
     constructor () {
@@ -113,10 +113,10 @@ export default class Nav {
     open () {
         if (!BootstrapMedia.isMinSM() && !this.opened) {
             this.$cont[0].style.display = 'block'
-            TweenLite.fromTo(this.$cont, 0.5, {xPercent: -100}, {xPercent: 0})
+            TweenLite.fromTo(this.$cont, 0.5, { xPercent: -100 }, { xPercent: 0 })
 
             this.$overlay[0].style.display = 'block'
-            TweenLite.to(this.$overlay, 1.2, {opacity: 1})
+            TweenLite.to(this.$overlay, 1.2, { opacity: 1 })
 
             this.opened = true
         }
@@ -124,15 +124,15 @@ export default class Nav {
 
     close () {
         if (!BootstrapMedia.isMinSM() && this.opened) {
-            TweenLite.to(this.$cont, 0.5, {xPercent: -100,
+            TweenLite.to(this.$cont, 0.5, { xPercent: -100,
                 onComplete: () => {
                     if (!this.opened) this.$cont[0].style.display = 'none'
-                }})
+                } })
 
-            TweenLite.to(this.$overlay, 1.2, {opacity: 0,
+            TweenLite.to(this.$overlay, 1.2, { opacity: 0,
                 onComplete: () => {
                     this.$overlay[0].style.display = 'none'
-                }})
+                } })
 
             this.opened = false
         }

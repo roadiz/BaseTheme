@@ -7,7 +7,7 @@ import postcssReduceTransform from 'postcss-reduce-transforms'
 import cssMqpacker from 'css-mqpacker'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import UglifyJsWebpackPlugin from 'uglifyjs-webpack-plugin'
-import Harddisk from '../plugins/harddisk-plugins'
+import Harddisk from 'html-webpack-harddisk-plugin'
 import debug from 'debug'
 import WebpackNotifierPlugin from 'webpack-notifier'
 import OptimizeCSSPlugin from 'optimize-css-assets-webpack-plugin'
@@ -82,6 +82,32 @@ const optimization = {
     }
 }
 
+const scssConfigDev = {
+    test: /\.s?css?$/,
+    loader: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: [{
+            loader: 'css-loader',
+            options: {
+                modules: false,
+                filename: '[name].css',
+                importLoaders: 3,
+                sourceMap: true
+            }
+        }, {
+            loader: 'resolve-url-loader',
+            options: {
+                sourceMap: true
+            }
+        }, {
+            loader: 'sass-loader',
+            options: {
+                sourceMap: true
+            }
+        }]
+    })
+}
+
 export default {
     development: (base, config) => ({
         watch: true,
@@ -92,6 +118,7 @@ export default {
                 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
                 'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
             },
+            inline: true,
             stats: config.stats,
             port: config.port,
             publicPath: config.public_path,
@@ -103,7 +130,7 @@ export default {
             }
         },
         module: {
-            rules: [scssConfig]
+            rules: [scssConfigDev]
         },
         plugins: [
             new HtmlWebpackPlugin({
@@ -123,7 +150,7 @@ export default {
                 refreshOnChange: config.refreshOnChange
             }),
             new Harddisk(),
-            new WebpackNotifierPlugin({alwaysNotify: true})
+            new WebpackNotifierPlugin({ alwaysNotify: true })
         ],
         optimization: {
             ...optimization
@@ -150,7 +177,6 @@ export default {
                 // duplicated CSS from different components can be deduped.
                 new OptimizeCSSPlugin({
                     cssProcessorOptions: {
-                        safe: true,
                         cssProcessor: require('cssnano'),
                         discardComments: { removeAll: true }
                     }

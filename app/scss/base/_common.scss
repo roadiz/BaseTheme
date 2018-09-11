@@ -30,6 +30,10 @@ button {
     outline: none;
 }
 
+#svg-sprite {
+    display: none;
+}
+
 #main-container {
     position: relative;
     margin-top: $navbar-height;

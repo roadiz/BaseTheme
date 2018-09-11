@@ -2,124 +2,120 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="903e603b-24a8-4791-97ec-12306a48bc56" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/Resources/views/blocks/textblock.html.twig" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/js/blocks/TextBlock.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/scss/blocks/text-block.scss" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Resources/views/pages/base.html.twig" afterPath="$PROJECT_DIR$/Resources/views/pages/base.html.twig" />
-      <change beforePath="$PROJECT_DIR$/Resources/views/partials/css-inject.html.twig" afterPath="$PROJECT_DIR$/Resources/views/partials/css-inject.html.twig" />
-      <change beforePath="$PROJECT_DIR$/Resources/views/partials/js-inject.html.twig" afterPath="$PROJECT_DIR$/Resources/views/partials/js-inject.html.twig" />
-      <change beforePath="$PROJECT_DIR$/app/css/test.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/js/factories/ClassFactory.js" afterPath="$PROJECT_DIR$/app/js/factories/ClassFactory.js" />
-      <change beforePath="$PROJECT_DIR$/app/scss/lazyloadModule.scss" afterPath="$PROJECT_DIR$/app/scss/lazyloadModule.scss" />
-      <change beforePath="$PROJECT_DIR$/build/build/base.js" afterPath="$PROJECT_DIR$/build/build/base.js" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change beforePath="$PROJECT_DIR$/.babelrc" beforeDir="false" afterPath="$PROJECT_DIR$/.babelrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/views/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/views/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/views/pages/page.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/views/pages/page.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/views/partials/css-inject.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/views/partials/css-inject.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/views/partials/js-inject.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/views/partials/js-inject.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/views/svg/sprite.svg.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/views/svg/sprite.svg.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/js/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/js/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/js/blocks/ContactBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/js/blocks/ContactBlock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/js/common/Nav.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/js/common/Nav.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/js/factories/ClassFactory.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/js/factories/ClassFactory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/scss/base/_common.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/scss/base/_common.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/build/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/build/base.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/build/environments.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/build/environments.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/config/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/config/base.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/gulp-tasks/svgmin.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/plugins/harddisk-plugins.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gulpfile.babel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="452015967">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.7" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.js.language.service.starts">
+        <counts>
+          <entry key="ESLintLanguageService" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="babelrc" value="2" />
+          <entry key="gitignore" value="1" />
+          <entry key="js" value="49" />
+          <entry key="json" value="16" />
+          <entry key="lock" value="3" />
+          <entry key="scss" value="9" />
+          <entry key="svg" value="11" />
+          <entry key="twig" value="43" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JSON" value="18" />
+          <entry key="JavaScript" value="49" />
+          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="SCSS" value="9" />
+          <entry key="SVG" value="11" />
+          <entry key="Twig" value="43" />
+          <entry key="yarn.lock" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="babelrc" value="12" />
+          <entry key="gitignore" value="18" />
+          <entry key="js" value="1033" />
+          <entry key="json" value="16" />
+          <entry key="scss" value="167" />
+          <entry key="twig" value="195" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JSON" value="28" />
+          <entry key="JavaScript" value="1033" />
+          <entry key="PLAIN_TEXT" value="18" />
+          <entry key="SCSS" value="167" />
+          <entry key="Twig" value="195" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="base.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build/build/base.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="55" column="16" lean-forward="false" selection-start-line="55" selection-start-column="16" selection-end-line="55" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClassFactory.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/js/factories/ClassFactory.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1104">
-              <caret line="75" column="9" lean-forward="false" selection-start-line="75" selection-start-column="9" selection-end-line="75" selection-end-column="9" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <element signature="e#1476#1507#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FadeTransition.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/js/transitions/FadeTransition.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1176">
-              <caret line="56" column="35" lean-forward="false" selection-start-line="55" selection-start-column="7" selection-end-line="56" selection-end-column="35" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TextBlock.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/js/blocks/TextBlock.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#42#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="textblock.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Resources/views/blocks/textblock.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="text-block.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/scss/blocks/text-block.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="48">
-              <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Resources/views/pages/base.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1248">
-              <caret line="52" column="42" lean-forward="false" selection-start-line="52" selection-start-column="42" selection-end-line="52" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/js/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="23" column="12" lean-forward="false" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
-              <folding>
-                <element signature="e#114#137#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="79" column="63" lean-forward="false" selection-start-line="79" selection-start-column="28" selection-end-line="79" selection-end-column="63" />
-              <folding />
+            <state relative-caret-position="710">
+              <caret line="133" column="32" lean-forward="true" selection-start-line="133" selection-start-column="32" selection-end-line="133" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build/build/environments.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="536">
+              <caret line="94" column="31" lean-forward="true" selection-start-line="94" selection-start-column="31" selection-end-line="94" selection-end-column="31" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="793">
+              <caret line="104" lean-forward="true" selection-start-line="104" selection-end-line="104" />
             </state>
           </provider>
         </entry>
@@ -135,44 +131,49 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>renderExtractedChunk</find>
-      <find>moduleSource instanceof</find>
-      <find>_webpackSources.OriginalSource</find>
-      <find>better-npm</find>
-      <find>background-color:#48484</find>
-      <find>test2'</find>
-      <find>sourcema</find>
-      <find>environ</find>
-      <find>background</find>
-      <find>occurrenceOrder</find>
-      <find>extract-text-webpack-plugin</find>
-      <find>parserOptions</find>
-      <find>namedModules</find>
-      <find>eslint</find>
-      <find>fontfa</find>
-      <find>html-webpack-harddisk-plugin</find>
-      <find>devServer</find>
-      <find>refresh</find>
-      <find>refreshOnChange</find>
-      <find>webpack-dev-server</find>
-      <find>public_path</find>
-      <find>writeAssetToDisk</find>
-      <find>html-webpack-plugin</find>
-      <find>tapable</find>
-      <find>webpack-contrib/html-webpack-plugin</find>
+      <find>build</find>
+      <find>bunde</find>
+      <find>vendor</find>
       <find>dev</find>
-      <find>contentBase</find>
-      <find>watch-svg</find>
-      <find>starting-</find>
-      <find>onPageReady</find>
+      <find>refres</find>
+      <find>optimization</find>
+      <find>devServer</find>
+      <find>watch</find>
+      <find>entry</find>
+      <find>css-loader</find>
+      <find>sass-loader</find>
+      <find>public_</find>
+      <find>devS</find>
+      <find>dev-livereload</find>
+      <find>REFRESH_ON_CHANGE</find>
+      <find>refreshOnChange</find>
+      <find>HotModuleReplacementPlugin</find>
+      <find>plugins</find>
+      <find>log</find>
+      <find>webpack-livereload-plugin</find>
+      <find>terminal</find>
+      <find>sass-l</find>
+      <find>hard</find>
+      <find>Harddisk</find>
+      <find>webpack 4 support</find>
+      <find>node-sass</find>
+      <find>html-webpack-harddisk-plugin</find>
+      <find>stylelint-scss</find>
+      <find>css-lo</find>
+      <find>partials</find>
     </findStrings>
     <dirStrings>
-      <dir>$PROJECT_DIR$/Resources/views/partials</dir>
       <dir>$PROJECT_DIR$/static</dir>
       <dir>$PROJECT_DIR$</dir>
-      <dir>$PROJECT_DIR$/Resources</dir>
-      <dir>$PROJECT_DIR$/build</dir>
       <dir>$PROJECT_DIR$/app/js</dir>
+      <dir>$PROJECT_DIR$/app/svg</dir>
+      <dir>$PROJECT_DIR$/app</dir>
+      <dir>$PROJECT_DIR$/Resources</dir>
+      <dir>$PROJECT_DIR$/Resources/views/partials</dir>
+      <dir>$PROJECT_DIR$/Resources/views</dir>
+      <dir>$PROJECT_DIR$/build/plugins</dir>
+      <dir>$PROJECT_DIR$/build/build</dir>
+      <dir>$PROJECT_DIR$/build</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -186,29 +187,46 @@
         <option value="$PROJECT_DIR$/app/js/lazyloadModule.scss" />
         <option value="$PROJECT_DIR$/app/css/test.css" />
         <option value="$PROJECT_DIR$/node_modules/extract-text-webpack-plugin/dist/index.js" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/.eslintrc" />
         <option value="$PROJECT_DIR$/.editorconfig" />
-        <option value="$PROJECT_DIR$/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/app/js/Router.js" />
         <option value="$PROJECT_DIR$/app/js/lazyloadModule.js" />
-        <option value="$PROJECT_DIR$/app/js/main.js" />
         <option value="$PROJECT_DIR$/Resources/views/partials/css-inject-src.html.twig" />
-        <option value="$PROJECT_DIR$/build/config/environments.js" />
         <option value="$PROJECT_DIR$/Resources/views/partials/js-inject-src.html.twig" />
         <option value="$PROJECT_DIR$/build/plugins/harddisk.js" />
         <option value="$PROJECT_DIR$/build/plugins/harddisk-plugin.js" />
-        <option value="$PROJECT_DIR$/build/build/environments.js" />
         <option value="$PROJECT_DIR$/app/js/blocks/textblock.js" />
-        <option value="$PROJECT_DIR$/Resources/views/pages/base.html.twig" />
         <option value="$PROJECT_DIR$/app/scss/lazyloadModule.scss" />
-        <option value="$PROJECT_DIR$/build/build/base.js" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/app/scss/blocks/text-block.scss" />
         <option value="$PROJECT_DIR$/Resources/views/blocks/textblock.html.twig" />
-        <option value="$PROJECT_DIR$/app/js/factories/ClassFactory.js" />
-        <option value="$PROJECT_DIR$/app/js/pages/DefaultPage.js" />
         <option value="$PROJECT_DIR$/app/js/blocks/TextBlock.js" />
+        <option value="$PROJECT_DIR$/webpack.config.babel.js" />
+        <option value="$PROJECT_DIR$/babel.config.js" />
+        <option value="$PROJECT_DIR$/app/js/common/Nav.js" />
+        <option value="$PROJECT_DIR$/app/scss/style.scss" />
+        <option value="$PROJECT_DIR$/.babelrc" />
+        <option value="$PROJECT_DIR$/Resources/views/pages/base.html.twig" />
+        <option value="$PROJECT_DIR$/Resources/views/partials/svg-inject.html.twig" />
+        <option value="$PROJECT_DIR$/Resources/views/partials/svg-inject-src.html.twig" />
+        <option value="$PROJECT_DIR$/Resources/views/base.html.twig" />
+        <option value="$PROJECT_DIR$/Resources/views/svg/sprite.svg.twig" />
+        <option value="$PROJECT_DIR$/app/js/pages/DefaultPage.js" />
+        <option value="$PROJECT_DIR$/app/scss/pages/_home.scss" />
+        <option value="$PROJECT_DIR$/app/js/pages/Home.js" />
+        <option value="$PROJECT_DIR$/app/scss/blocks/_contact-block.scss" />
+        <option value="$PROJECT_DIR$/Resources/views/pages/page.html.twig" />
+        <option value="$PROJECT_DIR$/app/js/factories/ClassFactory.js" />
+        <option value="$PROJECT_DIR$/build/config/environments.js" />
+        <option value="$PROJECT_DIR$/app/js/blocks/ContactBlock.js" />
+        <option value="$PROJECT_DIR$/app/js/App.js" />
+        <option value="$PROJECT_DIR$/build/config/base.js" />
+        <option value="$PROJECT_DIR$/build/build/base.js" />
+        <option value="$PROJECT_DIR$/build/plugins/harddisk-plugins.js" />
+        <option value="$PROJECT_DIR$/app/js/main.js" />
+        <option value="$PROJECT_DIR$/app/scss/base/_common.scss" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/build/build/environments.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -218,22 +236,20 @@
   </component>
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
-    <gulpfiles>
-      <GulpfileState>
-        <gulpfile-path>$PROJECT_DIR$/gulpfile.babel.js</gulpfile-path>
-      </GulpfileState>
-    </gulpfiles>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds">
-    <option name="x" value="1920" />
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="22" />
-    <option name="width" value="1280" />
-    <option name="height" value="1002" />
+    <option name="width" value="1920" />
+    <option name="height" value="1054" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -255,39 +271,22 @@
     </entry>
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
-      <flattenPackages />
-      <showMembers />
-      <showModules />
-      <showLibraryContents />
-      <hideEmptyPackages />
-      <abbreviatePackageNames />
-      <autoscrollToSource />
-      <autoscrollFromSource />
-      <sortByType />
-      <manualOrder />
+    <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="BaseTheme" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BaseTheme" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="BaseTheme" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BaseTheme" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BaseTheme" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="build" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="BaseTheme" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BaseTheme" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="build" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="build" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="BaseTheme" type="462c0819:PsiDirectoryNode" />
+              <item name="Resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -298,16 +297,20 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/build/build/environments.js" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
-    <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="$PROJECT_DIR$/node_modules/eslint" />
-    <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.selected.package.eslint" value="$PROJECT_DIR$/node_modules/eslint" />
     <property name="node.js.selected.package.standard" value="$PROJECT_DIR$/node_modules/eslint" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
     <property name="standardjs.codestyle.accepted" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Resources/views/partials" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/scss" />
       <recent name="$PROJECT_DIR$/app/css" />
@@ -324,9 +327,6 @@
         </RuleState>
       </list>
     </option>
-  </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -346,36 +346,40 @@
       <workItem from="1519824214065" duration="587000" />
       <workItem from="1519830954868" duration="593000" />
       <workItem from="1519840476926" duration="423000" />
+      <workItem from="1536589834488" duration="6542000" />
+      <workItem from="1536651705129" duration="6768000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34592000" />
+    <option name="totallyTimeSpent" value="47902000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1920" y="22" width="1280" height="1002" extended-state="0" />
+    <frame x="0" y="22" width="1920" height="1054" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="GfmBrowser" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4095315" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2768903" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Gulp" order="2" side_tool="true" />
+      <window_info id="npm" order="3" side_tool="true" />
+      <window_info id="Favorites" order="4" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="GfmBrowser" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -384,215 +388,192 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager />
-    <watches-manager />
-  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/static/js/app.1fbf7fdbc5336cde2f62.js" />
-    <entry file="file://$PROJECT_DIR$/static/vendors~app.5352581118a3c684aec2.js" />
-    <entry file="file://$PROJECT_DIR$/static/css/app.54c8d85c03e4c4ecfcf9.css" />
-    <entry file="file://$PROJECT_DIR$/static/css/app.3988bb208d949bd54838.css" />
+    <entry file="file://$PROJECT_DIR$/app/js/transitions/FadeTransition.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="855">
+          <caret line="56" column="35" selection-start-line="55" selection-start-column="7" selection-end-line="56" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lolbabel.config.js" />
+    <entry file="file://$PROJECT_DIR$/static/manifest.json" />
+    <entry file="file://$PROJECT_DIR$/webpack.config.babel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/common/Nav.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="138" column="5" lean-forward="true" selection-start-line="138" selection-start-column="5" selection-end-line="138" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/scss/style.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="21" column="24" lean-forward="true" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
+        <state relative-caret-position="561">
+          <caret line="33" column="9" lean-forward="true" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/app.edddc5f5578965d404cb.css" />
-    <entry file="file://$PROJECT_DIR$/static/css/app.c55353ce0bc38081a915.css" />
-    <entry file="file://$PROJECT_DIR$/static/css/app.d7e5506912edebf03483.css" />
-    <entry file="file://$PROJECT_DIR$/static/css/app.2135c9f50b7c121248f5.css" />
-    <entry file="file://$PROJECT_DIR$/static/css/vendors~app.5352581118a3c684aec2.css" />
-    <entry file="file://$PROJECT_DIR$/static/css/app.2e491dd74f80f800a895.css" />
-    <entry file="file://$PROJECT_DIR$/static/2.bda34b3ce74df4dad3a2.js" />
-    <entry file="file://$PROJECT_DIR$/static/js/app.da1a79ffb17108ecc726.js" />
-    <entry file="file://$PROJECT_DIR$/static/lazyloadModule.26923f1b72d8c10f1953.js" />
-    <entry file="file://$PROJECT_DIR$/static/lazyloadModule.e5f1cf50c2100cbe1c89.js" />
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/.babelrc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="103" column="0" lean-forward="true" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
+        <state relative-caret-position="420">
+          <caret line="20" column="16" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/views/partials/js-inject.html.twig">
+    <entry file="file://$PROJECT_DIR$/Resources/views/base.ajax.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/vendors~app.adf45435a4dc2341779e.css" />
-    <entry file="file://$PROJECT_DIR$/static/css/commons.922ce615c70c19ed5710.css" />
-    <entry file="file://$PROJECT_DIR$/static/css/app.701d649b576ab83a2af8.css" />
-    <entry file="file://$PROJECT_DIR$/static/css/commons.088210c85aca6614f88c.css" />
-    <entry file="file://$PROJECT_DIR$/static/lazyloadModule.371a3cd3d52249134d01.js" />
-    <entry file="file://$PROJECT_DIR$/static/commons.922ce615c70c19ed5710.js" />
-    <entry file="file://$PROJECT_DIR$/.editorconfig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="11" column="27" lean-forward="false" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/Router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="13" column="22" lean-forward="true" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/lazyloadModule.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/views/partials/css-inject-src.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/views/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="120" column="0" lean-forward="false" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/config/environments.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="4" column="32" lean-forward="false" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/views/partials/js-inject-src.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/plugins/harddisk.js" />
-    <entry file="file://$PROJECT_DIR$/package-lock.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="15194" column="40" lean-forward="false" selection-start-line="15194" selection-start-column="40" selection-end-line="15194" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.eslintrc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="10" column="13" lean-forward="true" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/plugins/harddisk-plugin.js" />
-    <entry file="file://$PROJECT_DIR$/build/gulp-tasks/svgmin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1319">
-          <caret line="56" column="11" lean-forward="true" selection-start-line="56" selection-start-column="11" selection-end-line="56" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gulpfile.babel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/views/blocks/basicblock.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/blocks/ContactBlock.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="54" lean-forward="false" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/css/test.css" />
-    <entry file="file://$PROJECT_DIR$/app/scss/lazyloadModule.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        <state relative-caret-position="273">
+          <caret line="13" column="13" lean-forward="true" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Resources/views/pages/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1248">
-          <caret line="52" column="42" lean-forward="false" selection-start-line="52" selection-start-column="42" selection-end-line="52" selection-end-column="42" />
-          <folding />
+        <state relative-caret-position="477">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build/build/environments.js">
+    <entry file="file://$PROJECT_DIR$/app/svg/twitter.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/svg/instagram.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/svg/google-plus.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/fonts/basethemecredits.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scss/icons/_icons-credits.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="33" column="34" lean-forward="true" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
+        <state relative-caret-position="180">
+          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/main.js">
+    <entry file="file://$PROJECT_DIR$/Resources/views/common/footer.html.twig">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/views/partials/js-inject.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="23" column="12" lean-forward="false" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
+        <state relative-caret-position="189">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/views/partials/css-inject.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/views/partials/css-inject-src.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/views/partials/svg-inject.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/views/partials/svg-inject-src.html.twig" />
+    <entry file="file://$PROJECT_DIR$/static/icons.svg" />
+    <entry file="file://$PROJECT_DIR$/Resources/views/partials/js-inject-src.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/views/svg/use.svg.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/views/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="153" column="46" selection-start-line="153" selection-start-column="31" selection-end-line="153" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/gulp-tasks/svgmin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-741">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
           <folding>
-            <element signature="e#114#137#0" expanded="true" />
+            <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scss/blocks/text-block.scss">
+    <entry file="file://$PROJECT_DIR$/gulpfile.babel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-          <folding />
+        <state relative-caret-position="546">
+          <caret line="26" column="2" lean-forward="true" selection-start-line="26" selection-start-column="2" selection-end-line="26" selection-end-column="2" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/views/blocks/textblock.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/app/js/pages/Page.js">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/js/pages/DefaultPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        <state relative-caret-position="294">
+          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/blocks/TextBlock.js">
+    <entry file="file://$PROJECT_DIR$/Resources/views/svg/sprite.svg.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-          </folding>
+        <state>
+          <caret column="4655" selection-start-column="4655" selection-end-column="4655" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/svg/facebook.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scss/pages/_home.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/views/blocks/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" selection-start-line="7" selection-end-line="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/js/factories/ClassFactory.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1104">
-          <caret line="75" column="9" lean-forward="false" selection-start-line="75" selection-start-column="9" selection-end-line="75" selection-end-column="9" />
+        <state relative-caret-position="556">
+          <caret line="54" column="5" lean-forward="true" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#1476#1507#0" expanded="true" />
@@ -600,29 +581,141 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/transitions/FadeTransition.js">
+    <entry file="file://$PROJECT_DIR$/Resources/views/common/nav.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1176">
-          <caret line="56" column="35" lean-forward="false" selection-start-line="55" selection-start-column="7" selection-end-line="56" selection-end-column="35" />
+        <state relative-caret-position="359">
+          <caret line="19" column="71" selection-start-line="19" selection-start-column="60" selection-end-line="19" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/pages/Home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package-lock.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="15" column="6" lean-forward="true" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scss/blocks/_contact-block.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="1" lean-forward="true" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/views/pages/page.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/config/environments.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/write-file-webpack-plugin/dist/WriteFileWebpackPlugin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="225" column="4" lean-forward="true" selection-start-line="225" selection-start-column="4" selection-end-line="225" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#113#144#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/config/base.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="27" column="33" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/blocks/ContactBlock.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="e#93#115#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yarn.lock">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="3566" column="100" selection-start-line="3566" selection-start-column="72" selection-end-line="3566" selection-end-column="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/plugins/harddisk-plugins.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build/build/base.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="55" column="16" lean-forward="false" selection-start-line="55" selection-start-column="16" selection-end-line="55" selection-end-column="16" />
-          <folding />
+        <state relative-caret-position="435">
+          <caret line="123" column="5" lean-forward="true" selection-start-line="123" selection-start-column="5" selection-end-line="123" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scss/base/_common.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="24" column="1" lean-forward="true" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="79" column="63" lean-forward="false" selection-start-line="79" selection-start-column="28" selection-end-line="79" selection-end-column="63" />
-          <folding />
+        <state relative-caret-position="710">
+          <caret line="133" column="32" lean-forward="true" selection-start-line="133" selection-start-column="32" selection-end-line="133" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/build/environments.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="536">
+          <caret line="94" column="31" lean-forward="true" selection-start-line="94" selection-start-column="31" selection-end-line="94" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="793">
+          <caret line="104" lean-forward="true" selection-start-line="104" selection-end-line="104" />
         </state>
       </provider>
     </entry>

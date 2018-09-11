@@ -151,7 +151,12 @@
                       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- End Google Tag Manager (noscript) -->
     {% endif %}
-    <div id="svg-sprite" style="display:none;">{% include '@BaseTheme/svg/sprite.svg.twig' %}</div>
+    {% include '@BaseTheme/svg/sprite.svg.twig' %}
+
+    {% include '@BaseTheme/svg/use.svg.twig'with {
+        icon: 'icon-facebook'
+    } %}
+
     <div id="loading"><div id="loading-inner"></div></div>
 
     {#

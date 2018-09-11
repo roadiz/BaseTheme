@@ -4,6 +4,8 @@ import CopyWebpackPlugin from 'copy-webpack-plugin'
 import debug from 'debug'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 import WriteFilePlugin from 'write-file-webpack-plugin'
+import SpriteLoaderPlugin from 'svg-sprite-loader/plugin'
+import CleanTerminalPlugin from 'clean-terminal-webpack-plugin'
 
 const dbg = debug('Roadiz-front:webpack-config:base  ')
 dbg.color = debug.colors[3]
@@ -21,11 +23,7 @@ const getWebpackConfigBase = (config) => {
         target: 'web',
         context: paths.dist(),
         entry: {
-            app: paths.client('js/main.js'),
-            vendor: [
-                'style-loader/lib/addStyles',
-                'css-loader/lib/css-base'
-            ]
+            app: [paths.client('js/main.js'), paths.client('scss/style.scss')]
         },
         output: {
             path: paths.dist(),
@@ -35,6 +33,30 @@ const getWebpackConfigBase = (config) => {
         },
         module: {
             rules: [{
+                test: /svg\/.*\.svg$/,
+                use: [
+                    {
+                        loader: 'svg-sprite-loader',
+                        options: {
+                            extract: true,
+                            spriteFilename: '../Resources/views/svg/sprite.svg.twig',
+                            runtimeCompat: true,
+                            symbolId: 'icon-[name]'
+                        }
+                    },
+                    'svg-transform-loader',
+                    {
+                        loader: 'svgo-loader',
+                        options: {
+                            plugins: [
+                                { removeTitle: true },
+                                { convertColors: { shorthex: false } },
+                                { convertPathData: false }
+                            ]
+                        }
+                    }
+                ]
+            }, {
                 test: /\.js$/,
                 enforce: 'pre',
                 loader: 'eslint-loader',
@@ -55,15 +77,15 @@ const getWebpackConfigBase = (config) => {
                     name: config.assets_name_img
                 }
             }, {
-                test: /\.(eot|svg|ttf|woff|woff2)$/,
+                test: /fonts\/.*\.(eot|svg|ttf|woff|woff2)$/,
                 loader: 'file-loader',
                 options: {
                     name: config.assets_name_font
                 }
-            }
-            ]
+            }]
         },
         plugins: [
+            // new CleanTerminalPlugin(),
             new webpack.DefinePlugin(config.globals),
             new CleanWebpackPlugin(['css', 'img', 'js', 'fonts', 'vendors', '*.*'], {
                 root: config.utils_paths.dist(),
@@ -80,12 +102,25 @@ const getWebpackConfigBase = (config) => {
                 filename: config.assets_name_css,
                 ignoreOrder: true,
                 allChunks: false
+            }),
+            new SpriteLoaderPlugin({
+                plainSprite: true,
+                spriteAttrs: {
+                    id: 'svg-sprite'
+                }
             })
         ],
         resolve: {
             extensions: ['.js']
         },
         externals: config.externals
+    }
+
+    if (config.dynamicImportStyle) {
+        webpackConfig.entry.vendor = [
+            'style-loader/lib/addStyles',
+            'css-loader/lib/css-base'
+        ]
     }
 
     if (config.refreshOnChange) {

@@ -38,7 +38,7 @@ export default class ContactBlock extends DefaultBlock {
             clearTimeout(this.timeout)
         }
         this.timeout = setTimeout(() => {
-            TweenLite.to(this.$formMessage, 0.6, {height: 0, paddingTop: 0, paddingBottom: 0})
+            TweenLite.to(this.$formMessage, 0.6, { height: 0, paddingTop: 0, paddingBottom: 0 })
             const data = new window.FormData(this.$form[0])
 
             $.ajax({
@@ -59,8 +59,8 @@ export default class ContactBlock extends DefaultBlock {
                         this.$formMessage[0].innerHTML = '<span>' + data.message + '</span>'
                     }
 
-                    TweenLite.set(this.$formMessage, {height: 48, paddingTop: 15, paddingBottom: 15})
-                    TweenLite.from(this.$formMessage, 0.6, {height: 0, paddingTop: 0, paddingBottom: 0})
+                    TweenLite.set(this.$formMessage, { height: 48, paddingTop: 15, paddingBottom: 15 })
+                    TweenLite.from(this.$formMessage, 0.6, { height: 0, paddingTop: 0, paddingBottom: 0 })
                 },
                 error: (data) => {
                     data = data.responseJSON
@@ -68,8 +68,8 @@ export default class ContactBlock extends DefaultBlock {
                     this.$formMessage[0].className = 'form-message form-message-hidden alert-danger alert-' + data.status
                     this.$formMessage[0].innerHTML = '<span>' + data.errors + '</span>'
 
-                    TweenLite.set(this.$formMessage, {height: 48, paddingTop: 15, paddingBottom: 15})
-                    TweenLite.from(this.$formMessage, 0.6, {height: 0, paddingTop: 0, paddingBottom: 0})
+                    TweenLite.set(this.$formMessage, { height: 48, paddingTop: 15, paddingBottom: 15 })
+                    TweenLite.from(this.$formMessage, 0.6, { height: 0, paddingTop: 0, paddingBottom: 0 })
                 }
             })
         }, 400)

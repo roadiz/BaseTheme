@@ -46,11 +46,11 @@ export default class ClassFactory {
      */
     getPageInstance (router, $cont, context, nodeType) {
         switch (nodeType.toLowerCase()) {
-            case 'home':
-                return new Home(router, $cont, context, nodeType)
-            default:
-                log.info('"' + nodeType + '" has no defined route, using Page.')
-                return new Page(router, $cont, context, nodeType)
+        case 'home':
+            return new Home(router, $cont, context, nodeType)
+        default:
+            log.info('"' + nodeType + '" has no defined route, using Page.')
+            return new Page(router, $cont, context, nodeType)
         }
     }
 

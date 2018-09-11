@@ -7,7 +7,6 @@
  */
 
 import App from './App'
-import '../scss/style.scss'
 
 (() => {
     /** Create the app **/
