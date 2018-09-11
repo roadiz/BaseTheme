@@ -39,18 +39,18 @@ export default class ClassFactory {
      * according to the nodeTypeName or an AbstractPage as default.
      *
      * @param  {Router}  router
-     * @param  {jQuery}  $cont
+     * @param  {HTMLElement}  container
      * @param  {String}  context
      * @param  {String}  nodeType
      * @return {AbstractPage}
      */
-    getPageInstance (router, $cont, context, nodeType) {
+    getPageInstance (router, container, context, nodeType) {
         switch (nodeType.toLowerCase()) {
         case 'home':
-            return new Home(router, $cont, context, nodeType)
+            return new Home(router, container, context, nodeType)
         default:
             log.info('"' + nodeType + '" has no defined route, using Page.')
-            return new Page(router, $cont, context, nodeType)
+            return new Page(router, container, context, nodeType)
         }
     }
 
@@ -59,14 +59,14 @@ export default class ClassFactory {
      * according to the nodeTypeName or an AbstractBlock as default.
      *
      * @param  {AbstractPage} page
-     * @param  {jQuery}  $cont
+     * @param  {HTMLElement}  container
      * @param  {String}  nodeType
      * @return {AbstractBlock}
      */
-    async getBlockInstance (page, $cont, nodeType) {
+    async getBlockInstance (page, container, nodeType) {
         try {
             const Block = await this.getModule(nodeType)
-            return new Block(page, $cont, nodeType)
+            return new Block(page, container, nodeType)
         } catch (e) {
             console.error(e.message)
         }

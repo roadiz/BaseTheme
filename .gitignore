@@ -90,6 +90,9 @@ sftp-config.json
 yarn.lock
 package-lock.json
 
+## Phpstorm
+/.idea
+
 ## Generated files (css, js, svg, img, vendors)
 /static/js
 /static/build

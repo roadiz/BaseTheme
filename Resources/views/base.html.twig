@@ -146,7 +146,10 @@
     ]) %}
 {% endif %}
 
-<body {% block body_attributes %}{% if node %}class="{{ bodyClasses|join(' ') }}" id="{{nodeName }}" data-node-type="{{ nodeTypeName|lower }}" data-is-home="{{ nodeHome }}"{% endif %}{% endblock %}>
+<body {% block body_attributes %}{% if node %}class="{{ bodyClasses|join(' ') }}"
+      id="{{nodeName }}"
+      data-node-type="{{ nodeTypeName|lower }}"
+      data-is-home="{{ nodeHome }}"{% endif %}{% endblock %}>
     {% if head.googleTagManagerId %}
         <!-- Google Tag Manager (noscript) -->
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ head.googleTagManagerId }}"
@@ -192,8 +195,6 @@
 
     {% if head.devMode %}
         <script src="{{ head.resourcesUrl }}vendors/cookieconsent.min.js"></script>
-        <script src="{{ head.resourcesUrl }}vendors/jquery.min.js"></script>
-        <script src="{{ head.resourcesUrl }}vendors/jquery.waitforimages.min.js"></script>
         <script src="{{ head.resourcesUrl }}vendors/loglevel.min.js"></script>
     {% else %}
         {#
@@ -202,12 +203,6 @@
          #}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.6/cookieconsent.min.js"
                 integrity="sha256-bPOd70Y8ohKatGmjL6tszdveppYZCunsUfLOq7v8JBw="
-                crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
-                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-                crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.waitforimages/2.2.0/jquery.waitforimages.min.js"
-                integrity="sha256-b9bqxZdvRHQNAL/WJysGQ/mFHym7gGjEtruZ6zTNm7c="
                 crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/loglevel/1.6.1/loglevel.min.js"
                 integrity="sha256-AfynOKFjHWwlIEH3xY8lNK2sm2P2rxyiA749uLUXPh4="
@@ -272,8 +267,8 @@
         ga('create', '{{ head.universalAnalyticsId }}', 'auto');
         ga('send', 'pageview');
         {% endif %}
-
     </script>
+
     {#
      # JS scripts inclusions ---------------------------------------------------
      # Using gulp-inject

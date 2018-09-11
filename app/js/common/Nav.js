@@ -6,9 +6,7 @@
  * @author Adrien Scholaert
  */
 
-import $ from 'jquery'
 import {
-    Utils,
     BootstrapMedia,
     debounce,
     EventTypes
@@ -20,15 +18,41 @@ import { TweenLite } from 'gsap'
  */
 export default class Nav {
     constructor () {
-        this.$cont = $('#nav')
-        this.$list = $('#nav-list')
-        this.$item = this.$list.find('.nav-item')
-        this.$link = this.$list.find('.nav-link')
-        this.$btn = $('#nav-btn')
-        this.$overlay = $('#nav-overlay')
+        /**
+         * @type {HTMLElement}
+         */
+        this.container = document.getElementById('nav')
+
+        /**
+         * @type {HTMLElement}
+         */
+        this.list = document.getElementById('nav-list')
+
+        /**
+         * @type {NodeListOf<Element>}
+         */
+        this.items = this.list.querySelectorAll('.nav-item')
+
+        /**
+         * @type {NodeListOf<Element>}
+         */
+        this.links = this.list.querySelectorAll('.nav-link')
+
+        /**
+         * @type {HTMLElement}
+         */
+        this.btn = document.getElementById('nav-btn')
+
+        /**
+         * @type {HTMLElement}
+         */
+        this.overlay = document.getElementById('nav-overlay')
+
+        // Values
         this.minifyLimit = BootstrapMedia.isMinMD() ? 165 : 50
         this.opened = false
 
+        // Bind methods
         this.btnClick = this.btnClick.bind(this)
         this.close = this.close.bind(this)
         this.onScroll = this.onScroll.bind(this)
@@ -40,13 +64,9 @@ export default class Nav {
         this.initEvents()
     }
 
-    /**
-     *
-     * @param {Router} router
-     */
-    initEvents (router) {
-        this.$btn.on('click', this.btnClick)
-        this.$overlay.on('click', this.close)
+    initEvents () {
+        this.btn.addEventListener('click', this.btnClick)
+        this.overlay.addEventListener('click', this.close)
         window.addEventListener(EventTypes.AFTER_PAGE_BOOT, this.update)
         window.addEventListener('scroll', this.onScroll)
         window.addEventListener('resize', debounce(this.onResize, 100, false))
@@ -65,17 +85,26 @@ export default class Nav {
         const page = e.detail
 
         // Remove active link on previous page.
-        this.$item.removeClass('active')
-        this.$link.removeClass('active')
+        for (let i = 0, l = this.items.length; i < l; i++) {
+            this.items[i].classList.remove('active')
+        }
+
+        for (let i = 0, l = this.links.length; i < l; i++) {
+            this.links[i].classList.remove('active')
+        }
 
         // Add active on new page.
-        const $currentItem = $('#nav-item-' + page.name)
-        if ($currentItem.length) {
-            const $currentLink = $currentItem.find('.nav-link').eq(0)
+        const currentItem = document.getElementById(`nav-item-${page.name}`)
 
-            $currentLink.addClass('active')
-            $currentItem.addClass('active')
+        if (currentItem) {
+            const currentLink = currentItem.querySelector('.nav-link')
+
+            if (currentLink) {
+                currentLink.classList.add('active')
+                currentItem.classList.add('active')
+            }
         }
+
         this.close()
     }
 
@@ -84,19 +113,23 @@ export default class Nav {
      */
     onScroll () {
         if (window.scrollY > this.minifyLimit) {
-            if (!this.minified) this.minify()
+            if (!this.minified) {
+                this.minify()
+            }
         } else {
-            if (this.minified) this.unminify()
+            if (this.minified) {
+                this.unminify()
+            }
         }
     }
 
     minify () {
-        Utils.addClass(document.body, 'nav-minified')
+        document.body.classList.add('nav-minified')
         this.minified = true
     }
 
     unminify () {
-        Utils.removeClass(document.body, 'nav-minified')
+        document.body.classList.remove('nav-minified')
         this.minified = false
     }
 
@@ -105,18 +138,28 @@ export default class Nav {
      */
     btnClick () {
         if (!BootstrapMedia.isMinSM()) {
-            if (!this.opened) this.open()
-            else this.close()
+            if (!this.opened) {
+                this.open()
+            } else {
+                this.close()
+            }
         }
     }
 
     open () {
         if (!BootstrapMedia.isMinSM() && !this.opened) {
-            this.$cont[0].style.display = 'block'
-            TweenLite.fromTo(this.$cont, 0.5, { xPercent: -100 }, { xPercent: 0 })
+            this.container.style.display = 'block'
 
-            this.$overlay[0].style.display = 'block'
-            TweenLite.to(this.$overlay, 1.2, { opacity: 1 })
+            TweenLite.fromTo(this.container, 0.5, {
+                xPercent: -100
+            }, {
+                xPercent: 0
+            })
+
+            this.overlay.style.display = 'block'
+            TweenLite.to(this.overlay, 1.2, {
+                opacity: 1
+            })
 
             this.opened = true
         }
@@ -124,15 +167,21 @@ export default class Nav {
 
     close () {
         if (!BootstrapMedia.isMinSM() && this.opened) {
-            TweenLite.to(this.$cont, 0.5, { xPercent: -100,
+            TweenLite.to(this.container, 0.5, {
+                xPercent: -100,
                 onComplete: () => {
-                    if (!this.opened) this.$cont[0].style.display = 'none'
-                } })
+                    if (!this.opened) {
+                        this.container.style.display = 'none'
+                    }
+                }
+            })
 
-            TweenLite.to(this.$overlay, 1.2, { opacity: 0,
+            TweenLite.to(this.overlay, 1.2, {
+                opacity: 0,
                 onComplete: () => {
-                    this.$overlay[0].style.display = 'none'
-                } })
+                    this.overlay.style.display = 'none'
+                }
+            })
 
             this.opened = false
         }
@@ -140,9 +189,9 @@ export default class Nav {
 
     onResize () {
         if (BootstrapMedia.isMinSM()) {
-            this.$cont[0].style.display = ''
-            this.$cont[0].style.transform = ''
-            this.$overlay[0].style.display = ''
+            this.container.style.display = ''
+            this.container.style.transform = ''
+            this.overlay.style.display = ''
             this.opened = false
         }
     }
