@@ -3,7 +3,7 @@
 {% block header %}
     <header class="page-header">
         {% if headerImage %}
-            <figure class="page-header-image">{{ headerImage|display(themeServices.imageFormats.headerImage) }}</figure>
+            <figure class="page-header-image">{{ headerImage|display(imageFormats.headerImage) }}</figure>
         {% endif %}
         <div class="container">
             <h1 class="page-title">{{ nodeSource.title }}</h1>
@@ -31,15 +31,14 @@
             }) %}
             {% for singleBlock in blocks %}
                 {% include '@BaseTheme/blocks/' ~ singleBlock.node.nodeType.name|lower ~ '.html.twig' ignore missing with {
-                'nodeSource': singleBlock,
-                'parentNodeSource': nodeSource,
-                'themeServices': themeServices,
-                'head': head,
-                'node': singleBlock.node,
-                'nodeType': singleBlock.node.nodeType,
-                'loop': loop,
-                'blocksLength':blocks|length,
-                'bags': bags
+                    'nodeSource': singleBlock,
+                    'parentNodeSource': nodeSource,
+                    'themeServices': themeServices,
+                    'head': head,
+                    'node': singleBlock.node,
+                    'nodeType': singleBlock.node.nodeType,
+                    'loop': loop,
+                    'blocksLength':blocks|length,
                 } only %}
             {% endfor %}
         </div>
@@ -47,7 +46,7 @@
             {% for image in nodeSource.images %}
                 {% set imageMetas = image.documentTranslations.first %}
                 <figure class="image">
-                    {{ image|display(themeServices.imageFormats.thumbnail) }}
+                    {{ image|display(imageFormats.thumbnail) }}
                     <figcaption>{{ imageMetas.name }} — {{ imageMetas.copyright }}</figcaption>
                 </figure>
             {% endfor %}

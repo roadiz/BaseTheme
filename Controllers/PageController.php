@@ -37,19 +37,15 @@ class PageController extends BaseThemeApp
         $response = $this->render('pages/page.html.twig', $this->assignation);
 
         /*
-         * Set http cache for current request
-         * only if prod mode.
+         * Uncomment to make response public for caching 
+         * with reverse proxies like Varnish or Symfony.
          *
-         * Be careful! Do not use cache
-         * if page contains form and user content!
+         * Be careful! Do not cache your response
+         * if page contains form and/or user content! 
+         * Or make them stateless… (disabling CSRF and
+         * using a different form action route).
          */
-        // $kernel = $this->get('kernel');
-        // if (!$kernel->isPreview() &&
-        //     !$kernel->isDebug()) {
-        //     $response->setPublic();
-        //     $response->setMaxAge(60*60);
-        //     $response->setSharedMaxAge(60*60);
-        // }
+        // $this->makeResponseCachable($request, $response, 10);
 
         return $response;
     }

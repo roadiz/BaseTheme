@@ -3,7 +3,7 @@
  #}
 {% set pageMetaDescription = pageMetaDescription|default(pageMeta.description)|default(meta.siteDescription) %}
 {% set pageMetaTitle = pageMetaTitle|default(pageMeta.title)|default(meta.siteName) %}
-{% set formattedLocale = request.locale|replace('_', '-')|lower %}
+{% set formattedLocale = request.locale|replace({'_': '-'})|lower %}
 {#  #}
 {% set nodeName = nodeName|default(node.nodeName) %}
 {% set nodeTypeName = nodeTypeName|default(node.nodeType.name) %}
@@ -13,6 +13,8 @@
 {% set content = content|default(nodeSource.content) %}
 {% if nodeSource and nodeSource.headerImage|length > 0 %}
     {% set headerImage = nodeSource.headerImage[0] %}
+{% elseif nodeSource and nodeSource.headerImages|length > 0 %}
+    {% set headerImage = nodeSource.headerImages[0] %}
 {% endif %}
 {# No whitespace before DOCTYPE #}
 <!DOCTYPE html>
@@ -34,7 +36,7 @@
      #}
     {% if translation %}
         {% for key in translation|menu(true) %}
-            <link rel="alternate" href="{{ key.url }}" hreflang="{{ key.locale|replace('_', '-')|lower }}" />
+            <link rel="alternate" href="{{ key.url }}" hreflang="{{ key.locale|replace({'_': '-'})|lower }}" />
         {% endfor %}
     {% endif %}
 
@@ -76,7 +78,7 @@
     {% block share_metas %}
 
         {% if headerImage %}
-            {% set previewImageUrl = headerImage|url(themeServices.imageFormats.shareImage) %}
+            {% set previewImageUrl = headerImage|url(imageFormats.shareImage) %}
         {% else %}
             {% set previewImageUrl = head.absoluteResourcesUrl ~ 'img/share.png' %}
         {% endif %}
@@ -153,10 +155,6 @@
     {% endif %}
     {% include '@BaseTheme/svg/sprite.svg.twig' %}
 
-    {% include '@BaseTheme/svg/use.svg.twig'with {
-        icon: 'icon-facebook'
-    } %}
-
     <div id="loading"><div id="loading-inner"></div></div>
 
     {#
@@ -231,8 +229,12 @@
         window.addEventListener('load', function () {
             window.cookieconsent.initialise({
                 container: document.getElementById("cookiesconsent"),
-                location: true,
-                revokable: true,
+                location: false,
+                revokable: false,
+                law: {
+                    countryCode: 'FR', {# Adapt it to your country #}
+                    regionalLaw: false,
+                },
                 content: {
                     message: "{{ 'cookie_choice.consent_message'|trans|escape }}",
                     dismiss: "{% trans %}cookie_choice.close_message{% endtrans %}",

@@ -2,25 +2,51 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="903e603b-24a8-4791-97ec-12306a48bc56" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.babelrc" beforeDir="false" afterPath="$PROJECT_DIR$/.babelrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Twig/ImageFormatsExtension.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/scss/common/_socials.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/svg/googleplus.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/svg/linkedin.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/svg/pinterest.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/svg/youtube.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/.gitkeep" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/vendors/cookieconsent.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/vendors/jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/vendors/jquery.waitforimages.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/vendors/loglevel.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/vendors/modernizr.custom.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/vendors/mutationobserver.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseThemeApp.php" beforeDir="false" afterPath="$PROJECT_DIR$/BaseThemeApp.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/Blocks/ContactBlockController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Blocks/ContactBlockController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/CssController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/CssController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/PageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/PageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/SitemapController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/SitemapController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/views/base.ajax.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/views/base.ajax.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Resources/views/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/views/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/views/blocks/mapblock.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/views/blocks/mapblock.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/views/common/footer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/views/common/footer.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/views/common/nav-item.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/views/common/nav-item.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/views/common/nav.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/views/common/nav.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/views/pages/404.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/views/pages/404.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/views/pages/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/views/pages/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/views/pages/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/views/pages/home.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Resources/views/pages/page.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/views/pages/page.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Resources/views/partials/css-inject.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/views/partials/css-inject.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Resources/views/partials/js-inject.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/views/partials/js-inject.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/views/sitemap/sitemap-element.xml.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/views/sitemap/sitemap-element.xml.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Resources/views/svg/sprite.svg.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/views/svg/sprite.svg.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/js/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/js/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/js/blocks/ContactBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/js/blocks/ContactBlock.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/js/common/Nav.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/js/common/Nav.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/js/factories/ClassFactory.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/js/factories/ClassFactory.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/views/svg/use.svg.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/views/svg/use.svg.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/AssetsServiceProvider.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/scss/base/_common.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/scss/base/_common.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/build/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/build/base.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/build/environments.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/build/environments.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/config/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/config/base.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/gulp-tasks/svgmin.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/plugins/harddisk-plugins.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gulpfile.babel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/scss/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/scss/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/scss/widgets/_cookies-consent.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/scss/widgets/_cookies-consent.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/svg/facebook.svg" beforeDir="false" afterPath="$PROJECT_DIR$/app/svg/facebook.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/svg/google-plus.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/svg/instagram.svg" beforeDir="false" afterPath="$PROJECT_DIR$/app/svg/instagram.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/svg/twitter.svg" beforeDir="false" afterPath="$PROJECT_DIR$/app/svg/twitter.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -53,7 +79,7 @@
           <entry key="lock" value="3" />
           <entry key="scss" value="9" />
           <entry key="svg" value="11" />
-          <entry key="twig" value="43" />
+          <entry key="twig" value="45" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -63,7 +89,7 @@
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="SCSS" value="9" />
           <entry key="SVG" value="11" />
-          <entry key="Twig" value="43" />
+          <entry key="Twig" value="45" />
           <entry key="yarn.lock" value="3" />
         </counts>
       </usages-collector>
@@ -74,7 +100,7 @@
           <entry key="js" value="1033" />
           <entry key="json" value="16" />
           <entry key="scss" value="167" />
-          <entry key="twig" value="195" />
+          <entry key="twig" value="196" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -83,7 +109,7 @@
           <entry key="JavaScript" value="1033" />
           <entry key="PLAIN_TEXT" value="18" />
           <entry key="SCSS" value="167" />
-          <entry key="Twig" value="195" />
+          <entry key="Twig" value="196" />
         </counts>
       </usages-collector>
     </session>
@@ -93,29 +119,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="710">
-              <caret line="133" column="32" lean-forward="true" selection-start-line="133" selection-start-column="32" selection-end-line="133" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build/build/environments.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="536">
-              <caret line="94" column="31" lean-forward="true" selection-start-line="94" selection-start-column="31" selection-end-line="94" selection-end-column="31" />
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="461">
+              <caret line="23" column="35" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+        <entry file="file://$PROJECT_DIR$/Resources/views/base.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="793">
-              <caret line="104" lean-forward="true" selection-start-line="104" selection-end-line="104" />
+            <state relative-caret-position="386">
+              <caret line="156" lean-forward="true" selection-start-line="156" selection-end-line="156" />
             </state>
           </provider>
         </entry>
@@ -131,7 +145,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>build</find>
       <find>bunde</find>
       <find>vendor</find>
       <find>dev</find>
@@ -161,6 +174,7 @@
       <find>stylelint-scss</find>
       <find>css-lo</find>
       <find>partials</find>
+      <find>write-file-webpack-plugin</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/static</dir>
@@ -208,7 +222,6 @@
         <option value="$PROJECT_DIR$/Resources/views/pages/base.html.twig" />
         <option value="$PROJECT_DIR$/Resources/views/partials/svg-inject.html.twig" />
         <option value="$PROJECT_DIR$/Resources/views/partials/svg-inject-src.html.twig" />
-        <option value="$PROJECT_DIR$/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/Resources/views/svg/sprite.svg.twig" />
         <option value="$PROJECT_DIR$/app/js/pages/DefaultPage.js" />
         <option value="$PROJECT_DIR$/app/scss/pages/_home.scss" />
@@ -224,9 +237,10 @@
         <option value="$PROJECT_DIR$/build/plugins/harddisk-plugins.js" />
         <option value="$PROJECT_DIR$/app/js/main.js" />
         <option value="$PROJECT_DIR$/app/scss/base/_common.scss" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/build/build/environments.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/Resources/views/base.html.twig" />
       </list>
     </option>
   </component>
@@ -347,12 +361,12 @@
       <workItem from="1519830954868" duration="593000" />
       <workItem from="1519840476926" duration="423000" />
       <workItem from="1536589834488" duration="6542000" />
-      <workItem from="1536651705129" duration="6768000" />
+      <workItem from="1536651705129" duration="7056000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47902000" />
+    <option name="totallyTimeSpent" value="48190000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1920" height="1054" extended-state="6" />
@@ -436,13 +450,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/views/pages/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="34" selection-start-line="34" selection-end-line="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/svg/twitter.svg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -506,13 +513,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="63">
           <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/views/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="153" column="46" selection-start-line="153" selection-start-column="31" selection-end-line="153" selection-end-column="46" />
         </state>
       </provider>
     </entry>
@@ -695,27 +695,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="710">
-          <caret line="133" column="32" lean-forward="true" selection-start-line="133" selection-start-column="32" selection-end-line="133" selection-end-column="32" />
+        <state relative-caret-position="373">
+          <caret line="84" column="16" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build/build/environments.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="536">
-          <caret line="94" column="31" lean-forward="true" selection-start-line="94" selection-start-column="31" selection-end-line="94" selection-end-column="31" />
+          <caret line="94" column="31" selection-start-line="94" selection-start-column="31" selection-end-line="94" selection-end-column="31" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/Resources/views/pages/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="793">
-          <caret line="104" lean-forward="true" selection-start-line="104" selection-end-line="104" />
+        <state relative-caret-position="128">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="461">
+          <caret line="23" column="35" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/views/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="386">
+          <caret line="156" lean-forward="true" selection-start-line="156" selection-end-line="156" />
         </state>
       </provider>
     </entry>

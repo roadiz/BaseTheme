@@ -2,7 +2,7 @@
 <loc>{{ url(element) }}</loc>
 {% if element.node.nodeSources|length > 1 %}
 {% for alternative in element.node.nodeSources %}
-<xhtml:link rel="alternate" hreflang="{{ alternative.translation.locale|lower|replace('_', '-') }}" href="{{ url(alternative) }}" />
+<xhtml:link rel="alternate" hreflang="{{ alternative.translation.locale|lower|replace({'_': '-'}) }}" href="{{ url(alternative) }}" />
 {% endfor %}
 {% endif %}
 </url>

@@ -1,6 +1,6 @@
 {% set pageMetaDescription = pageMetaDescription|default(pageMeta.description)|default(meta.siteDescription) %}
 {% set pageMetaTitle = pageMetaTitle|default(pageMeta.title)|default(meta.siteName) %}
-{% set formattedLocale = request.locale|replace('_', '-')|lower %}
+{% set formattedLocale = request.locale|replace({'_': '-'})|lower %}
 {#  #}
 {% set nodeName = nodeName|default(node.nodeName) %}
 {% set nodeTypeName = nodeTypeName|default(node.nodeType.name) %}
