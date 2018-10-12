@@ -5,7 +5,7 @@
  * @author Maxime Bérard
  */
 
-import { TweenLite } from 'gsap'
+// import { TweenLite } from 'gsap'
 import DefaultBlock from './DefaultBlock'
 
 export default class ContactBlock extends DefaultBlock {
@@ -41,15 +41,13 @@ export default class ContactBlock extends DefaultBlock {
         }
 
         this.timeout = window.setTimeout(() => {
-            TweenLite.to(this.formMessage, 0.6, {
-                height: 0,
-                paddingTop: 0,
-                paddingBottom: 0
-            })
+            // TweenLite.to(this.formMessage, 0.6, {
+            //     height: 0,
+            //     paddingTop: 0,
+            //     paddingBottom: 0
+            // })
 
             const data = new window.FormData(this.form)
-
-            console.log(data)
 
             // $.ajax({
             //     url: e.currentTarget.action,

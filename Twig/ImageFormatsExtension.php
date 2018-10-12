@@ -22,8 +22,9 @@ class ImageFormatsExtension extends AbstractExtension implements GlobalsInterfac
                 ],
                 'columnedImage' => [
                     'width' => 720,
+                    'lazyload' => true,
                     'progressive' => true,
-                    'class' => 'img-fluid',
+                    'class' => 'img-fluid lazyload',
                 ],
                 'thumbnail' => [
                     'fit' => '600x338',

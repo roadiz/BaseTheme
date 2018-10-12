@@ -11,7 +11,7 @@ import {
     debounce,
     EventTypes
 } from 'starting-blocks'
-import { TweenLite } from 'gsap'
+// import { TweenLite } from 'gsap'
 
 /**
  * Nav Class
@@ -49,7 +49,7 @@ export default class Nav {
         this.overlay = document.getElementById('nav-overlay')
 
         // Values
-        this.minifyLimit = BootstrapMedia.isMinMD() ? 165 : 50
+        this.minifyLimit = BootstrapMedia.isMin('md') ? 165 : 50
         this.opened = false
 
         // Bind methods
@@ -137,7 +137,7 @@ export default class Nav {
      * Btn click
      */
     btnClick () {
-        if (!BootstrapMedia.isMinSM()) {
+        if (!BootstrapMedia.isMin('sm')) {
             if (!this.opened) {
                 this.open()
             } else {
@@ -147,48 +147,48 @@ export default class Nav {
     }
 
     open () {
-        if (!BootstrapMedia.isMinSM() && !this.opened) {
+        if (!BootstrapMedia.isMin('sm') && !this.opened) {
             this.container.style.display = 'block'
 
-            TweenLite.fromTo(this.container, 0.5, {
-                xPercent: -100
-            }, {
-                xPercent: 0
-            })
+            // TweenLite.fromTo(this.container, 0.5, {
+            //     xPercent: -100
+            // }, {
+            //     xPercent: 0
+            // })
 
             this.overlay.style.display = 'block'
-            TweenLite.to(this.overlay, 1.2, {
-                opacity: 1
-            })
+            // TweenLite.to(this.overlay, 1.2, {
+            //     opacity: 1
+            // })
 
             this.opened = true
         }
     }
 
     close () {
-        if (!BootstrapMedia.isMinSM() && this.opened) {
-            TweenLite.to(this.container, 0.5, {
-                xPercent: -100,
-                onComplete: () => {
-                    if (!this.opened) {
-                        this.container.style.display = 'none'
-                    }
-                }
-            })
-
-            TweenLite.to(this.overlay, 1.2, {
-                opacity: 0,
-                onComplete: () => {
-                    this.overlay.style.display = 'none'
-                }
-            })
+        if (!BootstrapMedia.isMin('sm') && this.opened) {
+            // TweenLite.to(this.container, 0.5, {
+            //     xPercent: -100,
+            //     onComplete: () => {
+            //         if (!this.opened) {
+            //             this.container.style.display = 'none'
+            //         }
+            //     }
+            // })
+            //
+            // TweenLite.to(this.overlay, 1.2, {
+            //     opacity: 0,
+            //     onComplete: () => {
+            //         this.overlay.style.display = 'none'
+            //     }
+            // })
 
             this.opened = false
         }
     }
 
     onResize () {
-        if (BootstrapMedia.isMinSM()) {
+        if (BootstrapMedia.isMin('sm')) {
             this.container.style.display = ''
             this.container.style.transform = ''
             this.overlay.style.display = ''

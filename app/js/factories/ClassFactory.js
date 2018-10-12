@@ -26,7 +26,7 @@
  * @author Adrien Scholaert <adrien@rezo-zero.com>
  *
  */
-import * as log from 'loglevel'
+
 import Page from '../pages/Page'
 import Home from '../pages/Home'
 
@@ -49,7 +49,7 @@ export default class ClassFactory {
         case 'home':
             return new Home(router, container, context, nodeType)
         default:
-            log.info('"' + nodeType + '" has no defined route, using Page.')
+            console.info('"' + nodeType + '" has no defined route, using Page.')
             return new Page(router, container, context, nodeType)
         }
     }
@@ -80,7 +80,7 @@ export default class ClassFactory {
         // case 'basicblock':
         //     return new BasicBlock(page, $cont, nodeType)
         // default:
-        //     log.info('    "' + nodeTypeName + '" has no defined route, using AbstractBlock.')
+        //     console.info('    "' + nodeTypeName + '" has no defined route, using AbstractBlock.')
         //     return new AbstractBlock(page, $cont, nodeType)
         // }
     }

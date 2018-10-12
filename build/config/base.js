@@ -24,7 +24,7 @@ const getConfig = () => {
         dir_dist: 'static',
         dir_views: 'Resources/views',
 
-        bundleAnalyzerReport: false,
+        bundleAnalyzerReport: true,
         dynamicImportStyle: false,
 
         // ----------------------------------

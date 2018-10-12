@@ -131,7 +131,7 @@
     "jquery.waitforimages": "^2.4.0",
     "load-google-maps-api": "^1.1.1",
     "loglevel": "^1.6.1",
-    "starting-blocks": "^4.2.6",
+    "starting-blocks": "link:../../../../Experiments/starting-blocks",
     "vanilla-lazyload": "^10.4.2"
   }
 }

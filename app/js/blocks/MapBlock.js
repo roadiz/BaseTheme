@@ -5,7 +5,6 @@
  * @author Ambroise Maupate
  */
 
-import log from 'loglevel'
 import DefaultBlock from './DefaultBlock'
 import loadGoogleMapsAPI from 'load-google-maps-api'
 
@@ -30,7 +29,7 @@ export default class MapBlock extends DefaultBlock {
                     this.createMap()
                 })
                     .catch((err) => {
-                        log.debug(err)
+                        console.debug(err)
                     })
             } else {
                 this.createMap()

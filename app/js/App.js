@@ -6,9 +6,8 @@
  *
  */
 
-import * as log from 'loglevel'
 import { gaTrackErrors, polyfills, Utils } from 'starting-blocks'
-import { Expo, TweenLite } from 'gsap'
+import { TweenLite } from 'gsap'
 import AppRouter from './Router'
 import Nav from './common/Nav'
 
@@ -43,7 +42,6 @@ export default class App {
      * Config
      */
     initConfig () {
-        this.setLogLevel()
         this.setIsIE()
 
         /** Declare polyfills **/
@@ -62,7 +60,7 @@ export default class App {
     setIsIE () {
         if (navigator.userAgent.indexOf('MSIE') >= 0 ||
             navigator.userAgent.indexOf('Trident') >= 0) {
-            Utils.addClass(this.$body, 'ie-browser')
+            document.body.classList.add('ie-browser')
         }
     }
 
@@ -89,17 +87,5 @@ export default class App {
             }],
             '#000'
         )
-    }
-
-    /**
-     * Set max log level (most verbose) 0 ---> 5
-     * @see https://github.com/pimterry/loglevel
-     */
-    setLogLevel () {
-        if (this.devMode === true) {
-            log.setLevel(0)
-        } else {
-            log.setLevel(5)
-        }
     }
 }

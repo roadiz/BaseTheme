@@ -6,10 +6,18 @@
  *
  */
 
-import App from './App'
+import {
+    EventTypes
+} from 'starting-blocks'
 
-(() => {
-    /** Create the app **/
-    const app = new App()
-    app.init()
-})()
+const test = EventTypes.AFTER_DOM_APPENDED
+
+console.log(test)
+
+// import App from './App'
+//
+// (() => {
+//     /** Create the app **/
+//     const app = new App()
+//     app.init()
+// })()
