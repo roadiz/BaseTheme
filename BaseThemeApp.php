@@ -11,6 +11,7 @@ namespace Themes\BaseTheme;
 
 use Pimple\Container;
 use RZ\Roadiz\CMS\Controllers\FrontendController;
+use RZ\Roadiz\Core\Entities\Translation;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Themes\BaseTheme\Services;
@@ -43,7 +44,7 @@ class BaseThemeApp extends FrontendController
          * Force locale if we request with no locale in URL
          */
         // if ($_locale === null) {
-        //     $transRepository = $this->get('em')->getRepository('RZ\Roadiz\Core\Entities\Translation');
+        //     $transRepository = $this->get('em')->getRepository(Translation::class);
         //     $redirectLocale = $request->getPreferredLanguage($transRepository->getAvailableLocales());
         //     $translation = $transRepository->findOneByLocaleAndAvailable($redirectLocale);
 
