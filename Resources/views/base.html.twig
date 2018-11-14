@@ -215,7 +215,7 @@
     {% endif %}
 
     <noscript><div id="no-js-message">{% trans %}no_javascript_message{% endtrans %}</div></noscript>
-    <script type="text/javascript">
+    <script>
         {# Passing server vars to JS framework #}
         window.temp = {
             devMode: {% if head.devMode %}true{% else %}false{% endif %},
