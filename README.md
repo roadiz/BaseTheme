@@ -1,5 +1,7 @@
 # Base Roadiz theme
 
+[![Build Status](https://travis-ci.org/roadiz/BaseTheme.svg?branch=master)](https://travis-ci.org/roadiz/BaseTheme)
+
 This theme is meant to get a **fresh start** to create a custom website on *Roadiz*.
 
 **Compatible with Internet Explorer 11+**
