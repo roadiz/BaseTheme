@@ -221,7 +221,6 @@
             devMode: {% if head.devMode %}true{% else %}false{% endif %},
             locale: '{{ request.locale }}',
             resourcesUrl: '{{ head.resourcesUrl }}',
-            googleClientId: '{{ head.googleClientId }}',
             mapsStyle: {% if head.mapsStyle %}JSON.parse('{{ head.mapsStyle|raw }}'){% else %}null{% endif %}
         };
 
