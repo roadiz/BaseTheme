@@ -150,11 +150,6 @@ class BaseThemeApp extends FrontendController
         $this->themeContainer->register(new Services\NodeServiceProvider($this->getContainer(), $this->translation));
 
         $this->assignation['themeServices'] = $this->themeContainer;
-        $this->assignation['head']['facebookClientId'] = $this->get('settingsBag')->get('facebook_client_id');
-        $this->assignation['head']['googleClientId'] = $this->get('settingsBag')->get('google_client_id');
-        $this->assignation['head']['twitterAccount'] = $this->get('settingsBag')->get('twitter_account');
-        $this->assignation['head']['mapsStyle'] = $this->get('settingsBag')->get('maps_style');
-        $this->assignation['head']['googleTagManagerId'] = $this->get('settingsBag')->get('google_tag_manager_id');
         $this->assignation['head']['themeName'] = static::$themeName;
         $this->assignation['head']['themeVersion'] = static::VERSION;
 
