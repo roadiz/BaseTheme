@@ -1,0 +1,3 @@
+<% for (key in htmlWebpackPlugin.options.legacyScripts) { %>
+<script nomodule defer src="<%= htmlWebpackPlugin.options.legacyScripts[key] %>"></script>
+<% } %>

@@ -6,8 +6,7 @@ import postcssFilterGradient from 'postcss-filter-gradient'
 import postcssReduceTransform from 'postcss-reduce-transforms'
 import cssMqpacker from 'css-mqpacker'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import UglifyJsWebpackPlugin from 'uglifyjs-webpack-plugin'
-import Harddisk from 'html-webpack-harddisk-plugin'
+import HtmlWebpackMultiBuildPlugin from '../modules/HtmlWebpackMultiBuildPlugin'
 import debug from 'debug'
 import WebpackNotifierPlugin from 'webpack-notifier'
 import OptimizeCSSPlugin from 'optimize-css-assets-webpack-plugin'
@@ -109,9 +108,91 @@ const scssConfigDev = {
 }
 
 export default {
+    modern: (base, config) => {
+        const paths = config.utils_paths
+        let filename = 'js/modern.[name].js'
+        let chunkfilename = 'js/modern.[name].js'
+
+        if (config.env === 'production') {
+            filename = 'js/modern.[name].[chunkhash].js'
+            chunkfilename = 'js/modern.[name].[chunkhash].js'
+        }
+
+        return {
+            entry: {
+                app: paths.client('js/main.js')
+            },
+            output: {
+                path: paths.dist(),
+                filename: filename,
+                chunkFilename: chunkfilename,
+                publicPath: config.public_path
+            },
+            module: {
+                rules: [{
+                    test: /\.js?$/,
+                    exclude: /(node_modules)/,
+                    loader: 'babel-loader',
+                    query: {
+                        cacheDirectory: true,
+                        presets: [
+                            [
+                                '@babel/preset-env', {
+                                    targets: {
+                                        esmodules: true
+                                    }
+                                }
+                            ]
+                        ]
+                    }
+                }]
+            },
+            plugins: [
+                new HtmlWebpackPlugin({
+                    filename: config.utils_paths.views('partials/js-inject-modern.html.twig'),
+                    template: config.utils_paths.views('partials/js-inject-modern-src.html.twig'),
+                    cache: false,
+                    inject: false,
+                    refreshOnChange: config.refreshOnChange
+                }),
+                new HtmlWebpackPlugin({
+                    filename: config.utils_paths.views('partials/css-inject.html.twig'),
+                    template: config.utils_paths.views('partials/css-inject-src.html.twig'),
+                    cache: false,
+                    inject: false,
+                    refreshOnChange: config.refreshOnChange
+                }),
+                new HtmlWebpackMultiBuildPlugin()
+            ]
+        }
+    },
+
+    legacy: (base, config) => {
+        const paths = config.utils_paths
+        let filename = 'js/legacy.[name].js'
+        let chunkfilename = 'js/legacy.[name].js'
+
+        if (config.env === 'production') {
+            filename = 'js/legacy.[name].[chunkhash].js'
+            chunkfilename = 'js/legacy.[name].[chunkhash].js'
+        }
+
+        return {
+            entry: {
+                app: ['whatwg-fetch', 'es6-promise', 'url-polyfill', paths.client('js/main.js')]
+            },
+            output: {
+                path: paths.dist(),
+                filename: filename,
+                chunkFilename: chunkfilename
+            }
+        }
+    },
+
     development: (base, config) => ({
         watch: true,
         mode: 'development',
+        cache: true,
         devServer: {
             headers: {
                 'Access-Control-Allow-Origin': '*',
@@ -129,29 +210,22 @@ export default {
                 ignored: /node_modules/
             }
         },
-        module: {
-            rules: [scssConfigDev]
-        },
         plugins: [
             new HtmlWebpackPlugin({
-                filename: config.utils_paths.views('partials/css-inject.html.twig'),
-                template: config.utils_paths.views('partials/css-inject-src.html.twig'),
-                cache: true,
+                filename: config.utils_paths.views('partials/js-inject-legacy.html.twig'),
+                template: config.utils_paths.views('partials/js-inject-legacy-src.html.twig'),
+                cache: false,
                 inject: false,
-                alwaysWriteToDisk: true,
                 refreshOnChange: config.refreshOnChange
             }),
-            new HtmlWebpackPlugin({
-                filename: config.utils_paths.views('partials/js-inject.html.twig'),
-                template: config.utils_paths.views('partials/js-inject-src.html.twig'),
-                cache: true,
-                inject: false,
-                alwaysWriteToDisk: true,
-                refreshOnChange: config.refreshOnChange
-            }),
-            new Harddisk(),
+            new HtmlWebpackMultiBuildPlugin(),
             new WebpackNotifierPlugin({ alwaysNotify: true })
         ],
+        module: {
+            rules: [{
+                ...scssConfigDev
+            }]
+        },
         optimization: {
             ...optimization
         }
@@ -181,35 +255,10 @@ export default {
                         discardComments: { removeAll: true }
                     }
                 }),
-                new webpack.HashedModuleIdsPlugin(),
-                new HtmlWebpackPlugin({
-                    filename: config.utils_paths.views('partials/css-inject.html.twig'),
-                    template: config.utils_paths.views('partials/css-inject-src.html.twig'),
-                    cache: true,
-                    inject: false
-                }),
-                new HtmlWebpackPlugin({
-                    filename: config.utils_paths.views('partials/js-inject.html.twig'),
-                    template: config.utils_paths.views('partials/js-inject-src.html.twig'),
-                    cache: true,
-                    inject: false
-                })
+                new webpack.HashedModuleIdsPlugin()
             ],
             optimization: {
-                ...optimization,
-                minimize: true,
-                occurrenceOrder: true,
-                minimizer: [
-                    new UglifyJsWebpackPlugin({
-                        parallel: true,
-                        uglifyOptions: {
-                            output: {
-                                comments: false,
-                                beautify: false
-                            }
-                        }
-                    })
-                ]
+                ...optimization
             }
         }
     }

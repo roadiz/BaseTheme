@@ -105,3 +105,5 @@ package-lock.json
 ## Inject files
 /Resources/views/partials/css-inject.html.twig
 /Resources/views/partials/js-inject.html.twig
+/Resources/views/partials/js-inject-modern.html.twig
+/Resources/views/partials/js-inject-legacy.html.twig

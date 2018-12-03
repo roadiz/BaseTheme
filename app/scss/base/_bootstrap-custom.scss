@@ -8,7 +8,7 @@
 @import '../../../node_modules/bootstrap/scss/mixins';
 
 // Reset and dependencies
-@import "../../../node_modules/bootstrap/scss/print";
+//@import "../../../node_modules/bootstrap/scss/print";
 
 // Core CSS
 @import "../../../node_modules/bootstrap/scss/reboot";
@@ -79,11 +79,11 @@ $grid-gutter-widths: (
 
 // Grid system
 @import '../../../node_modules/bootstrap/scss/grid';
-@import '../../../node_modules/bootstrap/scss/tables';
+//@import '../../../node_modules/bootstrap/scss/tables';
 @import '../../../node_modules/bootstrap/scss/type';
-@import '../../../node_modules/bootstrap/scss/code';
-@import '../../../node_modules/bootstrap/scss/nav';
-@import '../../../node_modules/bootstrap/scss/navbar';
+//@import '../../../node_modules/bootstrap/scss/code';
+//@import '../../../node_modules/bootstrap/scss/nav';
+//@import '../../../node_modules/bootstrap/scss/navbar';
 @import "../../../node_modules/bootstrap/scss/media";
 @import "../../../node_modules/bootstrap/scss/images";
 @import "../../../node_modules/bootstrap/scss/utilities";

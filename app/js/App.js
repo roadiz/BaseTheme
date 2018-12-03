@@ -6,10 +6,20 @@
  *
  */
 
-import { gaTrackErrors, polyfills, Utils } from 'starting-blocks'
-import { TweenLite } from 'gsap'
-import AppRouter from './Router'
+import StartingBlocks, {
+    gaTrackErrors,
+    Utils,
+    Pjax,
+    History
+} from 'starting-blocks'
 import Nav from './common/Nav'
+import HomePage from './pages/HomePage'
+import DefaultPage from './pages/DefaultPage'
+import WebpackAsyncBlockBuilder from './factories/WebpackAsyncBlockBuilder'
+import { CSSPlugin } from 'gsap/all'
+
+// without this line, CSSPlugin  may get dropped by the bundler...
+new CSSPlugin() // eslint-disable-line
 
 /**
  * App entry.
@@ -17,20 +27,37 @@ import Nav from './common/Nav'
 export default class App {
     constructor () {
         this.devMode = window.temp.devMode
-        this.$body = document.getElementsByTagName('body')[0]
-        this.dataHome = this.$body.getAttribute('data-is-home')
-        this.isHome = (this.dataHome === '1')
-        this.router = AppRouter
         this.nav = new Nav()
+        this.startingBlocks = new StartingBlocks({
+            wrapperId: 'main-container',
+            debug: 1
+        })
     }
 
     init () {
         this.loadSvg(require.context('../svg/', true, /\.svg$/))
         this.setCredits()
         this.initConfig()
-        // Start app router.
+
+        // Config starting blocks
+        // Enable ajax
+        this.startingBlocks.bootableProvider('Pjax', Pjax)
+        this.startingBlocks.provider('History', History)
+
+        // Add pages
+        this.startingBlocks.instanceFactory('DefaultPage', c => {
+            return new DefaultPage(c)
+        })
+
+        this.startingBlocks.instanceFactory('HomePage', c => {
+            return new HomePage(c)
+        })
+
+        // Override block builder
+        this.startingBlocks.provider('BlockBuilder', WebpackAsyncBlockBuilder)
+
         this.nav.init()
-        this.router.init()
+        this.startingBlocks.boot()
     }
 
     // Require all svg
@@ -44,14 +71,8 @@ export default class App {
     initConfig () {
         this.setIsIE()
 
-        /** Declare polyfills **/
-        polyfills()
-
         /** Tracks errors with Analytics **/
         gaTrackErrors()
-
-        /** Set default Tween ease **/
-        TweenLite.defaultEase = Expo.easeOut
     }
 
     /**

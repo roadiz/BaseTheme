@@ -9,10 +9,16 @@ import DefaultBlock from './DefaultBlock'
 import loadGoogleMapsAPI from 'load-google-maps-api'
 
 export default class MapBlock extends DefaultBlock {
+    constructor (container) {
+        super(container, 'MapBlock')
+
+        this.mapContainer = null
+    }
+
     init () {
         super.init()
 
-        this.mapContainer = this.container.querySelector('.mapblock-canvas')
+        this.mapContainer = this.rootElement.querySelector('.mapblock-canvas')
 
         if (this.mapContainer) {
             this.location = JSON.parse(this.mapContainer.getAttribute('data-geoloc'))

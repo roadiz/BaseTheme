@@ -1,13 +1,17 @@
-#nav {
+.nav {
     position: fixed;
+    z-index: 50;
     top: 0;
     bottom: 0;
     left: 0;
     width: 80vw;
     background: $white;
-    z-index: 50;
     padding: 0;
     display: none;
+
+    @include media-breakpoint-only(xs) {
+        transform: translateX(-80vw);
+    }
 
     @include media-breakpoint-up(sm) {
         right: 0;
@@ -22,34 +26,80 @@
             height: $nav-height;
         }
     }
-}
 
-@include media-breakpoint-up(sm) {
-    .navbar-toggleable-md .navbar-collapse {
-        display: flex !important;
-        width: 100%;
-    }
-
-    .navbar-toggleable-md > .container {
+    & > .container {
         display: flex;
-        flex-wrap: nowrap;
-        align-items: center;
+        flex-flow: column;
+
+        @include media-breakpoint-up(sm) {
+            flex-flow: row;
+            justify-content: space-between;
+            align-items: center;
+        }
     }
 
-    .navbar-toggleable-md .navbar-nav {
-        flex-direction: row;
+    & .nav-item:not(:last-child) .nav-link {
+        @include media-breakpoint-up(sm) {
+            padding-right: 10px;
+        }
     }
 
-    .navbar-toggleable-md .navbar-nav .nav-link {
-        padding-right: .5rem;
-        padding-left: .5rem;
+    & .nav-item:not(:first-child) .nav-link {
+        @include media-breakpoint-up(sm) {
+            padding-left: 10px;
+        }
     }
 }
 
-.navbar-nav {
-    padding: 80px 15px 10px;
+.nav-list {
+    display: flex;
+    flex-flow: column;
+    margin: 0;
+    padding: 60px 0 0;
+    list-style-type: none;
 
     @include media-breakpoint-up(sm) {
-        padding: 0;
+        flex-flow: row;
+        padding-top: 0;
     }
+}
+
+.nav-btn {
+    position: absolute;
+    z-index: 57;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: $nav-height;
+    cursor: pointer;
+
+    &__bar {
+        position: absolute;
+        width: 30px;
+        height: 2px;
+        background: $black;
+        left: 50%;
+        top: 50%;
+        margin-left: -15px;
+    }
+
+    &__bar-1 {
+        margin-top: -6px;
+    }
+
+    &__bar-3 {
+        margin-top: 6px;
+    }
+}
+
+.nav-overlay {
+    position: fixed;
+    z-index: 35;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba($black, 0.6);
+    opacity: 0;
+    pointer-events: none;
 }

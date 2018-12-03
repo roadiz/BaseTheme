@@ -9,11 +9,11 @@
 import DefaultBlock from './DefaultBlock'
 
 export default class ContactBlock extends DefaultBlock {
-    init () {
-        super.init()
+    constructor (container) {
+        super(container, 'ContactBlock')
 
-        this.form = this.container.querySelector('form')
-        this.formMessage = this.container.querySelector('.form-message')
+        this.form = this.rootElement.querySelector('form')
+        this.formMessage = this.rootElement.querySelector('.form-message')
         this.bindOnSubmit = this.formSubmit.bind(this)
     }
 
@@ -47,7 +47,7 @@ export default class ContactBlock extends DefaultBlock {
             //     paddingBottom: 0
             // })
 
-            const data = new window.FormData(this.form)
+            // const data = new window.FormData(this.form)
 
             // $.ajax({
             //     url: e.currentTarget.action,

@@ -7,7 +7,7 @@
  */
 
 import { AbstractTransition } from 'starting-blocks'
-// import { TweenLite } from 'gsap'
+import { TweenLite } from 'gsap'
 
 /**
  * Fade Transition class example. Fade Out / Fade In content.
@@ -33,10 +33,10 @@ export default class FadeTransition extends AbstractTransition {
      */
     fadeOut () {
         return new Promise((resolve) => {
-            // TweenLite.to(this.oldContainer, 0.5, {
-            //     alpha: 0,
-            //     onComplete: resolve
-            // })
+            TweenLite.to(this.oldPage.rootElement, 0.5, {
+                alpha: 0,
+                onComplete: resolve
+            })
         })
     }
 
@@ -45,22 +45,23 @@ export default class FadeTransition extends AbstractTransition {
      */
     fadeIn () {
         // Remove old content from the DOM
-        this.oldContainer.hide()
+        TweenLite.set(this.oldPage.rootElement, {
+            display: 'none'
+        })
 
         // Prepare new content css properties for the fade animation
-        this.newContainer.css({
-            visibility: 'visible',
-            opacity: 0
+        TweenLite.set(this.newPage.rootElement, {
+            alpha: 0
         })
 
         // Scroll top
         document.body.scrollTop = 0
 
-        // TweenLite.to(this.newContainer, 0.5, {
-        //     alpha: 1,
-        //     onComplete: () => {
-        //         this.done()
-        //     }
-        // })
+        TweenLite.to(this.newPage.rootElement, 0.5, {
+            alpha: 1,
+            onComplete: () => {
+                this.done()
+            }
+        })
     }
 }

@@ -6,18 +6,26 @@
  *
  */
 
-import {
-    EventTypes
-} from 'starting-blocks'
+import '../scss/style.scss'
+import App from './App'
 
-const test = EventTypes.AFTER_DOM_APPENDED
+window.passiveSupported = false
 
-console.log(test)
+try {
+    const options = Object.defineProperty({}, 'passive', {
+        get: function () {
+            window.passiveSupported = true
+        }
+    })
 
-// import App from './App'
-//
-// (() => {
-//     /** Create the app **/
-//     const app = new App()
-//     app.init()
-// })()
+    window.addEventListener('test', options, options)
+    window.removeEventListener('test', options, options)
+} catch (err) {
+    window.passiveSupported = false
+}
+
+(() => {
+    /** Create the app **/
+    const app = new App()
+    app.init()
+})()

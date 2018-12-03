@@ -36,7 +36,7 @@ button {
 
 #main-container {
     position: relative;
-    margin-top: $navbar-height;
+    margin-top: $nav-height;
 }
 
 @include media-breakpoint-up(sm) {
@@ -57,11 +57,4 @@ button {
     position: relative;
     display: table-cell;
     vertical-align: middle;
-}
-
-// Bootstrap reset
-.page-header {
-    margin: 0;
-    padding: 0;
-    border: 0;
 }
