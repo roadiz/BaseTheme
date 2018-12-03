@@ -100,6 +100,7 @@ package-lock.json
 /static/img
 /static/vendors
 /static/fonts
+/static/**
 /Resources/views/svg/sprite.svg.twig
 
 ## Inject files
