@@ -39,6 +39,10 @@ class ContactBlockController extends BaseThemeApp
 
         /** @var ContactFormManager $contactFormManager */
         $contactFormManager = $this->createContactFormManager()->withDefaultFields();
+        // Scroll to contactform block after submit succedeed or failed
+        $contactFormManager->setOptions([
+            'action' => '#block-' . $source->getNode()->getNodeName(),
+        ]);
 
         /*
          * Define custom receiver.

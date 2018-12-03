@@ -11,8 +11,10 @@ namespace Themes\BaseTheme;
 
 use Pimple\Container;
 use RZ\Roadiz\CMS\Controllers\FrontendController;
+use RZ\Roadiz\Core\Entities\Translation;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use RZ\Roadiz\Core\Repositories\TranslationRepository;
 use Themes\BaseTheme\Services;
 use Themes\BaseTheme\Twig\ImageFormatsExtension;
 
@@ -40,15 +42,25 @@ class BaseThemeApp extends FrontendController
     ) {
         /*
          * Automatic http Accept-Language detection and redirection.
-         * Force locale if we request with no locale in URL
+         * Force locale if we request with no locale in URL.
+         * 
+         * You MUST enable force locale in URL setting to redirect users.
          */
-        // if ($_locale === null) {
-        //     $transRepository = $this->get('em')->getRepository('RZ\Roadiz\Core\Entities\Translation');
-        //     $redirectLocale = $request->getPreferredLanguage($transRepository->getAvailableLocales());
-        //     $translation = $transRepository->findOneByLocaleAndAvailable($redirectLocale);
-
-        //     return $this->redirect($this->generateUrl('homePageLocale', ['_locale'=>$translation->getPreferredLocale()]), 301);
-        // }
+        //if ($_locale === null) {
+        //    /** @var TranslationRepository $transRepository */
+        //    $transRepository = $this->get('em')->getRepository(Translation::class);
+        //    $redirectLocale = $request->getPreferredLanguage($transRepository->getAvailableLocales());
+        //    $translation = $transRepository->findOneByLocaleAndAvailable($redirectLocale);
+        //    if (null === $translation) {
+        //        $translation = $this->get('defaultTranslation');
+        //    }
+        //
+        //    return $this->redirect(
+        //        $this->generateUrl('homePageLocale', ['_locale'=>$translation->getPreferredLocale()]),
+        //        Response::HTTP_MOVED_PERMANENTLY
+        //    );
+        //}
+        
         /*
          * If you use a static route for Home page
          * we need to grab manually language.
@@ -138,11 +150,6 @@ class BaseThemeApp extends FrontendController
         $this->themeContainer->register(new Services\NodeServiceProvider($this->getContainer(), $this->translation));
 
         $this->assignation['themeServices'] = $this->themeContainer;
-        $this->assignation['head']['facebookClientId'] = $this->get('settingsBag')->get('facebook_client_id');
-        $this->assignation['head']['googleClientId'] = $this->get('settingsBag')->get('google_client_id');
-        $this->assignation['head']['twitterAccount'] = $this->get('settingsBag')->get('twitter_account');
-        $this->assignation['head']['mapsStyle'] = $this->get('settingsBag')->get('maps_style');
-        $this->assignation['head']['googleTagManagerId'] = $this->get('settingsBag')->get('google_tag_manager_id');
         $this->assignation['head']['themeName'] = static::$themeName;
         $this->assignation['head']['themeVersion'] = static::VERSION;
 

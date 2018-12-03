@@ -1,4 +1,17 @@
-{% set blockClassPrefix = nodeType.name|lower %}
+{#
+ # Define some variables in case of use without a nodeSource.
+ #}
+{% if not nodeTypeName and nodeType %}
+    {% set nodeTypeName = nodeType.name %}
+{% endif %}
+
+{% if not blockClassPrefix %}
+    {% set blockClassPrefix = nodeTypeName|lower %}
+{% endif %}
+
+{% if not blockId and node %}
+    {% set blockId = node.nodeName %}
+{% endif %}
 
 {% set blockClasses = [
     'page-block',
@@ -6,9 +19,9 @@
 ] %}
 
 <div class="{% block blockClasses %}{{ blockClasses|join(' ') }}{% endblock %}"
-     id="block-{{ node.nodeName }}"
+     id="block-{{ blockId }}"
      {% if loop %} data-index="{{ loop.index0 }}"{% endif %}
-     data-node-type="{{ nodeType.name }}">
+     data-node-type="{{ nodeTypeName }}">
     {% block innerContent %}
         <div class="container">
             <h2 class="page-block-title {{ blockClassPrefix }}-title">{{ nodeSource.title }}</h2>

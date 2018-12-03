@@ -61,6 +61,18 @@ $grid-gutter-widths: (
 );
 @include _assert-ascending($container-max-widths, "$container-max-widths");
 
+/*
+ * Support RTL with Grid offset
+ */
+@mixin make-col-offset($size, $columns: $grid-columns) {
+    margin-left: percentage($size / $columns);
+
+    [dir=rtl] & {
+        margin-left: 0;
+        margin-right: percentage($size / $columns);
+    }
+}
+
 // ----------------------------------------------------
 // 3. The rest of the required files
 // ----------------------------------------------------

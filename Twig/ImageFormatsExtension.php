@@ -17,18 +17,20 @@ class ImageFormatsExtension extends AbstractExtension implements GlobalsInterfac
                 'headerImage' => [
                     'fit' => '1920x300',
                     'quality' => 85,
+                    'picture' => true,
                     'progressive' => true,
                     'class' => 'img-fluid',
                 ],
                 'columnedImage' => [
                     'width' => 720,
-                    'lazyload' => true,
+                    'picture' => true,
                     'progressive' => true,
-                    'class' => 'img-fluid lazyload',
+                    'class' => 'img-fluid',
                 ],
                 'thumbnail' => [
                     'fit' => '600x338',
                     'controls' => true,
+                    'picture' => true,
                     'embed' => true,
                     'progressive' => true
                 ],

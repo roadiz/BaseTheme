@@ -32,7 +32,7 @@
             </trans-unit>
             <trans-unit id="browser_update.message">
                 <source>browser_update.message</source>
-                <target>Your browser is out of date. It has some security failures et could not show properly some features of this website.</target>
+                <target>Your browser is out of date. It has some security flaws and might not show some features of this website properly.</target>
             </trans-unit>
             <trans-unit id="browser_update.link">
                 <source>browser_update.link</source>
