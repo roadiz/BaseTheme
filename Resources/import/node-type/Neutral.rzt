@@ -7,5 +7,6 @@
     "hidingNodes": false,
     "color": "#9c9c9c",
     "reachable": false,
+    "publishable": false,
     "fields": []
 }

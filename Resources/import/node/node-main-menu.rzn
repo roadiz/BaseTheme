@@ -12,6 +12,8 @@
         "sterile": false,
         "children_order": "position",
         "children_order_direction": "ASC",
+        "position": 1,
+        "dynamic_node_name": true,
         "children": [
             {
                 "node_name": "home",
@@ -26,7 +28,58 @@
                 "sterile": false,
                 "children_order": "order",
                 "children_order_direction": "ASC",
-                "children": [],
+                "position": 2,
+                "dynamic_node_name": true,
+                "children": [
+                    {
+                        "node_name": "content-block-example",
+                        "node_type": "ContentBlock",
+                        "home": false,
+                        "visible": true,
+                        "status": 30,
+                        "locked": false,
+                        "priority": 0.8,
+                        "hiding_children": false,
+                        "archived": false,
+                        "sterile": false,
+                        "children_order": "position",
+                        "children_order_direction": "ASC",
+                        "position": 1,
+                        "dynamic_node_name": true,
+                        "children": [],
+                        "nodes_sources": [
+                            {
+                                "translation": "en",
+                                "title": "Content block example",
+                                "meta_title": "",
+                                "meta_keywords": "",
+                                "meta_description": "",
+                                "published_at": {
+                                    "date": "2018-12-07 11:37:30.000000",
+                                    "timezone_type": 3,
+                                    "timezone": "Europe/Paris"
+                                },
+                                "content": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula ut id elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.",
+                                "url_aliases": []
+                            },
+                            {
+                                "translation": "fr",
+                                "title": "Exemple de bloc de contenu",
+                                "meta_title": "",
+                                "meta_keywords": "",
+                                "meta_description": "",
+                                "published_at": {
+                                    "date": "2018-12-07 11:37:30.000000",
+                                    "timezone_type": 3,
+                                    "timezone": "Europe/Paris"
+                                },
+                                "content": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula ut id elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.",
+                                "url_aliases": []
+                            }
+                        ],
+                        "tags": []
+                    }
+                ],
                 "nodes_sources": [
                     {
                         "translation": "en",
@@ -34,6 +87,7 @@
                         "meta_title": "",
                         "meta_keywords": "",
                         "meta_description": "",
+                        "published_at": null,
                         "content": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Nulla vitae elit libero, a pharetra augue. Vestibulum id ligula porta felis euismod semper. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sed diam eget risus varius blandit sit amet non magna. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum id ligula porta felis euismod semper.",
                         "url_aliases": []
                     },
@@ -43,6 +97,7 @@
                         "meta_title": "",
                         "meta_keywords": "",
                         "meta_description": "",
+                        "published_at": null,
                         "content": "Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue. Donec sed odio dui. Sed posuere consectetur est at lobortis.",
                         "url_aliases": []
                     }
@@ -62,7 +117,58 @@
                 "sterile": false,
                 "children_order": "position",
                 "children_order_direction": "ASC",
-                "children": [],
+                "position": 2,
+                "dynamic_node_name": true,
+                "children": [
+                    {
+                        "node_name": "contact-block-example",
+                        "node_type": "ContactBlock",
+                        "home": false,
+                        "visible": true,
+                        "status": 30,
+                        "locked": false,
+                        "priority": 0.8,
+                        "hiding_children": false,
+                        "archived": false,
+                        "sterile": false,
+                        "children_order": "position",
+                        "children_order_direction": "ASC",
+                        "position": 1,
+                        "dynamic_node_name": true,
+                        "children": [],
+                        "nodes_sources": [
+                            {
+                                "translation": "en",
+                                "title": "Contact block example",
+                                "meta_title": "",
+                                "meta_keywords": "",
+                                "meta_description": "",
+                                "published_at": {
+                                    "date": "2018-12-07 11:37:43.000000",
+                                    "timezone_type": 3,
+                                    "timezone": "Europe/Paris"
+                                },
+                                "contact_address": null,
+                                "url_aliases": []
+                            },
+                            {
+                                "translation": "fr",
+                                "title": "Exemple de bloc de contact",
+                                "meta_title": "",
+                                "meta_keywords": "",
+                                "meta_description": "",
+                                "published_at": {
+                                    "date": "2018-12-07 11:37:43.000000",
+                                    "timezone_type": 3,
+                                    "timezone": "Europe/Paris"
+                                },
+                                "contact_address": null,
+                                "url_aliases": []
+                            }
+                        ],
+                        "tags": []
+                    }
+                ],
                 "nodes_sources": [
                     {
                         "translation": "en",
@@ -70,6 +176,7 @@
                         "meta_title": "",
                         "meta_keywords": "",
                         "meta_description": "",
+                        "published_at": null,
                         "content": "Donec id elit non mi porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.",
                         "url_aliases": []
                     },
@@ -79,6 +186,7 @@
                         "meta_title": "",
                         "meta_keywords": "",
                         "meta_description": "",
+                        "published_at": null,
                         "content": "Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.",
                         "url_aliases": []
                     }
@@ -93,6 +201,7 @@
                 "meta_title": "",
                 "meta_keywords": "",
                 "meta_description": "",
+                "published_at": null,
                 "url_aliases": []
             },
             {
@@ -101,6 +210,7 @@
                 "meta_title": "",
                 "meta_keywords": "",
                 "meta_description": "",
+                "published_at": null,
                 "url_aliases": []
             }
         ],
