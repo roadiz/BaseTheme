@@ -16,7 +16,7 @@
     "node": ">=8.0.0"
   },
   "scripts": {
-    "add-force": "git add --force static/css/* static/fonts/* static/img/* static/js/* static/vendors/* Resources/views/svg/sprite.svg.twig Resources/views/partials/css-inject.html.twig Resources/views/partials/js-inject.html.twig  Resources/views/partials/js-inject-legacy.html.twig Resources/views/partials/js-inject-modern.html.twig",
+    "add-force": "git add --force static/css/* static/img/* static/js/* static/vendors/* Resources/views/svg/sprite.svg.twig Resources/views/partials/css-inject.html.twig Resources/views/partials/js-inject.html.twig  Resources/views/partials/js-inject-legacy.html.twig Resources/views/partials/js-inject-modern.html.twig",
     "dev": "better-npm-run dev",
     "build": "better-npm-run build",
     "dev-livereload": "better-npm-run dev-livereload"
