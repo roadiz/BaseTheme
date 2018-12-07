@@ -74,12 +74,6 @@ class BaseThemeApp extends FrontendController
          * Use home page node-type to render it.
          */
         return $this->handle($request, $home, $translation);
-
-        /*
-         * Render Homepage manually
-         */
-        // $this->prepareThemeAssignation($home, $translation);
-        // return $this->render('pages/home.html.twig', $this->assignation);
     }
 
     /**
@@ -168,11 +162,6 @@ class BaseThemeApp extends FrontendController
                 ];
             }
         }
-
-        // Get session messages
-        // Remove FlashBag assignation from here if you handle your forms
-        // in sub-requests block renders.
-        // $this->assignation['session']['messages'] = $this->get('session')->getFlashBag()->all();
     }
 
     /**
