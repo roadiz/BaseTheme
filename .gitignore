@@ -87,8 +87,8 @@ sftp-config.json
 .nfs.*
 
 ## Yarn
-yarn.lock
-package-lock.json
+# yarn.lock
+# package-lock.json
 
 ## Phpstorm
 /.idea
