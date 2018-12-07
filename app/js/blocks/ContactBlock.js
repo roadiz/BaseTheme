@@ -22,19 +22,25 @@ export default class ContactBlock extends DefaultBlock {
 
     initEvents () {
         super.initEvents()
-        if (this.form) this.form.addEventListener('submit', this.formSubmit)
+
+        if (this.form) {
+            this.form.addEventListener('submit', this.formSubmit)
+        }
     }
 
     destroyEvents () {
         super.destroyEvents()
-        if (this.form) this.form.removeEventListener('submit', this.formSubmit)
+
+        if (this.form) {
+            this.form.removeEventListener('submit', this.formSubmit)
+        }
     }
 
     formSubmit (e) {
         e.preventDefault()
 
         if (this.timeout) {
-            clearTimeout(this.timeout)
+            window.clearTimeout(this.timeout)
         }
         this.timeout = setTimeout(async () => {
             TweenLite.to(this.formMessage, 0.6, { height: 0, paddingTop: 0, paddingBottom: 0 })

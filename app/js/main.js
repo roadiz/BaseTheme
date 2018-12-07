@@ -4,6 +4,7 @@
  * @file main.js
  * @author Ambroise Maupate
  */
+
 import StartingBlocks, {
     Pjax,
     History,
@@ -13,11 +14,27 @@ import StartingBlocks, {
 } from 'starting-blocks'
 import WebpackAsyncBlockBuilder from './services/WebpackAsyncBlockBuilder'
 import TransitionFactory from './factories/TransitionFactory'
-import Home from './pages/Home'
-import Page from './pages/Page'
+import HomePage from './pages/HomePage'
 import Nav from './common/Nav'
+import DefaultPage from './pages/DefaultPage'
 import 'gsap/CSSPlugin'
 import 'lazysizes'
+import '../scss/style.scss'
+
+window.passiveSupported = false
+
+try {
+    const options = Object.defineProperty({}, 'passive', {
+        get: function () {
+            window.passiveSupported = true
+        }
+    })
+
+    window.addEventListener('test', options, options)
+    window.removeEventListener('test', options, options)
+} catch (err) {
+    window.passiveSupported = false
+}
 
 (() => {
     // BEING IMPORTANT (Bug Safari 10.1)
@@ -64,10 +81,10 @@ import 'lazysizes'
 
     // Register pages
     startingBlocks.instanceFactory('Home', c => {
-        return new Home(c)
+        return new HomePage(c)
     })
-    startingBlocks.instanceFactory('Page', c => {
-        return new Page(c)
+    startingBlocks.instanceFactory('DefaultPage', c => {
+        return new DefaultPage(c)
     })
 
     nav.init()

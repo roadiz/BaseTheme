@@ -48,9 +48,7 @@ const getConfig = () => {
         // ----------------------------------
         // Inputs
         // ----------------------------------
-        js_vendors: [
-            'starting-blocks/main.js'
-        ],
+        // js_vendors: [],
 
         // ----------------------------------
         // Outputs
@@ -76,16 +74,7 @@ const getConfig = () => {
         // ----------------------------------
         // Externals
         // ----------------------------------
-        externals: {
-            'CSSPlugin': 'CSSPlugin',
-            'jquery': 'jQuery',
-            'jQuery': 'jQuery',
-            '$': 'jQuery',
-            'loglevel': 'log',
-            'log': 'log',
-            'jquery.waitforimages': 'jquery.waitforimages',
-            'waitforimages': 'jquery.waitforimages'
-        },
+        // externals: {},
 
         // ----------------------------------
         // Globals

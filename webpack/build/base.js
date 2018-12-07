@@ -19,18 +19,8 @@ const getWebpackConfigBase = (config) => {
         cache: true,
         stats: config.stats,
         devtool: config.devtool,
-        name: 'client',
         target: 'web',
         context: paths.dist(),
-        entry: {
-            app: [paths.client('js/main.js'), paths.client('scss/style.scss')]
-        },
-        output: {
-            path: paths.dist(),
-            filename: config.assets_name_js,
-            chunkFilename: config.assets_chunkfilename,
-            publicPath: config.public_path
-        },
         module: {
             rules: [{
                 test: /svg\/.*\.svg$/,

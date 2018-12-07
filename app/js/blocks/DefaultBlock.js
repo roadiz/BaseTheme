@@ -8,30 +8,6 @@
 import { AbstractBlock } from 'starting-blocks'
 
 /**
- * Abstract class to do common actions on every blocks (like inView, etc.). Do not instanciate this class.
+ * Default class to do common actions on every blocks (like inView, etc.)
  */
-export default class DefaultBlock extends AbstractBlock {
-    init () {
-        return super.init()
-    }
-
-    initEvents () {
-        return super.initEvents()
-    }
-
-    destroy () {
-        return super.destroy()
-    }
-
-    destroyEvents () {
-        return super.destroyEvents()
-    }
-
-    onResize () {
-        return super.onResize()
-    }
-
-    onPageReady () {
-        return super.onPageReady()
-    }
-}
+export default class DefaultBlock extends AbstractBlock {}

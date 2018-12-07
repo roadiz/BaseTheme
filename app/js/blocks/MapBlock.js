@@ -11,13 +11,16 @@ import loadGoogleMapsAPI from 'load-google-maps-api'
 export default class MapBlock extends DefaultBlock {
     constructor (container) {
         super(container, 'MapBlock')
+
         // Elements
         this.map = null
         this.marker = null
+        this.mapElement = null
     }
 
     init () {
         super.init()
+
         /** {HTMLElement} */
         this.mapElement = this.rootElement.querySelector('.mapblock-canvas')
 
@@ -33,6 +36,9 @@ export default class MapBlock extends DefaultBlock {
                 }).then((googleMaps) => {
                     MapBlock.googleMaps = googleMaps
                     this.createMap()
+                })
+                .catch((err) => {
+                    console.debug(err)
                 })
             } else {
                 this.createMap()

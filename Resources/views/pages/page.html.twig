@@ -10,27 +10,14 @@
         </div>
     </header>
 {% endblock %}
+
 {% block inner_content %}
     <div class="container">
         <div class="page-text">{{ nodeSource.content|markdownExtra }}</div>
     </div>
 
     <div class="page-blocks">
-        {% if node.isHome %}
-            <div class="page-block"
-                 id="block-test"
-                 data-node-type="ContactBlock">
-                {% block innerContent %}
-                    <div class="container">
-                        <h2>Contact Block</h2>
-                    </div>
-                {% endblock %}
-            </div>
-        {% endif %}
-
-        {#
-         # Page blocks pattern implementation
-         #}
+        {# Page blocks pattern implementation #}
         {% set blocks = nodeSource|children({
             'node.nodeType' : ['!=', bags.nodeTypes.get('Page')],
             'node.visible': true,
@@ -48,6 +35,7 @@
             } only %}
         {% endfor %}
     </div>
+
     <div class="images">
         {% for image in nodeSource.images %}
             {% set imageMetas = image.documentTranslations.first %}

@@ -19,7 +19,7 @@ cd themes/TestTheme
 yarn 
 ```
 
-We provide a starter kit based on ES6 with *Webpack4*, *Babel*, *Scss* and *Gulp* as task runner. Feel free to adapt it if you have your own coding workflow. Keep in mind that we inject built CSS and JS into partial *Twig* templates to get versioned file names.
+We provide a starter kit based on ES6 with *Webpack4*, *Babel*, *Scss*. Feel free to adapt it if you have your own coding workflow. Keep in mind that we inject built CSS and JS into partial *Twig* templates to get versioned file names.
 
 ## Scripts
 ### Development
@@ -56,22 +56,22 @@ This **folder will be symlinked in your *Roadiz Standard edition* `web/` folder,
 
 **IMPORTANT**: Do not add any files in `static/img`, `static/js`, `static/svg`, `static/css`, `static/fonts`, `static/vendors`.
 
-#### `build/`
+#### `webpack/`
 
-This folder stores all build configurations, webpack configuration and gulp tasks.
+This folder stores all build configurations (webpack).
 
 ## Features
 
 ### JS + Starting blocks
 
-We externalized all the JS logic and routing system into our [*Starting blocks*](https://github.com/rezozero/starting-blocks) framework so that your theme only host specific JS code and will be able to easily upgrade common JS features.
+We externalized all the JS logic into our [*Starting blocks*](https://github.com/rezozero/starting-blocks) framework so that your theme only host specific JS code and will be able to easily upgrade common JS features.
 
 We encourage you to read [*Starting Blocks* README](https://github.com/rezozero/starting-blocks/blob/master/README.md) 
 to understand how we route and synchronize our *Twig* generated DOM with our ES6 scripts. You can find a detailled
 API documentation at http://startingblocks.rezo-zero.com
 
 In *development*, all *JS* files are preprocessed with *Babel*, linted and a sourcemap is created.  
-In *production*, these files are also minified and optimized (uglifyJs, mangle) and the sourcemap is removed.
+In *production*, these files are also minified and optimized (uglifyJs, mangle, tree shaking) and the sourcemap is removed.
 
 **Attention: Starting-Block is using window.fetch since version 4.0.0.** Make sure your compatibility chart will match or simply use a *polyfill*. 
 
@@ -124,7 +124,7 @@ While you run `npm run build`, *Webpack* will generate a random generated name s
 
 ### Customize build tasks
 
-All build configurations are in `build/config/`. `base.js` file contains general configurations which you can override according `NODE_ENV` in `environments.js`.
+All build configurations are in `webpack/config/`. `base.js` file contains general configurations which you can override according `NODE_ENV` in `environments.js`.
 
 For example, while you run `npm run build`, `NODE_ENV` is equal to `production` :
 
@@ -133,7 +133,7 @@ For example, while you run `npm run build`, `NODE_ENV` is equal to `production` 
 
 "betterScripts": {
     "build": {
-      "command": "npm run build-svg && webpack",
+      "command": "webpack",
       "env": {
         "NODE_ENV": "production",
         "DEBUG": "Roadiz-front:*"
@@ -154,11 +154,11 @@ export default {
 }
 ```
 
-Webpack configuration works the same. `build/build/base.js` exports a common webpack configuration which you can override in `build/build/environments.js`
+Webpack configuration works the same. `webpack/build/base.js` exports a common webpack configuration which you can override in `webpack/build/environments.js`
 
 Feel free to add other custom `NODE_ENV` like staging, testing...
 
-**important note** : When you start `npm run dev-livereload` task, Webpack watch the files every 1000ms. You can change this interval in `config.watchInterval`.
+**important note** : When you start `npm run dev-livereload` task, Webpack watch the files every 200ms. You can change this interval in `config.watchInterval`.
 
 ### Constants
 

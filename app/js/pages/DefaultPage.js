@@ -13,8 +13,4 @@ export default class DefaultPage extends AbstractPage {
     constructor (container) {
         super(container, 'DefaultPage')
     }
-
-    init () {
-        super.init()
-    }
 }
