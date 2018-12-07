@@ -18,4 +18,5 @@ importFiles:
         - Resources/import/node-type/Page.rzt
     tags: []
     nodes:
-        - "Resources/import/node/node-main-menu.rzn"
+        - Resources/import/node/node-main-menu.rzn
+        - Resources/import/node/node-legals.rzn

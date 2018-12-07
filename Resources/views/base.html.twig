@@ -18,11 +18,11 @@
 {% endif %}
 {# No whitespace before DOCTYPE #}
 <!DOCTYPE html>
-<html itemscope itemtype="http://schema.org/WebPage" class="no-js" lang="{{ formattedLocale }}"{% if request.locale is rtl %} dir="rtl"{% endif %}>
+<html itemscope itemtype="http://schema.org/WebPage" lang="{{ formattedLocale }}"{% if request.locale is rtl %} dir="rtl"{% endif %}>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ pageMetaTitle }}</title>
+    <title>{% block page_title %}{{- pageMetaTitle -}}{% endblock %}{{ pageMetaTitle }}</title>
     <meta name="description" content="{{ pageMetaDescription }}" />
     {% if pageMeta.keywords %}<meta name="keywords" content="{{ pageMeta.keywords }}" />{% endif %}
     <meta name="generator" content="Roadiz {{ cms_prefix }} {{ cms_version }} - {{ head.themeName }} v{{ head.themeVersion }}" />
@@ -48,28 +48,17 @@
     {% endif %}
 
     {#
-     # Favicons ----------------------------------------------------------------
+     # Favicons Generate them on https://realfavicongenerator.net
      #}
-    <link rel="apple-touch-icon" sizes="57x57" href="{{ head.resourcesUrl }}img/favicons/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="{{ head.resourcesUrl }}img/favicons/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{ head.resourcesUrl }}img/favicons/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="{{ head.resourcesUrl }}img/favicons/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{ head.resourcesUrl }}img/favicons/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="{{ head.resourcesUrl }}img/favicons/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="{{ head.resourcesUrl }}img/favicons/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="{{ head.resourcesUrl }}img/favicons/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ head.resourcesUrl }}img/favicons/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" href="{{ head.resourcesUrl }}img/favicons/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="{{ head.resourcesUrl }}img/favicons/favicon-194x194.png" sizes="194x194">
-    <link rel="icon" type="image/png" href="{{ head.resourcesUrl }}img/favicons/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="{{ head.resourcesUrl }}img/favicons/android-chrome-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="{{ head.resourcesUrl }}img/favicons/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="{{ head.resourcesUrl }}img/favicons/manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ head.resourcesUrl }}img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ head.resourcesUrl }}img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ head.resourcesUrl }}img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="{{ head.resourcesUrl }}img/favicon/site.webmanifest">
+    <link rel="mask-icon" href="{{ head.resourcesUrl }}img/favicon/safari-pinned-tab.svg" color="#000000">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
     <meta name="apple-mobile-web-app-title" content="{{ meta.siteName }}">
     <meta name="application-name" content="{{ meta.siteName }}">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
-    <meta name="theme-color" content="#ffffff">
 
     {#
      # Share metas -------------------------------------------------------------
@@ -112,19 +101,16 @@
      # @see static/gulp-tasks/inject.js
      #}
     {% include '@BaseTheme/partials/css-inject.html.twig' %}
+
     {#
      # Roadiz font-face CSS (comment it if no fonts available) -----------------
      #}
     <link rel="stylesheet" href="{{ path('FontFaceCSS') }}" />
+
     {#
      # Dynamic CSS styles - uncomment next line to activate it -----------------
      #}
     {#<link rel="stylesheet" href="{{ path('CssDynamicStyles') }}" />#}
-
-    {#
-     # Modernizr ---------------------------------------------------------------
-     #}
-    <script src="{{ head.resourcesUrl }}vendors/modernizr.custom.js"></script>
 
     {% if head.googleTagManagerId %}
     <!-- Google Tag Manager -->

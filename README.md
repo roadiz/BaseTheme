@@ -16,7 +16,7 @@ Generate a new theme with *Test* as your theme prefix
 bin/roadiz themes:generate Test
 cd themes/TestTheme
 # Install JS dependencies with npm or Yarn
-yarn 
+yarn && yarn run build
 ```
 
 We provide a starter kit based on ES6 with *Webpack4*, *Babel*, *Scss*. Feel free to adapt it if you have your own coding workflow. Keep in mind that we inject built CSS and JS into partial *Twig* templates to get versioned file names.
@@ -27,14 +27,6 @@ We provide a starter kit based on ES6 with *Webpack4*, *Babel*, *Scss*. Feel fre
 ```shell
 yarn run dev
 ```
-
-Watch js, scss, images and svg changes in `app/` folder, then build.
-
-```shell
-yarn run dev-livereload
-```
-
-Same features as above but with browser livereload.
 
 ### Production
 
@@ -67,7 +59,7 @@ This folder stores all build configurations (webpack).
 We externalized all the JS logic into our [*Starting blocks*](https://github.com/rezozero/starting-blocks) framework so that your theme only host specific JS code and will be able to easily upgrade common JS features.
 
 We encourage you to read [*Starting Blocks* README](https://github.com/rezozero/starting-blocks/blob/master/README.md) 
-to understand how we route and synchronize our *Twig* generated DOM with our ES6 scripts. You can find a detailled
+to understand how we route and synchronize our *Twig* generated DOM with our ES6 scripts. You can find a detailed
 API documentation at http://startingblocks.rezo-zero.com
 
 In *development*, all *JS* files are preprocessed with *Babel*, linted and a sourcemap is created.  
@@ -108,7 +100,7 @@ Under `config.limit_image_size`, required image will be transformed into dataUrl
 
 ### SVG
 
-All *SVG* files in `app/svg/` folder will be processed by *Gulp*, minified with *SVGO* and injected in `Resources/views/svg/sprite.svg.twig` as `<defs>` element, which is injected in `base.html.twig`.
+All *SVG* files in `app/svg/` folder will be processed by *Webpack*, minified with *SVGO* and injected in `Resources/views/svg/sprite.svg.twig` as `<defs>` element, which is injected in `base.html.twig`.
 
 To include a new *SVG* to your site, move your *SVG* to `app/svg/myicon.svg` and, in any *Twig* template
 
@@ -120,13 +112,13 @@ To include a new *SVG* to your site, move your *SVG* to `app/svg/myicon.svg` and
 
 Versioning is really important in order to avoid browser and public cache problems after a site update.
 
-While you run `npm run build`, *Webpack* will generate a random generated name suffix for each file and require *CSS* and *JS* files in `Resources/views/base.html.twig` template.
+While you run `yarn run build`, *Webpack* will generate a random generated name suffix for each file and require *CSS* and *JS* files in `Resources/views/base.html.twig` template.
 
 ### Customize build tasks
 
 All build configurations are in `webpack/config/`. `base.js` file contains general configurations which you can override according `NODE_ENV` in `environments.js`.
 
-For example, while you run `npm run build`, `NODE_ENV` is equal to `production` :
+For example, while you run `yarn run build`, `NODE_ENV` is equal to `production` :
 
 ```json
 // package.json
@@ -190,10 +182,9 @@ if (PRODUCTION) {
 
 BaseTheme will provide you some ready-made *Twig* templates, styles and ES6 classes.
 
-- A basic block is available with its Twig template. All you need is to create the node-type in your Roadiz back-office.
+- A content block is available with its Twig template. All you need is to create the node-type in your Roadiz back-office.
 - A map block is available with its Twig template. All you need is to create the node-type in your Roadiz back-office.
-- A contact form block is available with its controller and Twig templates. All you need is to create the 
-node-type in your Roadiz back-office.
+- A contact form block is available with its controller and Twig templates. All you need is to create the node-type in your Roadiz back-office.
 
 #### Node-types
 
@@ -204,7 +195,7 @@ If you need others node-type, duplicate theses files and rename them.
 
 #### ES6 classes
 
-- `BasicBlock.js`
+- `ContentBlock.js`
 - `ContactBlock.js` with an AJAX form submit
 - `MapBlock.js` with a Google Map creation
 - `Nav.js` with AJAX update for your active *nav-item*

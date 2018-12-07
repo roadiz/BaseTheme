@@ -6,6 +6,8 @@
  */
 
 import StartingBlocks, {
+    Utils,
+    gaTrackErrors,
     Pjax,
     History,
     Prefetch,
@@ -17,7 +19,7 @@ import TransitionFactory from './factories/TransitionFactory'
 import HomePage from './pages/HomePage'
 import Nav from './common/Nav'
 import DefaultPage from './pages/DefaultPage'
-import 'gsap/CSSPlugin'
+import { CSSPlugin } from 'gsap/all'
 import 'lazysizes'
 import '../scss/style.scss'
 
@@ -36,7 +38,39 @@ try {
     window.passiveSupported = false
 }
 
+// Require all svg
+const loadSvg = (r) => {
+    r.keys().forEach(r)
+}
+
 (() => {
+    Utils.logCredits(
+        'BaseTheme',
+        '#fff',
+        [{
+            name: 'Rezo Zero',
+            website: 'www.rezo-zero.com'
+        }],
+        [{
+            name: 'Roadiz',
+            website: 'www.roadiz.io'
+        }, {
+            name: 'GSAP',
+            website: 'www.greensock.com'
+        }, {
+            name: 'Starting Blocks',
+            website: 'https://startingblocks.rezo-zero.com'
+        }],
+        '#000'
+    )
+
+    // without this line, CSSPlugin  may get dropped by the bundler...
+    new CSSPlugin() // eslint-disable-line
+
+    loadSvg(require.context('../svg/', true, /\.svg$/))
+    /** Tracks errors with Analytics **/
+    gaTrackErrors()
+
     // BEING IMPORTANT (Bug Safari 10.1)
     // DO NOT REMOVE
     if (window.MAIN_EXECUTED) {
@@ -57,13 +91,11 @@ try {
      */
     const nav = new Nav()
 
-    // console.log(StartingBlocks)
-
     /**
      * Build a new starting blocks
      */
     const startingBlocks = new StartingBlocks({
-        debug: 1,
+        debug: window.temp.devMode ? 1 : 0,
         wrapperId: 'main-container'
     })
 
