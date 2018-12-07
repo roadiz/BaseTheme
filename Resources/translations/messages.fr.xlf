@@ -46,6 +46,23 @@
                 <source>error404.message</source>
                 <target>Page introuvable.</target>
             </trans-unit>
+
+            <trans-unit id="your.email">
+                <source>your.email</source>
+                <target>Votre adresse email</target>
+            </trans-unit>
+            <trans-unit id="your.name">
+                <source>your.name</source>
+                <target>Votre nom</target>
+            </trans-unit>
+            <trans-unit id="your.message">
+                <source>your.message</source>
+                <target>Votre message</target>
+            </trans-unit>
+            <trans-unit id="send">
+                <source>send</source>
+                <target>Envoyer</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

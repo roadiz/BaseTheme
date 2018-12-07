@@ -86,6 +86,7 @@ $grid-gutter-widths: (
 //@import '../../../node_modules/bootstrap/scss/navbar';
 @import "../../../node_modules/bootstrap/scss/media";
 @import "../../../node_modules/bootstrap/scss/images";
-@import "../../../node_modules/bootstrap/scss/forms";
-@import "../../../node_modules/bootstrap/scss/alert";
+@import "../../../node_modules/bootstrap/scss/forms"; // when starting project only (backend devs will appreciate…)
+@import "../../../node_modules/bootstrap/scss/alert"; // when starting project only (backend devs will appreciate…)
+@import "../../../node_modules/bootstrap/scss/buttons"; // when starting project only (backend devs will appreciate…)
 @import "../../../node_modules/bootstrap/scss/utilities";

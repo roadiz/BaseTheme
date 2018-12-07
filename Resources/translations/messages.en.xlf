@@ -46,6 +46,23 @@
                 <source>error404.message</source>
                 <target>Requested page cannot be found.</target>
             </trans-unit>
+
+            <trans-unit id="your.email">
+                <source>your.email</source>
+                <target>Your email</target>
+            </trans-unit>
+            <trans-unit id="your.name">
+                <source>your.name</source>
+                <target>Your name</target>
+            </trans-unit>
+            <trans-unit id="your.message">
+                <source>your.message</source>
+                <target>Your message</target>
+            </trans-unit>
+            <trans-unit id="send">
+                <source>send</source>
+                <target>Send</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

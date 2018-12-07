@@ -10,6 +10,7 @@
 namespace Themes\BaseTheme\Controllers\Blocks;
 
 //use GeneratedNodeSources\NSContactBlock;
+use GeneratedNodeSources\NSContactBlock;
 use RZ\Roadiz\Core\Entities\NodesSources;
 use RZ\Roadiz\Core\Exceptions\ForceResponseException;
 use RZ\Roadiz\Utils\ContactFormManager;
@@ -39,7 +40,7 @@ class ContactBlockController extends BaseThemeApp
 
         /** @var ContactFormManager $contactFormManager */
         $contactFormManager = $this->createContactFormManager()->withDefaultFields();
-        // Scroll to contactform block after submit succedeed or failed
+        // Scroll to contactForm block after submit succeeded or failed
         $contactFormManager->setOptions([
             'action' => '#block-' . $source->getNode()->getNodeName(),
         ]);
@@ -48,9 +49,9 @@ class ContactBlockController extends BaseThemeApp
          * Define custom receiver.
          * If node-type declare one
          */
-        /*if ($source instanceof NSContactBlock && $source->getContactAddress() !== '') {
+        if ($source instanceof NSContactBlock && $source->getContactAddress() !== '') {
             $contactFormManager->setReceiver($source->getContactAddress());
-        }*/
+        }
 
         if (null !== $response = $contactFormManager->handle()) {
             /*

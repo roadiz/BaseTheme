@@ -36,8 +36,7 @@ export default class MapBlock extends DefaultBlock {
                 }).then((googleMaps) => {
                     MapBlock.googleMaps = googleMaps
                     this.createMap()
-                })
-                .catch((err) => {
+                }).catch((err) => {
                     console.debug(err)
                 })
             } else {
