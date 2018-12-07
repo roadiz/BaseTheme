@@ -12,6 +12,26 @@ import { AbstractBlock } from 'starting-blocks'
  */
 export default class DefaultBlock extends AbstractBlock {
     init () {
-        super.init()
+        return super.init()
+    }
+
+    initEvents () {
+        return super.initEvents()
+    }
+
+    destroy () {
+        return super.destroy()
+    }
+
+    destroyEvents () {
+        return super.destroyEvents()
+    }
+
+    onResize () {
+        return super.onResize()
+    }
+
+    onPageReady () {
+        return super.onPageReady()
     }
 }

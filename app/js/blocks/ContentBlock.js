@@ -7,7 +7,11 @@
 
 import DefaultBlock from './DefaultBlock'
 
-export default class BasicBlock extends DefaultBlock {
+export default class ContentBlock extends DefaultBlock {
+    constructor (container) {
+        super(container, 'ContentBlock')
+    }
+
     init () {
         super.init()
     }
