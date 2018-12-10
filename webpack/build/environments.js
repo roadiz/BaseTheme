@@ -184,7 +184,8 @@ export default {
             output: {
                 path: paths.dist(),
                 filename: filename,
-                chunkFilename: chunkfilename
+                chunkFilename: chunkfilename,
+                publicPath: config.public_path
             }
         }
     },
@@ -211,13 +212,6 @@ export default {
             }
         },
         plugins: [
-            new HtmlWebpackPlugin({
-                filename: config.utils_paths.views('partials/js-inject-legacy.html.twig'),
-                template: config.utils_paths.views('partials/js-inject-legacy-src.html.twig'),
-                cache: false,
-                inject: false,
-                refreshOnChange: config.refreshOnChange
-            }),
             new HtmlWebpackMultiBuildPlugin(),
             new WebpackNotifierPlugin({ alwaysNotify: true })
         ],
@@ -242,6 +236,13 @@ export default {
                 rules: [scssConfig]
             },
             plugins: [
+                new HtmlWebpackPlugin({
+                    filename: config.utils_paths.views('partials/js-inject-legacy.html.twig'),
+                    template: config.utils_paths.views('partials/js-inject-legacy-src.html.twig'),
+                    cache: false,
+                    inject: false,
+                    refreshOnChange: config.refreshOnChange
+                }),
                 new webpack.DefinePlugin({
                     'process.env': {
                         NODE_ENV: '"production"'
@@ -255,7 +256,8 @@ export default {
                         discardComments: { removeAll: true }
                     }
                 }),
-                new webpack.HashedModuleIdsPlugin()
+                new webpack.HashedModuleIdsPlugin(),
+                new HtmlWebpackMultiBuildPlugin()
             ],
             optimization: {
                 ...optimization
