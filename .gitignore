@@ -102,6 +102,7 @@ sftp-config.json
 /static/fonts
 /static/**
 /Resources/views/svg/sprite.svg.twig
+!/static/.gitkeep
 
 ## Inject files
 /Resources/views/partials/css-inject.html.twig
