@@ -219,6 +219,7 @@ export default {
                 port: config.port,
                 publicPath: config.public_path,
                 host: config.address,
+                disableHostCheck: true,
                 hot: true,
                 watchOptions: {
                     aggregateTimeout: 50,
