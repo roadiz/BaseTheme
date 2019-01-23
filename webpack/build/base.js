@@ -1,11 +1,11 @@
 import webpack from 'webpack'
-import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import debug from 'debug'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 import WriteFilePlugin from 'write-file-webpack-plugin'
 import SpriteLoaderPlugin from 'svg-sprite-loader/plugin'
 import CleanTerminalPlugin from 'clean-terminal-webpack-plugin'
+import HtmlWebpackMultiBuildPlugin from '../modules/HtmlWebpackMultiBuildPlugin'
 
 const dbg = debug('Roadiz-front:webpack-config:base  ')
 dbg.color = debug.colors[3]
@@ -88,17 +88,14 @@ const getWebpackConfigBase = (config) => {
                 from: paths.client('vendors'),
                 to: paths.dist('vendors')
             }]),
-            new ExtractTextPlugin({
-                filename: config.assets_name_css,
-                ignoreOrder: true,
-                allChunks: false
-            }),
             new SpriteLoaderPlugin({
                 plainSprite: true,
                 spriteAttrs: {
                     id: 'svg-sprite'
                 }
-            })
+            }),
+            new webpack.HashedModuleIdsPlugin(),
+            new HtmlWebpackMultiBuildPlugin()
         ],
         resolve: {
             extensions: ['.js']

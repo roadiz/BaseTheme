@@ -14,7 +14,7 @@ const getConfig = () => {
         ...config,
         address: ip.address(),
         port: '8090',
-        devtool: 'source-map',
+        devtool: false,
 
         // ----------------------------------
         // Project Structure

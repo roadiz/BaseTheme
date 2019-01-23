@@ -20,6 +20,10 @@ const getWebpackConfig = (config) => {
     if (webpackConfigOverrides[config.env]) {
         dbg('🙋‍♂️  Found overrides, applying to default configuration.')
 
+        if (config.env === 'development') {
+            return WebpackMerge.smart(baseModern, overrides(baseModern, config))
+        }
+
         return [
             WebpackMerge.smart(baseModern, overrides(baseModern, config)),
             WebpackMerge.smart(baseLegacy, overrides(baseLegacy, config))

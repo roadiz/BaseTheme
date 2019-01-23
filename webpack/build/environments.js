@@ -1,6 +1,5 @@
 import webpack from 'webpack'
 import cssnano from 'cssnano'
-import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import postcssFixes from 'postcss-fixes'
 import postcssFilterGradient from 'postcss-filter-gradient'
 import postcssReduceTransform from 'postcss-reduce-transforms'
@@ -10,60 +9,54 @@ import HtmlWebpackMultiBuildPlugin from '../modules/HtmlWebpackMultiBuildPlugin'
 import debug from 'debug'
 import WebpackNotifierPlugin from 'webpack-notifier'
 import OptimizeCSSPlugin from 'optimize-css-assets-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
 const dbg = debug('Roadiz-front:webpack-config:environments  ')
 dbg.color = debug.colors[5]
 
-const scssConfig = {
+const scssConfigProd = {
     test: /\.s?css?$/,
-    loader: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: [{
-            loader: 'css-loader',
-            options: {
-                modules: false,
-                filename: '[name].[contenthash].css',
-                importLoaders: 3,
-                sourceMap: false
-            }
-        }, {
-            loader: 'postcss-loader',
-            options: {
-                sourceMap: true,
-                plugins: [
-                    postcssFixes(),
-                    postcssFilterGradient(),
-                    postcssReduceTransform(),
-                    cssMqpacker(),
-                    cssnano({
-                        autoprefixer: {
-                            add: true,
-                            remove: true,
-                            browsers: ['last 2 version', 'ie 11', 'ie 10']
-                        },
-                        discardComments: {
-                            removeAll: true
-                        },
-                        discardUnused: false,
-                        mergeIdents: false,
-                        reduceIdents: false,
-                        safe: true,
-                        sourceMap: true
-                    })
-                ]
-            }
-        }, {
-            loader: 'resolve-url-loader',
-            options: {
-                sourceMap: true
-            }
-        }, {
-            loader: 'sass-loader',
-            options: {
-                sourceMap: true
-            }
-        }]
-    })
+    use: [{
+        loader: MiniCssExtractPlugin.loader
+    }, {
+        loader: 'css-loader',
+        options: {
+            modules: false,
+            minimize: true,
+            filename: '[name].[contenthash].css',
+            importLoaders: 3,
+            sourceMap: false
+        }
+    }, {
+        loader: 'postcss-loader',
+        options: {
+            sourceMap: true,
+            plugins: [
+                postcssFixes(),
+                postcssFilterGradient(),
+                postcssReduceTransform(),
+                cssMqpacker(),
+                cssnano({
+                    autoprefixer: {
+                        add: true,
+                        remove: true,
+                        browsers: ['last 2 version', 'ie 11', 'ie 10']
+                    },
+                    discardComments: {
+                        removeAll: true
+                    },
+                    discardUnused: false,
+                    mergeIdents: false,
+                    reduceIdents: false,
+                    safe: true
+                })
+            ]
+        }
+    }, {
+        loader: 'resolve-url-loader'
+    }, {
+        loader: 'sass-loader'
+    }]
 }
 
 const optimization = {
@@ -81,30 +74,41 @@ const optimization = {
     }
 }
 
-const scssConfigDev = {
+const commonScssDev = [{
+    loader: 'css-loader',
+    options: {
+        modules: false,
+        minimize: false,
+        filename: '[name].css',
+        importLoaders: 2,
+        sourceMap: true
+    }
+}, {
+    loader: 'resolve-url-loader',
+    options: {
+        sourceMap: true
+    }
+}, {
+    loader: 'sass-loader',
+    options: {
+        sourceMap: true
+    }
+}]
+
+let scssConfigDev = {
     test: /\.s?css?$/,
-    loader: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
+    use: [{
+        loader: MiniCssExtractPlugin.loader
+    }, ...commonScssDev]
+}
+
+if (process.env.REFRESH_ON_CHANGE === 'true') {
+    scssConfigDev = {
+        test: /\.s?css?$/,
         use: [{
-            loader: 'css-loader',
-            options: {
-                modules: false,
-                filename: '[name].css',
-                importLoaders: 3,
-                sourceMap: true
-            }
-        }, {
-            loader: 'resolve-url-loader',
-            options: {
-                sourceMap: true
-            }
-        }, {
-            loader: 'sass-loader',
-            options: {
-                sourceMap: true
-            }
-        }]
-    })
+            loader: 'style-loader'
+        }, ...commonScssDev]
+    }
 }
 
 export default {
@@ -186,44 +190,63 @@ export default {
                 filename: filename,
                 chunkFilename: chunkfilename,
                 publicPath: config.public_path
-            }
+            },
+            plugins: [
+                new HtmlWebpackPlugin({
+                    filename: config.utils_paths.views('partials/js-inject-legacy.html.twig'),
+                    template: config.utils_paths.views('partials/js-inject-legacy-src.html.twig'),
+                    cache: false,
+                    inject: false,
+                    refreshOnChange: config.refreshOnChange
+                })
+            ]
         }
     },
 
-    development: (base, config) => ({
-        watch: true,
-        mode: 'development',
-        cache: true,
-        devServer: {
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
-                'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
+    development: (base, config) => {
+        const devConfig = {
+            watch: true,
+            mode: 'development',
+            cache: true,
+            devServer: {
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+                    'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
+                },
+                inline: true,
+                stats: config.stats,
+                port: config.port,
+                publicPath: config.public_path,
+                host: config.address,
+                hot: true,
+                watchOptions: {
+                    aggregateTimeout: 50,
+                    ignored: /node_modules/
+                }
             },
-            inline: true,
-            stats: config.stats,
-            port: config.port,
-            publicPath: config.public_path,
-            host: config.address,
-            hot: true,
-            watchOptions: {
-                aggregateTimeout: 50,
-                ignored: /node_modules/
+            plugins: [
+                new WebpackNotifierPlugin({ alwaysNotify: true })
+            ],
+            module: {
+                rules: [scssConfigDev]
+            },
+            optimization: {
+                ...optimization
             }
-        },
-        plugins: [
-            new HtmlWebpackMultiBuildPlugin(),
-            new WebpackNotifierPlugin({ alwaysNotify: true })
-        ],
-        module: {
-            rules: [{
-                ...scssConfigDev
-            }]
-        },
-        optimization: {
-            ...optimization
         }
-    }),
+
+        if (process.env.REFRESH_ON_CHANGE !== 'true') {
+            devConfig.devtool = 'source-map'
+            devConfig.plugins.push(new MiniCssExtractPlugin({
+                filename: config.assets_name_css
+            }))
+        } else {
+            devConfig.devtool = 'eval-source-map'
+        }
+
+        return devConfig
+    },
 
     production: (base, config) => {
         dbg('🗑  Cleaning assets folder')
@@ -233,20 +256,16 @@ export default {
         return {
             mode: 'production',
             module: {
-                rules: [scssConfig]
+                rules: [scssConfigProd]
             },
             plugins: [
-                new HtmlWebpackPlugin({
-                    filename: config.utils_paths.views('partials/js-inject-legacy.html.twig'),
-                    template: config.utils_paths.views('partials/js-inject-legacy-src.html.twig'),
-                    cache: false,
-                    inject: false,
-                    refreshOnChange: config.refreshOnChange
-                }),
                 new webpack.DefinePlugin({
                     'process.env': {
                         NODE_ENV: '"production"'
                     }
+                }),
+                new MiniCssExtractPlugin({
+                    filename: config.assets_name_css
                 }),
                 // Compress extracted CSS. We are using this plugin so that possible
                 // duplicated CSS from different components can be deduped.
@@ -255,9 +274,7 @@ export default {
                         cssProcessor: require('cssnano'),
                         discardComments: { removeAll: true }
                     }
-                }),
-                new webpack.HashedModuleIdsPlugin(),
-                new HtmlWebpackMultiBuildPlugin()
+                })
             ],
             optimization: {
                 ...optimization
