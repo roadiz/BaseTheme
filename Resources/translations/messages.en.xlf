@@ -32,7 +32,7 @@
             </trans-unit>
             <trans-unit id="browser_update.message">
                 <source>browser_update.message</source>
-                <target>Your browser is out of date. It has some security failures et could not show properly some features of this website.</target>
+                <target>Your browser is out of date. It has some security flaws and might not show some features of this website properly.</target>
             </trans-unit>
             <trans-unit id="browser_update.link">
                 <source>browser_update.link</source>
@@ -45,6 +45,23 @@
             <trans-unit id="error404.message">
                 <source>error404.message</source>
                 <target>Requested page cannot be found.</target>
+            </trans-unit>
+
+            <trans-unit id="your.email">
+                <source>your.email</source>
+                <target>Your email</target>
+            </trans-unit>
+            <trans-unit id="your.name">
+                <source>your.name</source>
+                <target>Your name</target>
+            </trans-unit>
+            <trans-unit id="your.message">
+                <source>your.message</source>
+                <target>Your message</target>
+            </trans-unit>
+            <trans-unit id="send">
+                <source>send</source>
+                <target>Send</target>
             </trans-unit>
         </body>
     </file>

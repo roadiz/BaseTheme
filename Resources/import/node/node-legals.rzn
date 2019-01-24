@@ -1,0 +1,50 @@
+[
+    {
+        "node_name": "legals",
+        "node_type": "Page",
+        "home": false,
+        "visible": true,
+        "status": 30,
+        "locked": false,
+        "priority": 0.8,
+        "hiding_children": false,
+        "archived": false,
+        "sterile": false,
+        "children_order": "position",
+        "children_order_direction": "ASC",
+        "position": 2,
+        "dynamic_node_name": true,
+        "children": [],
+        "nodes_sources": [
+            {
+                "translation": "en",
+                "title": "Legals",
+                "meta_title": "",
+                "meta_keywords": "",
+                "meta_description": "",
+                "published_at": {
+                    "date": "2018-12-07 14:52:24.000000",
+                    "timezone_type": 3,
+                    "timezone": "Europe/Paris"
+                },
+                "content": "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Vestibulum id ligula porta felis euismod semper.",
+                "url_aliases": []
+            },
+            {
+                "translation": "fr",
+                "title": "Mentions légales",
+                "meta_title": "",
+                "meta_keywords": "",
+                "meta_description": "",
+                "published_at": {
+                    "date": "2018-12-07 14:52:24.000000",
+                    "timezone_type": 3,
+                    "timezone": "Europe/Paris"
+                },
+                "content": "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Vestibulum id ligula porta felis euismod semper.",
+                "url_aliases": []
+            }
+        ],
+        "tags": []
+    }
+]

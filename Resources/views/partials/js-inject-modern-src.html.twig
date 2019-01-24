@@ -1,0 +1,3 @@
+<% for (key in htmlWebpackPlugin.options.modernScripts) { %>
+<script type="module" crossorigin src="<%= htmlWebpackPlugin.options.modernScripts[key] %>"></script>
+<% } %>

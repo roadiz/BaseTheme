@@ -8,7 +8,7 @@
 @import '../../../node_modules/bootstrap/scss/mixins';
 
 // Reset and dependencies
-@import "../../../node_modules/bootstrap/scss/print";
+//@import "../../../node_modules/bootstrap/scss/print";
 
 // Core CSS
 @import "../../../node_modules/bootstrap/scss/reboot";
@@ -61,17 +61,32 @@ $grid-gutter-widths: (
 );
 @include _assert-ascending($container-max-widths, "$container-max-widths");
 
+/*
+ * Support RTL with Grid offset
+ */
+@mixin make-col-offset($size, $columns: $grid-columns) {
+    margin-left: percentage($size / $columns);
+
+    [dir=rtl] & {
+        margin-left: 0;
+        margin-right: percentage($size / $columns);
+    }
+}
+
 // ----------------------------------------------------
 // 3. The rest of the required files
 // ----------------------------------------------------
 
 // Grid system
 @import '../../../node_modules/bootstrap/scss/grid';
-@import '../../../node_modules/bootstrap/scss/tables';
+//@import '../../../node_modules/bootstrap/scss/tables';
 @import '../../../node_modules/bootstrap/scss/type';
-@import '../../../node_modules/bootstrap/scss/code';
-@import '../../../node_modules/bootstrap/scss/nav';
-@import '../../../node_modules/bootstrap/scss/navbar';
+//@import '../../../node_modules/bootstrap/scss/code';
+//@import '../../../node_modules/bootstrap/scss/nav';
+//@import '../../../node_modules/bootstrap/scss/navbar';
 @import "../../../node_modules/bootstrap/scss/media";
 @import "../../../node_modules/bootstrap/scss/images";
+@import "../../../node_modules/bootstrap/scss/forms"; // when starting project only (backend devs will appreciate…)
+@import "../../../node_modules/bootstrap/scss/alert"; // when starting project only (backend devs will appreciate…)
+@import "../../../node_modules/bootstrap/scss/buttons"; // when starting project only (backend devs will appreciate…)
 @import "../../../node_modules/bootstrap/scss/utilities";

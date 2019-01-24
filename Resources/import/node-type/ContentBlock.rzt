@@ -1,0 +1,30 @@
+{
+    "name": "ContentBlock",
+    "displayName": "Content block",
+    "description": null,
+    "visible": false,
+    "newsletterType": false,
+    "hidingNodes": false,
+    "color": "#946464",
+    "reachable": false,
+    "publishable": false,
+    "fields": [
+        {
+            "name": "content",
+            "label": "Content",
+            "description": null,
+            "visible": true,
+            "type": 4,
+            "indexed": false,
+            "virtual": false,
+            "universal": false,
+            "default_values": null,
+            "group_name": null,
+            "group_name_canonical": null,
+            "expanded": false,
+            "placeholder": null,
+            "min_length": null,
+            "max_length": null
+        }
+    ]
+}

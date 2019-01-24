@@ -12,8 +12,11 @@ importFiles:
     groups: []
     settings: []
     nodetypes:
-        - "Resources/import/node-type/Neutral.rzt"
-        - "Resources/import/node-type/Page.rzt"
+        - Resources/import/node-type/ContactBlock.rzt
+        - Resources/import/node-type/ContentBlock.rzt
+        - Resources/import/node-type/Neutral.rzt
+        - Resources/import/node-type/Page.rzt
     tags: []
     nodes:
-        - "Resources/import/node/node-main-menu.rzn"
+        - Resources/import/node/node-main-menu.rzn
+        - Resources/import/node/node-legals.rzn

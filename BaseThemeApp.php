@@ -11,8 +11,10 @@ namespace Themes\BaseTheme;
 
 use Pimple\Container;
 use RZ\Roadiz\CMS\Controllers\FrontendController;
+use RZ\Roadiz\Core\Entities\Translation;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use RZ\Roadiz\Core\Repositories\TranslationRepository;
 use Themes\BaseTheme\Services;
 use Themes\BaseTheme\Twig\ImageFormatsExtension;
 
@@ -21,7 +23,7 @@ use Themes\BaseTheme\Twig\ImageFormatsExtension;
  */
 class BaseThemeApp extends FrontendController
 {
-    const VERSION = '1.0.0';
+    const VERSION = '1.1.0';
 
     protected static $themeName = 'Base theme';
     protected static $themeAuthor = 'REZO ZERO';
@@ -40,15 +42,25 @@ class BaseThemeApp extends FrontendController
     ) {
         /*
          * Automatic http Accept-Language detection and redirection.
-         * Force locale if we request with no locale in URL
+         * Force locale if we request with no locale in URL.
+         *
+         * You MUST enable force locale in URL setting to redirect users.
          */
-        // if ($_locale === null) {
-        //     $transRepository = $this->get('em')->getRepository('RZ\Roadiz\Core\Entities\Translation');
-        //     $redirectLocale = $request->getPreferredLanguage($transRepository->getAvailableLocales());
-        //     $translation = $transRepository->findOneByLocaleAndAvailable($redirectLocale);
+        //if ($_locale === null) {
+        //    /** @var TranslationRepository $transRepository */
+        //    $transRepository = $this->get('em')->getRepository(Translation::class);
+        //    $redirectLocale = $request->getPreferredLanguage($transRepository->getAvailableLocales());
+        //    $translation = $transRepository->findOneByLocaleAndAvailable($redirectLocale);
+        //    if (null === $translation) {
+        //        $translation = $this->get('defaultTranslation');
+        //    }
+        //
+        //    return $this->redirect(
+        //        $this->generateUrl('homePageLocale', ['_locale'=>$translation->getPreferredLocale()]),
+        //        Response::HTTP_MOVED_PERMANENTLY
+        //    );
+        //}
 
-        //     return $this->redirect($this->generateUrl('homePageLocale', ['_locale'=>$translation->getPreferredLocale()]), 301);
-        // }
         /*
          * If you use a static route for Home page
          * we need to grab manually language.
@@ -62,12 +74,6 @@ class BaseThemeApp extends FrontendController
          * Use home page node-type to render it.
          */
         return $this->handle($request, $home, $translation);
-
-        /*
-         * Render Homepage manually
-         */
-        // $this->prepareThemeAssignation($home, $translation);
-        // return $this->render('pages/home.html.twig', $this->assignation);
     }
 
     /**
@@ -79,9 +85,11 @@ class BaseThemeApp extends FrontendController
      */
     public function throw404($message = '')
     {
+        /** @var Request $request */
+        $request = $this->get('requestStack')->getCurrentRequest();
         $translation = $this->bindLocaleFromRoute(
-            $this->get('request'),
-            $this->get('request')->getLocale()
+            $request,
+            $request->getLocale()
         );
         $this->prepareThemeAssignation(null, $translation);
         $this->get('logger')->warn($message);
@@ -136,11 +144,6 @@ class BaseThemeApp extends FrontendController
         $this->themeContainer->register(new Services\NodeServiceProvider($this->getContainer(), $this->translation));
 
         $this->assignation['themeServices'] = $this->themeContainer;
-        $this->assignation['head']['facebookClientId'] = $this->get('settingsBag')->get('facebook_client_id');
-        $this->assignation['head']['googleClientId'] = $this->get('settingsBag')->get('google_client_id');
-        $this->assignation['head']['twitterAccount'] = $this->get('settingsBag')->get('twitter_account');
-        $this->assignation['head']['mapsStyle'] = $this->get('settingsBag')->get('maps_style');
-        $this->assignation['head']['googleTagManagerId'] = $this->get('settingsBag')->get('google_tag_manager_id');
         $this->assignation['head']['themeName'] = static::$themeName;
         $this->assignation['head']['themeVersion'] = static::VERSION;
 
@@ -159,11 +162,6 @@ class BaseThemeApp extends FrontendController
                 ];
             }
         }
-
-        // Get session messages
-        // Remove FlashBag assignation from here if you handle your forms
-        // in sub-requests block renders.
-        // $this->assignation['session']['messages'] = $this->get('session')->getFlashBag()->all();
     }
 
     /**

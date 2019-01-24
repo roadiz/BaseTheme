@@ -1,6 +1,9 @@
 {% extends "@BaseTheme/blocks/base.html.twig" %}
 
 {% block innerContent %}
-    <p class="form-message"></p>
-    {{ nodeSource|render('BaseTheme') }}
+    <div class="container">
+        <h2 class="page-block-title {{ blockClassPrefix }}-title">{{ nodeSource.title }}</h2>
+        <p class="form-message"></p>
+        {{ nodeSource|render('BaseTheme') }}
+    </div>
 {% endblock %}

@@ -87,8 +87,11 @@ sftp-config.json
 .nfs.*
 
 ## Yarn
-yarn.lock
-package-lock.json
+# yarn.lock
+# package-lock.json
+
+## Phpstorm
+/.idea
 
 ## Generated files (css, js, svg, img, vendors)
 /static/js
@@ -97,8 +100,12 @@ package-lock.json
 /static/img
 /static/vendors
 /static/fonts
+/static/**
 /Resources/views/svg/sprite.svg.twig
+!/static/.gitkeep
 
 ## Inject files
 /Resources/views/partials/css-inject.html.twig
 /Resources/views/partials/js-inject.html.twig
+/Resources/views/partials/js-inject-modern.html.twig
+/Resources/views/partials/js-inject-legacy.html.twig

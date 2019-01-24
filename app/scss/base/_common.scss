@@ -30,9 +30,13 @@ button {
     outline: none;
 }
 
+#svg-sprite {
+    display: none;
+}
+
 #main-container {
     position: relative;
-    margin-top: $navbar-height;
+    margin-top: $nav-height;
 }
 
 @include media-breakpoint-up(sm) {
@@ -47,18 +51,10 @@ button {
     position: relative;
     display: table;
     width: 100%;
-    height: 100%;
 }
 
 .table-cell {
     position: relative;
     display: table-cell;
     vertical-align: middle;
-}
-
-// Bootstrap reset
-.page-header {
-    margin: 0;
-    padding: 0;
-    border: 0;
 }

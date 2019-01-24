@@ -3,7 +3,7 @@
 
 {#  {% include '@BaseTheme/sitemap/sitemap-element.xml.twig' with {'element': home} only %}#}
 
-{% for page in pages %}
+{% for page in pages if page.translation.Available %}
     {% include '@BaseTheme/sitemap/sitemap-element.xml.twig' with {'element': page} only %}
 {% endfor %}
 
