@@ -23,7 +23,7 @@ use Themes\BaseTheme\Twig\ImageFormatsExtension;
  */
 class BaseThemeApp extends FrontendController
 {
-    const VERSION = '1.0.0';
+    const VERSION = '1.1.0';
 
     protected static $themeName = 'Base theme';
     protected static $themeAuthor = 'REZO ZERO';
@@ -43,7 +43,7 @@ class BaseThemeApp extends FrontendController
         /*
          * Automatic http Accept-Language detection and redirection.
          * Force locale if we request with no locale in URL.
-         * 
+         *
          * You MUST enable force locale in URL setting to redirect users.
          */
         //if ($_locale === null) {
@@ -60,7 +60,7 @@ class BaseThemeApp extends FrontendController
         //        Response::HTTP_MOVED_PERMANENTLY
         //    );
         //}
-        
+
         /*
          * If you use a static route for Home page
          * we need to grab manually language.
