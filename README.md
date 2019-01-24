@@ -122,7 +122,6 @@ For example, while you run `yarn run build`, `NODE_ENV` is equal to `production`
 
 ```json
 // package.json
-
 "betterScripts": {
     "build": {
       "command": "webpack",
@@ -138,7 +137,6 @@ So the configuration is overriden like this :
 
 ```javascript
 // environments.js
-
 export default {
     production: (config) => ({
         devtool: false
@@ -165,7 +163,6 @@ By default, you have access to 3 constants in your *Javascript* code. These can 
         'PRODUCTION': JSON.stringify(config.env === 'production'),
         'ENV': JSON.stringify(config.env)
     }
-  
 }
 ```
 
