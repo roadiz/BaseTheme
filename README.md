@@ -1,6 +1,6 @@
 # Base Roadiz theme
 
-[![Build Status](https://travis-ci.org/roadiz/BaseTheme.svg?branch=develop)](https://travis-ci.org/roadiz/BaseTheme)
+[![Build Status](https://travis-ci.org/roadiz/BaseTheme.svg?branch=master)](https://travis-ci.org/roadiz/BaseTheme)
 
 This theme is meant to get a **fresh start** to create a custom website on *Roadiz*.
 

@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{pAUF:function(t,n,e){"use strict";e.r(n),e.d(n,"default",function(){return i});var s=e("D9Dx");class i extends s.default{constructor(t){super(t,"ContentBlock")}init(){super.init()}initEvents(){super.initEvents()}destroyEvents(){super.destroyEvents()}}}}]);
