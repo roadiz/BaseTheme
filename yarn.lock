@@ -5108,11 +5108,6 @@ lightercollective@^0.1.0:
   resolved "https://registry.yarnpkg.com/lightercollective/-/lightercollective-0.1.0.tgz#70df102c530dcb8d0ccabfe6175a8d00d5f61300"
   integrity sha512-J9tg5uraYoQKaWbmrzDDexbG6hHnMcWS1qLYgJSWE+mpA3U5OCSeMUhb+K55otgZJ34oFdR0ECvdIb3xuO5JOQ==
 
-load-google-maps-api@~1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/load-google-maps-api/-/load-google-maps-api-1.1.1.tgz#4eae04f5155ba21b6d4d7aafdc8c4dc5a806e39f"
-  integrity sha512-zqSgbfDtxOhhnRo2nBvFUxNrMF4p5GmwTg7s93hmCoizADbyn1dQ2fGwmzQ54pIc9ZqPb2oyEh/E0Lo/2g5oIg==
-
 load-json-file@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/load-json-file/-/load-json-file-1.1.0.tgz#956905708d58b4bab4c2261b04f59f31c99374c0"
