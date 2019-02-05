@@ -22,8 +22,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{% block page_title %}{{- pageMetaTitle -}}{% endblock %}{{ pageMetaTitle }}</title>
-    <meta name="description" content="{{ pageMetaDescription }}" />
+    <title>{% block page_title %}{{- pageMetaTitle -}}{% endblock %}</title>
+    <meta name="description" content="{% block page_description %}{{- pageMetaDescription -}}{% endblock %}" />
     {% if pageMeta.keywords %}<meta name="keywords" content="{{ pageMeta.keywords }}" />{% endif %}
     <meta name="generator" content="Roadiz {{ cms_prefix }} {{ cms_version }} - {{ head.themeName }} v{{ head.themeVersion }}" />
     {#
@@ -63,7 +63,6 @@
     {#
      # Share metas -------------------------------------------------------------
      #}
-
     {% block share_metas %}
 
         {% if headerImage %}
@@ -158,48 +157,14 @@
      #}
     {% include '@BaseTheme/common/footer.html.twig' %}
 
-    <div id="cookiesconsent"></div>
-
-    {% if head.devMode %}
-        <script src="{{ head.resourcesUrl }}vendors/cookieconsent.min.js"></script>
-    {% else %}
-        {#
-         # Better use CDN JS libs if you are planning to use HTTP/2
-         # protocol. cdnjs.cloudflare.com serves libs as H2 for better performances.
-         #}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.6/cookieconsent.min.js"
-                integrity="sha256-bPOd70Y8ohKatGmjL6tszdveppYZCunsUfLOq7v8JBw="
-                crossorigin="anonymous"></script>
-    {% endif %}
-
     <noscript><div id="no-js-message">{% trans %}no_javascript_message{% endtrans %}</div></noscript>
     <script>
         {# Passing server vars to JS framework #}
         window.temp = {
             devMode: {% if head.devMode %}true{% else %}false{% endif %},
             locale: '{{ request.locale }}',
-            resourcesUrl: '{{ head.resourcesUrl }}',
-            mapsStyle: {% if head.mapsStyle %}JSON.parse('{{ head.mapsStyle|raw }}'){% else %}null{% endif %}
+            resourcesUrl: '{{ head.resourcesUrl }}'
         };
-
-        {# Cookie consent #}
-        window.addEventListener('load', function () {
-            window.cookieconsent.initialise({
-                container: document.getElementById("cookiesconsent"),
-                location: false,
-                revokable: false,
-                law: {
-                    countryCode: 'FR', {# Adapt it to your country #}
-                    regionalLaw: false,
-                },
-                content: {
-                    message: "{{ 'cookie_choice.consent_message'|trans|escape }}",
-                    dismiss: "{% trans %}cookie_choice.close_message{% endtrans %}",
-                    link: "{% trans %}cookie_choice.find_out_more_message{% endtrans %}",
-                    href: '{{ path(themeServices.nodeSourceLegals) }}'
-                }
-            })
-        });
 
         {% if head.universalAnalyticsId and not head.googleTagManagerId %}
         {# Google Analytics: change head.universalAnalyticsId to be your site ID.  #}
