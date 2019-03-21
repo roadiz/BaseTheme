@@ -17,8 +17,8 @@ export default class MapBlock extends DefaultBlock {
         this.mapElement = null
     }
 
-    init () {
-        super.init()
+    async init () {
+        await super.init()
 
         /** {HTMLElement} */
         this.mapElement = this.rootElement.querySelector('.mapblock-canvas')

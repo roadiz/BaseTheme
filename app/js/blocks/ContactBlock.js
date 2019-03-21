@@ -11,15 +11,15 @@ import DefaultBlock from './DefaultBlock'
 export default class ContactBlock extends DefaultBlock {
     constructor (container) {
         super(container, 'ContactBlock')
-        
+
         this.form = null
         this.formMessage = null
-        
+
         this.formSubmit = this.formSubmit.bind(this)
     }
 
-    init () {
-        super.init()
+    async init () {
+        await super.init()
         this.form = this.rootElement.querySelector('form')
         this.formMessage = this.rootElement.querySelector('.form-message')
     }

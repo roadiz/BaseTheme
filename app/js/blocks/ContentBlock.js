@@ -12,8 +12,8 @@ export default class ContentBlock extends DefaultBlock {
         super(container, 'ContentBlock')
     }
 
-    init () {
-        super.init()
+    async init () {
+        await super.init()
     }
 
     initEvents () {
