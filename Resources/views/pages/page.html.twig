@@ -19,7 +19,7 @@
     <div class="page-blocks">
         {# Page blocks pattern implementation #}
         {% set blocks = nodeSource|children({
-            'node.nodeType' : ['!=', bags.nodeTypes.get('Page')],
+            'node.nodeType.reachable': false,
             'node.visible': true,
         }) %}
         {% for singleBlock in blocks %}
