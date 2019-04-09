@@ -23,7 +23,7 @@ use Themes\BaseTheme\Twig\ImageFormatsExtension;
  */
 class BaseThemeApp extends FrontendController
 {
-    const VERSION = '1.1.1';
+    const VERSION = '1.1.2';
 
     protected static $themeName = 'Base theme';
     protected static $themeAuthor = 'REZO ZERO';

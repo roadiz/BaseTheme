@@ -163,23 +163,39 @@
         window.temp = {
             devMode: {% if head.devMode %}true{% else %}false{% endif %},
             locale: '{{ request.locale }}',
-            resourcesUrl: '{{ head.resourcesUrl }}'
+            resourcesUrl: '{{ head.resourcesUrl }}',
+            privacyPolicy: {% if themeServices.nodeSourceLegals %}'{{ url(themeServices.nodeSourceLegals) }}'{% else %}''{% endif %},
+            hasTrackers: {% if head.universalAnalyticsId or head.googleTagManagerId %}true{% else %}false{% endif %}
         };
-
-        {% if head.universalAnalyticsId and not head.googleTagManagerId %}
-        {# Google Analytics: change head.universalAnalyticsId to be your site ID.  #}
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-        ga('create', '{{ head.universalAnalyticsId }}', 'auto');
-        ga('send', 'pageview');
-        {% endif %}
     </script>
+
+    {% if head.universalAnalyticsId or head.googleTagManagerId %}
+        {% include '@BaseTheme/partials/orejime.html.twig' %}
+    {% endif %}
+    {% if head.universalAnalyticsId and not head.googleTagManagerId %}
+        <script data-type="text/javascript" type="opt-in" data-name="google">
+            {# Google Analytics: change head.universalAnalyticsId to be your site ID.  #}
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+            ga('create', '{{ head.universalAnalyticsId }}', 'auto');
+            ga('send', 'pageview');
+        </script>
+    {% endif %}
+    {% if head.googleTagManagerId %}
+        <script data-type="text/javascript" type="opt-in" data-name="google">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','{{ head.googleTagManagerId }}');</script>
+    {% endif %}
 
     {# JS scripts inclusions #}
     {% include '@BaseTheme/partials/js-inject-modern.html.twig' %}
     {% include '@BaseTheme/partials/js-inject-legacy.html.twig' %}
+
+    <script src="https://unpkg.com/orejime@1.1.1/dist/orejime.js"></script>
 </body>
 </html>

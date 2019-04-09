@@ -41,10 +41,9 @@
             <div class="page-blocks">
                 {# Page blocks pattern implementation #}
                 {% set blocks = nodeSource|children({
-                    'node.nodeType' : ['!=', bags.nodeTypes.get('Page')],
+                    'node.nodeType.reachable': false,
                     'node.visible': true,
                 }) %}
-
                 {% for singleBlock in blocks %}
                     {% include '@BaseTheme/blocks/' ~ singleBlock.node.nodeType.name|lower ~ '.html.twig' ignore missing with {
                         'nodeSource': singleBlock,
