@@ -1,0 +1,99 @@
+<script type="text/javascript">
+    window.orejimeConfig = {
+        elementID: 'orejime',
+        appElement: '#main-container',
+        cookieName: 'orejime',
+        cookieExpiresAfterDays: 365,
+        privacyPolicy: window.temp.privacyPolicy,
+        default: true,
+        mustConsent: false,
+        implicitConsent: false,
+        lang: window.temp.locale,
+        translations: [],
+        apps: [
+            {
+                name: 'google',
+                title: '{% trans %}orejime.google.title{% endtrans %}',
+                description: '{% trans %}orejime.google.description{% endtrans %}',
+                cookies: [
+                    '_ga',
+                    '_gat',
+                    '_gid',
+                    '__utma',
+                    '__utmb',
+                    '__utmc',
+                    '__utmt',
+                    '__utmz'
+                ],
+                purposes: ['analytics'],
+                required: false,
+                optOut: false,
+                default: true,
+                onlyOnce: true
+            },
+            {
+                name: 'internal',
+                title: '{% trans %}orejime.internal.title{% endtrans %}',
+                description: '{% trans %}orejime.internal.description{% endtrans %}',
+                purposes: ['security', 'usepref'],
+                required: true,
+                cookie: [
+                    window.temp.sessionCookieName,
+                    'roadiz_remember_me'
+                ]
+            }
+        ]
+    };
+    window.orejimeConfig.translations[window.temp.locale] = {
+        consentModal: {
+            title: '{% trans %}orejime.consentModal.title{% endtrans %}',
+            description: '{% trans %}orejime.consentModal.description{% endtrans %}',
+            privacyPolicy: {
+                name: '{% trans %}orejime.consentModal.privacyPolicy.name{% endtrans %}',
+                text: '{% trans %}orejime.consentModal.privacyPolicy.text{% endtrans %}',
+            }
+        },
+        consentNotice: {
+            changeDescription: '{% trans %}orejime.consentNotice.changeDescription{% endtrans %}',
+            description: '{% trans %}orejime.consentNotice.description{% endtrans %}',
+            learnMore: '{% trans %}orejime.consentNotice.learnMore{% endtrans %}'
+        },
+        accept: '{% trans %}orejime.accept{% endtrans %}',
+        acceptAll: '{% trans %}orejime.acceptAll{% endtrans %}',
+        ok: '{% trans %}orejime.ok{% endtrans %}',
+        save: '{% trans %}orejime.save{% endtrans %}',
+        saveData: '{% trans %}orejime.saveData{% endtrans %}',
+        decline: '{% trans %}orejime.decline{% endtrans %}',
+        declineAll: '{% trans %}orejime.declineAll{% endtrans %}',
+        close: '{% trans %}orejime.close{% endtrans %}',
+        enabled: '{% trans %}orejime.enabled{% endtrans %}',
+        disabled: '{% trans %}orejime.disabled{% endtrans %}',
+        app: {
+            optOut: {
+                title: '{% trans %}orejime.app.optOut.title{% endtrans %}',
+                description: '{% trans %}orejime.app.optOut.description{% endtrans %}',
+            },
+            required: {
+                title: '{% trans %}orejime.app.required.title{% endtrans %}',
+                description: '{% trans %}orejime.app.required.description{% endtrans %}',
+            },
+            purposes: '{% trans %}orejime.app.purposes{% endtrans %}',
+            purpose: '{% trans %}orejime.app.purpose{% endtrans %}',
+        },
+        google: {
+            title: '{% trans %}orejime.google.title{% endtrans %}',
+            description: '{% trans %}orejime.google.description{% endtrans %}',
+        },
+        internal: {
+            title: '{% trans %}orejime.internal.title{% endtrans %}',
+            description: '{% trans %}orejime.internal.description{% endtrans %}',
+        },
+        poweredBy: "",
+        newWindow: '{% trans %}orejime.newWindow{% endtrans %}',
+        purposes: {
+            analytics: '{% trans %}orejime.purposes.analytics{% endtrans %}',
+            security: '{% trans %}orejime.purposes.security{% endtrans %}',
+            usepref: '{% trans %}orejime.purposes.usepref{% endtrans %}'
+        }
+    };
+</script>
