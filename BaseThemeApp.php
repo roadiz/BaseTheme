@@ -93,7 +93,7 @@ class BaseThemeApp extends FrontendController
             $request->getLocale()
         );
         $this->prepareThemeAssignation(null, $translation);
-        $this->get('logger')->warn($message);
+        $this->get('logger')->info($message);
 
         $this->assignation['nodeName'] = 'error-404';
         $this->assignation['nodeTypeName'] = 'error404';
