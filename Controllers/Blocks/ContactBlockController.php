@@ -9,7 +9,6 @@
  */
 namespace Themes\BaseTheme\Controllers\Blocks;
 
-//use GeneratedNodeSources\NSContactBlock;
 use GeneratedNodeSources\NSContactBlock;
 use RZ\Roadiz\Core\Entities\NodesSources;
 use RZ\Roadiz\Core\Exceptions\ForceResponseException;
@@ -39,7 +38,7 @@ class ContactBlockController extends BaseThemeApp
         $this->assignation['session']['messages'] = $this->get('session')->getFlashBag()->all();
 
         /** @var ContactFormManager $contactFormManager */
-        $contactFormManager = $this->createContactFormManager()->withDefaultFields();
+        $contactFormManager = $this->createContactFormManager()->withDefaultFields()->withUserConsent();
         // Scroll to contactForm block after submit succeeded or failed
         $contactFormManager->setOptions([
             'action' => '#block-' . $source->getNode()->getNodeName(),
