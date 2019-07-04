@@ -22,8 +22,12 @@ class SitemapController extends BaseThemeApp
 {
     /**
      * @param Request $request
-     * @param string $_locale
+     * @param string  $_locale
+     *
      * @return Response
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function sitemapAction(
         Request $request,
@@ -31,7 +35,8 @@ class SitemapController extends BaseThemeApp
     ) {
         $this->prepareThemeAssignation(null, $this->bindLocaleFromRoute($request, $_locale));
 
-        $nodeTypes = $this->get('em')->getRepository(NodeType::class)
+        $nodeTypes = $this->get('em')
+            ->getRepository(NodeType::class)
             ->findBy([
                 'reachable' => true
             ]);

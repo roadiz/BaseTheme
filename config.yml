@@ -6,16 +6,17 @@ themeDir: "BaseTheme"
 supportedLocale:
     - "en"
     - "fr"
-versionRequire: "1.0.0"
+versionRequire: "1.2.0"
 importFiles:
     roles: []
     groups: []
     settings: []
     nodetypes:
-        - Resources/import/node-type/ContactBlock.rzt
-        - Resources/import/node-type/ContentBlock.rzt
-        - Resources/import/node-type/Neutral.rzt
-        - Resources/import/node-type/Page.rzt
+        - Resources/import/node-type/ContactBlock.json
+        - Resources/import/node-type/ContentBlock.json
+        - Resources/import/node-type/Link.json
+        - Resources/import/node-type/Neutral.json
+        - Resources/import/node-type/Page.json
     tags: []
     nodes:
         - Resources/import/node/node-main-menu.rzn

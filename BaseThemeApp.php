@@ -172,9 +172,6 @@ class BaseThemeApp extends FrontendController
     {
         parent::setupDependencyInjection($container);
 
-        $container->extend('twig.extensions', function ($extensions, $c) {
-            $extensions->add(new ImageFormatsExtension());
-            return $extensions;
-        });
+        //$container->register(new Services\BaseThemeServiceProvider());
     }
 }
