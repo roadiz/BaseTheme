@@ -26,6 +26,7 @@
 
 namespace Themes\BaseTheme\Services;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -45,7 +46,7 @@ class BaseThemeServiceProvider implements ServiceProviderInterface
             return $dispatcher;
         });
 
-        $container->extend('twig.extensions', function ($extensions) {
+        $container->extend('twig.extensions', function (ArrayCollection $extensions) {
             $extensions->add(new ImageFormatsExtension());
             return $extensions;
         });

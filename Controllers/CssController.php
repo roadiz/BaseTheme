@@ -23,9 +23,13 @@ class CssController extends BaseThemeApp
     const CSS_CACHE_ID = "dynamic_styles";
 
     /**
-     * @param Request $request
+     * @param Request     $request
      * @param string|null $_locale
+     *
      * @return Response
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
     public function stylesAction(
         Request $request,
