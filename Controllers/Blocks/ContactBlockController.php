@@ -14,6 +14,7 @@ use RZ\Roadiz\Core\Entities\NodesSources;
 use RZ\Roadiz\Core\Exceptions\ForceResponseException;
 use RZ\Roadiz\Utils\ContactFormManager;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Themes\BaseTheme\BaseThemeApp;
 
 /**
@@ -23,12 +24,13 @@ use Themes\BaseTheme\BaseThemeApp;
 class ContactBlockController extends BaseThemeApp
 {
     /**
-     * @param Request $request
+     * @param Request      $request
      * @param NodesSources $source
-     * @param $assignation
+     * @param              $assignation
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      * @throws ForceResponseException
+     * @throws \Twig\Error\RuntimeError
      */
     public function blockAction(Request $request, NodesSources $source, $assignation)
     {

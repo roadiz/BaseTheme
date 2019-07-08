@@ -27,7 +27,7 @@ class PageController extends BaseThemeApp
      * @param Translation|null $translation
      *
      * @return Response
-     * @throws \Twig_Error_Runtime
+     * @throws \Twig\Error\RuntimeError
      */
     public function indexAction(
         Request $request,
