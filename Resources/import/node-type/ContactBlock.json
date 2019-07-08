@@ -1,0 +1,25 @@
+{
+    "name": "ContactBlock",
+    "displayName": "Contact block",
+    "visible": false,
+    "publishable": false,
+    "reachable": false,
+    "newsletterType": false,
+    "hidingNodes": false,
+    "color": "#1d338a",
+    "fields": [
+        {
+            "position": 1.0,
+            "name": "contact_address",
+            "label": "Contact address",
+            "description": "Optional",
+            "type": 8,
+            "expanded": false,
+            "nodeTypeName": "ContactBlock",
+            "universal": true,
+            "indexed": false,
+            "visible": true
+        }
+    ],
+    "defaultTtl": 0
+}

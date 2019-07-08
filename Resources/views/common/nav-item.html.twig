@@ -29,6 +29,7 @@
             <a class="{{ linkClasses|join(' ') }}"
                id="nav-link-{{ source.node.nodeName }}"
                role="menuitem"
+               {% if source.externalLink %}target="_blank" rel="noopener nofollow" {% endif %}
                href="{{ path(source) }}">{{ source.title|default(source.node.nodeName) }}</a>
         {% elseif children and children|length %}
             <span class="{{ linkClasses|join(' ') }}"

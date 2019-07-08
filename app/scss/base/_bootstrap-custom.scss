@@ -81,9 +81,16 @@ $grid-gutter-widths: (
 @import '../../../node_modules/bootstrap/scss/grid';
 //@import '../../../node_modules/bootstrap/scss/tables';
 @import '../../../node_modules/bootstrap/scss/type';
-//@import '../../../node_modules/bootstrap/scss/code';
-//@import '../../../node_modules/bootstrap/scss/nav';
-//@import '../../../node_modules/bootstrap/scss/navbar';
+//@import '../../../node_modules/bootstrap/scss/code'; // when starting project only (backend devs will appreciate…)
+//@import '../../../node_modules/bootstrap/scss/nav'; // when starting project only (backend devs will appreciate…)
+//@import '../../../node_modules/bootstrap/scss/navbar'; // when starting project only (backend devs will appreciate…)
+//@import '../../../node_modules/bootstrap/scss/dropdown'; // when starting project only (backend devs will appreciate…)
+// --- TO DELETE AFTER BEGINNING FRONTEND
+.dropdown:hover>.dropdown-menu {
+    display: block;
+    margin-top: 0;
+}
+// -------------------------------------
 @import "../../../node_modules/bootstrap/scss/media";
 @import "../../../node_modules/bootstrap/scss/images";
 @import "../../../node_modules/bootstrap/scss/forms"; // when starting project only (backend devs will appreciate…)

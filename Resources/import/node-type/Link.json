@@ -1,0 +1,38 @@
+{
+    "name": "Link",
+    "displayName": "Link",
+    "visible": true,
+    "publishable": false,
+    "reachable": true,
+    "newsletterType": false,
+    "hidingNodes": false,
+    "color": "#00b348",
+    "fields": [
+        {
+            "position": 1.0,
+            "name": "external_link",
+            "label": "External link",
+            "description": "Do not forget https:\/\/",
+            "type": 0,
+            "expanded": false,
+            "nodeTypeName": "Link",
+            "universal": true,
+            "indexed": false,
+            "visible": true
+        },
+        {
+            "position": 2.0,
+            "name": "internal_link",
+            "label": "Internal link",
+            "defaultValues": "Page",
+            "type": 13,
+            "expanded": false,
+            "nodeTypeName": "Link",
+            "universal": true,
+            "maxLength": 1,
+            "indexed": false,
+            "visible": true
+        }
+    ],
+    "defaultTtl": 0
+}

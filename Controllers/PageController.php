@@ -22,10 +22,12 @@ use Themes\BaseTheme\BaseThemeApp;
 class PageController extends BaseThemeApp
 {
     /**
-     * @param Request $request
-     * @param Node|null $node
+     * @param Request          $request
+     * @param Node|null        $node
      * @param Translation|null $translation
+     *
      * @return Response
+     * @throws \Twig\Error\RuntimeError
      */
     public function indexAction(
         Request $request,
@@ -45,7 +47,9 @@ class PageController extends BaseThemeApp
          * Or make them stateless… (disabling CSRF and
          * using a different form action route).
          */
-        // $this->makeResponseCachable($request, $response, 10);
+        if ($node->getTtl() > 0) {
+            $this->makeResponseCachable($request, $response, $node->getTtl());
+        }
 
         return $response;
     }

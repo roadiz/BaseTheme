@@ -76,6 +76,7 @@ class NodeServiceProvider implements ServiceProviderInterface
         $container['nodeSourceLegals'] = function () {
             return $this->coreServices['nodeSourceApi']
                 ->getOneBy([
+                    'node.nodeType' => $this->coreServices['nodeTypesBag']->get('Page'),
                     'node.nodeName' => 'legals',
                     'node.visible' => true,
                     'translation' => $this->translation,

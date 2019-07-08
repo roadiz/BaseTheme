@@ -23,7 +23,7 @@ use Themes\BaseTheme\Twig\ImageFormatsExtension;
  */
 class BaseThemeApp extends FrontendController
 {
-    const VERSION = '1.1.2';
+    const VERSION = '1.2.0';
 
     protected static $themeName = 'Base theme';
     protected static $themeAuthor = 'REZO ZERO';
@@ -93,7 +93,7 @@ class BaseThemeApp extends FrontendController
             $request->getLocale()
         );
         $this->prepareThemeAssignation(null, $translation);
-        $this->get('logger')->warn($message);
+        $this->get('logger')->info($message);
 
         $this->assignation['nodeName'] = 'error-404';
         $this->assignation['nodeTypeName'] = 'error404';
@@ -171,10 +171,5 @@ class BaseThemeApp extends FrontendController
     public static function setupDependencyInjection(Container $container)
     {
         parent::setupDependencyInjection($container);
-
-        $container->extend('twig.extensions', function ($extensions, $c) {
-            $extensions->add(new ImageFormatsExtension());
-            return $extensions;
-        });
     }
 }

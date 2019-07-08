@@ -21,6 +21,34 @@ yarn && yarn run build
 
 We provide a starter kit based on ES6 with *Webpack4*, *Babel*, *Scss*. Feel free to adapt it if you have your own coding workflow. Keep in mind that we inject built CSS and JS into partial *Twig* templates to get versioned file names.
 
+### Register BaseTheme services
+
+Base service will provide some Twig image formats and a PathGeneration subscriber for `NSLink` node-type.
+
+Add the following lines to your `app/AppKernel.php` file:
+
+```php
+// app/AppKernel.php
+
+
+public function register(\Pimple\Container $container)
+{
+    parent::register($container);
+
+    /*
+     * Add your own service providers.
+     */
+    $container->register(new \Themes\TestTheme\Services\TestThemeServiceProvider());
+}
+```
+
+Or for *legacy installs*, add following lines to your `config.yml`:
+
+```yaml
+additionalServiceProviders:
+    - \Themes\TestTheme\Services\TestThemeServiceProvider
+```
+
 ## Scripts
 ### Development
 
@@ -179,9 +207,11 @@ if (PRODUCTION) {
 
 BaseTheme will provide you some ready-made *Twig* templates, styles and ES6 classes.
 
-- A content block is available with its Twig template. All you need is to create the node-type in your Roadiz back-office.
+- A page node-type is available with its Twig template.
+- A link node-type is available with its Twig template and its event subscriber to rewrite URL. 
+- A content block is available with its Twig template.
 - A map block is available with its Twig template. All you need is to create the node-type in your Roadiz back-office.
-- A contact form block is available with its controller and Twig templates. All you need is to create the node-type in your Roadiz back-office.
+- A contact form block is available with its controller and Twig templates. 
 
 #### Node-types
 
