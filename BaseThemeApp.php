@@ -23,7 +23,7 @@ use Themes\BaseTheme\Twig\ImageFormatsExtension;
  */
 class BaseThemeApp extends FrontendController
 {
-    const VERSION = '1.2.0';
+    const VERSION = '1.2.1';
 
     protected static $themeName = 'Base theme';
     protected static $themeAuthor = 'REZO ZERO';
@@ -47,20 +47,22 @@ class BaseThemeApp extends FrontendController
          *
          * You MUST enable force locale in URL setting to redirect users.
          */
-        //if ($_locale === null) {
-        //    /** @var TranslationRepository $transRepository */
-        //    $transRepository = $this->get('em')->getRepository(Translation::class);
-        //    $redirectLocale = $request->getPreferredLanguage($transRepository->getAvailableLocales());
-        //    $translation = $transRepository->findOneByLocaleAndAvailable($redirectLocale);
-        //    if (null === $translation) {
-        //        $translation = $this->get('defaultTranslation');
-        //    }
+        // if ($_locale === null) {
+        //     /** @var TranslationRepository $transRepository */
+        //     $transRepository = $this->get('em')->getRepository(Translation::class);
+        //     $redirectLocale = $request->getPreferredLanguage($transRepository->getAvailableLocales());
+        //     $translation = $transRepository->findOneByLocaleAndAvailable($redirectLocale);
+        //     if (null === $translation) {
+        //         $translation = $this->get('defaultTranslation');
+        //     }
         //
-        //    return $this->redirect(
-        //        $this->generateUrl('homePageLocale', ['_locale'=>$translation->getPreferredLocale()]),
-        //        Response::HTTP_MOVED_PERMANENTLY
-        //    );
-        //}
+        //     $response = $this->redirect(
+        //         $this->generateUrl('homePageLocale', ['_locale'=>$translation->getPreferredLocale()]),
+        //         Response::HTTP_MOVED_PERMANENTLY
+        //     );
+        //     $response->setPrivate();
+        //     return $response;
+        // }
 
         /*
          * If you use a static route for Home page
