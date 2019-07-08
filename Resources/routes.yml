@@ -18,7 +18,6 @@ homePageLocale:
 #    path:     /css/dynamic-styles.css
 #    defaults:
 #        _controller: Themes\BaseTheme\Controllers\CssController::stylesAction
-
 sitemap:
     path: /sitemap.xml
     defaults:

@@ -75,6 +75,7 @@ class LinkPathGeneratingEventListener implements EventSubscriberInterface
                 $event->setPath($subEvent->getPath());
                 $event->setComplete($subEvent->isComplete());
                 $event->setParameters($subEvent->getParameters());
+                $event->setContainsScheme($subEvent->containsScheme());
                 // Stop propagation AFTER sub-event was dispatched not to prevent it to perform.
                 $event->stopPropagation();
             }
