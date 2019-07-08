@@ -47,5 +47,5 @@
             "visible": true
         }
     ],
-    "defaultTtl": 300
+    "defaultTtl": 10
 }
