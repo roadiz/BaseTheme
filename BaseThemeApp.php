@@ -171,7 +171,5 @@ class BaseThemeApp extends FrontendController
     public static function setupDependencyInjection(Container $container)
     {
         parent::setupDependencyInjection($container);
-
-        //$container->register(new Services\BaseThemeServiceProvider());
     }
 }
