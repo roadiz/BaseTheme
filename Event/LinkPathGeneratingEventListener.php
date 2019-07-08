@@ -55,6 +55,7 @@ class LinkPathGeneratingEventListener implements EventSubscriberInterface
                 $nodeSource->getExternalLink() !== '') {
                 $event->setPath($nodeSource->getExternalLink());
                 $event->setComplete(true);
+                $event->setContainsScheme(true);
                 // Stop propagation AFTER sub-event was dispatched not to prevent it to perform.
                 $event->stopPropagation();
             } elseif (count($nodeSource->getInternalLinkSources()) > 0) {
