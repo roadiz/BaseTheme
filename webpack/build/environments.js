@@ -17,9 +17,7 @@ dbg.color = debug.colors[5]
 const scssConfigProd = {
     test: /\.s?css?$/,
     use: [{
-        loader: MiniCssExtractPlugin.loader
-    }, {
-        loader: 'css-loader',
+        loader: MiniCssExtractPlugin.loader,
         options: {
             modules: false,
             minimize: true,
@@ -27,6 +25,8 @@ const scssConfigProd = {
             importLoaders: 3,
             sourceMap: false
         }
+    }, {
+        loader: 'css-loader'
     }, {
         loader: 'postcss-loader',
         options: {
@@ -78,9 +78,6 @@ const commonScssDev = [{
     loader: 'css-loader',
     options: {
         modules: false,
-        minimize: false,
-        filename: '[name].css',
-        importLoaders: 2,
         sourceMap: true
     }
 }, {

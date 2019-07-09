@@ -1,7 +1,7 @@
 import webpack from 'webpack'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import debug from 'debug'
-import CleanWebpackPlugin from 'clean-webpack-plugin'
+import { CleanWebpackPlugin } from 'clean-webpack-plugin'
 import WriteFilePlugin from 'write-file-webpack-plugin'
 import SpriteLoaderPlugin from 'svg-sprite-loader/plugin'
 import CleanTerminalPlugin from 'clean-terminal-webpack-plugin'
@@ -67,6 +67,14 @@ const getWebpackConfigBase = (config) => {
                     name: config.assets_name_img
                 }
             }, {
+                test: /\.(png|jpg)$/,
+                loader: 'file-loader',
+                options: {
+                    limit: config.limit_image_size,
+                    useRelativePath: true,
+                    name: config.assets_name_img
+                }
+            }, {
                 test: /fonts\/.*\.(eot|svg|ttf|woff|woff2)$/,
                 loader: 'file-loader',
                 options: {
@@ -77,9 +85,10 @@ const getWebpackConfigBase = (config) => {
         plugins: [
             new CleanTerminalPlugin(),
             new webpack.DefinePlugin(config.globals),
-            new CleanWebpackPlugin(['css', 'img', 'js', 'fonts', 'vendors', '*.*'], {
-                root: config.utils_paths.dist(),
-                verbose: false
+            new CleanWebpackPlugin({
+                cleanStaleWebpackAssets: false,
+                cleanOnceBeforeBuildPatterns: ['css', 'img', 'js', 'fonts', 'vendors', '*.*'],
+                verbose: true
             }),
             new CopyWebpackPlugin([{
                 from: paths.client('img'),
