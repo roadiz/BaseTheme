@@ -18,8 +18,8 @@ export default class ContactBlock extends DefaultBlock {
         this.formSubmit = this.formSubmit.bind(this)
     }
 
-    async init () {
-        await super.init()
+    init () {
+        super.init()
         this.form = this.rootElement.querySelector('form')
         this.formMessage = this.rootElement.querySelector('.form-message')
     }

@@ -1,18 +1,12 @@
 {
     "parser": "babel-eslint",
     "extends": ["standard"],
-    "plugins": [
-        "dependencies"
-    ],
     "rules": {
         // enable additional rules
         "indent": [
             "warn",
             4
-        ],
-        "dependencies/case-sensitive": 1,
-        "dependencies/no-cycles": 1,
-        "dependencies/require-json-ext": 1
+        ]
         // Allow using semicolon at lines ends
         //"semi": 0
     },
