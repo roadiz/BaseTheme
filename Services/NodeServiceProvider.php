@@ -43,11 +43,13 @@ class NodeServiceProvider implements ServiceProviderInterface
          * Get main-menu root node
          * whatever its translation.
          */
-        $container['nodeMenu'] = function () {
-            return $this->coreServices['nodeApi']
-                        ->getOneBy([
-                            'nodeName' => 'main-menu',
-                        ]);
+        $container['nodeSourceMenu'] = function () {
+            return $this->coreServices['nodeSourceApi']
+                ->getOneBy([
+                    'node.nodeName' => 'main-menu',
+                    'node.nodeType' => $this->coreServices['nodeTypesBag']->get('Neutral'),
+                    'translation' => $this->translation,
+                ]);
         };
 
         /*
@@ -55,11 +57,11 @@ class NodeServiceProvider implements ServiceProviderInterface
          * This is nodeSources !
          */
         $container['navigation'] = function ($c) {
-            if ($c['nodeMenu'] !== null) {
+            if ($c['nodeSourceMenu'] !== null) {
                 return $this->coreServices['nodeSourceApi']
                     ->getBy(
                         [
-                            'node.parent' => $c['nodeMenu'],
+                            'node.parent' => $c['nodeSourceMenu']->getNode(),
                             'node.visible' => true,
                             'translation' => $this->translation,
                         ],
