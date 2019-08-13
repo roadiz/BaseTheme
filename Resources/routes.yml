@@ -28,6 +28,11 @@ sw:
     defaults:
         _controller: Themes\BaseTheme\Controllers\ServiceWorkerController::serviceWorkerAction
 
+offline:
+    path: /offline.html
+    defaults:
+        _controller: Themes\IdeTheme\Controllers\ServiceWorkerController::offlineAction
+
 defaultRemoveTrailingSlash:
     path: /{url}
     defaults:

@@ -54,5 +54,23 @@ class ServiceWorkerController extends BaseThemeApp
         $this->makeResponseCachable($request, $response, 60);
         return $response;
     }
+    
+    /**
+     * @param Request $request
+     * @param string $_locale
+     * @return Response
+     */
+    public function offlineAction(
+        Request $request,
+        $_locale = 'fr'
+    ) {
+        $this->prepareThemeAssignation(null, $this->bindLocaleFromRoute($request, $_locale));
+
+
+        $response = $this->render('pages/offline.html.twig', $this->assignation);
+
+        $this->makeResponseCachable($request, $response, 60);
+        return $response;
+    }
 
 }
