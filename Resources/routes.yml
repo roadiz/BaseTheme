@@ -23,6 +23,11 @@ sitemap:
     defaults:
         _controller: Themes\BaseTheme\Controllers\SitemapController::sitemapAction
 
+sw:
+    path: /sw.js
+    defaults:
+        _controller: Themes\BaseTheme\Controllers\ServiceWorkerController::serviceWorkerAction
+
 defaultRemoveTrailingSlash:
     path: /{url}
     defaults:
