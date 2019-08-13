@@ -211,6 +211,14 @@
                 <source>send</source>
                 <target>Envoyer</target>
             </trans-unit>
+            <trans-unit id="offline.title">
+                <source>offline.title</source>
+                <target>Mode hors ligne</target>
+            </trans-unit>
+            <trans-unit id="offline.btn">
+                <source>offline.btn</source>
+                <target>Recharger</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

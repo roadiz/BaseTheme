@@ -54,7 +54,7 @@ class ServiceWorkerController extends BaseThemeApp
         $this->makeResponseCachable($request, $response, 60);
         return $response;
     }
-    
+
     /**
      * @param Request $request
      * @param string $_locale
@@ -66,6 +66,9 @@ class ServiceWorkerController extends BaseThemeApp
     ) {
         $this->prepareThemeAssignation(null, $this->bindLocaleFromRoute($request, $_locale));
 
+        $this->assignation['nodeName'] = 'offline-page';
+        $this->assignation['nodeTypeName'] = 'offline';
+        $this->assignation['title'] = $this->get('translator')->trans('offline.title');
 
         $response = $this->render('pages/offline.html.twig', $this->assignation);
 
