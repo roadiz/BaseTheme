@@ -38,7 +38,8 @@ class SitemapController extends BaseThemeApp
         $nodeTypes = $this->get('em')
             ->getRepository(NodeType::class)
             ->findBy([
-                'reachable' => true
+                'reachable' => true,
+                'name' => ['!=', 'Link'], // Prevent links to be listed
             ]);
 
         /*
