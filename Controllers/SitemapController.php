@@ -40,7 +40,14 @@ class SitemapController extends BaseThemeApp
             ->findBy([
                 'reachable' => true
             ]);
-
+        
+        $nodesLink = $this->get('em')
+             ->getRepository(NodeType::class)
+             ->findBy([
+                 'name' => 'Link'
+             ]); 
+        
+        $nodeTypes = array_diff($nodeTypes, $nodesLink);
         /*
          * Add your own nodes grouped by their type.
          */

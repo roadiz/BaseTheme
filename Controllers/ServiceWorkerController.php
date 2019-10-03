@@ -35,13 +35,21 @@ class ServiceWorkerController extends BaseThemeApp
             ->findBy([
                 'reachable' => true
             ]);
-
+   
+        $nodesLink = $this->get('em')
+            ->getRepository(NodeType::class)
+            ->findBy([
+                'name' => 'Link'
+            ]); 
+       
+       $nodes = array_diff($nodeTypes, $nodesLink);
+        
         /*
          * Add your own nodes grouped by their type.
          */
         $this->assignation['pages'] = $this->get('nodeSourceApi')
             ->getBy([
-                'node.nodeType' => $nodeTypes,
+                'node.nodeType' => array($nodes),
                 'node.visible' => true,
             ]);
 

@@ -1,13 +1,12 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
 
-var CACHE_NAME = "cache-idesys"
+var CACHE_NAME = "cache-roadiz"
 const CACHE_ONE_WEEK = 7 * 24 * 60 * 60;
 const OFFLINE_URL = '/offline.html';
-
 const PAGES_TO_PRELOAD = [
-    {% for page in pages %}
-        '{{ path(page) }}',
-    {% endfor %}
+{% for page in pages if page.translation.Available and page.nodeType.name != 'NSLink' %}
+    '{{ path(page) }}',
+{% endfor %}
     '/offline.html'
 ];
 
