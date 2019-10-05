@@ -5,7 +5,7 @@
 
 
 
-{% for page in pages if page.translation.Available and page.nodeTypename != 'NSLink' %}
+{% for page in pages|filter(p => p.translation.Available and page.nodeType.name != 'NSLink') %}
     {% include '@BaseTheme/sitemap/sitemap-element.xml.twig' with {'element': page} only %}
 {% endfor %}
 
