@@ -1,10 +1,10 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
 
-var CACHE_NAME = "cache-roadiz"
+const CACHE_NAME = "cache-roadiz"
 const CACHE_ONE_WEEK = 7 * 24 * 60 * 60;
 const OFFLINE_URL = '/offline.html';
 const PAGES_TO_PRELOAD = [
-{% for page in pages|filter(p => p.translation.Available and page.nodeType.name != 'NSLink') %}
+{% for page in pages|filter(p => p.translation.Available) %}
     '{{ path(page) }}',
 {% endfor %}
     '/offline.html'
@@ -19,7 +19,7 @@ if (workbox) {
 self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(CACHE_NAME).then(cache => {
-            return cache.addAll(PAGES_TO_PRELOAD).then(() => self.skipWaiting());
+            return cache.addAll(PAGES_TO_PRELOAD).then(() => self.skipWaiting())
         })
     )
 })

@@ -123,14 +123,22 @@ const loadSvg = (r) => {
     startingBlocks.boot()
 })()
 
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function () {
-        navigator.serviceWorker.register('/sw.js').then(function (registration) {
-            // Registration was successful
-            console.log('ServiceWorker registration successful with scope: ', registration.scope)
-        }, function (err) {
-            // registration failed :(
-            console.log('ServiceWorker registration failed: ', err)
+if (window.temp.swPath) {
+    if ('serviceWorker' in navigator) {
+        console.debug('Navigator support ServiceWorker')
+        window.addEventListener('load', function () {
+            navigator.serviceWorker.register(window.temp.swPath).then(function (registration) {
+                // Registration was successful
+                console.log('ServiceWorker registration successful with scope: ', registration.scope)
+            }, function (err) {
+                // registration failed :(
+                console.log('ServiceWorker registration failed: ', err)
+            })
         })
-    })
+    } else if (!window.isSecureContext) {
+        console.debug(
+            'Navigator cannot init ServiceWorker, you should have a HTTPS secure context.',
+            'Or force it unsafe chrome://flags/#unsafely-treat-insecure-origin-as-secure'
+        )
+    }
 }

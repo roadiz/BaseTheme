@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 /**
  * Copyright (c) 2019
- * 
+ *
  * BaseTheme
  *
  * @file SitemapController.php
@@ -9,16 +10,14 @@
  */
 namespace Themes\BaseTheme\Controllers;
 
-use RZ\Roadiz\Core\Entities\NodeType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Themes\BaseTheme\BaseThemeApp;
 
 /**
  * Class ServiceWorkerController
  * @package Themes\BaseTheme\Controllers
  */
-class ServiceWorkerController extends BaseThemeApp
+class ServiceWorkerController extends AbstractSitemapController
 {
   /**
      * @param Request $request
@@ -30,28 +29,10 @@ class ServiceWorkerController extends BaseThemeApp
         $_locale = 'fr'
     ) {
         $this->prepareThemeAssignation(null, $this->bindLocaleFromRoute($request, $_locale));
-
-        $nodeTypes = $this->get('em')->getRepository(NodeType::class)
-            ->findBy([
-                'reachable' => true
-            ]);
-   
-        $nodesLink = $this->get('em')
-            ->getRepository(NodeType::class)
-            ->findBy([
-                'name' => 'Link'
-            ]); 
-       
-       $nodes = array_diff($nodeTypes, $nodesLink);
-        
         /*
          * Add your own nodes grouped by their type.
          */
-        $this->assignation['pages'] = $this->get('nodeSourceApi')
-            ->getBy([
-                'node.nodeType' => array($nodes),
-                'node.visible' => true,
-            ]);
+        $this->assignation['pages'] = $this->getListableNodeSources();
 
         $response = new Response(
             trim($this->getTwig()->render('service-worker/sw.js.twig', $this->assignation)),
@@ -83,5 +64,4 @@ class ServiceWorkerController extends BaseThemeApp
         $this->makeResponseCachable($request, $response, 60);
         return $response;
     }
-
 }
