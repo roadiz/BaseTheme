@@ -3,7 +3,9 @@
 
 {#  {% include '@BaseTheme/sitemap/sitemap-element.xml.twig' with {'element': home} only %}#}
 
-{% for page in pages if page.translation.Available %}
+
+
+{% for page in pages|filter(p => p.translation.Available) %}
     {% include '@BaseTheme/sitemap/sitemap-element.xml.twig' with {'element': page} only %}
 {% endfor %}
 
