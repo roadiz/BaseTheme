@@ -41,6 +41,6 @@ workbox.routing.registerRoute(new RegExp('/'), ({ event }) => {
     return strategy
         .handle({ event })
         .then(response => response || caches.match(OFFLINE_URL))
-        .catch( (e) => caches.match(OFFLINE_URL))
+        .catch((e) => caches.match(OFFLINE_URL))
 });
 
