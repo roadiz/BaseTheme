@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * Copyright (c) 2017. Rezo Zero
  *
@@ -39,11 +40,11 @@ class PageController extends BaseThemeApp
         $response = $this->render('pages/page.html.twig', $this->assignation);
 
         /*
-         * Uncomment to make response public for caching 
+         * Uncomment to make response public for caching
          * with reverse proxies like Varnish or Symfony.
          *
          * Be careful! Do not cache your response
-         * if page contains form and/or user content! 
+         * if page contains form and/or user content!
          * Or make them stateless… (disabling CSRF and
          * using a different form action route).
          */

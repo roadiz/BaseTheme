@@ -1,0 +1,46 @@
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
+
+const CACHE_NAME = "cache-roadiz"
+const CACHE_ONE_WEEK = 7 * 24 * 60 * 60;
+const OFFLINE_URL = '/offline.html';
+const PAGES_TO_PRELOAD = [
+{% for page in pages|filter(p => p.translation.Available) %}
+    '{{ path(page) }}',
+{% endfor %}
+    '/offline.html'
+];
+
+if (workbox) {
+    console.log(`Yay! Workbox is loaded 🎉`)
+} else {
+    console.log(`Boo! Workbox didn't load 😬`)
+}
+
+self.addEventListener('install', event => {
+    event.waitUntil(
+        caches.open(CACHE_NAME).then(cache => {
+            return cache.addAll(PAGES_TO_PRELOAD).then(() => self.skipWaiting())
+        })
+    )
+})
+
+self.addEventListener('activate', event => {
+    event.waitUntil(self.clients.claim());
+});
+
+const strategy = new workbox.strategies.NetworkFirst({
+    cacheName: CACHE_NAME,
+    plugins: [
+        new workbox.expiration.Plugin({
+            maxAgeSeconds: CACHE_ONE_WEEK
+        })
+    ]
+})
+
+workbox.routing.registerRoute(new RegExp('/'), ({ event }) => {
+    return strategy
+        .handle({ event })
+        .then(response => response || caches.match(OFFLINE_URL))
+        .catch((e) => caches.match(OFFLINE_URL))
+});
+

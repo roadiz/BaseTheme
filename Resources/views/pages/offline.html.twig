@@ -1,0 +1,22 @@
+{% extends '@BaseTheme/pages/base.html.twig' %}
+
+{% block body_attributes %}id="offline-page" data-node-type="offline"{% endblock %}
+
+
+{% block header %}
+    <header class="page-header">
+        <div class="container">
+            <h1 class="page-title">{{ title }}</h1>
+        </div>
+    </header>
+{% endblock %}
+
+{% block inner_content %}
+    <div class="container">
+        <button onclick="document.location.reload(true)">{% trans %}offline.btn{% endtrans %}</button>
+    </div>
+{% endblock %}
+
+
+
+

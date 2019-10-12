@@ -155,7 +155,8 @@
             locale: '{{ request.locale }}',
             resourcesUrl: '{{ head.resourcesUrl }}',
             privacyPolicy: {% if themeServices.nodeSourceLegals %}'{{ url(themeServices.nodeSourceLegals) }}'{% else %}''{% endif %},
-            hasTrackers: {% if head.universalAnalyticsId or head.googleTagManagerId %}true{% else %}false{% endif %}
+            hasTrackers: {% if head.universalAnalyticsId or head.googleTagManagerId %}true{% else %}false{% endif %},
+            swPath: '{{ path('sw') }}'
         };
     </script>
 

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * Copyright (c) 2017. Rezo Zero
  *
@@ -23,7 +24,7 @@ use Themes\BaseTheme\Twig\ImageFormatsExtension;
  */
 class BaseThemeApp extends FrontendController
 {
-    const VERSION = '1.2.3';
+    const VERSION = '1.2.4';
 
     protected static $themeName = 'Base theme';
     protected static $themeAuthor = 'REZO ZERO';

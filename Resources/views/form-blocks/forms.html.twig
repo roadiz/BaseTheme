@@ -1,0 +1,21 @@
+{% extends "bootstrap_4_layout.html.twig" %}
+
+{%- block widget_attributes -%}
+    {%- if label and not attr.placeholder %}
+        {% set attr = attr|merge({placeholder: label|trans}) %}
+        {% if required %}
+            {% set attr = attr|merge({placeholder: label|trans ~ '*'}) %}
+        {% endif %}
+    {% endif -%}
+    {{ parent() }}
+{%- endblock widget_attributes -%}
+
+{% block form_row -%}
+    {%- if compound is defined and compound -%}
+        {%- set element = 'fieldset' -%}
+    {%- endif -%}
+    <{{ element|default('div') }} class="form-group form-{{ name|replace({ '_': '-' }) }}">
+    {{- form_label(form) -}}
+    {{- form_widget(form) -}}
+    </{{ element|default('div') }}>
+{%- endblock form_row %}

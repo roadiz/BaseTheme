@@ -14,7 +14,7 @@
         "children_order": "position",
         "children_order_direction": "ASC",
         "position": 1,
-        "dynamic_node_name": true,
+        "dynamic_node_name": false,
         "children": [
             {
                 "node_name": "home",
