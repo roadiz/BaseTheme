@@ -1,0 +1,11 @@
+{
+    "extends": "tslint-config-standard",
+    "rules": {
+        "ter-indent": [true, 4],
+        "quotemark": [true, "single", "jsx-double"],
+        "no-duplicate-variable": true,
+        "no-unused-variable": [
+            true
+        ]
+    }
+}

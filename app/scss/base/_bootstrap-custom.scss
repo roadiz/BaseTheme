@@ -6,16 +6,10 @@
 @import '../../../node_modules/bootstrap/scss/functions';
 @import '../../../node_modules/bootstrap/scss/variables';
 @import '../../../node_modules/bootstrap/scss/mixins';
-
-// Reset and dependencies
-//@import "../../../node_modules/bootstrap/scss/print";
-
-// Core CSS
 @import "../../../node_modules/bootstrap/scss/reboot";
 
 // ----------------------------------------------------
 // 2. Variable overrides / customisation:
-// @see: https://github.com/twbs/bootstrap/blob/v4-dev/scss/_variables.scss
 // ----------------------------------------------------
 
 // Font
@@ -51,7 +45,7 @@ $container-max-widths: (
 @include _assert-ascending($container-max-widths, "$container-max-widths");
 
 $grid-columns:               12;
-$grid-gutter-width-base:     30px;
+$grid-gutter-width-base:     24px;
 $grid-gutter-widths: (
     xs: $grid-gutter-width-base,
     sm: $grid-gutter-width-base,
@@ -59,41 +53,46 @@ $grid-gutter-widths: (
     lg: $grid-gutter-width-base,
     xl: $grid-gutter-width-base
 );
-@include _assert-ascending($container-max-widths, "$container-max-widths");
-
-/*
- * Support RTL with Grid offset
- */
-@mixin make-col-offset($size, $columns: $grid-columns) {
-    margin-left: percentage($size / $columns);
-
-    [dir=rtl] & {
-        margin-left: 0;
-        margin-right: percentage($size / $columns);
-    }
-}
 
 // ----------------------------------------------------
 // 3. The rest of the required files
 // ----------------------------------------------------
 
-// Grid system
+// Grid
 @import '../../../node_modules/bootstrap/scss/grid';
-//@import '../../../node_modules/bootstrap/scss/tables';
-@import '../../../node_modules/bootstrap/scss/type';
-//@import '../../../node_modules/bootstrap/scss/code'; // when starting project only (backend devs will appreciate…)
-//@import '../../../node_modules/bootstrap/scss/nav'; // when starting project only (backend devs will appreciate…)
-//@import '../../../node_modules/bootstrap/scss/navbar'; // when starting project only (backend devs will appreciate…)
-//@import '../../../node_modules/bootstrap/scss/dropdown'; // when starting project only (backend devs will appreciate…)
-// --- TO DELETE AFTER BEGINNING FRONTEND
-.dropdown:hover>.dropdown-menu {
-    display: block;
-    margin-top: 0;
+
+// Display utilities
+@import '../../../node_modules/bootstrap/scss/utilities/display';
+
+.row > .col,
+.row > [class*="col-"] {
+    @each $breakpoint, $gutter in $grid-gutter-widths {
+        @include media-breakpoint-only($breakpoint) {
+            padding-right: $gutter / 2;
+            padding-left: $gutter / 2;
+        }
+    }
 }
-// -------------------------------------
-@import "../../../node_modules/bootstrap/scss/media";
-@import "../../../node_modules/bootstrap/scss/images";
-@import "../../../node_modules/bootstrap/scss/forms"; // when starting project only (backend devs will appreciate…)
-@import "../../../node_modules/bootstrap/scss/alert"; // when starting project only (backend devs will appreciate…)
-@import "../../../node_modules/bootstrap/scss/buttons"; // when starting project only (backend devs will appreciate…)
-@import "../../../node_modules/bootstrap/scss/utilities";
+
+.row {
+    @each $breakpoint, $gutter in $grid-gutter-widths {
+        @include media-breakpoint-only($breakpoint) {
+            margin-right: -$gutter / 2 !important;
+            margin-left: -$gutter / 2 !important;
+        }
+    }
+}
+
+.container-fluid,
+.container {
+    @include media-breakpoint-between(xs, lg) {
+        max-width: none !important;
+    }
+
+    @each $breakpoint, $gutter in $grid-gutter-widths {
+        @include media-breakpoint-only($breakpoint) {
+            padding-right: $gutter !important;
+            padding-left: $gutter !important;
+        }
+    }
+}

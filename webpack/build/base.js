@@ -4,7 +4,6 @@ import debug from 'debug'
 import { CleanWebpackPlugin } from 'clean-webpack-plugin'
 import WriteFilePlugin from 'write-file-webpack-plugin'
 import SpriteLoaderPlugin from 'svg-sprite-loader/plugin'
-import CleanTerminalPlugin from 'clean-terminal-webpack-plugin'
 import HtmlWebpackMultiBuildPlugin from '../modules/HtmlWebpackMultiBuildPlugin'
 
 const dbg = debug('Roadiz-front:webpack-config:base  ')
@@ -29,8 +28,7 @@ const getWebpackConfigBase = (config) => {
                         loader: 'svg-sprite-loader',
                         options: {
                             extract: true,
-                            spriteFilename: '../Resources/views/svg/sprite.svg.twig',
-                            runtimeCompat: true,
+                            spriteFilename: '../static/svg/sprite.svg',
                             symbolId: 'icon-[name]'
                         }
                     },
@@ -46,18 +44,6 @@ const getWebpackConfigBase = (config) => {
                         }
                     }
                 ]
-            }, {
-                test: /js\/.*\.js$/,
-                enforce: 'pre',
-                loader: 'eslint-loader',
-                exclude: [/node_modules/, /app\/vendors/]
-            }, {
-                test: /\.js?$/,
-                exclude: /(node_modules)/,
-                loader: 'babel-loader',
-                query: {
-                    cacheDirectory: true
-                }
             }, {
                 test: /\.(png|jpg)$/,
                 loader: 'url-loader',
@@ -83,11 +69,10 @@ const getWebpackConfigBase = (config) => {
             }]
         },
         plugins: [
-            new CleanTerminalPlugin(),
             new webpack.DefinePlugin(config.globals),
             new CleanWebpackPlugin({
                 cleanStaleWebpackAssets: false,
-                cleanOnceBeforeBuildPatterns: ['css', 'img', 'js', 'fonts', 'vendors', '*.*'],
+                cleanOnceBeforeBuildPatterns: ['css', 'img', 'js', 'fonts', 'vendors'],
                 verbose: true
             }),
             new CopyWebpackPlugin([{

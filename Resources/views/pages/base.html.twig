@@ -14,6 +14,7 @@
 
 {% block content %}
 <section class="{{ classes|join(' ') }}"
+         data-router-view="{{ nodeTypeName }}"
          id="page-content-{{ nodeName }}"
          data-title="{{ title }}"
          data-node-type="{{ nodeTypeName }}"

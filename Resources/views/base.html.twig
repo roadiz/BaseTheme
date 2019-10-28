@@ -64,7 +64,6 @@
      # Share metas -------------------------------------------------------------
      #}
     {% block share_metas %}
-
         {% if headerImage %}
             {% set previewImageUrl = headerImage|url(imageFormats.shareImage) %}
         {% else %}
@@ -92,7 +91,6 @@
         {% endif %}
         <meta name="twitter:url" content="{{ request.uri }}" />
         <meta name="twitter:image" content="{{ previewImageUrl }}" />
-
     {% endblock %}
 
     {% include '@BaseTheme/partials/css-inject.html.twig' %}
@@ -127,7 +125,6 @@
                       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- End Google Tag Manager (noscript) -->
     {% endif %}
-    {% include '@BaseTheme/svg/sprite.svg.twig' %}
 
     {#
      # Main navigation inclusion -----------------------------------------------
@@ -137,10 +134,9 @@
     {#
      # Content block -----------------------------------------------------------
      #}
-    <div id="main-container">
+    <main id="main-container" data-router-wrapper>
         {% block content %}{% endblock %}
-        <div id="ajax-container"></div>
-    </div>
+    </main>
 
     {#
      # Footer ------------------------------------------------------------------
@@ -148,6 +144,7 @@
     {% include '@BaseTheme/common/footer.html.twig' %}
 
     <noscript><div id="no-js-message">{% trans %}no_javascript_message{% endtrans %}</div></noscript>
+
     <script>
         {# Passing server vars to JS framework #}
         window.temp = {
@@ -163,6 +160,7 @@
     {% if head.universalAnalyticsId or head.googleTagManagerId %}
         {% include '@BaseTheme/partials/orejime.html.twig' %}
     {% endif %}
+
     {% if head.universalAnalyticsId and not head.googleTagManagerId %}
         <script data-type="text/javascript" type="opt-in" data-name="google">
             {# Google Analytics: change head.universalAnalyticsId to be your site ID.  #}
@@ -175,6 +173,7 @@
             ga('send', 'pageview');
         </script>
     {% endif %}
+
     {% if head.googleTagManagerId %}
         <script data-type="text/javascript" type="opt-in" data-name="google">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
                 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -184,8 +183,12 @@
     {% endif %}
 
     {# JS scripts inclusions #}
-    {% include '@BaseTheme/partials/js-inject-modern.html.twig' %}
     {% include '@BaseTheme/partials/js-inject-legacy.html.twig' %}
+    <script type="module"
+            crossorigin
+            src="{{ head.resourcesUrl }}build/basetheme.esm.js?v={{ head.themeVersion }}"
+            data-resources-url="{{ head.resourcesUrl }}build/" data-namespace="trufflefcpi"></script>
+    <script nomodule crossorigin src="{{ head.resourcesUrl }}build/basetheme.js?v={{ head.themeVersion }}"></script>
 
     <script src="https://unpkg.com/orejime@1.1.1/dist/orejime.js"></script>
 </body>

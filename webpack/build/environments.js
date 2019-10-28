@@ -1,3 +1,4 @@
+import path from 'path'
 import webpack from 'webpack'
 import cssnano from 'cssnano'
 import postcssFixes from 'postcss-fixes'
@@ -121,32 +122,16 @@ export default {
 
         return {
             entry: {
-                app: paths.client('js/main.js')
+                app: [
+                    paths.client('scss/style.scss'),
+                    path.resolve('./webpack/modules/SpriteGenerator')
+                ]
             },
             output: {
                 path: paths.dist(),
                 filename: filename,
                 chunkFilename: chunkfilename,
                 publicPath: config.public_path
-            },
-            module: {
-                rules: [{
-                    test: /\.js?$/,
-                    exclude: /(node_modules)/,
-                    loader: 'babel-loader',
-                    query: {
-                        cacheDirectory: true,
-                        presets: [
-                            [
-                                '@babel/preset-env', {
-                                    targets: {
-                                        esmodules: true
-                                    }
-                                }
-                            ]
-                        ]
-                    }
-                }]
             },
             plugins: [
                 new HtmlWebpackPlugin({
@@ -180,7 +165,13 @@ export default {
 
         return {
             entry: {
-                app: ['whatwg-fetch', 'es6-promise', 'url-polyfill', paths.client('js/main.js')]
+                app: [
+                    'whatwg-fetch',
+                    'es6-promise',
+                    'url-polyfill',
+                    paths.client('scss/style.scss'),
+                    path.resolve('./webpack/modules/SpriteGenerator')
+                ]
             },
             output: {
                 path: paths.dist(),
