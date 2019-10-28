@@ -183,7 +183,7 @@
                 "tags": []
             },
             {
-                "node_name": "mentions-legales",
+                "node_name": "mentions-legales-link",
                 "node_type": "Link",
                 "home": false,
                 "visible": true,
