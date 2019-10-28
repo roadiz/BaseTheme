@@ -18,6 +18,7 @@ importFiles:
         - Resources/import/node-type/Neutral.json
         - Resources/import/node-type/Page.json
     tags: []
+    attributes: []
     nodes:
         - Resources/import/node/node-main-menu.rzn
         - Resources/import/node/node-legals.rzn
