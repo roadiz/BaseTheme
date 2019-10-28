@@ -1,0 +1,9 @@
+$baseFontSize: 16;
+
+@function prem($pxval, $base: $baseFontSize) {
+    @return #{$pxval / $base}rem;
+}
+
+@function columns($count) {
+    @return #{((100 / 12) * $count)}vw;
+}

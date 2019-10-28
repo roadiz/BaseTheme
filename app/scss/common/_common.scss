@@ -2,16 +2,23 @@
  * Styles for all pages
  */
 
+:root {
+    // each item in vars map
+    @each $key, $value in $vars {
+        --#{$key}: #{$value};
+    }
+}
+
 ::selection {
-    background-color: $black;
-    color: $white;
+    @include var(background-color, black);
+    @include var(color, white);
 }
 
 body {
     font: normal 14px/16px $font;
-    color: $black;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    @include var(color, black);
 }
 
 a {
@@ -36,13 +43,13 @@ button {
 
 #main-container {
     position: relative;
-    margin-top: $nav-height;
+    @include var(margin-top, nav-height);
 }
 
 @include media-breakpoint-up(sm) {
     #main-container {
         position: relative;
-        margin-top: $nav-height;
+        @include var(margin-top, nav-height);
     }
 }
 

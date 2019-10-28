@@ -10,22 +10,27 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
-
+  interface RzNav {}
 }
 
 declare global {
 
 
+  interface HTMLRzNavElement extends Components.RzNav, HTMLStencilElement {}
+  var HTMLRzNavElement: {
+    prototype: HTMLRzNavElement;
+    new (): HTMLRzNavElement;
+  };
   interface HTMLElementTagNameMap {
-
+    'rz-nav': HTMLRzNavElement;
   }
 }
 
 declare namespace LocalJSX {
-
+  interface RzNav {}
 
   interface IntrinsicElements {
-
+    'rz-nav': RzNav;
   }
 }
 
@@ -35,7 +40,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
   export namespace JSX {
     interface IntrinsicElements {
-
+      'rz-nav': LocalJSX.RzNav & JSXBase.HTMLAttributes<HTMLRzNavElement>;
     }
   }
 }

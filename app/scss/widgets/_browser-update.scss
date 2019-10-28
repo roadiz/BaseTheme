@@ -3,7 +3,7 @@
  */
 
 $browserUpdateBgColor: #eee;
-$browserUpdateColorLink: $black;
+$browserUpdateColorLink: #101010;
 
 body .buorg {
     position: fixed;
@@ -12,12 +12,12 @@ body .buorg {
     left: 0;
     border-bottom: none;
     background: $browserUpdateBgColor;
-    color: $black;
     font-family: $font;
     font-size: 14px;
     line-height: 16px;
     text-align: center;
     cursor: default;
+    @include var(color, black);
 
     div {
         padding: 12px 20px;

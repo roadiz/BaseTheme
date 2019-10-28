@@ -5,25 +5,26 @@
     bottom: 0;
     left: 0;
     width: 80vw;
-    background: $white;
     padding: 0;
     display: none;
+    @include var(background-color, white);
 
     @include media-breakpoint-only(xs) {
         transform: translateX(-80vw);
     }
 
     @include media-breakpoint-up(sm) {
+        @include var(height, nav-height);
+
         right: 0;
         bottom: initial;
         width: auto;
-        height: $nav-height;
         transform: none;
-        border-bottom: 1px solid #DADADA;
+        border-bottom: 1px solid #dadada;
         display: block;
 
         #nav-container {
-            height: $nav-height;
+            @include var(height, nav-height);
         }
     }
 
@@ -70,17 +71,17 @@
     top: 0;
     left: 0;
     width: 60px;
-    height: $nav-height;
     cursor: pointer;
+    @include var(height, nav-height);
 
     &__bar {
         position: absolute;
         width: 30px;
         height: 2px;
-        background: $black;
         left: 50%;
         top: 50%;
         margin-left: -15px;
+        @include var(background, black);
     }
 
     &__bar-1 {
@@ -99,7 +100,8 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background: rgba($black, 0.6);
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
+    @include var(background-color, black);
 }

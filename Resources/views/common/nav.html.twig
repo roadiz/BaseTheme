@@ -10,53 +10,55 @@
     <span class="nav-btn__bar nav-btn__bar-3"></span>
 </button>
 
-{# Main nav #}
-<nav id="nav"
-     data-active-node="{{ node.id }}"
-     class="nav">
-    <div id="nav-container"
-         class="container">
+<rz-nav>
+    {# Main nav #}
+    <nav id="nav"
+         data-active-node="{{ node.id }}"
+         class="nav">
+        <div id="nav-container"
+             class="container">
 
-        <ul id="nav-list"
-            class="nav-list"
-            role="menubar">
-
-            {% if home %}
-                {% set homeSource = home.nodeSources.first %}
-                <li class="nav-item nav-item-home {% if node.isHome %}active{% endif %}"
-                    role="none">
-                    <a href="{{ path(homeSource) }}"
-                       role="menuitem"
-                       class="nav-link-home nav-link {% if node.isHome %}active{% endif %}">
-                        {{- homeSource.title|default(home.nodeName) -}}
-                    </a>
-                </li>
-            {% endif %}
-
-            {% if themeServices.navigation and themeServices.navigation|length %}
-                {% for source in themeServices.navigation %}
-                    {% include '@BaseTheme/common/nav-item.html.twig' with {
-                        'source' : source,
-                        'active' : node,
-                        'home' : home,
-                        'themeServices':themeServices
-                    } only %}
-                {% endfor %}
-            {% endif %}
-        </ul>
-
-        {% if translation %}
-            <ul id="nav-lang"
-                class="nav-list nav-lang"
+            <ul id="nav-list"
+                class="nav-list"
                 role="menubar">
-                {% for id, trans in translation|menu %}
-                    <li class="nav-item nav-item-lang{% if trans.active %} active{% endif %}" role="none">
-                        <a class="no-ajax-link nav-link nav-link-lang{% if trans.active %} active{% endif %}"
+
+                {% if home %}
+                    {% set homeSource = home.nodeSources.first %}
+                    <li class="nav-item nav-item-home {% if node.isHome %}active{% endif %}"
+                        role="none">
+                        <a href="{{ path(homeSource) }}"
                            role="menuitem"
-                           href="{{ trans.url }}">{{ trans.translation }}</a>
+                           class="nav-link-home nav-link {% if node.isHome %}active{% endif %}">
+                            {{- homeSource.title|default(home.nodeName) -}}
+                        </a>
                     </li>
-                {% endfor %}
+                {% endif %}
+
+                {% if themeServices.navigation and themeServices.navigation|length %}
+                    {% for source in themeServices.navigation %}
+                        {% include '@BaseTheme/common/nav-item.html.twig' with {
+                            'source' : source,
+                            'active' : node,
+                            'home' : home,
+                            'themeServices':themeServices
+                        } only %}
+                    {% endfor %}
+                {% endif %}
             </ul>
-        {% endif %}
-    </div>
-</nav>
+
+            {% if translation %}
+                <ul id="nav-lang"
+                    class="nav-list nav-lang"
+                    role="menubar">
+                    {% for id, trans in translation|menu %}
+                        <li class="nav-item nav-item-lang{% if trans.active %} active{% endif %}" role="none">
+                            <a class="no-ajax-link nav-link nav-link-lang{% if trans.active %} active{% endif %}"
+                               role="menuitem"
+                               href="{{ trans.url }}">{{ trans.translation }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </nav>
+</rz-nav>

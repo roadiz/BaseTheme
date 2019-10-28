@@ -1,11 +1,13 @@
 {
-    "extends": "stylelint-config-standard",
-    "plugins": ["stylelint-scss"],
+    "extends": "stylelint-config-standard-scss",
+    "plugins": [
+        "stylelint-scss"
+    ],
     "rules": {
         "no-descending-specificity": null,
         "at-rule-empty-line-before": null,
         "indentation": 4,
-        "at-rule-no-unknown": [ true, {
+        "scss/at-rule-no-unknown": [ true, {
             "ignoreAtRules": ["include"]
         }]
     }

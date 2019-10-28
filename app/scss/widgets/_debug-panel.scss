@@ -1,10 +1,7 @@
-/*------------------------------------*\
-   DEBUG PANEL
-\*------------------------------------*/
 #rz-debug-panel {
     font-size: 10px;
     box-sizing: border-box;
-    background-color: #EFEFEF;
+    background-color: rgb(239, 239, 239);
     position: fixed;
     bottom: 0;
     right: 0;
@@ -14,7 +11,7 @@
     border-radius: 10px 0 0 0;
     font-family: Helvetica, Arial, sans-serif;
 
-    &:before {
+    &::before {
         content: '';
         display: block;
         width: 30px;
@@ -30,39 +27,43 @@
         display: inline-block;
         font-size: 11px;
         padding: 5px 5px;
-        margin: 9px 0px 0px;
+        margin: 9px 0 0;
         text-transform: uppercase;
         font-weight: bold;
         box-sizing: border-box;
         letter-spacing: 0.04em;
         color: rgb(171, 167, 167);
-        text-shadow: 0px 1px 0px rgb(255, 255, 255);
+        text-shadow: 0 1px 0 rgb(255, 255, 255);
     }
+
     ul {
         padding: 0;
         margin: 0;
         display: none;
         clear: both;
-
     }
+
     li {
         list-style: none;
         overflow: hidden;
-        border-bottom: 1px solid rgba(0,0,0,0.1);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
 
-    dl, dt, dd {
+    dl,
+    dt,
+    dd {
         display: inline-block;
         padding: 3px 5px;
-        margin: 0px;
+        margin: 0;
         box-sizing: border-box;
     }
+
     dd {
-        padding-left: 0px;
+        padding-left: 0;
     }
 
     .chart-bar {
-        background: #85D267;
+        background: rgb(133, 210, 103);
         height: 3px;
         min-width: 1px;
         position: relative;
@@ -70,7 +71,7 @@
 
     .chart-infos {
         position: relative;
-        border-left: 1px solid rgba(0,0,0,0.1);
+        border-left: 1px solid rgba(0, 0, 0, 0.1);
     }
 
     &:hover {
@@ -83,9 +84,10 @@
         height: auto;
         border-radius: 0;
 
-        &:before {
-           margin: 0px 5px 10px 0px;
+        &::before {
+            margin: 0 5px 10px 0;
         }
+
         ul {
             display: block;
         }

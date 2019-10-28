@@ -12,19 +12,6 @@
 // 2. Variable overrides / customisation:
 // ----------------------------------------------------
 
-// Font
-$font-family-sans-serif: $font;
-$font-family-serif: $font;
-$font-family-base: $font;
-
-// Color
-$brand-primary: $mainColor;
-$link-color: $mainColor;
-$btn-success-bg: $mainColor;
-
-// Link hover color set via `darken()` function.
-$link-hover-color: darken($mainColor, 15%);
-
 $grid-breakpoints: (
     xs: 0,
     sm: 544px,

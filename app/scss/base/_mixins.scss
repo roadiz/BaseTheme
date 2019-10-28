@@ -6,3 +6,8 @@
     image-rendering: optimize-contrast;
     -ms-interpolation-mode:nearest-neighbor;
 }
+
+@mixin var($property, $varName, $mode: "") {
+    #{$property}: map-get($vars, $varName) #{$mode};
+    #{$property}: var(--#{$varName}) #{$mode};
+}
