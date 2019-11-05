@@ -43,6 +43,17 @@ class ServiceWorkerController extends AbstractSitemapController
         $this->makeResponseCachable($request, $response, 60);
         return $response;
     }
+    
+    protected function getIgnoredNodeTypes(): array
+    {
+        return [
+            'Link',
+            'BlogPost',
+            // Ignore numerous and small pages
+            // to avoid painful load at first website
+            // visit.
+        ];
+    }
 
     /**
      * @param Request $request
