@@ -23,12 +23,10 @@
  * be used in advertising or otherwise to promote the sale, use or other dealings
  * in this Software without prior written authorization from Ambroise Maupate and Julien Blanchet.
  */
-
 namespace Themes\BaseTheme\Event;
 
 use GeneratedNodeSources\NSLink;
-use RZ\Roadiz\Core\Events\FilterNodeSourcePathEvent;
-use RZ\Roadiz\Core\Events\NodesSourcesEvents;
+use RZ\Roadiz\Core\Events\NodesSources\NodesSourcesPathGeneratingEvent;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -37,17 +35,20 @@ class LinkPathGeneratingEventListener implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            NodesSourcesEvents::NODE_SOURCE_PATH_GENERATING => ['onPathGeneration']
+            NodesSourcesPathGeneratingEvent::class => ['onPathGeneration']
         ];
     }
 
     /**
-     * @param FilterNodeSourcePathEvent $event
-     * @param string                    $eventName
-     * @param EventDispatcherInterface  $dispatcher
+     * @param NodesSourcesPathGeneratingEvent $event
+     * @param string                          $eventName
+     * @param EventDispatcherInterface        $dispatcher
      */
-    public function onPathGeneration(FilterNodeSourcePathEvent $event, $eventName, EventDispatcherInterface $dispatcher)
-    {
+    public function onPathGeneration(
+        NodesSourcesPathGeneratingEvent $event,
+        $eventName,
+        EventDispatcherInterface $dispatcher
+    ) {
         $nodeSource = $event->getNodeSource();
 
         if ($nodeSource instanceof NSLink) {
@@ -62,13 +63,13 @@ class LinkPathGeneratingEventListener implements EventSubscriberInterface
                 /*
                  * If editor linked to an internal page through a node reference
                  */
-                /** @var FilterNodeSourcePathEvent $subEvent */
+                /** @var NodesSourcesPathGeneratingEvent $subEvent */
                 $subEvent = clone $event;
                 $subEvent->setNodeSource($nodeSource->getInternalLinkSources()[0]);
                 /*
                  * Dispatch a path generation again for linked node-source.
                  */
-                $dispatcher->dispatch(NodesSourcesEvents::NODE_SOURCE_PATH_GENERATING, $subEvent);
+                $dispatcher->dispatch($subEvent);
                 /*
                  * Fill main event with sub-event data
                  */
