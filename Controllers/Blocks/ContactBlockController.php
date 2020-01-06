@@ -45,6 +45,12 @@ class ContactBlockController extends BaseThemeApp
         $contactFormManager->setOptions([
             'action' => '#block-' . $source->getNode()->getNodeName(),
         ]);
+        
+        /*
+         * DO NOT FORGET to set page TTL to 0,
+         * reverse-proxy cache will break Google Recaptcha
+         */
+        $contactFormManager->withGoogleRecaptcha();
 
         /*
          * Define custom receiver.
