@@ -1,13 +1,6 @@
 <?php
 declare(strict_types=1);
-/**
- * Copyright (c) 2017. Rezo Zero
- *
- * BaseTheme
- *
- * @file BaseThemeApp.php
- * @author Ambroise Maupate <ambroise@rezo-zero.com>
- */
+
 namespace Themes\BaseTheme;
 
 use Pimple\Container;
@@ -17,7 +10,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use RZ\Roadiz\Core\Repositories\TranslationRepository;
 use Themes\BaseTheme\Services;
-use Themes\BaseTheme\Twig\ImageFormatsExtension;
 
 /**
  * BaseThemeApp class
@@ -154,7 +146,7 @@ class BaseThemeApp extends FrontendController
         /*
          * Get social networks url from Roadiz parameters.
          */
-        $socials = ['Twitter', 'Facebook', 'Instagram', 'YouTube', 'LinkedIn', 'GooglePlus', 'Pinterest'];
+        $socials = ['Twitter', 'Facebook', 'Instagram', 'YouTube', 'LinkedIn', 'Flickr', 'GooglePlus', 'Pinterest', 'WeChat'];
         $this->assignation['head']['socials'] = [];
         foreach ($socials as $social) {
             $setting = $this->get('settingsBag')->get(strtolower($social) . '_url');

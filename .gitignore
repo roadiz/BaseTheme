@@ -8,7 +8,6 @@
 # Icon must end with two \r
 Icon
 
-
 # Thumbnails
 ._*
 
@@ -30,7 +29,6 @@ dist/
 
 # Grunt usually preprocesses files such as coffeescript, compass... inside the .tmp directory
 .tmp/
-
 
 ### Node ###
 # Logs
@@ -91,21 +89,11 @@ sftp-config.json
 # package-lock.json
 
 ## Generated files (css, js, svg, img, vendors)
-/static/js
-/static/build
-/static/css
-/static/img
-/static/vendors
-/static/fonts
-/static/**
-/Resources/views/svg/sprite.svg.twig
+/static
 !/static/.gitkeep
+/Resources/views/svg/sprite.svg.twig
 
 ## Inject files
-/Resources/views/partials/css-inject.html.twig
-/Resources/views/partials/js-inject.html.twig
-/Resources/views/partials/js-inject-modern.html.twig
-/Resources/views/partials/js-inject-legacy.html.twig
 /Resources/views/base.html.twig
 
 ## Generic
