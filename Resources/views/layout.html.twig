@@ -7,6 +7,9 @@
 {% set nodeName = nodeName|default(node.nodeName) %}
 {% set nodeTypeName = nodeTypeName|default(node.nodeType.name) %}
 {% set nodeHome = node.home|default(false) %}
+{% if not nodeTypeName %}
+    {% set nodeTypeName = 'page' %}
+{% endif %}
 {#  #}
 {% set title = title|default(nodeSource.title) %}
 {% set content = content|default(nodeSource.content) %}
@@ -149,7 +152,6 @@
 
         <div id="basetheme"
              class="{{ mainWrapperClass|join(' ') }}"
-             data-context="{{ context.name }}"
              data-router-view="{{ nodeTypeName }}">
 
             {# Main navigation #}
