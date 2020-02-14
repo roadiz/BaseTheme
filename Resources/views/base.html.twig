@@ -184,7 +184,6 @@
     {% endif %}
 
     {% if bags.settings.get('matomo_url') and bags.settings.get('matomo_site_id') %}
-    <!-- Matomo -->
     <script data-type="text/javascript" type="opt-out" data-name="matomo">
         var _paq = window._paq || [];
         // require user consent before processing data
@@ -198,7 +197,6 @@
             g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
         })();
     </script>
-    <!-- End Matomo Code -->
     {% endif %}
 
     {# JS scripts inclusions #}
