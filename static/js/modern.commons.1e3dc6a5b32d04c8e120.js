@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[0],{D9Dx:function(n,s,e){"use strict";e.r(s),e.d(s,"default",function(){return a});var t=e("OpnW");class a extends t.a{}}}]);

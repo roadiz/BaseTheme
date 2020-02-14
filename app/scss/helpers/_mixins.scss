@@ -1,0 +1,179 @@
+/**
+ * @file _mixins.scss
+ * @description mixins
+ */
+@mixin reset {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    background: none;
+}
+
+@mixin pseudo-block ($display: block) {
+    display: $display;
+    content: '';
+}
+
+/// poly-fluid-sizing
+/// Generate linear interpolated size values through multiple break points
+/// @param $property - A string CSS property name
+/// @param $map - A SASS map of viewport unit and size value pairs
+/// @requires function linear-interpolation
+/// @requires function map-sort
+/// @example
+///   @include poly-fluid-sizing('font-size', (576px: 22px, 768px: 24px, 992px: 34px));
+/// @author Jake Wilson <jake.e.wilson@gmail.com>
+@mixin poly-fluid-sizing($property, $map) {
+    // Get the number of provided breakpoints
+    $length: length(map-keys($map));
+
+    // Error if the number of breakpoints is < 2
+    @if ($length < 2) {
+        //noinspection Stylelint
+        @error "poly-fluid-sizing() $map requires at least values";
+    }
+
+    // Sort the map by viewport width (key)
+    $map: map-sort($map);
+    $keys: map-keys($map);
+
+    // Minimum size
+    #{$property}: map-get($map, nth($keys, 1));
+
+    // Interpolated size through breakpoints
+    @for $i from 1 through ($length - 1) {
+        @media (min-width: nth($keys, $i)) {
+            #{$property}: linear-interpolation((nth($keys, $i): map-get($map, nth($keys, $i)), nth($keys, ($i+1)): map-get($map, nth($keys, ($i + 1)))));
+        }
+    }
+
+    // Maxmimum size
+    @media (min-width: nth($keys, $length)) {
+        #{$property}: map-get($map, nth($keys, $length));
+    }
+}
+
+@mixin swiper-container {
+    backface-visibility: hidden;
+}
+
+@mixin swiper-wrapper {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition-timing-function: var(--ease-classic);
+    transition-property: transform;
+}
+
+@mixin swiper-item {
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
+@mixin nav-link {
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    color: currentColor;
+}
+
+@mixin nav-link--small {
+    font-size: prem(12);
+    letter-spacing: prem(2);
+    line-height: prem(16);
+}
+
+@mixin nav-link--big {
+    display: flex;
+    align-items: center;
+    font-size: prem(32);
+    line-height: prem(40);
+    letter-spacing: prem(1.4);
+}
+
+@mixin nav-link-mobile {
+    font-size: prem(24);
+    line-height: prem(32);
+    letter-spacing: prem(1);
+}
+
+@mixin nav-link-desktop {
+    font-size: prem(18);
+    line-height: prem(24);
+    letter-spacing: prem(2);
+}
+
+@mixin cta-source {
+    position: relative;
+    text-decoration: none;
+    padding: 0 30px 0 0;
+    font-size: prem(14);
+    line-height: prem(16);
+    letter-spacing: prem(.4);
+    color: var(--color-black);
+    display: inline-block;
+    cursor: help;
+
+    span {
+        display: inline-block;
+        width: 22px;
+        height: 22px;
+        border-radius: percentage(.5);
+        background: var(--color-main-blue);
+        color: var(--color-white);
+        overflow: hidden;
+        position: absolute;
+        right: 0;
+        top: -3px;
+    }
+
+    svg {
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        z-index: 1;
+    }
+
+    .source-infos {
+        background: var(--color-main-blue);
+        padding: spacer() spacer(2);
+        position: absolute;
+        top: percentage(1);
+        left: percentage(.5);
+        white-space: nowrap;
+        color: var(--color-white);
+        text-align: left;
+        transform: translate3d(-50%, 5px, 0);
+        transition: .25s all var(--ease-default);
+        opacity: 0;
+        visibility: hidden;
+
+        @media (--breakpoint-md) {
+            top: percentage(.5);
+            left: calc(100% - 11px);
+            transform: translate3d(0, -50%, 0);
+        }
+
+        p {
+            font-size: prem(14);
+            line-height: prem(16);
+            letter-spacing: prem(.5);
+            font-weight: 600;
+        }
+
+        a {
+            color: var(--color-white);
+            text-decoration: none;
+        }
+    }
+
+    &:hover {
+        .source-infos {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}

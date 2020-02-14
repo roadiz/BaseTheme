@@ -13,7 +13,6 @@
 
 {% block inner_content %}
     {{ parent() }}
-
     <div class="images">
         {% for image in nodeSource.images %}
             {% set imageMetas = image.documentTranslations.first %}

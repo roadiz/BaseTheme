@@ -1,0 +1,187 @@
+.display-1,
+h1 {
+    text-transform: uppercase;
+    font-weight: 600;
+
+    $map: (544px: 48px, 1440px: 100px);
+    @include poly-fluid-sizing('font-size', $map);
+
+    $map: (544px: 48px, 1440px: 100px);
+    @include poly-fluid-sizing('line-height', $map);
+
+    $map: (544px: 5px, 1440px: 15px);
+    @include poly-fluid-sizing('letter-spacing', $map);
+}
+
+.display-2,
+h2 {
+    font-size: prem(24);
+    line-height: prem(24);
+    letter-spacing: prem(2, 25);
+    text-transform: uppercase;
+    font-weight: 600;
+
+    @media (--breakpoint-md) {
+        font-size: prem(32);
+        line-height: prem(32);
+        letter-spacing: prem(3);
+    }
+}
+
+.display-3,
+h3 {
+    font-size: prem(28);
+    line-height: prem(32);
+    letter-spacing: prem(0.6);
+    font-weight: 500;
+}
+
+.display-4,
+h4 {
+    font-size: prem(18);
+    line-height: prem(24);
+    letter-spacing: prem(3);
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.excerpt {
+    &,
+    * {
+        text-transform: uppercase;
+        font-weight: 600;
+
+        $map: (544px: 32px, 1440px: 40px);
+        @include poly-fluid-sizing('font-size', $map);
+
+        $map: (544px: 32px, 1440px: 40px);
+        @include poly-fluid-sizing('line-height', $map);
+
+        $map: (544px: 3.2px, 1440px: 4px);
+        @include poly-fluid-sizing('letter-spacing', $map);
+    }
+}
+
+.subtitle {
+    font-size: prem(14);
+    line-height: prem(16);
+    letter-spacing: prem(2);
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.over-title--small,
+.subtitle--small {
+    font-size: prem(12);
+    line-height: prem(14);
+    letter-spacing: prem(1.5);
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.paragraph,
+p {
+    font-size: prem(20);
+    line-height: prem(28);
+    letter-spacing: prem(0.2);
+}
+
+.solr-highlight {
+    background-color: var(--color-silver-20);
+}
+
+.btn {
+    font-size: prem(12);
+    line-height: prem(12);
+    letter-spacing: prem(1.5);
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+
+    &-medium {
+        font-size: prem(14);
+        line-height: prem(16);
+        letter-spacing: prem(2);
+    }
+
+    &-large {
+        font-size: prem(24);
+        line-height: prem(32);
+        letter-spacing: prem(1);
+
+        @media (--breakpoint-lg) {
+            font-size: prem(18);
+            line-height: prem(24);
+            letter-spacing: prem(2);
+        }
+    }
+}
+
+.markdown {
+    .display-3,
+    h3 {
+        margin-bottom: prem(16);
+    }
+
+    &.markdown--normalize {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin-bottom: prem(1);
+        }
+
+        p {
+            margin-top: prem(1);
+        }
+
+        * {
+            font-size: prem(20);
+            line-height: prem(28);
+            letter-spacing: prem(0.2);
+        }
+    }
+}
+
+.display-text {
+    &-citation {
+        font-weight: 600;
+        font-size: prem(32);
+        line-height: prem(36);
+        letter-spacing: prem(1.5);
+    }
+
+    &-description {
+        font-size: prem(18);
+        line-height: prem(24);
+        letter-spacing: prem(.4);
+    }
+}
+
+.display-subtitle {
+    font-weight: 600;
+    font-size: prem(14);
+    line-height: prem(16);
+    letter-spacing: prem(2);
+}
+
+.breadcrumb {
+    span,
+    a {
+        text-transform: uppercase;
+        font-size: prem(12);
+        letter-spacing: prem(2);
+        font-weight: 600;
+        color: currentColor;
+        text-decoration: none;
+        opacity: 0.6;
+        transition: opacity 0.15s;
+    }
+
+    a:hover,
+    a:focus {
+        opacity: 1;
+    }
+}

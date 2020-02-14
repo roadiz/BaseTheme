@@ -90,9 +90,6 @@ sftp-config.json
 # yarn.lock
 # package-lock.json
 
-## Phpstorm
-/.idea
-
 ## Generated files (css, js, svg, img, vendors)
 /static/js
 /static/build
@@ -109,3 +106,26 @@ sftp-config.json
 /Resources/views/partials/js-inject.html.twig
 /Resources/views/partials/js-inject-modern.html.twig
 /Resources/views/partials/js-inject-legacy.html.twig
+/Resources/views/base.html.twig
+
+## Generic
+/dist
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+/.idea
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

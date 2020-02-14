@@ -1,0 +1,247 @@
+{% extends "base.html.twig" %}
+
+{% set pageMetaDescription = pageMetaDescription|default(pageMeta.description)|default(meta.siteDescription) %}
+{% set pageMetaTitle = pageMetaTitle|default(pageMeta.title)|default(meta.siteName) %}
+{% set formattedLocale = request.locale|replace({'_': '-'})|lower %}
+{#  #}
+{% set nodeName = nodeName|default(node.nodeName) %}
+{% set nodeTypeName = nodeTypeName|default(node.nodeType.name) %}
+{% set nodeHome = node.home|default(false) %}
+{#  #}
+{% set title = title|default(nodeSource.title) %}
+{% set content = content|default(nodeSource.content) %}
+{% if nodeSource and nodeSource.headerImage|length > 0 %}
+    {% set headerImage = nodeSource.headerImage[0] %}
+{% elseif nodeSource and nodeSource.headerImages|length > 0 %}
+    {% set headerImage = nodeSource.headerImages[0] %}
+{% elseif nodeSource and nodeSource.image|length > 0 %}
+    {% set headerImage = nodeSource.image[0] %}
+{% endif %}
+
+{% set bodyClasses = [] %}
+{% if node %}
+    {% set bodyClasses = bodyClasses|merge([
+        nodeTypeName|lower,
+        nodeName,
+        formattedLocale
+    ]) %}
+{% endif %}
+
+{% set inFinance = (context.name == 'finance') %}
+
+{% set headerFullscreen = false %}
+
+{% if (nodeSource.content and nodeSource.excerpt) or (not nodeSource.content and not nodeSource.excerpt) %}
+    {% set headerFullscreen = true %}
+{% endif %}
+
+{% block head %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block page_title %}{{- pageMetaTitle -}}{% endblock %}</title>
+    <meta name="description" content="{% block page_description %}{{- pageMetaDescription -}}{% endblock %}" />
+    {% if pageMeta.keywords %}<meta name="keywords" content="{{ pageMeta.keywords }}" />{% endif %}
+    <meta name="generator" content="Roadiz {{ cms_prefix }} {{ cms_version }} - {{ head.themeName }} v{{ head.themeVersion }}" />
+    {#
+     # This will enable mobile viewports
+     #}
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {#
+     # HrefLang alternate url (Google suggestion), to activate ONLY if there
+     # are more than 1 translation for your website
+     #}
+    {% if translation %}
+        {% for key in translation|menu(true) %}
+            <link rel="alternate" href="{{ key.url }}" hreflang="{{ key.locale|replace({'_': '-'})|lower }}" />
+        {% endfor %}
+    {% endif %}
+    {#
+     # Canonical url -----------------------------------------------------------
+     #}
+    {% if node %}
+        <link rel="canonical" href="{{ url(nodeSource) }}" />
+    {% endif %}
+
+    {#
+     # Favicons Generate them on https://realfavicongenerator.net
+     #}
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ head.resourcesUrl }}img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ head.resourcesUrl }}img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ head.resourcesUrl }}img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="{{ head.resourcesUrl }}img/favicon/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="apple-mobile-web-app-title" content="{{ meta.siteName }}">
+    <meta name="application-name" content="{{ meta.siteName }}">
+
+    {#
+     # Share metas -------------------------------------------------------------
+     #}
+    {% block share_metas %}
+        {% if previewImageUrl is not defined %}
+            {% if headerImage %}
+                {% set previewImageUrl = headerImage|url(imageFormats.shareImage) %}
+            {% else %}
+                {% set previewImageUrl = head.absoluteResourcesUrl ~ 'img/share.png' %}
+            {% endif %}
+        {% endif %}
+
+        {# Facebook #}
+        <meta property="og:title" content="{{ title }}" />
+        <meta property="og:site_name" content="{{ meta.siteName }}" />
+        <meta property="og:description" content="{{ pageMetaDescription }}" />
+        <meta property="og:url" content="{{ request.uri }}" />
+        <meta property="og:image" content="{{ previewImageUrl }}" />
+        <meta property="og:type" content="{{ ogType|default('article') }}" />
+        {# Google plus #}
+        <meta itemprop="name" content="{{ pageMetaTitle }}" />
+        <meta itemprop="description" content="{{ pageMetaDescription }}" />
+        <meta itemprop="image" content="{{ previewImageUrl }}" />
+        {# Twitter #}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="{{ pageMetaTitle }}" />
+        <meta name="twitter:description" content="{{ pageMetaDescription }}" />
+        {% if head.twitterAccount %}
+            <meta name="twitter:site" content="{{ head.twitterAccount }}" />
+            <meta name="twitter:creator" content="{{ head.twitterAccount }}" />
+        {% endif %}
+        <meta name="twitter:url" content="{{ request.uri }}" />
+        <meta name="twitter:image" content="{{ previewImageUrl }}" />
+    {% endblock %}
+
+    {#
+     # Roadiz font-face CSS (comment it if no fonts available) -----------------
+     #}
+    <link rel="stylesheet" href="{{ path('FontFaceCSS') }}" />
+
+    <style>
+        [v-cloak],
+        [v-cloak] > * {
+            display: none;
+        }
+    </style>
+{% endblock %}
+
+{% block body_attributes %}
+    {% if node %}class="{{ bodyClasses|join(' ') }}"
+    id="{{ nodeName }}"
+    data-node-type="{{ nodeTypeName }}"
+    {% if node and node.id == nodeHome.id %}
+    data-is-home="1"
+    {% endif %}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    {% if head.googleTagManagerId %}
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ head.googleTagManagerId }}"
+                          height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+    {% endif %}
+
+    <div data-router-wrapper>
+        {% set mainWrapperClass = [
+            'main-wrapper'
+        ] %}
+
+        {% set mainWrapperClass = mainWrapperClass|merge(['page-header--' ~ headerTemplate]) %}
+
+        <div id="basetheme"
+             class="{{ mainWrapperClass|join(' ') }}"
+             data-context="{{ context.name }}"
+             data-router-view="{{ nodeTypeName }}">
+
+            {# Main navigation #}
+            {% block main_navigation %}
+                {% include '@BaseTheme/common/nav.html.twig' %}
+            {% endblock %}
+
+            {# Content #}
+            <main>
+                {% block content %}{% endblock %}
+            </main>
+
+            {# Footer #}
+            {% block footer %}
+                {% if not context.name %}
+                    {% include '@BaseTheme/common/footer/footer.html.twig' %}
+                {% endif %}
+            {% endblock %}
+        </div>
+    </div>
+
+    {% if head.devMode %}
+        {% include '@BaseTheme/dev/dev.html.twig'%}
+    {% endif %}
+
+    <noscript>
+        <div id="no-js-message">{% trans %}no_javascript_message{% endtrans %}</div>
+    </noscript>
+
+    <script nomodule src="{{ head.resourcesUrl }}vendors/polyfills.js"></script>
+    <script nomodule src="{{ head.resourcesUrl }}vendors/svg-polyfill.js"></script>
+
+    <script>
+        {# Passing server vars to JS framework #}
+        window.temp = {
+            apiUrl: '{{ path('homePage') }}api/1.0',
+            searchUrl: '{{ path('searchPageLocale') }}',
+            apiKey: '{{ bags.settings.get('klepierre_api_key') }}',
+            devMode: {% if head.devMode %}true{% else %}false{% endif %},
+            locale: '{{ request.locale }}',
+            vatPercent: {{ bags.settings.get('vat_percent')|default(20) }},
+            resourcesUrl: '{{ head.resourcesUrl }}',
+            privacyPolicy: {% if themeServices.nodeSourceLegals %}'{{ url(themeServices.nodeSourceLegals) }}'{% else %}''{% endif %},
+            hasTrackers: {% if head.universalAnalyticsId or head.googleTagManagerId %}true{% else %}false{% endif %},
+            swPath: {% if head.devMode %}null{% else %}'{{ path('sw') }}'{% endif %}
+        };
+        // Pass server translation to your JS app.
+        window.translations = {
+            'share': "{% trans %}share{% endtrans %}"
+        };
+    </script>
+
+    {% if head.universalAnalyticsId or
+        head.googleTagManagerId or
+        (bags.settings.get('matomo_url') and bags.settings.get('matomo_site_id')) %}
+        {% include '@BaseTheme/partials/orejime.html.twig' %}
+        <script src="https://unpkg.com/orejime@1.2.1/dist/orejime.js" async defer></script>
+    {% endif %}
+
+    {% if head.universalAnalyticsId and not head.googleTagManagerId %}
+        <script data-type="text/javascript" type="opt-in" data-name="google">
+            {# Google Analytics: change head.universalAnalyticsId to be your site ID.  #}
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+            ga('create', '{{ head.universalAnalyticsId }}', 'auto');
+            ga('send', 'pageview');
+        </script>
+    {% endif %}
+    {% if head.googleTagManagerId %}
+        <script data-type="text/javascript" type="opt-in" data-name="google">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','{{ head.googleTagManagerId }}');</script>
+    {% endif %}
+
+    {% if bags.settings.get('matomo_url') and bags.settings.get('matomo_site_id') %}
+    <script data-type="text/javascript" type="opt-out" data-name="matomo">
+        var _paq = window._paq || [];
+        // require user consent before processing data
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+            var u="{{ bags.settings.get('matomo_url') }}";
+            _paq.push(['setTrackerUrl', u+'matomo.php']);
+            _paq.push(['setSiteId', '{{ bags.settings.get('matomo_site_id') }}']);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+    </script>
+    {% endif %}
+{% endblock %}

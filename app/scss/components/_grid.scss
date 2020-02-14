@@ -1,0 +1,152 @@
+/**
+ * @file _grid.scss
+ * @description grid composer
+ */
+
+@at-root {
+    @-ms-viewport {
+        width: device-width;
+    }
+}
+
+/**
+ * grid container
+ */
+.container {
+    @each $breakpoint, $value in $container-widths {
+        @if $breakpoint == 0 {
+            --container-width: #{$value};
+        }
+        @else {
+            @media (--breakpoint-#{$breakpoint}) {
+                --container-width: #{$value};
+            }
+        }
+    }
+
+    @each $breakpoint, $value in $container-max-widths {
+        @if $breakpoint == 0 {
+            --container-max: #{$value};
+        }
+        @else {
+            @media (--breakpoint-#{$breakpoint}) {
+                --container-max: #{$value};
+            }
+        }
+    }
+
+    width: var(--container-width);
+    max-width: var(--container-max);
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+    margin-left: auto;
+    margin-right: auto;
+
+    &.nopad {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.row {
+    /**
+     * Grid row
+     */
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: calc(var(--gutter) * -1);
+    margin-right: calc(var(--gutter) * -1);
+
+    &--items-center {
+        justify-content: center;
+    }
+
+    &--items-right {
+        justify-content: flex-end;
+    }
+
+    &--items-middle {
+        align-items: center;
+    }
+
+    &--items-bottom {
+        align-items: end;
+    }
+
+    &--items-space-around {
+        align-content: space-around;
+    }
+
+    &--items-space-between {
+        justify-content: space-between;
+    }
+
+    &--items-space-evenly {
+        justify-content: space-evenly;
+    }
+
+    &.nomargin {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    /**
+     * grid column
+     */
+    > [class^='col-'] {
+        padding-left: var(--gutter);
+        padding-right: var(--gutter);
+        width: 100%;
+
+        &.nopad {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    > .col {
+        @for $i from 1 through $grid {
+            &-#{$i} {
+                flex: 0 0 decimal-floor(percentage($i / $grid), 2);
+                max-width: decimal-floor(percentage($i / $grid), 2);
+            }
+
+            &-order-#{$i} {
+                order: $i;
+            }
+
+            &-offset-#{$i} {
+                margin-left: decimal-floor(percentage($i / $grid), 2);
+            }
+
+            &-offset-right-#{$i} {
+                margin-right: decimal-floor(percentage($i / $grid), 2);
+            }
+        }
+
+        @each $breakpoint, $value in $breakpoints {
+            @media (--breakpoint-#{$breakpoint}) {
+                @for $i from 1 through $grid {
+                    &-#{$breakpoint}-#{$i} {
+                        flex: 0 0 decimal-floor(percentage($i / $grid), 2);
+                        max-width: decimal-floor(percentage($i / $grid), 2);
+                    }
+
+                    &-order-#{$breakpoint}-#{$i} {
+                        order: $i;
+                    }
+                }
+
+                @for $i from 0 through $grid {
+                    &-offset-#{$breakpoint}-#{$i} {
+                        margin-left: decimal-floor(percentage($i / $grid), 2);
+                    }
+
+                    &-offset-right-#{$breakpoint}-#{$i} {
+                        margin-right: decimal-floor(percentage($i / $grid), 2);
+                    }
+                }
+            }
+        }
+    }
+}

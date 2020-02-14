@@ -1,0 +1,335 @@
+<h2>Buttons</h2>
+<div class="row">
+    {%
+        set buttonType = {
+            'default': [''],
+            'black color' : [ 'btn-black-color' ],
+            'gold color' : [ 'btn-gold-color' ],
+            'silver color' : [ 'btn-silver-color' ],
+            'main blue bg' : [ 'btn-main-blue-bg', 'btn-white-color' ],
+            'gold bg' : [ 'btn-gold-bg', 'btn-white-color' ],
+            'silver bg' : [ 'btn-silver-bg', 'btn-white-color' ]
+        }
+    %}
+
+    {% for key, type in buttonType %}
+        <div class="col-12">
+            <h4>{{ key }}</h4>
+        </div>
+
+        <div class="col-12">
+            {#
+            {% include 'common/link.html.twig' with {
+                'linkLabel': 'Sans padding',
+                'icon': 'link-internal',
+                'internalLink': nodeSource,
+                'head': head,
+                'class': type|merge([ 'btn-nopad' ])
+            } only %}
+            #}
+
+            {% include 'common/link.html.twig' with {
+                'linkLabel': 'Lien standard',
+                'icon': 'link-external',
+                'externalLink': 'https://www.rezo-zero.com',
+                'head': head,
+                'class': type
+            } only %}
+
+            {% embed 'common/link.html.twig' with {
+                'linkLabel': 'Lien + infos',
+                'linkFileInfos': 'PDF - 14Mo',
+                'icon': 'download',
+                'externalLink': '#',
+                'head': head,
+                'class': type
+            } only %}
+                {% block linkAttributes %}data-router-disabled download{% endblock %}
+            {% endembed %}
+
+            {% include 'common/link.html.twig' with {
+                'linkLabel': 'Lien Medium',
+                'icon': 'link-external',
+                'externalLink': 'https://www.rezo-zero.com',
+                'head': head,
+                'class': type|merge([ 'btn-medium' ])
+            } only %}
+
+            {% include 'common/link.html.twig' with {
+                'linkLabel': 'Lien Large',
+                'icon': 'link-internal',
+                'externalLink': 'https://www.rezo-zero.com',
+                'head': head,
+                'class': type|merge([ 'btn-large' ])
+            } only %}
+
+            {% include 'common/link.html.twig' with {
+                'linkLabel': 'Icon top right',
+                'icon': 'link-internal',
+                'externalLink': 'https://www.rezo-zero.com',
+                'head': head,
+                'class': type|merge([ 'btn-large', 'btn-icon-top-right' ])
+            } only %}
+        </div>
+    {% endfor %}
+    {#
+    <div class="col-12">
+        {% include 'common/link.html.twig' with {
+            'linkLabel': 'Titre du lien',
+            'icon': 'link-internal',
+            'internalLink': nodeSource,
+            'head': head,
+            'class': [ 'btn-medium' ]
+        } only %}
+    </div>
+    <div class="col-12">
+        {% include 'common/link.html.twig' with {
+            'linkLabel': 'Portfolio',
+            'icon': 'link-internal',
+            'internalLink': nodeSource,
+            'head': head,
+            'class': [ 'btn-large', 'btn-icon-top-right' ]
+        } only %}
+    </div>
+    #}
+</div>
+
+{#
+<div class="dev-ui-buttons mb-5">
+    <h2>Buttons</h2>
+    <div class="row">
+        <div class="mt-1 col d-flex flex-wrap align-top">
+            {% include 'common/link.html.twig' with {
+                'linkLabel': 'Link title',
+                'internalLink': nodeSource,
+                'head': head
+            } only %}
+
+            {% include 'common/link.html.twig' with {
+                'linkLabel': 'Link title',
+                'black': true,
+                'internalLink': nodeSource,
+                'head': head
+            } only %}
+
+            {% include 'common/link.html.twig' with {
+                'linkLabel': 'Button title',
+                'icon': 'icon-more',
+                'head': head
+            } only %}
+
+            {% include 'common/link.html.twig' with {
+                'linkLabel': 'Link title',
+                'bordered': true,
+                'internalLink': nodeSource,
+                'head': head
+            } only %}
+
+            {% include 'common/link.html.twig' with {
+                'linkLabel': 'Button title',
+                'bordered': true,
+                'icon': 'icon-more',
+                'head': head
+            } only %}
+
+            {% include 'common/link.html.twig' with {
+                'linkLabel': 'Button title',
+                'disabled': true,
+                'head': head
+            } only %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="mt-1 col d-flex align-top">
+            {% include 'common/link.html.twig' with {
+                'linkLabel': 'Ok, tout accepter',
+                'medium': true,
+                'head': head
+            } only %}
+
+            {% include 'common/link.html.twig' with {
+                'linkLabel': 'Ok, tout accepter',
+                'icon': 'icon-tick',
+                'medium': true,
+                'head': head
+            } only %}
+
+            {% include 'common/link.html.twig' with {
+                'linkLabel': 'Ok, tout accepter',
+                'icon': 'icon-tick',
+                'black': true,
+                'medium': true,
+                'head': head
+            } only %}
+
+            {% include 'common/link.html.twig' with {
+                'linkLabel': 'Personnaliser',
+                'icon': 'icon-settings',
+                'medium': true,
+                'bordered': true,
+                'head': head
+            } only %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="mt-1 col d-flex align-top">
+            {% include 'common/link.html.twig' with {
+                'internalLink': nodeSource,
+                'linkLabel': 'Link small',
+                'small': true,
+                'bordered': true,
+                'head': head
+            } only %}
+
+            {% include 'common/link.html.twig' with {
+                'linkLabel': 'Button small',
+                'icon': 'icon-arrow_right',
+                'small': true,
+                'bordered': true,
+                'head': head
+            } only %}
+
+            {% include 'common/link.html.twig' with {
+                'linkLabel': 'Button disabled',
+                'icon': 'icon-arrow_right',
+                'small': true,
+                'bordered': true,
+                'disabled': true,
+                'head': head
+            } only %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="mt-1 col d-flex align-top">
+            {% include 'common/link.html.twig' with {
+                'internalLink': nodeSource,
+                'linkLabel': 'Link title',
+                'line': true,
+                'head': head
+            } only %}
+
+            {% include 'common/link.html.twig' with {
+                'linkLabel': 'Button title',
+                'line': true,
+                'head': head
+            } only %}
+
+            {% include 'common/link.html.twig' with {
+                'internalLink': nodeSource,
+                'linkLabel': 'Link title',
+                'line': true,
+                'small': true,
+                'head': head
+            } only %}
+
+            {% include 'common/link.html.twig' with {
+                'linkLabel': 'Button title',
+                'line': true,
+                'small': true,
+                'head': head
+            } only %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="mt-1 col d-flex align-top">
+            {% include 'common/link.html.twig' with {
+                'icon': 'icon-phone',
+                'class': ['svg-color'],
+                'circle': true,
+                'bordered': true,
+                'head': head
+            } only %}
+
+            {% include 'common/link.html.twig' with {
+                'icon': 'icon-phone',
+                'circle': true,
+                'bordered': true,
+                'head': head
+            } only %}
+
+            {% include 'common/link.html.twig' with {
+                'icon': 'icon-arrow-large-right',
+                'circle': true,
+                'bordered': true,
+                'head': head
+            } only %}
+
+            {% include 'common/link.html.twig' with {
+                'icon': 'icon-arrow-large-right',
+                'circle': true,
+                'bordered': true,
+                'disabled': true,
+                'head': head
+            } only %}
+
+            {% include 'common/link.html.twig' with {
+                'icon': 'icon-cross',
+                'circle': true,
+                'head': head
+            } only %}
+
+            {% include 'common/link.html.twig' with {
+                'icon': 'icon-arrow_up',
+                'black': true,
+                'circle': true,
+                'head': head
+            } only %}
+
+            {% include 'common/link.html.twig' with {
+                'icon': 'icon-arrow_up',
+                'black': true,
+                'disabled': true,
+                'circle': true,
+                'head': head
+            } only %}
+
+            {% include 'common/link.html.twig' with {
+                'icon': 'icon-search',
+                'big': true,
+                'circle': true,
+                'head': head
+            } only %}
+
+            <div class="d-flex" style="background-color: #111; padding: 10px 15px; position: relative; top: -10px; margin-left: 15px;">
+                {% include 'common/link.html.twig' with {
+                    'icon': 'icon-search',
+                    'class': ['text-color'],
+                    'big': true,
+                    'circle': true,
+                    'white': true,
+                    'head': head
+                } only %}
+                {% include 'common/link.html.twig' with {
+                    'icon': 'icon-search',
+                    'big': true,
+                    'circle': true,
+                    'white': true,
+                    'disabled': true,
+                    'head': head
+                } only %}
+                {% include 'common/link.html.twig' with {
+                    'icon': 'icon-search_small',
+                    'class': ['text-white'],
+                    'circle': true,
+                    'bordered': true,
+                    'head': head
+                } only %}
+                {% include 'common/link.html.twig' with {
+                    'icon': 'icon-gallery',
+                    'class': ['text-white'],
+                    'circle': true,
+                    'bordered': true,
+                    'head': head
+                } only %}
+                {% include 'common/link.html.twig' with {
+                    'icon': 'icon-gallery',
+                    'class': ['text-black'],
+                    'white': true,
+                    'circle': true,
+                    'head': head
+                } only %}
+            </div>
+        </div>
+    </div>
+</div>
+#}
