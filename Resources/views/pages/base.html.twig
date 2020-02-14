@@ -39,11 +39,13 @@
 
         {% if nodeSource %}
             <div class="page-blocks">
-                {# Page blocks pattern implementation #}
-                {% set blocks = nodeSource|children({
-                    'node.nodeType.reachable': false,
-                    'node.visible': true,
-                }) %}
+                {% if not blocks %}
+                    {# Page blocks pattern implementation #}
+                    {% set blocks = nodeSource|children({
+                        'node.nodeType.reachable': false,
+                        'node.visible': true,
+                    }) %}
+                {% endif %}
                 {% for singleBlock in blocks %}
                     {% include '@BaseTheme/blocks/' ~ singleBlock.node.nodeType.name|lower ~ '.html.twig' ignore missing with {
                         'nodeSource': singleBlock,

@@ -12,6 +12,25 @@
         translations: [],
         apps: [
             {
+                name: 'matomo',
+                title: '{% trans %}orejime.matomo.title{% endtrans %}',
+                description: '{% trans %}orejime.matomo.description{% endtrans %}',
+                cookies: [
+                    '_pk_id',
+                    '_pk_ref',
+                    '_pk_ses',
+                    '_pk_cvar',
+                    '_pk_hsr',
+                    'MATOMO_SESSID',
+                    'mtm_consent'
+                ],
+                purposes: ['analytics'],
+                required: false,
+                optOut: true,
+                default: true,
+                onlyOnce: true
+            },
+            {
                 name: 'google',
                 title: '{% trans %}orejime.google.title{% endtrans %}',
                 description: '{% trans %}orejime.google.description{% endtrans %}',

@@ -1,6 +1,6 @@
 [
     {
-        "node_name": "legals",
+        "node_name": "legal",
         "node_type": "Page",
         "home": false,
         "visible": true,
@@ -18,7 +18,7 @@
         "nodes_sources": [
             {
                 "translation": "en",
-                "title": "Legals",
+                "title": "Legal",
                 "meta_title": "",
                 "meta_keywords": "",
                 "meta_description": "",
@@ -28,11 +28,7 @@
                     "timezone": "Europe/Paris"
                 },
                 "content": "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Vestibulum id ligula porta felis euismod semper.",
-                "url_aliases": [
-                    {
-                        "alias": "legal"
-                    }
-                ]
+                "url_aliases": []
             },
             {
                 "translation": "fr",

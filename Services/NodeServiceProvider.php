@@ -80,7 +80,7 @@ class NodeServiceProvider implements ServiceProviderInterface
             return $this->coreServices['nodeSourceApi']
                 ->getOneBy([
                     'node.nodeType' => $this->coreServices['nodeTypesBag']->get('Page'),
-                    'node.nodeName' => 'legals',
+                    'node.nodeName' => 'legal',
                     'node.visible' => true,
                     'translation' => $this->translation,
                 ]);
