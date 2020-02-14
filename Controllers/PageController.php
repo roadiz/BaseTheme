@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class PageController
- * @package Themes\KlepierreTheme\Controllers
+ * @package Themes\BaseTheme\Controllers
  */
 class PageController extends AbstractBlockAwareController
 {
