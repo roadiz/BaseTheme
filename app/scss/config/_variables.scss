@@ -1,4 +1,5 @@
-$calibreFront: 'b8ffa454';
+// Add HERE your Roadiz custom served fonts.
+$customFont: 'Helvetica';
 
 /**
  * Colors
@@ -219,7 +220,7 @@ $ease: (
     --finance-button-height: 200px;
 
     /* stylelint-disable */
-    --font-calibre: #{$calibreFront}, Arial, Helvetica, sans-serif;
+    --font-custom: #{$customFont}, Arial, Helvetica, sans-serif;
     /* stylelint-enable */
 
     @media (--breakpoint-lg) {

@@ -165,7 +165,7 @@
             {# Footer #}
             {% block footer %}
                 {% if not context.name %}
-                    {% include '@BaseTheme/common/footer/footer.html.twig' %}
+                    {% include '@BaseTheme/common/footer.html.twig' %}
                 {% endif %}
             {% endblock %}
         </div>
@@ -186,8 +186,6 @@
         {# Passing server vars to JS framework #}
         window.temp = {
             apiUrl: '{{ path('homePage') }}api/1.0',
-            searchUrl: '{{ path('searchPageLocale') }}',
-            apiKey: '{{ bags.settings.get('klepierre_api_key') }}',
             devMode: {% if head.devMode %}true{% else %}false{% endif %},
             locale: '{{ request.locale }}',
             vatPercent: {{ bags.settings.get('vat_percent')|default(20) }},

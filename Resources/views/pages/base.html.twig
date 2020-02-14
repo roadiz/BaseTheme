@@ -1,4 +1,4 @@
-{% extends '@BaseTheme/base.html.twig' %}
+{% extends '@BaseTheme/layout.html.twig' %}
 
 {% set classes = classes|default([
     'page-content',
@@ -31,10 +31,7 @@
 
     {% block inner_content %}
         <div class="container">
-            <div class="row">
-                <h1 class="page-title">{{ title }}</h1>
-                {% if content %}<div class="page-text">{{ content|markdown }}</div>{% endif %}
-            </div>
+            {% if content %}<div class="page-text">{{ content|markdown }}</div>{% endif %}
         </div>
 
         {% if nodeSource %}
