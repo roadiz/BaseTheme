@@ -8,7 +8,10 @@
                        class="socials-link {{ socialNetwork.slug }}"
                        aria-label="{{ socialNetwork.name }}"
                        href="{{ socialNetwork.url }}">
-                        {% include '@BaseTheme/svg/use.svg.twig' with { icon: 'icon-' ~ socialNetwork.slug } only %}
+                        {% include '@BaseTheme/svg/use.svg.twig' with {
+                            'icon': socialNetwork.slug,
+                            'head': head
+                        } only %}
                         {{ socialNetwork.name -}}
                     </a>
                 </li>
