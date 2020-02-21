@@ -24,7 +24,7 @@
 {% set headerTemplate = 'static' %}
 {% if node %}
     {% set bodyClasses = bodyClasses|merge([
-        nodeTypeName|lower,
+        nodeTypeName|lower ~ '-detail',
         nodeName,
         formattedLocale
     ]) %}
