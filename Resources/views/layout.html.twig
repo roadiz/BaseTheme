@@ -21,16 +21,15 @@
     {% set headerImage = nodeSource.image[0] %}
 {% endif %}
 
-{% set bodyClasses = [] %}
+{% set headerTemplate = 'static' %}
 {% if node %}
     {% set bodyClasses = bodyClasses|merge([
         nodeTypeName|lower,
         nodeName,
         formattedLocale
     ]) %}
+    {% set headerTemplate = nodeTypeName|lower %}
 {% endif %}
-
-{% set inFinance = (context.name == 'finance') %}
 
 {% set headerFullscreen = false %}
 
@@ -166,9 +165,7 @@
 
             {# Footer #}
             {% block footer %}
-                {% if not context.name %}
-                    {% include '@BaseTheme/common/footer.html.twig' %}
-                {% endif %}
+                {% include '@BaseTheme/common/footer.html.twig' %}
             {% endblock %}
         </div>
     </div>
