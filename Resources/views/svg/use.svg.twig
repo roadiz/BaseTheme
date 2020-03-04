@@ -3,6 +3,6 @@
      width="{{ width|default(32) }}"
      height="{{ height|default(32) }}"
      viewBox="0 0 {{ width|default(32) }} {{ height|default(32) }}">
-    <use xlink:href="{{ head.resourcesUrl }}svg/sprite.svg#icon-{{ icon }}"></use>
+    <use xlink:href="{{ asset('svg/sprite.svg#icon-' ~ icon, 'BaseTheme') }}"></use>
 </svg>
 

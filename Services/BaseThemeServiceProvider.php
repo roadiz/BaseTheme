@@ -30,6 +30,9 @@ namespace Themes\BaseTheme\Services;
 use Doctrine\Common\Collections\ArrayCollection;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
+use RZ\Roadiz\Utils\Asset\Packages;
+use Symfony\Component\Asset\Context\RequestStackContext;
+use Symfony\Component\Asset\PathPackage;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Themes\BaseTheme\Event\LinkPathGeneratingEventListener;
 use Themes\BaseTheme\Twig\ImageFormatsExtension;
@@ -45,6 +48,15 @@ class BaseThemeServiceProvider implements ServiceProviderInterface
              */
             $dispatcher->addSubscriber(new LinkPathGeneratingEventListener());
             return $dispatcher;
+        });
+
+        $container->extend('assetPackages', function (Packages $packages, Container $c) {
+            $packages->addPackage('BaseTheme', new PathPackage(
+                'themes/BaseTheme/static',
+                $c['versionStrategy'],
+                new RequestStackContext($c['requestStack'])
+            ));
+            return $packages;
         });
 
         $container->extend('twig.extensions', function (ArrayCollection $extensions) {

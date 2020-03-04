@@ -22,8 +22,9 @@ We provide a starter kit based on ES6 with *Webpack*, *VueJS*, *Scss*, *Typescri
 ### Register BaseTheme services
 
 Base service will provide some Twig image formats and a PathGeneration subscriber for `NSLink` node-type.
+This will also register new asset package to be able to use `{{ asset('js/file.js', 'BaseTheme') }}` *Twig* function.
 
-Add the following lines to your `app/AppKernel.php` file:
+**Do not forget** to add the following lines to your `app/AppKernel.php` file:
 
 ```php
 // app/AppKernel.php
@@ -36,7 +37,7 @@ public function register(\Pimple\Container $container)
     /*
      * Add your own service providers.
      */
-    $container->register(new \Themes\TestTheme\Services\TestThemeServiceProvider());
+    $container->register(new \Themes\BaseTheme\Services\BaseThemeServiceProvider());
 }
 ```
 

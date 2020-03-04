@@ -67,10 +67,10 @@
     {#
      # Favicons Generate them on https://realfavicongenerator.net
      #}
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ head.resourcesUrl }}img/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ head.resourcesUrl }}img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ head.resourcesUrl }}img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="{{ head.resourcesUrl }}img/favicon/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('img/favicon/apple-touch-icon.png', 'BaseTheme') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('img/favicon/favicon-32x32.png', 'BaseTheme') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('img/favicon/favicon-16x16.png', 'BaseTheme') }}">
+    <link rel="manifest" href="{{ asset('img/favicon/site.webmanifest', 'BaseTheme') }}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
     <meta name="apple-mobile-web-app-title" content="{{ meta.siteName }}">
@@ -178,8 +178,8 @@
         <div id="no-js-message">{% trans %}no_javascript_message{% endtrans %}</div>
     </noscript>
 
-    <script nomodule src="{{ head.resourcesUrl }}vendors/polyfills.js"></script>
-    <script nomodule src="{{ head.resourcesUrl }}vendors/svg-polyfill.js"></script>
+    <script nomodule src="{{ asset('vendors/polyfills.js', 'BaseTheme') }}"></script>
+    <script nomodule src="{{ asset('vendors/svg-polyfill.js', 'BaseTheme') }}"></script>
 
     <script>
         {# Passing server vars to JS framework #}
@@ -188,7 +188,7 @@
             devMode: {% if head.devMode %}true{% else %}false{% endif %},
             locale: '{{ request.locale }}',
             vatPercent: {{ bags.settings.get('vat_percent')|default(20) }},
-            resourcesUrl: '{{ head.resourcesUrl }}',
+            resourcesUrl: '{{ asset('', 'BaseTheme') }}',
             privacyPolicy: {% if themeServices.nodeSourceLegals %}'{{ url(themeServices.nodeSourceLegals) }}'{% else %}''{% endif %},
             hasTrackers: {% if head.universalAnalyticsId or head.googleTagManagerId %}true{% else %}false{% endif %},
             swPath: {% if head.devMode %}null{% else %}'{{ path('sw') }}'{% endif %}
