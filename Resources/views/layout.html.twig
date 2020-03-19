@@ -20,6 +20,9 @@
 {% elseif nodeSource and nodeSource.image|length > 0 %}
     {% set headerImage = nodeSource.image[0] %}
 {% endif %}
+{% if not bodyClasses %}
+    {% set bodyClasses = [] %}
+{% endif %}
 
 {% set headerTemplate = 'static' %}
 {% if node %}
