@@ -11,7 +11,7 @@ Make sure that NodeJS and NPM are installed on your machine.
 Generate a new theme with *Test* as your theme prefix
 
 ```bash
-bin/roadiz themes:generate Test
+bin/roadiz themes:generate --relative --symlink Test
 cd themes/TestTheme
 # Install JS dependencies with npm or Yarn
 yarn && yarn run build
