@@ -6,7 +6,7 @@ This theme is meant to get a **fresh start** to create a custom website on *Road
 
 ## Get started
 
-Make sure that NodeJS and NPM are installed on your machine.
+Make sure that *NodeJS*, *NPM* and *Yarn* are installed on your machine.
 
 Generate a new theme with *Test* as your theme prefix
 
@@ -28,7 +28,6 @@ This will also register new asset package to be able to use `{{ asset('js/file.j
 
 ```php
 // app/AppKernel.php
-
 
 public function register(\Pimple\Container $container)
 {

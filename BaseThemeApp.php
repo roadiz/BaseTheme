@@ -16,11 +16,11 @@ use Themes\BaseTheme\Services;
  */
 class BaseThemeApp extends FrontendController
 {
-    const VERSION = '1.2.4';
+    const VERSION = '1.3.0';
 
     protected static $themeName = 'Base theme';
-    protected static $themeAuthor = 'REZO ZERO';
-    protected static $themeCopyright = 'REZO ZERO';
+    protected static $themeAuthor = 'Rezo Zero';
+    protected static $themeCopyright = 'Rezo Zero';
     protected static $themeDir = 'BaseTheme';
     protected static $backendTheme = false;
     public static $priority = 10;

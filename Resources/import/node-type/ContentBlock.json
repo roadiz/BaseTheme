@@ -18,6 +18,19 @@
             "universal": false,
             "indexed": false,
             "visible": true
+        },
+        {
+            "position": 2.0,
+            "name": "images",
+            "label": "Images",
+            "type": 9,
+            "groupName": "",
+            "groupNameCanonical": "",
+            "expanded": false,
+            "nodeTypeName": "ContentBlock",
+            "universal": true,
+            "indexed": false,
+            "visible": true
         }
     ],
     "defaultTtl": 0
