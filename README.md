@@ -153,7 +153,6 @@ Use single quotes  (for visibility between variables and declarations)
 Ex:
 ```twig
 {% include '@TestTheme/svg/use.svg.twig' with {
-    'head': head,
     'icon': 'facebook'
 } only %}
 ```

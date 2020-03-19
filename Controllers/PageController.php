@@ -1,13 +1,6 @@
 <?php
 declare(strict_types=1);
-/**
- * Copyright (c) 2017. Rezo Zero
- *
- * BaseTheme
- *
- * @file PageController.php
- * @author Ambroise Maupate <ambroise@rezo-zero.com>
- */
+
 namespace Themes\BaseTheme\Controllers;
 
 use RZ\Roadiz\Core\Entities\Node;

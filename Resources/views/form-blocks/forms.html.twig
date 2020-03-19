@@ -26,3 +26,8 @@
         <p id="{{ form.vars.id }}_help" class="form-row-desc text-muted">{{ form.vars.help|trans|inlineMarkdown }}</p>
     {%- endif -%}
 {%- endblock form_label %}
+
+{% block recaptcha_widget -%}
+    <div class="g-recaptcha" data-sitekey="{{ configs.publicKey }}"></div>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+{%- endblock recaptcha_widget %}

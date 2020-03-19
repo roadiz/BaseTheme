@@ -146,7 +146,7 @@ class BaseThemeApp extends FrontendController
         /*
          * Get social networks url from Roadiz parameters.
          */
-        $socials = ['Twitter', 'Facebook', 'Instagram', 'YouTube', 'LinkedIn', 'Flickr', 'GooglePlus', 'Pinterest', 'WeChat'];
+        $socials = ['Twitter', 'Facebook', 'Instagram', 'YouTube', 'LinkedIn', 'Flickr', 'Pinterest', 'WeChat'];
         $this->assignation['head']['socials'] = [];
         foreach ($socials as $social) {
             $setting = $this->get('settingsBag')->get(strtolower($social) . '_url');

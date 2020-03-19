@@ -1,6 +1,6 @@
 :root {
     --primary-color: var(--color-gold);
-    --text-color: var(--color-main-blue);
+    --text-color: var(--color-black);
 }
 
 .markdown {
@@ -15,27 +15,9 @@
         }
     }
 
-    :--heading {
-        color: var(--text-color);
-        text-transform: uppercase;
-        font-weight: 600;
-    }
-
-    h2 {
-        @extend .display-3;
-    }
-
-    h3 {
-        @extend .display-4;
-    }
-
     img {
         width: percentage(1);
         display: block;
-    }
-
-    a {
-        color: var(--text-color);
     }
 
     hr {
@@ -63,11 +45,5 @@
         color: currentColor;
         border-left: spacer() solid currentColor;
         padding: spacer(2) 0 spacer(2) spacer(4);
-
-        p {
-            @extend .display-text-citation;
-
-            text-transform: uppercase;
-        }
     }
 }

@@ -1,12 +1,6 @@
 <?php
-/**
- * Copyright (c) 2017. Rezo Zero
- *
- * BaseTheme
- *
- * @file SitemapController.php
- * @author Ambroise Maupate <ambroise@rezo-zero.com>
- */
+declare(strict_types=1);
+
 namespace Themes\BaseTheme\Controllers\Blocks;
 
 use GeneratedNodeSources\NSContactBlock;
@@ -45,7 +39,7 @@ class ContactBlockController extends BaseThemeApp
         $contactFormManager->setOptions([
             'action' => '#block-' . $source->getNode()->getNodeName(),
         ]);
-        
+
         /*
          * DO NOT FORGET to set page TTL to 0,
          * reverse-proxy cache will break Google Recaptcha

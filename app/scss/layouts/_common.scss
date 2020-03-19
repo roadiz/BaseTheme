@@ -1,52 +1,24 @@
 ::selection {
-    background-color: var(--color-main-blue);
+    background-color: var(--color-blue);
     color: var(--color-white);
 }
 
 html {
-    font-family: sans-serif;
-    font-size: 10px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: var(--color-black);
 }
 
 html,
 body {
     width: 100%;
-    -webkit-tap-highlight-color: transparent;
     padding: 0;
     margin: 0;
-    color: var(--color-main-blue);
-
-    &.search--open {
-        overflow: hidden;
-    }
-}
-
-.search--open {
-    .search-panel-wrapper,
-    .main-wrapper .main-navigation,
-    .main-wrapper .page-footer,
-    .main-wrapper main {
-        overflow-x: hidden;
-        overflow-y: scroll;
-    }
-
-    .search-panel-wrapper,
-    .main-wrapper .page-footer,
-    .main-wrapper .main-navigation {
-        height: 100vh;
-    }
 }
 
 body {
-    font-size: 2rem;
-    line-height: 2.8rem;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-family: var(--font-custom);
-    overflow-y: scroll;
 }
 
 [v-cloak] {
@@ -62,16 +34,12 @@ body {
     height: auto;
 }
 
-.flag {
-    max-width: 20px;
-}
-
-.lazyload,
-.lazyloading {
-    opacity: 0;
-}
-
-.lazyloaded {
-    opacity: 1;
-    transition: opacity 300ms;
-}
+//.lazyload,
+//.lazyloading {
+//    opacity: 0;
+//}
+//
+//.lazyloaded {
+//    opacity: 1;
+//    transition: opacity 300ms;
+//}

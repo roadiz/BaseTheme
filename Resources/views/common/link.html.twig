@@ -23,51 +23,6 @@
         {% set class = ['btn'] %}
     {% endif %}
 
-    {#
-    {% if background %}
-        {% set class = class|merge(['btn-bg']) %}
-    {% endif %}
-
-    {% if bordered %}
-        {% set class = class|merge(['btn-bordered']) %}
-    {% elseif not transparent and not line %}
-        {% set class = class|merge(['btn-bg']) %}
-        {% set background = true %}
-    {% endif %}
-
-    {% if background and white %}
-        {% set class = class|merge(['btn-bg--white']) %}
-    {% endif %}
-
-    {% if background and black %}
-        {% set class = class|merge(['btn-bg--black']) %}
-    {% endif %}
-
-    {% if circle %}
-        {% set class = class|merge(['btn-circle']) %}
-    {% endif %}
-
-    {% if line %}
-        {% set class = class|merge(['btn-line']) %}
-    {% endif %}
-
-    {% if big %}
-        {% set class = class|merge(['btn--big']) %}
-    {% endif %}
-
-    {% if medium %}
-        {% set class = class|merge(['btn--medium']) %}
-    {% endif %}
-
-    {% if small %}
-        {% set class = class|merge(['btn--small']) %}
-    {% endif %}
-
-    {% if not circle and not line %}
-        {% set class = class|merge(['btn-rounded']) %}
-    {% endif %}
-    #}
-
     {%- if internalLink or externalLink %}
         {% if not disableLabel and (linkLabel is not defined or not linkLabel) %}
             {% set linkLabel = 'see_more'|trans %}
