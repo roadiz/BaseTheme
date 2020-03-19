@@ -33,8 +33,8 @@
                href="{{ path(source) }}">{{ source.title|default(source.node.nodeName) }}</a>
         {% elseif children and children|length %}
             <span class="{{ linkClasses|join(' ') }}"
-                  data-toggle="dropdown" 
-                  aria-haspopup="true" 
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
                   role="menuitem"
                   aria-expanded="false"
                   id="nav-link-{{ source.node.nodeName }}">{{ source.title|default(source.node.nodeName) }}</span>
@@ -44,10 +44,11 @@
         <ul class="dropdown-menu nav-children" role="menu" aria-labelledby="nav-link-{{ source.node.nodeName }}">
             {% for subsource in children %}
                 {% include '@BaseTheme/common/nav-item.html.twig' with {
-                    'source' : subsource,
-                    'active' : active,
-                    'home' : home,
-                    'bags': bags
+                    'source': subsource,
+                    'active': active,
+                    'home': home,
+                    'bags': bags,
+                    'level': level + 1
                 } only %}
             {% endfor %}
         </ul>

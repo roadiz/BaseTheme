@@ -1,4 +1,4 @@
-{% extends '@BaseTheme/base.html.twig' %}
+{% extends '@BaseTheme/layout.html.twig' %}
 
 {% set classes = classes|default([
     'page-content',
@@ -31,19 +31,18 @@
 
     {% block inner_content %}
         <div class="container">
-            <div class="row">
-                <h1 class="page-title">{{ title }}</h1>
-                {% if content %}<div class="page-text">{{ content|markdown }}</div>{% endif %}
-            </div>
+            {% if content %}<div class="page-text">{{ content|markdown }}</div>{% endif %}
         </div>
 
         {% if nodeSource %}
             <div class="page-blocks">
-                {# Page blocks pattern implementation #}
-                {% set blocks = nodeSource|children({
-                    'node.nodeType.reachable': false,
-                    'node.visible': true,
-                }) %}
+                {% if not blocks %}
+                    {# Page blocks pattern implementation #}
+                    {% set blocks = nodeSource|children({
+                        'node.nodeType.reachable': false,
+                        'node.visible': true,
+                    }) %}
+                {% endif %}
                 {% for singleBlock in blocks %}
                     {% include '@BaseTheme/blocks/' ~ singleBlock.node.nodeType.name|lower ~ '.html.twig' ignore missing with {
                         'nodeSource': singleBlock,

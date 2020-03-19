@@ -2,6 +2,14 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
     <file original="none" source-language="en" target-language="en" datatype="plaintext">
         <body>
+            <trans-unit id="orejime.matomo.title" xml:space="preserve">
+                <source>orejime.matomo.title</source>
+                <target xml:lang="fr" state="translated">Matomo: Performance and Analytics cookies</target>
+            </trans-unit>
+            <trans-unit id="orejime.matomo.description" xml:space="preserve">
+                <source>orejime.matomo.description</source>
+                <target xml:lang="fr" state="translated">We use Matomo solution to provide analytics to analyze how you use the Website, including which pages and videos you view most often, measure any errors that occur and test different design ideas.</target>
+            </trans-unit>
             <trans-unit id="contact_form.user_consent" xml:space="preserve">
                 <source>contact_form.user_consent</source>
                 <target xml:lang="en" state="translated">I consent that my personal data will be processed and stored by XXXXXX in order to contact me for maximum 6 months.</target>

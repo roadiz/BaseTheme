@@ -1,11 +1,51 @@
 {
     "extends": "stylelint-config-standard",
-    "plugins": ["stylelint-scss"],
+    "plugins": [
+        "stylelint-scss"
+    ],
     "rules": {
         "at-rule-empty-line-before": null,
+        "number-leading-zero": null,
         "indentation": 4,
-        "at-rule-no-unknown": [ true, {
-            "ignoreAtRules": ["include"]
-        }]
+        "media-feature-name-no-unknown": [
+            true,
+            {
+                "ignoreMediaFeatureNames": [
+                    "/^--breakpoint/"
+                ]
+            }
+        ],
+        "at-rule-no-unknown": [
+            true,
+            {
+                "ignoreAtRules": [
+                    "add-mixin",
+                    "svg-load",
+                    "define-mixin",
+                    "for",
+                    "custom-media",
+                    "include",
+                    "component",
+                    "modifier",
+                    "descendent",
+                    "when",
+                    "utility",
+                    "component-namespace",
+                    "each",
+                    "custom-selector",
+                    "if",
+                    "else",
+                    "extend",
+                    "at-root",
+                    "function",
+                    "warn",
+                    "return",
+                    "mixin",
+                    "error",
+                    "while"
+                ]
+            }
+        ],
+        "scss/at-rule-no-unknown": true
     }
 }

@@ -1,13 +1,6 @@
 <?php
 declare(strict_types=1);
-/**
- * Copyright (c) 2019
- *
- * BaseTheme
- *
- * @file SitemapController.php
- * @author Bilel Jegham <contact.bileljegham@gmail.com>
- */
+
 namespace Themes\BaseTheme\Controllers;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -19,10 +12,14 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ServiceWorkerController extends AbstractSitemapController
 {
-  /**
+    /**
      * @param Request $request
-     * @param string $_locale
+     * @param string  $_locale
+     *
      * @return Response
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
     public function serviceWorkerAction(
         Request $request,
@@ -42,6 +39,17 @@ class ServiceWorkerController extends AbstractSitemapController
 
         $this->makeResponseCachable($request, $response, 60);
         return $response;
+    }
+
+    protected function getIgnoredNodeTypes(): array
+    {
+        return [
+            'Link',
+            'BlogPost',
+            // Ignore numerous and small pages
+            // to avoid painful load at first website
+            // visit.
+        ];
     }
 
     /**

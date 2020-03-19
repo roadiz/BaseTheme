@@ -1,0 +1,149 @@
+<style>
+    .dev-ui,
+    .dev-grid {
+        position: fixed;
+        z-index: 9999;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        left: 0;
+        user-select: none;
+        pointer-events: none;
+        display: none;
+    }
+
+    .dev-ui {
+        z-index: 9998;
+        bottom: auto;
+        height: 100%;
+        width: 100vw;
+        overflow: auto;
+        background-color: #fff;
+        padding: 30px 0;
+    }
+
+    .dev-ui.visible,
+    .dev-grid.visible {
+        display: block;
+    }
+
+    .dev-ui.visible {
+        user-select: auto;
+        pointer-events: auto;
+    }
+
+    /*.dev-ui-buttons .btn {*/
+    /*    margin-right: 15px;*/
+    /*}*/
+
+    .dev-grid .row > div {
+        height: 100vh;
+    }
+
+    .dev-grid .row > div::after {
+        content: '';
+        display: block;
+        height: 100vh;
+        background-color: rgba(255, 140, 140, 0.18);
+    }
+
+    @media all and (max-width: 544px) {
+        .dev-grid .row > div:nth-child(3n + 1) {
+            padding-right: 0;
+        }
+
+        .dev-grid .row > div:nth-child(3n + 2) {
+            padding-right: 0;
+            padding-left: 0;
+        }
+
+        .dev-grid .row > div:nth-child(3n + 3) {
+            padding-left: 0;
+        }
+    }
+</style>
+
+{% include '@BaseTheme/dev/blueprints.html.twig' %}
+
+<div id="dev-grid" class="dev-grid">
+    <div class="container">
+        <div class="row">
+            {% for i in 1..12 %}
+                <div class="col-1"></div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div id="dev-ui" class="dev-ui">
+    <div class="container">
+        {% include '@BaseTheme/dev/buttons.html.twig' %}
+        {% include '@BaseTheme/dev/dummy-content.html.twig' %}
+    </div>
+    <div class="mb-2"></div>
+</div>
+
+<script>
+    const devs = [{
+        el: 'dev-grid',
+        isVisible: false,
+        keyCode: 48 // 0
+    }, {
+        el: 'dev-ui',
+        isVisible: false,
+        keyCode: 57 // 9
+    }, {
+      el: 'dev-blueprints',
+      isVisible: false,
+      keyCode: 56 // 8
+    }]
+
+    for (const item of devs) {
+        if (window.localStorage.getItem(item.el + '-visibility') === 'true') {
+            document.getElementById(item.el).classList.add('visible')
+            item.isVisible = true
+        }
+    }
+
+    window.addEventListener('keydown', ({ keyCode }) => {
+        for (const item of devs) {
+            if (item.keyCode === keyCode) {
+                document.getElementById(item.el).classList.toggle('visible')
+                item.isVisible = !item.isVisible
+                window.localStorage.setItem(item.el + '-visibility', item.isVisible)
+            }
+        }
+    })
+
+    // Create specific css
+    var style = document.createElement('style');
+    style.type = 'text/css';
+    style.innerHTML = `
+        .navigation--open .dev-grid,
+        .navigation--open .dev-blueprints {
+            right: ${getScrollbarWidth()}px !important;
+        }
+    `;
+    document.getElementsByTagName('head')[0].appendChild(style);
+
+    function getScrollbarWidth() {
+        // Creating invisible container
+        const outer = document.createElement('div');
+        outer.style.visibility = 'hidden';
+        outer.style.overflow = 'scroll'; // forcing scrollbar to appear
+        outer.style.msOverflowStyle = 'scrollbar'; // needed for WinJS apps
+        document.body.appendChild(outer);
+
+        // Creating inner element and placing it in the container
+        const inner = document.createElement('div');
+        outer.appendChild(inner);
+
+        // Calculating difference between container's full width and the child width
+        const scrollbarWidth = (outer.offsetWidth - inner.offsetWidth);
+
+        // Removing temporary elements from the DOM
+        outer.parentNode.removeChild(outer);
+
+        return scrollbarWidth;
+    }
+</script>

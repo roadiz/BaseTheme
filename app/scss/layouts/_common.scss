@@ -1,0 +1,45 @@
+::selection {
+    background-color: var(--color-blue);
+    color: var(--color-white);
+}
+
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: var(--font-custom);
+}
+
+[v-cloak] {
+    display: none;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+//.lazyload,
+//.lazyloading {
+//    opacity: 0;
+//}
+//
+//.lazyloaded {
+//    opacity: 1;
+//    transition: opacity 300ms;
+//}

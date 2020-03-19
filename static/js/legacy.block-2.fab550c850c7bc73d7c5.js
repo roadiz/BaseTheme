@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{pAUF:function(n,t,e){"use strict";e.r(t),e.d(t,"default",function(){return p});var u=e("SDJZ"),i=e.n(u),o=e("K4DB"),c=e.n(o),r=e("+IV6"),s=e.n(r),f=e("eef+"),a=e.n(f),p=function(n){function t(n){return i()(this,t),c()(this,s()(t).call(this,n,"ContentBlock"))}return a()(t,n),t}(e("D9Dx").default)}}]);

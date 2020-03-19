@@ -1,13 +1,6 @@
 <?php
 declare(strict_types=1);
-/**
- * Copyright (c) 2017. Rezo Zero
- *
- * BaseTheme
- *
- * @file NodeServiceProvider.php
- * @author Ambroise Maupate <ambroise@rezo-zero.com>
- */
+
 namespace Themes\BaseTheme\Services;
 
 use Pimple\Container;
@@ -80,7 +73,7 @@ class NodeServiceProvider implements ServiceProviderInterface
             return $this->coreServices['nodeSourceApi']
                 ->getOneBy([
                     'node.nodeType' => $this->coreServices['nodeTypesBag']->get('Page'),
-                    'node.nodeName' => 'legals',
+                    'node.nodeName' => 'legal',
                     'node.visible' => true,
                     'translation' => $this->translation,
                 ]);

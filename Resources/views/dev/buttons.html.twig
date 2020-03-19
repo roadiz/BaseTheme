@@ -1,0 +1,57 @@
+<h2>Buttons</h2>
+<div class="row">
+    {%
+        set buttonType = {
+            'default': [''],
+            'black color' : [ 'btn-black-color' ],
+            'gold color' : [ 'btn-gold-color' ],
+            'silver color' : [ 'btn-silver-color' ],
+            'main blue bg' : [ 'btn-main-blue-bg', 'btn-white-color' ],
+            'gold bg' : [ 'btn-gold-bg', 'btn-white-color' ],
+            'silver bg' : [ 'btn-silver-bg', 'btn-white-color' ]
+        }
+    %}
+
+    {% for key, type in buttonType %}
+        <div class="col-12">
+            <h4>{{ key }}</h4>
+        </div>
+
+        <div class="col-12">
+            {% include 'common/link.html.twig' with {
+                'linkLabel': 'Lien standard',
+                'icon': 'link-external',
+                'externalLink': 'https://www.rezo-zero.com',
+                'head': head,
+                'class': type
+            } only %}
+
+            {% embed 'common/link.html.twig' with {
+                'linkLabel': 'Lien + infos',
+                'linkFileInfos': 'PDF - 14Mo',
+                'icon': 'download',
+                'externalLink': '#',
+                'head': head,
+                'class': type
+            } only %}
+                {% block linkAttributes %}data-router-disabled download{% endblock %}
+            {% endembed %}
+
+            {% include 'common/link.html.twig' with {
+                'linkLabel': 'Lien Medium',
+                'icon': 'link-external',
+                'externalLink': 'https://www.rezo-zero.com',
+                'head': head,
+                'class': type|merge([ 'btn-medium' ])
+            } only %}
+
+            {% include 'common/link.html.twig' with {
+                'linkLabel': 'Lien Large',
+                'icon': 'link-internal',
+                'externalLink': 'https://www.rezo-zero.com',
+                'head': head,
+                'class': type|merge([ 'btn-large' ])
+            } only %}
+        </div>
+    {% endfor %}
+</div>

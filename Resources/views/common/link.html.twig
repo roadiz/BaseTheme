@@ -1,0 +1,55 @@
+{% import _self as macros %}
+
+{% macro inner(linkLabel, icon, head, linkFileInfos) %}
+    {% if linkLabel and icon %}
+        <span>{{ linkLabel }}</span>
+    {% elseif linkLabel %}
+        {{- linkLabel -}}
+    {% endif %}
+    {% if linkFileInfos %}
+        <span class="infos">{{- linkFileInfos -}}</span>
+    {% endif %}
+    {% if icon %}
+        {% include '@BaseTheme/svg/use.svg.twig' with {
+            'icon': icon,
+        } only %}
+    {% endif %}
+{% endmacro %}
+
+{%- spaceless -%}
+    {% if class %}
+        {% set class = class|merge(['btn']) %}
+    {% else %}
+        {% set class = ['btn'] %}
+    {% endif %}
+
+    {%- if internalLink or externalLink %}
+        {% if not disableLabel and (linkLabel is not defined or not linkLabel) %}
+            {% set linkLabel = 'see_more'|trans %}
+        {% endif %}
+
+        {% if internalLink %}
+            {% set url = path(internalLink) %}
+            {% set external = false %}
+        {% endif %}
+        {% if externalLink %}
+            {% set url = externalLink %}
+            {% set external = true %}
+        {% endif %}
+        <a href="{{ url }}"
+            {% if external %} target="_blank" rel="nofollow noopener" {% endif %}
+           class="{{ class|join(' ') }}"
+            {% block linkAttributes %}{% endblock %}
+            {% if disabled %} disabled{% endif %}
+            {% if ariaLabel %} aria-label="{{ ariaLabel }}"{% endif %}>
+            {{- macros.inner(linkLabel, icon, head, linkFileInfos) -}}
+        </a>
+    {% else %}
+        <button class="{{ class|join(' ') }}"{% if disabled %} disabled{% endif %}
+            {% block btnAttributes %}{% endblock %}
+            {% if submit %}type="submit"{% else %} type="button"{% endif %}
+            {% if ariaLabel %} aria-label="{{ ariaLabel }}"{% endif %}>
+            {{- macros.inner(linkLabel, icon, head, linkFileInfos) -}}
+        </button>
+    {% endif -%}
+{%- endspaceless -%}

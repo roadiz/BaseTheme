@@ -12,30 +12,7 @@
 {% endblock %}
 
 {% block inner_content %}
-    <div class="container">
-        <div class="page-text">{{ nodeSource.content|markdownExtra }}</div>
-    </div>
-
-    <div class="page-blocks">
-        {# Page blocks pattern implementation #}
-        {% set blocks = nodeSource|children({
-            'node.nodeType.reachable': false,
-            'node.visible': true,
-        }) %}
-        {% for singleBlock in blocks %}
-            {% include '@BaseTheme/blocks/' ~ singleBlock.node.nodeType.name|lower ~ '.html.twig' ignore missing with {
-                'nodeSource': singleBlock,
-                'parentNodeSource': nodeSource,
-                'themeServices': themeServices,
-                'head': head,
-                'node': singleBlock.node,
-                'nodeType': singleBlock.node.nodeType,
-                'loop': loop,
-                'blocksLength':blocks|length
-            } only %}
-        {% endfor %}
-    </div>
-
+    {{ parent() }}
     <div class="images">
         {% for image in nodeSource.images %}
             {% set imageMetas = image.documentTranslations.first %}

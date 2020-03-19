@@ -4,7 +4,7 @@
     {% endfor %}
 {% endfor %}
 
-{% form_theme contactForm 'form-blocks/forms.html.twig' %}
+{% form_theme contactForm '@BaseTheme/form-blocks/forms.html.twig' %}
 {{ form_start(contactForm) }}
 {{ form_widget(contactForm) }}
 <div class="form-group">

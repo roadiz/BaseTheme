@@ -1,7 +1,7 @@
 <script type="text/javascript">
     window.orejimeConfig = {
         elementID: 'orejime',
-        appElement: '#main-container',
+        appElement: '#basetheme',
         cookieName: 'orejime',
         cookieExpiresAfterDays: 365,
         privacyPolicy: window.temp.privacyPolicy,
@@ -11,6 +11,25 @@
         lang: window.temp.locale,
         translations: [],
         apps: [
+            {
+                name: 'matomo',
+                title: '{% trans %}orejime.matomo.title{% endtrans %}',
+                description: '{% trans %}orejime.matomo.description{% endtrans %}',
+                cookies: [
+                    '_pk_id',
+                    '_pk_ref',
+                    '_pk_ses',
+                    '_pk_cvar',
+                    '_pk_hsr',
+                    'MATOMO_SESSID',
+                    'mtm_consent'
+                ],
+                purposes: ['analytics'],
+                required: false,
+                optOut: true,
+                default: true,
+                onlyOnce: true
+            },
             {
                 name: 'google',
                 title: '{% trans %}orejime.google.title{% endtrans %}',

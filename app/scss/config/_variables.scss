@@ -1,0 +1,226 @@
+// Add HERE your Roadiz custom served fonts.
+$customFont: 'Helvetica';
+
+/**
+ * Colors
+ */
+$colors: (
+    'white': #fff,
+    'white-15': rgba(#fff, 0.15),
+    'white-20': rgba(#fff, 0.2),
+    'black': #000,
+    'black-10': rgba(#000, 0.1),
+    'black-15': rgba(#000, 0.15),
+    'black-20': rgba(#000, 0.2),
+    'dark': #111,
+    'dark-90': rgba(#111, 0.9),
+    'dark-50': rgba(#111, 0.5),
+    'dark-30': rgba(#111, 0.3),
+    'dark-20': rgba(#111, 0.2),
+    'dark-15': rgba(#111, 0.15),
+    'dark-10': rgba(#111, 0.1),
+    'dark-8': rgba(#111, 0.08),
+    'normal': #909090,
+    'gray': #ddd,
+    'gray-hover': #747474,
+    'yellow': #ffdb76,
+    'pink': #ef7e81,
+    'light-pink': #f7b386,
+    'blue': #497bb8,
+    'main-blue': #141b4d,
+    'main-blue-70': rgba(#141b4d, 0.7),
+    'main-blue-50': rgba(#141b4d, 0.5),
+    'main-blue-20': rgba(#141b4d, 0.2),
+    'main-blue-10': rgba(#141b4d, 0.1),
+    'light-blue': #89cfdd,
+    'green': #1eeda5,
+    'gold': #bd9360,
+    'silver': #a99d90,
+    'silver-20': rgba(#a99d90, 0.2),
+    'v-guide-inner': rgba(#debdeb, 0.6),
+    'v-guide-outer': rgba(#01d5ff, 0.3),
+    'h-guide': rgba(#ff988c, 0.2),
+    'twitter': #58cef2,
+    'facebook': #4267b2,
+    'youtube': #ff00
+) !default;
+
+/**
+ * Breakpoints
+ */
+$breakpoints: (
+    xxs: 360px,
+    xs: 375px,
+    sm: 480px,
+    mm: 640px,
+    md: 768px,
+    md-up: 769px,
+    lg: 1024px,
+    lg-up: 1025px,
+    vl: 1280px,
+    vl-up: 1281px,
+    xl: 1440px,
+    xl-up: 1441px,
+    xxl: 1680px
+) !default;
+
+/**
+ * Image proportions
+ */
+$proportions: (
+    standard: 75%,
+    wide: 67.5%,
+    high: 70%
+);
+
+/**
+ * Spacer base
+ */
+$spacer: 8px;
+
+// Font size
+$baseFontSize: 10;
+
+/**
+ * Gutter
+ */
+$gutter: $spacer * 2;
+$gutter-md: $spacer * 2;
+
+$gutter-sizes: (
+    0: $gutter,
+    md: $gutter-md
+) !default;
+
+/**
+ * Padding
+ */
+$padding-sizes: (
+    0: $spacer,
+    md: $spacer * 2,
+    xl: $spacer * 4
+) !default;
+
+/**
+ * Container width
+ */
+$container-widths: (
+    0: 100%
+) !default;
+
+/**
+ * Container max
+ */
+$container-max-widths: (
+    0: 100%,
+    xxl: 1680px
+) !default;
+
+/**
+ * Grid
+ */
+$grid: 12 !default;
+
+/**
+ * Ease
+ */
+$ease: (
+    default: cubic-bezier(0.4, 0.5, 0.15, 1),
+    classic: cubic-bezier(0.23, 1, 0.32, 1)
+);
+
+/**
+ * Custom selectors
+ */
+@custom-selector :--heading h1, h2, h3, h4, h5, h6;
+
+/**
+ * Custom media breakpoints
+ */
+@each $breakpoint, $value in $breakpoints {
+    @custom-media --breakpoint-#{$breakpoint} (min-width: #{$value});
+}
+
+@custom-media --landscape (orientation: landscape);
+@custom-media --portrait (orientation: portrait);
+
+/**
+ * Computed variables
+ */
+:root {
+    /**
+     * Gutters
+     */
+    @each $breakpoint, $value in $gutter-sizes {
+        @if $breakpoint == 0 {
+            --gutter: #{$value};
+        }
+        @else {
+            @media (--breakpoint-#{$breakpoint}) {
+                --gutter: #{$value};
+            }
+        }
+    }
+
+    /**
+     * Image proportions
+     */
+    @each $proportion, $value in $proportions {
+        --image-#{$proportion}: #{$value};
+    }
+
+    /**
+     * Padding
+     */
+    @each $breakpoint, $value in $padding-sizes {
+        @if $breakpoint == 0 {
+            --padding: #{$value};
+        }
+        @else {
+            @media (--breakpoint-#{$breakpoint}) {
+                --padding: #{$value};
+            }
+        }
+    }
+
+    /**
+     * Colors
+     */
+    @each $color, $value in $colors {
+        --color-#{$color}: #{$value};
+    }
+
+    /**
+     * Breakpoints
+     * references
+     */
+    @each $breakpoint, $value in $breakpoints {
+        --breakpoint-#{$breakpoint}: #{$value};
+    }
+
+    /**
+     * Ease
+     */
+    @each $name, $value in $ease {
+        --ease-#{$name}: #{$value};
+    }
+
+    --viewport-h: 100vh;
+    --scroll-y: 0;
+
+    // Navigation
+    --navigation-top-bar-height: 38px;
+    --navigation-height: 120px;
+    --navigation-sub-section-height: 100vh;
+    --color-navigation: var(--color-main-blue);
+    --color-navigation-border: var(--color-white-20);
+
+    /* stylelint-disable */
+    --font-custom: #{$customFont}, Arial, Helvetica, sans-serif;
+    /* stylelint-enable */
+
+    @media (--breakpoint-lg) {
+        --navigation-height: 72px;
+        --navigation-sub-section-height: 524px;
+    }
+}

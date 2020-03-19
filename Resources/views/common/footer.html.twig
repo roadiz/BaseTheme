@@ -6,8 +6,11 @@
                     <a rel="noopener"
                        target="_blank"
                        class="socials-link {{ socialNetwork.slug }}"
+                       aria-label="{{ socialNetwork.name }}"
                        href="{{ socialNetwork.url }}">
-                        {% include '@BaseTheme/svg/use.svg.twig' with { icon: 'icon-' ~ socialNetwork.slug } only %}
+                        {% include '@BaseTheme/svg/use.svg.twig' with {
+                            'icon': socialNetwork.slug,
+                        } only %}
                         {{ socialNetwork.name -}}
                     </a>
                 </li>

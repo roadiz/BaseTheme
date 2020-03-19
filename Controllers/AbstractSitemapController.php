@@ -18,7 +18,7 @@ abstract class AbstractSitemapController extends BaseThemeApp
         $qb = $this->get('em')
             ->getRepository(NodeType::class)
             ->createQueryBuilder('nt');
-        $qb->andWhere($qb->expr()->notIn('nt.name', ['Link']))
+        $qb->andWhere($qb->expr()->notIn('nt.name', $this->getIgnoredNodeTypes()))
             ->andWhere($qb->expr()->eq('nt.reachable', true));
         $nodeTypes = $qb->getQuery()->getResult();
 
@@ -30,5 +30,10 @@ abstract class AbstractSitemapController extends BaseThemeApp
                 'node.nodeType' => $nodeTypes,
                 'node.visible' => true,
             ]);
+    }
+    
+    protected function getIgnoredNodeTypes(): array
+    {
+        return ['Link'];
     }
 }

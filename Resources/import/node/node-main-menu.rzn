@@ -181,55 +181,6 @@
                     }
                 ],
                 "tags": []
-            },
-            {
-                "node_name": "mentions-legales",
-                "node_type": "Link",
-                "home": false,
-                "visible": true,
-                "status": 30,
-                "locked": false,
-                "priority": 0.8,
-                "hiding_children": false,
-                "archived": false,
-                "sterile": false,
-                "ttl": 300,
-                "children_order": "position",
-                "children_order_direction": "ASC",
-                "position": 3,
-                "dynamic_node_name": true,
-                "children": [],
-                "nodes_sources": [
-                    {
-                        "translation": "fr",
-                        "title": "Mentions légales",
-                        "meta_title": "",
-                        "meta_keywords": "",
-                        "meta_description": "",
-                        "published_at": {
-                            "date": "2019-07-04 16:17:13.000000",
-                            "timezone_type": 3,
-                            "timezone": "Europe/Paris"
-                        },
-                        "external_link": null,
-                        "url_aliases": []
-                    },
-                    {
-                        "translation": "en",
-                        "title": "Legals",
-                        "meta_title": "",
-                        "meta_keywords": "",
-                        "meta_description": "",
-                        "published_at": {
-                            "date": "2019-07-04 16:17:13.000000",
-                            "timezone_type": 3,
-                            "timezone": "Europe/Paris"
-                        },
-                        "external_link": null,
-                        "url_aliases": []
-                    }
-                ],
-                "tags": []
             }
         ],
         "nodes_sources": [
