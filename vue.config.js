@@ -1,4 +1,5 @@
 const path = require('path')
+const WebpackNotifierPlugin = require('webpack-notifier')
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin')
 // Use your Roadiz App .env file
 const envFile = require('dotenv').config({ path: '../../.env' })
@@ -37,6 +38,12 @@ module.exports = {
                 spriteAttrs: {
                     id: 'svg-sprite'
                 }
+            })
+        )
+        config.plugins.push(
+            new WebpackNotifierPlugin({
+                title: 'BaseTheme',
+                alwaysNotify: true
             })
         )
 
