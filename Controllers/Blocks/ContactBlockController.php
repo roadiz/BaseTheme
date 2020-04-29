@@ -31,8 +31,6 @@ class ContactBlockController extends BaseThemeApp
         $this->prepareNodeSourceAssignation($source, $source->getTranslation());
         $this->assignation = array_merge($this->assignation, $assignation);
 
-        $this->assignation['session']['messages'] = $this->get('session')->getFlashBag()->all();
-
         /** @var ContactFormManager $contactFormManager */
         $contactFormManager = $this->createContactFormManager()->withDefaultFields()->withUserConsent();
         // Scroll to contactForm block after submit succeeded or failed
