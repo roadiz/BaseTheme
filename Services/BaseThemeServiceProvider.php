@@ -25,16 +25,7 @@ class BaseThemeServiceProvider implements ServiceProviderInterface
             $dispatcher->addSubscriber(new LinkPathGeneratingEventListener());
             return $dispatcher;
         });
-
-        $container->extend('assetPackages', function (Packages $packages, Container $c) {
-            $packages->addPackage('BaseTheme', new PathPackage(
-                'themes/BaseTheme/static',
-                $c['versionStrategy'],
-                new RequestStackContext($c['requestStack'])
-            ));
-            return $packages;
-        });
-
+        
         $container->extend('twig.extensions', function (ArrayCollection $extensions) {
             $extensions->add(new ImageFormatsExtension());
             return $extensions;
