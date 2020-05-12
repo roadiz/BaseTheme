@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Themes\BaseTheme\Event;
 
 use GeneratedNodeSources\NSLink;
+use RZ\Roadiz\Core\Entities\NodesSources;
 use RZ\Roadiz\Core\Events\NodesSources\NodesSourcesPathGeneratingEvent;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -44,7 +45,8 @@ class LinkPathGeneratingEventListener implements EventSubscriberInterface
                 $subEvent = clone $event;
                 $needsAnchor = false;
                 /** @var NodesSources $linkedSource */
-                $linkedSource = $nodeSource->getInternalLinkSources()[0];
+                $originalLinkedSource = $nodeSource->getInternalLinkSources()[0];
+                $linkedSource = $originalLinkedSource;
                 /*
                  * if nodeSource is not reachable try its parent
                  */
@@ -72,7 +74,7 @@ class LinkPathGeneratingEventListener implements EventSubscriberInterface
                  * Fill main event with sub-event data
                  */
                 if ($needsAnchor) {
-                    $event->setPath($subEvent->getPath() . '#block-' . $linkedSource->getNode()->getNodeName());
+                    $event->setPath($subEvent->getPath() . '#block-' . $originalLinkedSource->getNode()->getNodeName());
                 } else {
                     $event->setPath($subEvent->getPath());
                 }
