@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Themes\BaseTheme\Event;
 
 use GeneratedNodeSources\NSLink;
+use RZ\Roadiz\Core\Entities\NodesSources;
 use RZ\Roadiz\Core\Events\NodesSources\NodesSourcesPathGeneratingEvent;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -41,9 +42,30 @@ class LinkPathGeneratingEventListener implements EventSubscriberInterface
                 /*
                  * If editor linked to an internal page through a node reference
                  */
-                /** @var NodesSourcesPathGeneratingEvent $subEvent */
                 $subEvent = clone $event;
-                $subEvent->setNodeSource($nodeSource->getInternalLinkSources()[0]);
+                $needsAnchor = false;
+                /** @var NodesSources $linkedSource */
+                $originalLinkedSource = $nodeSource->getInternalLinkSources()[0];
+                $linkedSource = $originalLinkedSource;
+                /*
+                 * if nodeSource is not reachable try its parent
+                 */
+                if ($linkedSource->getNode()->getNodeType()->isReachable()) {
+                    $subEvent->setNodeSource($linkedSource);
+                } else {
+                    do {
+                        if (null === $linkedSource) {
+                            // we tested all ancestor without eligible nodeSource. Giving up…
+                            return;
+                        }
+                        $linkedSource = $linkedSource->getParent();
+                    } while (null === $linkedSource ||
+                    !$linkedSource->getNode()->getNodeType()->isReachable()
+                    );
+
+                    $needsAnchor = true;
+                    $subEvent->setNodeSource($linkedSource);
+                }
                 /*
                  * Dispatch a path generation again for linked node-source.
                  */
@@ -51,7 +73,11 @@ class LinkPathGeneratingEventListener implements EventSubscriberInterface
                 /*
                  * Fill main event with sub-event data
                  */
-                $event->setPath($subEvent->getPath());
+                if ($needsAnchor) {
+                    $event->setPath($subEvent->getPath() . '#block-' . $originalLinkedSource->getNode()->getNodeName());
+                } else {
+                    $event->setPath($subEvent->getPath());
+                }
                 $event->setComplete($subEvent->isComplete());
                 $event->setParameters($subEvent->getParameters());
                 $event->setContainsScheme($subEvent->containsScheme());

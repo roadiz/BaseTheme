@@ -4,6 +4,11 @@
     <div class="container">
         <h2 class="page-block-title {{ blockClassPrefix }}-title">{{ nodeSource.title }}</h2>
         <p class="form-message"></p>
+        {% if app.request.hasPreviousSession %}
+            {% for message in app.flashes('confirm') %}
+                <p class="alert alert-success">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
         {{ nodeSource|render('BaseTheme') }}
     </div>
 {% endblock %}

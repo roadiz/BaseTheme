@@ -79,7 +79,8 @@
     "svgo-loader": "^2.2.1",
     "typescript": "~3.7.5",
     "typescript-tslint-plugin": "^0.5.5",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.10",
+    "webpack-notifier": "^1.8.0"
   },
   "bugs": {
     "url": "https://github.com/roadiz/BaseTheme/issues"
