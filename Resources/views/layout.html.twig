@@ -5,7 +5,7 @@
 {% set formattedLocale = request.locale|replace({'_': '-'})|lower %}
 {#  #}
 {% set nodeName = nodeName|default(node.nodeName) %}
-{% set nodeTypeName = nodeTypeName|default(node.nodeType.name) %}
+{% set nodeTypeName = nodeTypeName|default(nodeSource.nodeTypeName) %}
 {% set nodeHome = node.home|default(false) %}
 {% if not nodeTypeName %}
     {% set nodeTypeName = 'page' %}

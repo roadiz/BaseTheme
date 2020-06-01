@@ -1,8 +1,8 @@
 {#
  # Define some variables in case of use without a nodeSource.
  #}
-{% if not nodeTypeName and nodeType %}
-    {% set nodeTypeName = nodeType.name %}
+{% if not nodeTypeName and nodeSource %}
+    {% set nodeTypeName = nodeSource.nodeTypeName %}
 {% endif %}
 
 {% if not blockClassPrefix %}

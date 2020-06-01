@@ -44,7 +44,7 @@
                     }) %}
                 {% endif %}
                 {% for singleBlock in blocks %}
-                    {% include '@BaseTheme/blocks/' ~ singleBlock.node.nodeType.name|lower ~ '.html.twig' ignore missing with {
+                    {% include '@BaseTheme/blocks/' ~ singleBlock.nodeTypeName|lower ~ '.html.twig' ignore missing with {
                         'nodeSource': singleBlock,
                         'parentNodeSource': nodeSource,
                         'themeServices': themeServices,
