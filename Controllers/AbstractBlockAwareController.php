@@ -34,7 +34,6 @@ abstract class AbstractBlockAwareController extends BaseThemeApp
     ) {
         $this->prepareThemeAssignation($node, $translation);
 
-        $this->assignation['blocks'] = $this->getBlocks();
         $this->assignation['page'] = (int) $request->get('page', 1);
 
         $response = $this->render($this->getTemplatePath(), $this->assignation);
@@ -54,6 +53,13 @@ abstract class AbstractBlockAwareController extends BaseThemeApp
         }
 
         return $response;
+    }
+
+    protected function extendAssignation()
+    {
+        parent::extendAssignation();
+
+        $this->assignation['blocks'] = $this->getBlocks();
     }
 
     /**
