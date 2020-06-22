@@ -176,6 +176,16 @@ A common node-type called *Page* will be installed with this theme, his controll
 in `Controllers/PageController.php` and his twig template in `Resources/views/types/page.html.twig`.
 If you need others node-type, duplicate theses files and rename them.
 
+#### Blueprints, UI and grid helpers
+
+BaseTheme has several frontend helpers available from keystrokes `8`, `9` and `0` when you are using Roadiz `devMode`:
+
+- `8` will display your blueprints images over you website.
+- `9` will display your UI components 
+- `0` will display your grid
+
+Change these helpers in `@BaseTheme/dev/dev.html.twig` template
+
 ## Contributing
 
 See [Contributing guidelines](./CONTRIBUTING.md)
