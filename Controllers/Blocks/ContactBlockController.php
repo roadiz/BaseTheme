@@ -42,7 +42,9 @@ class ContactBlockController extends BaseThemeApp
          * DO NOT FORGET to set page TTL to 0,
          * reverse-proxy cache will break Google Recaptcha
          */
-        $contactFormManager->withGoogleRecaptcha();
+        $contactFormManager
+            ->disableCsrfProtection() // Do not forget to disable CSRF if you are using Varnish or just dropping cookies
+            ->withGoogleRecaptcha();
 
         /*
          * Define custom receiver.
