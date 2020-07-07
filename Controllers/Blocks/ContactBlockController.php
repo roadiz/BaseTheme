@@ -32,19 +32,26 @@ class ContactBlockController extends BaseThemeApp
         $this->assignation = array_merge($this->assignation, $assignation);
 
         /** @var ContactFormManager $contactFormManager */
-        $contactFormManager = $this->createContactFormManager()->withDefaultFields()->withUserConsent();
+        $contactFormManager = $this->createContactFormManager();
+        // Do not forget to disable CSRF if you are using Varnish or just dropping cookies
+        $contactFormManager->disableCsrfProtection(); 
         // Scroll to contactForm block after submit succeeded or failed
         $contactFormManager->setOptions([
             'action' => '#block-' . $source->getNode()->getNodeName(),
         ]);
+        
+        /*
+         * Do not modify form options after adding any fields
+         */
+        $contactFormManager
+            ->withDefaultFields()
+            ->withUserConsent();
 
         /*
          * DO NOT FORGET to set page TTL to 0,
          * reverse-proxy cache will break Google Recaptcha
          */
-        $contactFormManager
-            ->disableCsrfProtection() // Do not forget to disable CSRF if you are using Varnish or just dropping cookies
-            ->withGoogleRecaptcha();
+        $contactFormManager->withGoogleRecaptcha();
 
         /*
          * Define custom receiver.
