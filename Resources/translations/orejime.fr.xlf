@@ -122,6 +122,14 @@
         <target xml:lang="fr" state="translated">Cookies strictement nécessaires</target>
         <note>Cookie Bar</note>
       </trans-unit>
+      <trans-unit id="orejime.matomo.description" xml:space="preserve">
+        <source>orejime.matomo.description</source>
+        <target xml:lang="fr" state="translated">Nous utilisons la solution Matomo à des fins de mesure d’audience pour analyser la manière dont vous utilisez le Site Internet.</target>
+      </trans-unit>
+      <trans-unit id="orejime.matomo.title" xml:space="preserve">
+        <source>orejime.matomo.title</source>
+        <target xml:lang="fr" state="translated">Matomo : cookies de performance et de mesure d’audience</target>
+      </trans-unit>
       <trans-unit id="orejime.newWindow" xml:space="preserve">
         <source>orejime.newWindow</source>
         <target xml:lang="fr" state="translated">nouvelle fenêtre</target>
