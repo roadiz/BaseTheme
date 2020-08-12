@@ -171,13 +171,18 @@
              class="{{ mainWrapperClass|join(' ') }}"
              data-router-view="{{ nodeTypeName }}">
 
+            {# Skip links #}
+            {% block skip %}
+                {% include '@BaseTheme/common/skip.html.twig' %}
+            {% endblock %}
+
             {# Main navigation #}
             {% block main_navigation %}
                 {% include '@BaseTheme/common/nav.html.twig' %}
             {% endblock %}
 
             {# Content #}
-            <main>
+            <main id="content">
                 {% block content %}{% endblock %}
             </main>
 
