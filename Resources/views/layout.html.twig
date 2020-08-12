@@ -202,10 +202,8 @@
     <script>
         {# Passing server vars to JS framework #}
         window.temp = {
-            apiUrl: '{{ path('homePage') }}api/1.0',
             devMode: {% if is_dev_mode %}true{% else %}false{% endif %},
             locale: '{{ request.locale }}',
-            vatPercent: {{ bags.settings.get('vat_percent')|default(20) }},
             resourcesUrl: '{{ asset('', 'BaseTheme') }}',
             privacyPolicy: {% if themeServices.nodeSourceLegals %}'{{ url(themeServices.nodeSourceLegals) }}'{% else %}''{% endif %},
             hasTrackers: {% if head.universalAnalyticsId or head.googleTagManagerId %}true{% else %}false{% endif %},
