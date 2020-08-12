@@ -14,7 +14,7 @@
 
 {% block content %}
 <section
-    {%- block section_attributes -%}
+    {% block section_attributes %}
     class="{{ classes|join(' ') }}"
     id="page-content-{{ nodeName }}"
     data-title="{{ title }}"
@@ -22,7 +22,7 @@
     data-node-name="{{ nodeName }}"
     data-is-home="{{ nodeHome }}"
     data-meta-title="{{ pageMetaTitle }}"
-    {%- endblock -%}
+    {% endblock %}
 >
     {% block header %}
         {% if headerImage %}
