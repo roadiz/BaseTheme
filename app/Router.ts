@@ -40,15 +40,11 @@ export default class Router {
      * Send page view to any existing trackers
      */
     onNavigateEnd (): void {
-        // @ts-ignore
         if (window.ga) {
-            // @ts-ignore
             window.ga('send', 'pageview')
         }
 
-        // @ts-ignore
         if (window._paq) {
-            // @ts-ignore
             window._paq.push(['trackPageView'])
         }
     }
