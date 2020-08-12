@@ -58,6 +58,14 @@
                 <source>offline.btn</source>
                 <target>Recharger</target>
             </trans-unit>
+            <trans-unit id="skip.content">
+                <source>skip.content</source>
+                <target>Aller au contenu</target>
+            </trans-unit>
+            <trans-unit id="skip.footer">
+                <source>skip.footer</source>
+                <target>Aller au pied de page</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

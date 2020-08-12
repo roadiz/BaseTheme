@@ -1,8 +1,8 @@
 {% set links = [
-    { id: 'content', label: 'Skip to content' },
-    { id: 'footer', label: 'Skip to footer' },
+    { id: 'content', label: 'skip.content' },
+    { id: 'footer', label: 'skip.footer' },
 ]  %}
 
 {% for link in links %}
-    <a class="skip-link" href="#{{ link.id }}">{{ link.label }}</a>
+    <a class="skip-link" href="#{{ link.id }}">{{ link.label|trans }}</a>
 {% endfor %}

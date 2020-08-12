@@ -58,6 +58,14 @@
                 <source>offline.btn</source>
                 <target>Refresh</target>
             </trans-unit>
+            <trans-unit id="skip.content">
+                <source>skip.content</source>
+                <target>Skip to content</target>
+            </trans-unit>
+            <trans-unit id="skip.footer">
+                <source>skip.footer</source>
+                <target>Skip to footer</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
