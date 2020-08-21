@@ -2,173 +2,6 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
     <file original="none" source-language="en" target-language="en" datatype="plaintext">
         <body>
-            <trans-unit id="orejime.matomo.title" xml:space="preserve">
-                <source>orejime.matomo.title</source>
-                <target xml:lang="fr" state="translated">Matomo: Performance and Analytics cookies</target>
-            </trans-unit>
-            <trans-unit id="orejime.matomo.description" xml:space="preserve">
-                <source>orejime.matomo.description</source>
-                <target xml:lang="fr" state="translated">We use Matomo solution to provide analytics to analyze how you use the Website, including which pages and videos you view most often, measure any errors that occur and test different design ideas.</target>
-            </trans-unit>
-            <trans-unit id="contact_form.user_consent" xml:space="preserve">
-                <source>contact_form.user_consent</source>
-                <target xml:lang="en" state="translated">I consent that my personal data will be processed and stored by XXXXXX in order to contact me for maximum 6 months.</target>
-            </trans-unit>
-            <trans-unit id="orejime.accept" xml:space="preserve">
-                <source>orejime.accept</source>
-                <target xml:lang="en" state="translated">Accept</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
-            <trans-unit id="orejime.acceptAll" xml:space="preserve">
-                <source>orejime.acceptAll</source>
-                <target xml:lang="en" state="translated">Accept all</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
-            <trans-unit id="orejime.app.optOut.description" xml:space="preserve">
-                <source>orejime.app.optOut.description</source>
-                <target xml:lang="en" state="translated">This app is loaded by default (but you can opt out)</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
-            <trans-unit id="orejime.app.optOut.title" xml:space="preserve">
-                <source>orejime.app.optOut.title</source>
-                <target xml:lang="en" state="translated">(opt-out)</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
-            <trans-unit id="orejime.app.purpose" xml:space="preserve">
-                <source>orejime.app.purpose</source>
-                <target xml:lang="en" state="translated">Purpose</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
-            <trans-unit id="orejime.app.purposes" xml:space="preserve">
-                <source>orejime.app.purposes</source>
-                <target xml:lang="en" state="translated">Purposes</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
-            <trans-unit id="orejime.app.required.description" xml:space="preserve">
-                <source>orejime.app.required.description</source>
-                <target xml:lang="en" state="translated">This application is always required</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
-            <trans-unit id="orejime.app.required.title" xml:space="preserve">
-                <source>orejime.app.required.title</source>
-                <target xml:lang="en" state="translated">(always required)</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
-            <trans-unit id="orejime.close" xml:space="preserve">
-                <source>orejime.close</source>
-                <target xml:lang="en" state="translated">Close</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
-            <trans-unit id="orejime.consentModal.description" xml:space="preserve">
-                <source>orejime.consentModal.description</source>
-                <target xml:lang="en" state="translated">Here you can see and customize the information that we collect about you.</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
-            <trans-unit id="orejime.consentModal.privacyPolicy.name" xml:space="preserve">
-                <source>orejime.consentModal.privacyPolicy.name</source>
-                <target xml:lang="en" state="translated">Privacy policy</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
-            <trans-unit id="orejime.consentModal.privacyPolicy.text" xml:space="preserve">
-                <source>orejime.consentModal.privacyPolicy.text</source>
-                <target xml:lang="en" state="translated">To learn more, please read our {privacyPolicy}.</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
-            <trans-unit id="orejime.consentModal.title" xml:space="preserve">
-                <source>orejime.consentModal.title</source>
-                <target xml:lang="en" state="translated">Information that we collect</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
-            <trans-unit id="orejime.consentNotice.changeDescription" xml:space="preserve">
-                <source>orejime.consentNotice.changeDescription</source>
-                <target xml:lang="en" state="translated">There were changes since your last visit, please update your consent.</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
-            <trans-unit id="orejime.consentNotice.description" xml:space="preserve">
-                <source>orejime.consentNotice.description</source>
-                <target xml:lang="en" state="translated">By continuing your browsing on this site, you agree to the use of cookies used to perform visit statistics.</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
-            <trans-unit id="orejime.consentNotice.learnMore" xml:space="preserve">
-                <source>orejime.consentNotice.learnMore</source>
-                <target xml:lang="en" state="translated">Learn more</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
-            <trans-unit id="orejime.decline" xml:space="preserve">
-                <source>orejime.decline</source>
-                <target xml:lang="en" state="translated">Refuse</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
-            <trans-unit id="orejime.declineAll" xml:space="preserve">
-                <source>orejime.declineAll</source>
-                <target xml:lang="en" state="translated">Refuse all</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
-            <trans-unit id="orejime.disabled" xml:space="preserve">
-                <source>orejime.disabled</source>
-                <target xml:lang="en" state="translated">Disabled</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
-            <trans-unit id="orejime.enabled" xml:space="preserve">
-                <source>orejime.enabled</source>
-                <target xml:lang="en" state="translated">Enabled</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
-            <trans-unit id="orejime.google.description" xml:space="preserve">
-                <source>orejime.google.description</source>
-                <target xml:lang="en" state="translated">We use performance and analytics cookies to analyze how you use the Website, including which pages and videos you view most often, measure any errors that occur and test different design ideas.</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
-            <trans-unit id="orejime.google.title" xml:space="preserve">
-                <source>orejime.google.title</source>
-                <target xml:lang="en" state="translated">Performance and Analytics cookies</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
-            <trans-unit id="orejime.internal.description" xml:space="preserve">
-                <source>orejime.internal.description</source>
-                <target xml:lang="en" state="translated">These cookies are essential to provide you with the Website and Services and to use some of its features, such as to enable you to log into secure areas of the Website.</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
-            <trans-unit id="orejime.internal.title" xml:space="preserve">
-                <source>orejime.internal.title</source>
-                <target xml:lang="en" state="translated">Cookies that are necessary for essential purposes</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
-            <trans-unit id="orejime.newWindow" xml:space="preserve">
-                <source>orejime.newWindow</source>
-                <target xml:lang="en" state="translated">new window</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
-            <trans-unit id="orejime.ok" xml:space="preserve">
-                <source>orejime.ok</source>
-                <target xml:lang="en" state="translated">OK</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
-            <trans-unit id="orejime.purposes.analytics" xml:space="preserve">
-                <source>orejime.purposes.analytics</source>
-                <target xml:lang="en" state="translated">Audience analysis</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
-            <trans-unit id="orejime.purposes.security" xml:space="preserve">
-                <source>orejime.purposes.security</source>
-                <target xml:lang="en" state="translated">Security</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
-            <trans-unit id="orejime.purposes.usepref" xml:space="preserve">
-                <source>orejime.purposes.usepref</source>
-                <target xml:lang="en" state="translated">User preferences</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
-            <trans-unit id="orejime.save" xml:space="preserve">
-                <source>orejime.save</source>
-                <target xml:lang="en" state="translated">Save</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
-            <trans-unit id="orejime.saveData" xml:space="preserve">
-                <source>orejime.saveData</source>
-                <target xml:lang="en" state="translated">Save my configuration on collected information</target>
-                <note>Cookie Bar</note>
-              </trans-unit>
             <trans-unit id="hello.world">
                 <source>hello.world</source>
                 <target>Hello world!</target>
@@ -224,6 +57,14 @@
             <trans-unit id="offline.btn">
                 <source>offline.btn</source>
                 <target>Refresh</target>
+            </trans-unit>
+            <trans-unit id="skip.content">
+                <source>skip.content</source>
+                <target>Skip to content</target>
+            </trans-unit>
+            <trans-unit id="skip.footer">
+                <source>skip.footer</source>
+                <target>Skip to footer</target>
             </trans-unit>
         </body>
     </file>

@@ -22,20 +22,17 @@
 {% if source.node != home %}
     <li class="{{ itemClasses|join(' ') }}"
         id="nav-item-{{ source.node.nodeName }}"
-        data-node-id="{{ source.node.id }}"
-        role="none">
+        data-node-id="{{ source.node.id }}">
 
         {% if source.node.nodeType.Reachable %}
             <a class="{{ linkClasses|join(' ') }}"
                id="nav-link-{{ source.node.nodeName }}"
-               role="menuitem"
                {% if source.externalLink %}target="_blank" rel="noopener nofollow" {% endif %}
                href="{{ path(source) }}">{{ source.title|default(source.node.nodeName) }}</a>
         {% elseif children and children|length %}
             <span class="{{ linkClasses|join(' ') }}"
                   data-toggle="dropdown"
                   aria-haspopup="true"
-                  role="menuitem"
                   aria-expanded="false"
                   id="nav-link-{{ source.node.nodeName }}">{{ source.title|default(source.node.nodeName) }}</span>
         {% endif %}

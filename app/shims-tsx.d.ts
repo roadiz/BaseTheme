@@ -10,4 +10,11 @@ declare global {
       [elem: string]: any
     }
   }
+
+    interface Window {
+        // Google Analytics
+        ga: Function
+        // Matomo
+        _paq: Array<any>
+    }
 }

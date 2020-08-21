@@ -16,7 +16,7 @@ use Themes\BaseTheme\Services;
  */
 class BaseThemeApp extends FrontendController
 {
-    const VERSION = '1.4.0';
+    const VERSION = '1.5.0';
 
     protected static $themeName = 'Base theme';
     protected static $themeAuthor = 'Rezo Zero';
@@ -88,7 +88,6 @@ class BaseThemeApp extends FrontendController
             $request->getLocale()
         );
         $this->prepareThemeAssignation(null, $translation);
-        $this->get('logger')->info($message);
 
         $this->assignation['nodeName'] = 'error-404';
         $this->assignation['nodeTypeName'] = 'error404';
@@ -128,7 +127,7 @@ class BaseThemeApp extends FrontendController
     }
 
     /**
-     * {@inheritdoc}
+     * @return void
      */
     protected function extendAssignation()
     {
@@ -161,7 +160,8 @@ class BaseThemeApp extends FrontendController
     }
 
     /**
-     * @inheritDoc
+     * @param Container $container
+     * @return void
      */
     public static function setupDependencyInjection(Container $container)
     {

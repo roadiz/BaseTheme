@@ -23,7 +23,7 @@ export default class Router {
     init (): void {
         // this.highway.on('NAVIGATE_IN', this.onNavigateIn)
         this.highway.on('NAVIGATE_OUT', this.onNavigateOut)
-        // this.highway.on('NAVIGATE_END', this.onNavigateEnd)
+        this.highway.on('NAVIGATE_END', this.onNavigateEnd)
     }
 
     // onNavigateIn ({ to, trigger, location }: any) {}
@@ -35,6 +35,19 @@ export default class Router {
     }
 
     // onNavigateEnd ({ to, from, trigger, location }: any) {}
+
+    /**
+     * Send page view to any existing trackers
+     */
+    onNavigateEnd (): void {
+        if (window.ga) {
+            window.ga('send', 'pageview')
+        }
+
+        if (window._paq) {
+            window._paq.push(['trackPageView'])
+        }
+    }
 
     attach (links: Array<Element>|NodeList): void {
         this.highway.attach(links)

@@ -13,14 +13,17 @@
 {% endif %}
 
 {% block content %}
-<section class="{{ classes|join(' ') }}"
-         id="page-content-{{ nodeName }}"
-         data-title="{{ title }}"
-         data-node-type="{{ nodeTypeName }}"
-         data-node-name="{{ nodeName }}"
-         data-is-home="{{ nodeHome }}"
-         data-meta-title="{{ pageMetaTitle }}">
-
+<section
+    {% block section_attributes %}
+    class="{{ classes|join(' ') }}"
+    id="page-content-{{ nodeName }}"
+    data-title="{{ title }}"
+    data-node-type="{{ nodeTypeName }}"
+    data-node-name="{{ nodeName }}"
+    data-is-home="{{ nodeHome }}"
+    data-meta-title="{{ pageMetaTitle }}"
+    {% endblock %}
+>
     {% block header %}
         {% if headerImage %}
             <header class="page-header">
