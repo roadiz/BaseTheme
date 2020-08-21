@@ -13,6 +13,10 @@ use Themes\BaseTheme\Twig\ImageFormatsExtension;
 
 class BaseThemeServiceProvider implements ServiceProviderInterface
 {
+    /**
+     * @param Container $container
+     * @return void
+     */
     public function register(Container $container)
     {
         $container->extend('translator', function (Translator $translator) {

@@ -13,7 +13,13 @@ use RZ\Roadiz\Core\Entities\Translation;
  */
 class NodeServiceProvider implements ServiceProviderInterface
 {
+    /**
+     * @var Translation|null
+     */
     protected $translation;
+    /**
+     * @var Container
+     */
     protected $coreServices;
 
     /**

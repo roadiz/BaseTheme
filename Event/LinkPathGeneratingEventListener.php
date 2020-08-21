@@ -22,6 +22,7 @@ class LinkPathGeneratingEventListener implements EventSubscriberInterface
      * @param NodesSourcesPathGeneratingEvent $event
      * @param string                          $eventName
      * @param EventDispatcherInterface        $dispatcher
+     * @return void
      */
     public function onPathGeneration(
         NodesSourcesPathGeneratingEvent $event,
@@ -44,45 +45,50 @@ class LinkPathGeneratingEventListener implements EventSubscriberInterface
                  */
                 $subEvent = clone $event;
                 $needsAnchor = false;
-                /** @var NodesSources $linkedSource */
+                /** @var NodesSources $originalLinkedSource */
                 $originalLinkedSource = $nodeSource->getInternalLinkSources()[0];
                 $linkedSource = $originalLinkedSource;
-                /*
-                 * if nodeSource is not reachable try its parent
-                 */
-                if ($linkedSource->getNode()->getNodeType()->isReachable()) {
-                    $subEvent->setNodeSource($linkedSource);
-                } else {
-                    do {
-                        if (null === $linkedSource) {
-                            // we tested all ancestor without eligible nodeSource. Giving up…
-                            return;
-                        }
-                        $linkedSource = $linkedSource->getParent();
-                    } while (null === $linkedSource ||
-                    !$linkedSource->getNode()->getNodeType()->isReachable()
-                    );
 
-                    $needsAnchor = true;
-                    $subEvent->setNodeSource($linkedSource);
+                if (null !== $linkedSource->getNode() &&
+                    null !== $linkedSource->getNode()->getNodeType()) {
+                    /*
+                     * if nodeSource is not reachable try its parent
+                     */
+                    if ($linkedSource->getNode()->getNodeType()->isReachable()) {
+                        $subEvent->setNodeSource($linkedSource);
+                    } else {
+                        do {
+                            if (null === $linkedSource) {
+                                // we tested all ancestor without eligible nodeSource. Giving up…
+                                return;
+                            }
+                            $linkedSource = $linkedSource->getParent();
+                        } while (null === $linkedSource ||
+                        (null !== $linkedSource->getNode() &&
+                        null !== $linkedSource->getNode()->getNodeType() &&
+                        !$linkedSource->getNode()->getNodeType()->isReachable()));
+
+                        $needsAnchor = true;
+                        $subEvent->setNodeSource($linkedSource);
+                    }
+                    /*
+                     * Dispatch a path generation again for linked node-source.
+                     */
+                    $dispatcher->dispatch($subEvent);
+                    /*
+                     * Fill main event with sub-event data
+                     */
+                    if ($needsAnchor && null !== $originalLinkedSource->getNode()) {
+                        $event->setPath($subEvent->getPath() . '#block-' . $originalLinkedSource->getNode()->getNodeName());
+                    } else {
+                        $event->setPath($subEvent->getPath());
+                    }
+                    $event->setComplete($subEvent->isComplete());
+                    $event->setParameters($subEvent->getParameters());
+                    $event->setContainsScheme($subEvent->containsScheme());
+                    // Stop propagation AFTER sub-event was dispatched not to prevent it to perform.
+                    $event->stopPropagation();
                 }
-                /*
-                 * Dispatch a path generation again for linked node-source.
-                 */
-                $dispatcher->dispatch($subEvent);
-                /*
-                 * Fill main event with sub-event data
-                 */
-                if ($needsAnchor) {
-                    $event->setPath($subEvent->getPath() . '#block-' . $originalLinkedSource->getNode()->getNodeName());
-                } else {
-                    $event->setPath($subEvent->getPath());
-                }
-                $event->setComplete($subEvent->isComplete());
-                $event->setParameters($subEvent->getParameters());
-                $event->setContainsScheme($subEvent->containsScheme());
-                // Stop propagation AFTER sub-event was dispatched not to prevent it to perform.
-                $event->stopPropagation();
             }
         }
     }

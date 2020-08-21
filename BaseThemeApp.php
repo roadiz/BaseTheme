@@ -127,7 +127,7 @@ class BaseThemeApp extends FrontendController
     }
 
     /**
-     * {@inheritdoc}
+     * @return void
      */
     protected function extendAssignation()
     {
@@ -160,7 +160,8 @@ class BaseThemeApp extends FrontendController
     }
 
     /**
-     * @inheritDoc
+     * @param Container $container
+     * @return void
      */
     public static function setupDependencyInjection(Container $container)
     {
