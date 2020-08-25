@@ -1,11 +1,3 @@
-{# For performance matters, recursive nav is not enable by default. #}
-{# {% set children = source|children({
-    'node.nodeType': [
-        bags.nodeTypes.get('Page')
-    ],
-    'node.visible': true
-}) %} #}
-
 {% set itemClasses = ['nav-item'] %}
 {% set linkClasses = ['nav-link'] %}
 
@@ -14,10 +6,10 @@
     {% set linkClasses = linkClasses|merge(['active']) %}
 {% endif %}
 
-{# {% if children|length %}
+{% if navigationWalker|length %}
     {% set itemClasses = itemClasses|merge(['dropdown', 'has-children']) %}
     {% set linkClasses = linkClasses|merge(['dropdown-toggle']) %}
-{% endif %} #}
+{% endif %}
 
 {% if source.node != home %}
     <li class="{{ itemClasses|join(' ') }}"
@@ -29,7 +21,7 @@
                id="nav-link-{{ source.node.nodeName }}"
                {% if source.externalLink %}target="_blank" rel="noopener nofollow" {% endif %}
                href="{{ path(source) }}">{{ source.title|default(source.node.nodeName) }}</a>
-        {% elseif children and children|length %}
+        {% elseif navigationWalker and navigationWalker|length %}
             <span class="{{ linkClasses|join(' ') }}"
                   data-toggle="dropdown"
                   aria-haspopup="true"
@@ -37,18 +29,17 @@
                   id="nav-link-{{ source.node.nodeName }}">{{ source.title|default(source.node.nodeName) }}</span>
         {% endif %}
 
-        {# {% if children|length %}
-        <ul class="dropdown-menu nav-children" role="menu" aria-labelledby="nav-link-{{ source.node.nodeName }}">
-            {% for subsource in children %}
-                {% include '@BaseTheme/common/nav-item.html.twig' with {
-                    'source': subsource,
-                    'active': active,
-                    'home': home,
-                    'bags': bags,
-                    'level': level + 1
-                } only %}
-            {% endfor %}
-        </ul>
-        {% endif %} #}
+        {% if navigationWalker|length %}
+            <ul class="dropdown-menu nav-children" role="menu" aria-labelledby="nav-link-{{ source.node.nodeName }}">
+                {% for subWalker in navigationWalker %}
+                    {% include '@CmbvTheme/common/nav-item.html.twig' with {
+                        'source': subWalker.item,
+                        'active': active,
+                        'home': home,
+                        'navigationWalker': subWalker,
+                    } only %}
+                {% endfor %}
+            </ul>
+        {% endif %}
     </li>
 {% endif %}
