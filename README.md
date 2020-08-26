@@ -2,7 +2,8 @@
 
 [![Build Status](https://travis-ci.org/roadiz/BaseTheme.svg?branch=master)](https://travis-ci.org/roadiz/BaseTheme)
 
-This theme is meant to get a **fresh start** to create a custom website on *Roadiz*.
+This theme is meant to get a **fresh start** to create a custom website on *Roadiz*. \
+**Requires** `rezozero/tree-walker` library to deal with navigation and page blocks templating.
 
 ## Get started
 
@@ -17,7 +18,9 @@ cd themes/TestTheme
 yarn && yarn run build
 ```
 
-We provide a starter kit based on ES6 with *Webpack*, *VueJS*, *Scss*, *Typescript*. Feel free to adapt it if you have your own coding workflow. Keep in mind that we inject built CSS and JS into partial *Twig* templates to get versioned file names.
+We provide a starter kit based on ES6 with *Webpack*, *VueJS*, *Scss*, *Typescript*. 
+Feel free to adapt it if you have your own coding workflow. 
+Keep in mind that we inject built CSS and JS into partial *Twig* templates to get versioned file names.
 
 ### Register BaseTheme services
 
