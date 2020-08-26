@@ -24,7 +24,13 @@
      data-node-type="{{ nodeTypeName }}">
     {% block innerContent %}
         <div class="container">
-            <h2 class="page-block-title {{ blockClassPrefix }}-title">{{ nodeSource.title }}</h2>
+            {% if blockWalker and blockWalker.currentLevel == 1 %}
+                <h2 class="page-block-title {{ blockClassPrefix }}-title">{{ nodeSource.title }}</h2>
+            {% elseif blockWalker and blockWalker.currentLevel == 2 %}
+                <h3 class="page-block-title {{ blockClassPrefix }}-title">{{ nodeSource.title }}</h3>
+            {% else %}
+                <h4 class="page-block-title {{ blockClassPrefix }}-title">{{ nodeSource.title }}</h4>
+            {% endif %}
             <div class="page-block-content {{ blockClassPrefix }}-content">
                 {{ nodeSource.content|markdown }}
             </div>
