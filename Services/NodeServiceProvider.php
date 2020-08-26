@@ -53,26 +53,6 @@ class NodeServiceProvider implements ServiceProviderInterface
         };
 
         /*
-         * Register Main navigation
-         * This is nodeSources !
-         */
-        $container['navigation'] = function ($c) {
-            if ($c['nodeSourceMenu'] !== null) {
-                return $this->coreServices['nodeSourceApi']
-                    ->getBy(
-                        [
-                            'node.parent' => $c['nodeSourceMenu']->getNode(),
-                            'node.visible' => true,
-                            'translation' => $this->translation,
-                        ],
-                        ['node.position' => 'ASC']
-                    );
-            }
-
-            return null;
-        };
-
-        /*
          * Register legals page
          */
         $container['nodeSourceLegals'] = function () {

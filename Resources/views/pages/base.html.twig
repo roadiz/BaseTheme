@@ -37,25 +37,18 @@
             {% if content %}<div class="page-text">{{ content|markdown }}</div>{% endif %}
         </div>
 
-        {% if nodeSource %}
+        {% if blockWalker %}
             <div class="page-blocks">
-                {% if not blocks %}
-                    {# Page blocks pattern implementation #}
-                    {% set blocks = nodeSource|children({
-                        'node.nodeType.reachable': false,
-                        'node.visible': true,
-                    }) %}
-                {% endif %}
-                {% for singleBlock in blocks %}
-                    {% include '@BaseTheme/blocks/' ~ singleBlock.nodeTypeName|lower ~ '.html.twig' ignore missing with {
-                        'nodeSource': singleBlock,
+                {% for subWalker in blockWalker %}
+                    {% include '@BaseTheme/blocks/' ~ subWalker.item.nodeTypeName|lower ~ '.html.twig' ignore missing with {
+                        'nodeSource': subWalker.item,
                         'parentNodeSource': nodeSource,
                         'themeServices': themeServices,
                         'head': head,
-                        'node': singleBlock.node,
-                        'nodeType': singleBlock.node.nodeType,
+                        'node': subWalker.item.node,
+                        'nodeType': subWalker.item.node.nodeType,
                         'loop': loop,
-                        'blocksLength':blocks|length
+                        'blocksLength':blockWalker|length
                     } only %}
                 {% endfor %}
             </div>
