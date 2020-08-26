@@ -30,7 +30,7 @@
         {% endif %}
 
         {% if navigationWalker|length %}
-            <ul class="dropdown-menu nav-children" role="menu" aria-labelledby="nav-link-{{ source.node.nodeName }}">
+            <ul class="dropdown-menu nav-children" aria-labelledby="nav-link-{{ source.node.nodeName }}">
                 {% for subWalker in navigationWalker %}
                     {% include '@CmbvTheme/common/nav-item.html.twig' with {
                         'source': subWalker.item,
