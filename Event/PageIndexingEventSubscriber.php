@@ -33,10 +33,16 @@ final class PageIndexingEventSubscriber implements EventSubscriberInterface, Con
         ];
     }
 
+    /**
+     * @param NodesSourcesIndexingEvent $event
+     * @throws \Exception
+     * @return void
+     */
     public function onIndexing(NodesSourcesIndexingEvent $event)
     {
         $nodeSource = $event->getNodeSource();
-        if ($nodeSource instanceof NSPage/* || $nodeSource instanceof NSGroupBlocks*/) {
+        if (null !== $this->container &&
+            ($nodeSource instanceof NSPage/* || $nodeSource instanceof NSGroupBlocks*/)) {
             $assoc = $event->getAssociations();
 
             /*

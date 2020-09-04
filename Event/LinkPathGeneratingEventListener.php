@@ -9,7 +9,7 @@ use RZ\Roadiz\Core\Events\NodesSources\NodesSourcesPathGeneratingEvent;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class LinkPathGeneratingEventListener implements EventSubscriberInterface
+final class LinkPathGeneratingEventListener implements EventSubscriberInterface
 {
     public static function getSubscribedEvents()
     {
