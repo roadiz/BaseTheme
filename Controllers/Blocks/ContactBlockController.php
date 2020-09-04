@@ -32,11 +32,22 @@ class ContactBlockController extends BaseThemeApp
         $this->assignation = array_merge($this->assignation, $assignation);
 
         /** @var ContactFormManager $contactFormManager */
-        $contactFormManager = $this->createContactFormManager()->withDefaultFields()->withUserConsent();
-        // Scroll to contactForm block after submit succeeded or failed
-        $contactFormManager->setOptions([
-            'action' => '#block-' . $source->getNode()->getNodeName(),
-        ]);
+        $contactFormManager = $this->createContactFormManager();
+        // Do not forget to disable CSRF if you are using Varnish or just dropping cookies
+        $contactFormManager->disableCsrfProtection();
+        if (null !== $source->getNode()) {
+            // Scroll to contactForm block after submit succeeded or failed
+            $contactFormManager->setOptions([
+                'action' => '#block-' . $source->getNode()->getNodeName(),
+            ]);
+        }
+
+        /*
+         * Do not modify form options after adding any fields
+         */
+        $contactFormManager
+            ->withDefaultFields()
+            ->withUserConsent();
 
         /*
          * DO NOT FORGET to set page TTL to 0,

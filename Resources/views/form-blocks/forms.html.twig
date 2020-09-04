@@ -2,9 +2,15 @@
 
 {%- block widget_attributes -%}
     {%- if label and not attr.placeholder %}
-        {% set attr = attr|merge({placeholder: label|trans}) %}
+        {% set attr = attr|merge({
+            placeholder: label|trans,
+            'aria-label': label|trans
+        }) %}
         {% if required %}
-            {% set attr = attr|merge({placeholder: label|trans ~ '*'}) %}
+            {% set attr = attr|merge({
+                placeholder: label|trans ~ '*',
+                'aria-label': label|trans
+            }) %}
         {% endif %}
     {% endif -%}
     {{ parent() }}

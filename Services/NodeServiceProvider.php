@@ -13,7 +13,13 @@ use RZ\Roadiz\Core\Entities\Translation;
  */
 class NodeServiceProvider implements ServiceProviderInterface
 {
+    /**
+     * @var Translation|null
+     */
     protected $translation;
+    /**
+     * @var Container
+     */
     protected $coreServices;
 
     /**
@@ -44,26 +50,6 @@ class NodeServiceProvider implements ServiceProviderInterface
                     'node.nodeType' => $this->coreServices['nodeTypesBag']->get('Neutral'),
                     'translation' => $this->translation,
                 ]);
-        };
-
-        /*
-         * Register Main navigation
-         * This is nodeSources !
-         */
-        $container['navigation'] = function ($c) {
-            if ($c['nodeSourceMenu'] !== null) {
-                return $this->coreServices['nodeSourceApi']
-                    ->getBy(
-                        [
-                            'node.parent' => $c['nodeSourceMenu']->getNode(),
-                            'node.visible' => true,
-                            'translation' => $this->translation,
-                        ],
-                        ['node.position' => 'ASC']
-                    );
-            }
-
-            return null;
         };
 
         /*

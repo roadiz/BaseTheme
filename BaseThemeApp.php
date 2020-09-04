@@ -5,18 +5,24 @@ namespace Themes\BaseTheme;
 
 use Pimple\Container;
 use RZ\Roadiz\CMS\Controllers\FrontendController;
+use RZ\Roadiz\Core\Entities\NodesSources;
 use RZ\Roadiz\Core\Entities\Translation;
+use RZ\Roadiz\Core\Handlers\NodesSourcesHandler;
+use RZ\TreeWalker\WalkerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use RZ\Roadiz\Core\Repositories\TranslationRepository;
 use Themes\BaseTheme\Services;
+use Themes\BaseTheme\TreeWalker\BlockNodeSourceWalker;
+use Themes\BaseTheme\TreeWalker\NodeSourceWalker;
+use Themes\BaseTheme\TreeWalker\NodeSourceWalkerContext;
 
 /**
  * BaseThemeApp class
  */
 class BaseThemeApp extends FrontendController
 {
-    const VERSION = '1.4.0';
+    const VERSION = '1.5.0';
 
     protected static $themeName = 'Base theme';
     protected static $themeAuthor = 'Rezo Zero';
@@ -24,6 +30,14 @@ class BaseThemeApp extends FrontendController
     protected static $themeDir = 'BaseTheme';
     protected static $backendTheme = false;
     public static $priority = 10;
+    /**
+     * @var WalkerInterface
+     */
+    protected $navigationWalker;
+    /**
+     * @var WalkerInterface
+     */
+    protected $blockWalker;
 
     /**
      * @param Request $request
@@ -88,7 +102,6 @@ class BaseThemeApp extends FrontendController
             $request->getLocale()
         );
         $this->prepareThemeAssignation(null, $translation);
-        $this->get('logger')->info($message);
 
         $this->assignation['nodeName'] = 'error-404';
         $this->assignation['nodeTypeName'] = 'error404';
@@ -128,7 +141,7 @@ class BaseThemeApp extends FrontendController
     }
 
     /**
-     * {@inheritdoc}
+     * @return void
      */
     protected function extendAssignation()
     {
@@ -142,6 +155,31 @@ class BaseThemeApp extends FrontendController
         $this->assignation['themeServices'] = $this->themeContainer;
         $this->assignation['head']['themeName'] = static::$themeName;
         $this->assignation['head']['themeVersion'] = static::VERSION;
+
+        /*
+         * BLOCKS
+         */
+        if (null !== $this->nodeSource) {
+            $this->blockWalker = BlockNodeSourceWalker::build(
+                $this->nodeSource,
+                $this->get(NodeSourceWalkerContext::class),
+                4,
+                $this->get('nodesSourcesUrlCacheProvider')
+            );
+            $this->assignation['blockWalker'] = $this->blockWalker;
+        }
+        /*
+         * NAVIGATION walker
+         *
+         * This is used for main navigation AND breadcrumbs as Walkers can go backwards.
+         */
+        $this->navigationWalker = NodeSourceWalker::build(
+            $this->themeContainer['nodeSourceMenu'],
+            $this->get(NodeSourceWalkerContext::class),
+            2,
+            $this->get('nodesSourcesUrlCacheProvider')
+        );
+        $this->assignation['navigationWalker'] = $this->navigationWalker;
 
         /*
          * Get social networks url from Roadiz parameters.
@@ -161,7 +199,8 @@ class BaseThemeApp extends FrontendController
     }
 
     /**
-     * @inheritDoc
+     * @param Container $container
+     * @return void
      */
     public static function setupDependencyInjection(Container $container)
     {
