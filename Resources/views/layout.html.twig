@@ -67,6 +67,10 @@
         <link rel="canonical" href="{{ url(nodeSource) }}" />
     {% endif %}
 
+    {% if bags.settings.get('google_site_verification') %}
+        <meta name="google-site-verification" content="{{ bags.settings.get('google_site_verification')|escape('html_attr') }}" />
+    {% endif %}
+
     {#
      # Favicons Generate them on https://realfavicongenerator.net
      #}

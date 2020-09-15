@@ -55,6 +55,9 @@ final class PageIndexingEventSubscriber implements EventSubscriberInterface, Con
                 'translation' => $nodeSource->getTranslation(),
                 'node.parent' => $nodeSource->getNode(),
             ]);
+            // Need a locale field
+            $locale = $nodeSource->getTranslation()->getLocale();
+            $lang = \Locale::getPrimaryLanguage($locale);
 
             /** @var NodesSources $child */
             foreach ($children as $child) {
@@ -66,6 +69,7 @@ final class PageIndexingEventSubscriber implements EventSubscriberInterface, Con
                     $assoc['collection_txt'],
                     $childAssoc['collection_txt']
                 );
+                $assoc['collection_txt_'.$lang] = implode(PHP_EOL, $assoc['collection_txt']);
             }
 
             $event->setAssociations($assoc);

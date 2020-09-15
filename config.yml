@@ -10,7 +10,8 @@ versionRequire: "1.5.0"
 importFiles:
     roles: []
     groups: []
-    settings: []
+    settings:
+        - Resources/import/settings.json
     nodetypes:
         - Resources/import/node-type/ContactBlock.json
         - Resources/import/node-type/ContentBlock.json

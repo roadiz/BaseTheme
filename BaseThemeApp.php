@@ -41,7 +41,7 @@ class BaseThemeApp extends FrontendController
 
     /**
      * @param Request $request
-     * @param null $_locale
+     * @param string|null $_locale
      * @return Response
      */
     public function homeAction(
@@ -54,23 +54,22 @@ class BaseThemeApp extends FrontendController
          *
          * You MUST enable force locale in URL setting to redirect users.
          */
-        // if ($_locale === null) {
-        //     /** @var TranslationRepository $transRepository */
-        //     $transRepository = $this->get('em')->getRepository(Translation::class);
-        //     $redirectLocale = $request->getPreferredLanguage($transRepository->getAvailableLocales());
-        //     $translation = $transRepository->findOneByLocaleAndAvailable($redirectLocale);
-        //     if (null === $translation) {
-        //         $translation = $this->get('defaultTranslation');
-        //     }
-        //
-        //     $response = $this->redirect(
-        //         $this->generateUrl('homePageLocale', ['_locale'=>$translation->getPreferredLocale()]),
-        //         Response::HTTP_MOVED_PERMANENTLY
-        //     );
-        //     $response->setPrivate();
-        //     return $response;
-        // }
-
+//        if ($_locale === null) {
+//            /** @var TranslationRepository $transRepository */
+//            $transRepository = $this->get('em')->getRepository(Translation::class);
+//            $redirectLocale = $request->getPreferredLanguage($transRepository->getAvailableLocales()) ?? 'en';
+//            $translation = $transRepository->findOneByLocaleAndAvailable($redirectLocale);
+//            if (null === $translation) {
+//                $translation = $this->get('defaultTranslation');
+//            }
+//
+//            $response = $this->redirect(
+//                $this->generateUrl('homePageLocale', ['_locale' => $translation->getPreferredLocale()]),
+//                Response::HTTP_MOVED_PERMANENTLY
+//            );
+//            $response->setPrivate();
+//            return $response;
+//        }
         /*
          * If you use a static route for Home page
          * we need to grab manually language.
