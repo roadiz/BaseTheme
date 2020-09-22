@@ -16,7 +16,7 @@
     {% endif %}
 {% endmacro %}
 
-{%- spaceless -%}
+{%- apply spaceless -%}
     {% if class %}
         {% set class = class|merge(['btn']) %}
     {% else %}
@@ -52,4 +52,4 @@
             {{- macros.inner(linkLabel, icon, head, linkFileInfos) -}}
         </button>
     {% endif -%}
-{%- endspaceless -%}
+{%- endapply -%}
