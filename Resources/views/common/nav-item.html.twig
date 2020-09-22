@@ -1,28 +1,30 @@
 {% set itemClasses = ['nav-item'] %}
 {% set linkClasses = ['nav-link'] %}
 
-{% if source.node.id == active.id or source.node.id == active.parent.id %}
-    {% set itemClasses = itemClasses|merge(['active']) %}
-    {% set linkClasses = linkClasses|merge(['active']) %}
-{% endif %}
-
-{% if navigationWalker|length %}
-    {% set itemClasses = itemClasses|merge(['dropdown', 'has-children']) %}
-    {% set linkClasses = linkClasses|merge(['dropdown-toggle']) %}
-{% endif %}
-
 {% if source.node != home %}
-    <li class="{{ itemClasses|join(' ') }}"
+    <li class="{{ html_classes(itemClasses, {
+        'active': source.node.id == active.id or source.node.id == active.parent.id,
+        'dropdown': navigationWalker|length,
+        'has-children': navigationWalker|length,
+    }) }}"
         id="nav-item-{{ source.node.nodeName }}"
         data-node-id="{{ source.node.id }}">
 
         {% if source.node.nodeType.Reachable %}
-            <a class="{{ linkClasses|join(' ') }}"
+            <a class="{{ html_classes(linkClasses, {
+                'active': source.node.id == active.id or source.node.id == active.parent.id,
+                'dropdown': navigationWalker|length,
+                'has-children': navigationWalker|length,
+            }) }}"
                id="nav-link-{{ source.node.nodeName }}"
                {% if source.externalLink %}target="_blank" rel="noopener nofollow" {% endif %}
                href="{{ path(source) }}">{{ source.title|default(source.node.nodeName) }}</a>
         {% elseif navigationWalker and navigationWalker|length %}
-            <span class="{{ linkClasses|join(' ') }}"
+            <span class="{{ html_classes(linkClasses, {
+                'active': source.node.id == active.id or source.node.id == active.parent.id,
+                'dropdown': navigationWalker|length,
+                'has-children': navigationWalker|length,
+            }) }}"
                   data-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"

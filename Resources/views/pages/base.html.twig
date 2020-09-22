@@ -4,18 +4,13 @@
     'page-content',
 ]) %}
 
-{% if node.home %}
-    {% set classes = classes|merge(['home-container']) %}
-{% endif %}
-
-{% if head.ajax %}
-    {% set classes = classes|merge(['page-content-ajax']) %}
-{% endif %}
-
 {% block content %}
 <section
     {% block section_attributes %}
-    class="{{ classes|join(' ') }}"
+    class="{{ html_classes(classes, {
+        'home-container': node.home,
+        'page-content-ajax': head.ajax
+    }) }}"
     id="page-content-{{ nodeName }}"
     data-title="{{ title }}"
     data-node-type="{{ nodeTypeName }}"

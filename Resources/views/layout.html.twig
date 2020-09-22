@@ -147,7 +147,7 @@
 {% endblock %}
 
 {% block body_attributes %}
-    {% if node %}class="{{ bodyClasses|join(' ') }}"
+    {% if node %}class="{{ html_classes(bodyClasses) }}"
     id="{{ nodeName }}"
     data-node-type="{{ nodeTypeName }}"
     {% if node and node.id == nodeHome.id %}
@@ -166,13 +166,11 @@
 
     <div data-router-wrapper>
         {% set mainWrapperClass = [
-            'main-wrapper'
+            'main-wrapper',
+            'page-header--' ~ headerTemplate
         ] %}
-
-        {% set mainWrapperClass = mainWrapperClass|merge(['page-header--' ~ headerTemplate]) %}
-
         <div id="basetheme"
-             class="{{ mainWrapperClass|join(' ') }}"
+             class="{{ html_classes(mainWrapperClass) }}"
              data-router-view="{{ nodeTypeName }}">
 
             {# Skip links #}

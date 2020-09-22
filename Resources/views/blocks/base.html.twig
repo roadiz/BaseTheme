@@ -18,7 +18,7 @@
     blockClassPrefix
 ] %}
 
-<div class="{% block blockClasses %}{{ blockClasses|join(' ') }}{% endblock %}"
+<div class="{% block blockClasses %}{{ html_classes(blockClasses) }}{% endblock %}"
      id="block-{{ blockId }}"
      {% if loop %} data-index="{{ loop.index0 }}"{% endif %}
      data-node-type="{{ nodeTypeName }}">

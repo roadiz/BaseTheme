@@ -38,14 +38,14 @@
         {% endif %}
         <a href="{{ url }}"
             {% if external %} target="_blank" rel="nofollow noopener" {% endif %}
-           class="{{ class|join(' ') }}"
+           class="{{ html_classes(class) }}"
             {% block linkAttributes %}{% endblock %}
             {% if disabled %} disabled{% endif %}
             {% if ariaLabel %} aria-label="{{ ariaLabel }}"{% endif %}>
             {{- macros.inner(linkLabel, icon, head, linkFileInfos) -}}
         </a>
     {% else %}
-        <button class="{{ class|join(' ') }}"{% if disabled %} disabled{% endif %}
+        <button class="{{ html_classes(class) }}"{% if disabled %} disabled{% endif %}
             {% block btnAttributes %}{% endblock %}
             {% if submit %}type="submit"{% else %} type="button"{% endif %}
             {% if ariaLabel %} aria-label="{{ ariaLabel }}"{% endif %}>
