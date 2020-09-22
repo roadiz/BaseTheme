@@ -256,7 +256,7 @@
     {% if head.universalAnalyticsId or
         head.googleTagManagerId or
         (bags.settings.get('matomo_url') and bags.settings.get('matomo_site_id')) %}
-        {% include '@BaseTheme/partials/orejime.html.twig' %}
+        {% include '@BaseTheme/common/orejime.html.twig' %}
         <script src="https://unpkg.com/orejime@1.2.3/dist/orejime.js" async defer></script>
     {% endif %}
 

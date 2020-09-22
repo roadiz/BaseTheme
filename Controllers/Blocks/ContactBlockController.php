@@ -75,6 +75,6 @@ class ContactBlockController extends BaseThemeApp
         // Assign your form view to display it in Twig.
         $this->assignation['contactForm'] = $form->createView();
 
-        return $this->render('form-blocks/contactblock.html.twig', $this->assignation);
+        return $this->render('form_blocks/contact_block.html.twig', $this->assignation);
     }
 }

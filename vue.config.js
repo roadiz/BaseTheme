@@ -83,7 +83,7 @@ module.exports = {
             .plugin('html')
             .tap(args => {
                 args[0].filename = '../Resources/views/base.html.twig'
-                args[0].template = 'Resources/views/base-src.html.twig'
+                args[0].template = 'Resources/views/base_src.html.twig'
                 return args
             })
 

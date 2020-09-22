@@ -36,7 +36,7 @@
         {% if blockWalker %}
             <div class="page-blocks">
                 {% for subWalker in blockWalker %}
-                    {% include '@BaseTheme/blocks/' ~ subWalker.item.nodeTypeName|lower ~ '.html.twig' ignore missing with {
+                    {% include '@BaseTheme/blocks/' ~ subWalker.item.nodeTypeName|u.snake ~ '.html.twig' ignore missing with {
                         'nodeSource': subWalker.item,
                         'parentNodeSource': nodeSource,
                         'themeServices': themeServices,

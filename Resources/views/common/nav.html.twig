@@ -32,7 +32,7 @@
 
             {% if navigationWalker and navigationWalker|length %}
                 {% for subWalker in navigationWalker %}
-                    {% include '@CmbvTheme/common/nav-item.html.twig' with {
+                    {% include '@BaseTheme/common/nav_item.html.twig' with {
                         'source' : subWalker.item,
                         'active' : node,
                         'home' : home,

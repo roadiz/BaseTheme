@@ -34,7 +34,7 @@
         {% if navigationWalker|length %}
             <ul class="dropdown-menu nav-children" aria-labelledby="nav-link-{{ source.node.nodeName }}">
                 {% for subWalker in navigationWalker %}
-                    {% include '@CmbvTheme/common/nav-item.html.twig' with {
+                    {% include '@BaseTheme/common/nav_item.html.twig' with {
                         'source': subWalker.item,
                         'active': active,
                         'home': home,
