@@ -1,5 +1,5 @@
-{% set itemClasses = ['nav-item'] %}
-{% set linkClasses = ['nav-link'] %}
+{% set itemClasses = {'nav-item': true} %}
+{% set linkClasses = {'nav-link': true} %}
 
 {% if source.node != home %}
     <li class="{{ html_classes(itemClasses, {

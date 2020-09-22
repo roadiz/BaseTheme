@@ -18,9 +18,9 @@
 
 {%- apply spaceless -%}
     {% if class %}
-        {% set class = class|merge(['btn']) %}
+        {% set class = class|merge({'btn': true}) %}
     {% else %}
-        {% set class = ['btn'] %}
+        {% set class = {'btn': true} %}
     {% endif %}
 
     {%- if internalLink or externalLink %}

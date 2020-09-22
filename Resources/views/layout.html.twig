@@ -21,16 +21,16 @@
     {% set headerImage = nodeSource.image[0] %}
 {% endif %}
 {% if not bodyClasses %}
-    {% set bodyClasses = [] %}
+    {% set bodyClasses = {} %}
 {% endif %}
 
 {% set headerTemplate = 'static' %}
 {% if node %}
-    {% set bodyClasses = bodyClasses|merge([
-        nodeTypeName|lower ~ '-detail',
-        nodeName,
-        formattedLocale
-    ]) %}
+    {% set bodyClasses = bodyClasses|merge({
+        (nodeTypeName|lower ~ '-detail'): true,
+        (nodeName): true,
+        (formattedLocale): true
+    }) %}
     {% set headerTemplate = nodeTypeName|lower %}
 {% endif %}
 
@@ -165,10 +165,10 @@
     {% endif %}
 
     <div data-router-wrapper>
-        {% set mainWrapperClass = [
-            'main-wrapper',
-            'page-header--' ~ headerTemplate
-        ] %}
+        {% set mainWrapperClass = {
+            ('main-wrapper'): true,
+            ('page-header--' ~ headerTemplate): true
+        } %}
         <div id="basetheme"
              class="{{ html_classes(mainWrapperClass) }}"
              data-router-view="{{ nodeTypeName }}">

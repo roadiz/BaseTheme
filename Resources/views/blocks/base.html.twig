@@ -13,10 +13,10 @@
     {% set blockId = node.nodeName %}
 {% endif %}
 
-{% set blockClasses = [
-    'page-block',
-    blockClassPrefix
-] %}
+{% set blockClasses = {
+    ('page-block'): true,
+    (blockClassPrefix): true
+} %}
 
 <div class="{% block blockClasses %}{{ html_classes(blockClasses) }}{% endblock %}"
      id="block-{{ blockId }}"
