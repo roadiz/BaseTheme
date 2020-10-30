@@ -29,7 +29,14 @@ class ServiceWorkerController extends AbstractSitemapController
         /*
          * Add your own nodes grouped by their type.
          */
-        $this->assignation['pages'] = $this->getListableNodeSources();
+        /** @var Kernel $kernel */
+        $kernel = $this->get('kernel');
+        if (!$kernel->isPreview()) {
+            $this->assignation['pages'] = $this->getListableNodeSources();
+        } else {
+            // do not preload nor cache previews
+            $this->assignation['pages'] = [];
+        }
 
         $response = new Response(
             trim($this->getTwig()->render('service-worker/sw.js.twig', $this->assignation)),
