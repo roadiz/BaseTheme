@@ -215,7 +215,7 @@
             resourcesUrl: '{{ asset('', 'BaseTheme') }}',
             privacyPolicy: {% if themeServices.nodeSourceLegals %}'{{ url(themeServices.nodeSourceLegals) }}'{% else %}''{% endif %},
             hasTrackers: {% if head.universalAnalyticsId or head.googleTagManagerId %}true{% else %}false{% endif %},
-            swPath: {% if is_dev_mode %}null{% else %}'{{ path('sw') }}'{% endif %}
+            swPath: {% if is_preview %}null{% else %}'{{ path('sw') }}'{% endif %}
         };
         // Pass server translation to your JS app.
         window.translations = {
