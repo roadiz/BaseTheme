@@ -4,11 +4,9 @@ const registerServiceWorker = ((): void => {
             console.debug('Navigator support ServiceWorker')
             window.addEventListener('load', function (): void {
                 navigator.serviceWorker.register(window.temp.swPath).then(function (registration) {
-                    // Registration was successful
-                    console.log('ServiceWorker registration successful with scope: ', registration.scope)
+                    console.debug('ServiceWorker registration successful with scope: ', registration.scope)
                 }, function (err) {
-                    // registration failed :(
-                    console.log('ServiceWorker registration failed: ', err)
+                    console.debug('ServiceWorker registration failed: ', err)
                 })
             })
         } else if (!window.isSecureContext) {
