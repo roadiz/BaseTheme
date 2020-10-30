@@ -29,8 +29,7 @@ if (workbox) {
     self.addEventListener('activate', event => {
         event.waitUntil(self.clients.claim());
     });
-    
-    // Prevent network usage if page is in caches
+
     self.addEventListener('fetch', event => {
         event.respondWith(
             caches.match(event.request).then(response => {
@@ -63,7 +62,8 @@ if (workbox) {
             })
         ]
     })
-    workbox.routing.registerRoute(new RegExp('/'), strategy)
+
+    workbox.routing.registerRoute(/^\/(?!rz\-admin|api|preview\.php)/, strategy)
     workbox.routing.registerRoute(/\.(?:png|gif|jpg|jpeg|svg|webp)$/, imgStrategy)
 } else {
     console.debug(`[ServiceWorker] Workbox didn't load 😬`)
