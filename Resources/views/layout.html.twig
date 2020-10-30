@@ -121,7 +121,8 @@
     {#
      # Roadiz font-face CSS (comment it if no fonts available) -----------------
      #}
-    <link rel="stylesheet" href="{{ path('FontFaceCSS') }}" />
+    <link rel="preload" href="{{ path('FontFaceCSS') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{ path('FontFaceCSS') }}" /></noscript>
     <style>
         [v-cloak],
         [v-cloak] > * {
