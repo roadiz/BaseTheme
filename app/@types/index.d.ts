@@ -12,6 +12,7 @@ declare global {
         translations: any
         referer?: string
         refererFixed: boolean
+        grecaptcha: any
         temp: {
             searchUrl: string
             apiUrl: string

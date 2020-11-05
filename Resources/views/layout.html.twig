@@ -117,6 +117,8 @@
     {#
      # Roadiz font-face CSS (comment it if no fonts available) -----------------
      #}
+    <link rel="preload" href="{{ path('FontFaceCSS') }}" as="style">
+    {# Fallback for Firefox, Safari #}
     <link rel="stylesheet" href="{{ path('FontFaceCSS') }}" />
 
     <style>

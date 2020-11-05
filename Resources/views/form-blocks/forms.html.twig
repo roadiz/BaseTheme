@@ -28,6 +28,8 @@
 {%- endblock form_label %}
 
 {% block recaptcha_widget -%}
-    <div class="g-recaptcha" data-sitekey="{{ configs.publicKey }}"></div>
-    <script src='https://www.google.com/recaptcha/api.js'></script>
+    {# Google Recaptcha v2 #}
+    {#<div class="g-recaptcha" data-sitekey="{{ configs.publicKey }}"></div>#}
+    {# Google Recaptcha v3 - do not mount v2 component #}
+    <div class="g-recaptcha-v3" data-sitekey="{{ configs.publicKey }}"></div>
 {%- endblock recaptcha_widget %}

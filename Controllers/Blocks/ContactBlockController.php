@@ -6,7 +6,6 @@ namespace Themes\BaseTheme\Controllers\Blocks;
 use GeneratedNodeSources\NSContactBlock;
 use RZ\Roadiz\Core\Entities\NodesSources;
 use RZ\Roadiz\Core\Exceptions\ForceResponseException;
-use RZ\Roadiz\Utils\ContactFormManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Themes\BaseTheme\BaseThemeApp;
@@ -31,18 +30,29 @@ class ContactBlockController extends BaseThemeApp
         $this->prepareNodeSourceAssignation($source, $source->getTranslation());
         $this->assignation = array_merge($this->assignation, $assignation);
 
-        /** @var ContactFormManager $contactFormManager */
-        $contactFormManager = $this->createContactFormManager()->withDefaultFields()->withUserConsent();
-        // Scroll to contactForm block after submit succeeded or failed
-        $contactFormManager->setOptions([
-            'action' => '#block-' . $source->getNode()->getNodeName(),
-        ]);
-
+        $contactFormManager = $this->createContactFormManager()
+            // Scroll to contactForm block after submit succeeded or failed
+            ->setOptions([
+                'action' => '#block-' . $source->getNode()->getNodeName()
+            ])
+            // When using Varnish or App Cache, CSRF could break form
+            // But you’ll need to POST form async with JSON Response
+            ->disableCsrfProtection()
+        ;
         /*
-         * DO NOT FORGET to set page TTL to 0,
-         * reverse-proxy cache will break Google Recaptcha
+         * Do not call form builder methods BEFORE defining options.
          */
-        $contactFormManager->withGoogleRecaptcha();
+        $contactFormManager
+            ->withDefaultFields()
+            ->withUserConsent()
+            /*
+             * DO NOT FORGET to set page TTL to 0,
+             * reverse-proxy cache will break Google Recaptcha
+             *
+             * Works with Recaptcha v2 and v3: just adapt your frontend code.
+             */
+            ->withGoogleRecaptcha()
+        ;
 
         /*
          * Define custom receiver.

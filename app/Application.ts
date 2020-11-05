@@ -24,7 +24,9 @@ const namespace = 'ui'
 @Component({
     delimiters: ['${', '}'], // Change default delimiter for twig files
     store,
-    components: {}
+    components: {
+        ContactForm: (): Promise<any> => import(/* webpackChunkName: "async-contact-form" */'./components/Form/ContactForm')
+    }
 })
 export default class Application extends Vue {
     @Action('setNavOpen', { namespace }) setNavOpen!: Function

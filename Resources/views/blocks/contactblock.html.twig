@@ -2,13 +2,17 @@
 
 {% block innerContent %}
     <div class="container">
-        <h2 class="page-block-title {{ blockClassPrefix }}-title">{{ nodeSource.title }}</h2>
-        <p class="form-message"></p>
-        {% if app.request.hasPreviousSession %}
-            {% for message in app.flashes('confirm') %}
-                <p class="alert alert-success">{{ message }}</p>
-            {% endfor %}
-        {% endif %}
-        {{ nodeSource|render('BaseTheme') }}
+        <contact-form inline-template>
+            <div class="{{ blockClassPrefix }}-form">
+                <h2 class="page-block-title {{ blockClassPrefix }}-title">{{ nodeSource.title }}</h2>
+                <p class="form-infos" v-if="message">${ message }</p>
+                {% if app.request.hasPreviousSession %}
+                    {% for message in app.flashes('confirm') %}
+                        <p class="alert alert-success">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+                {{ nodeSource|render('BaseTheme') }}
+            </div>
+        </contact-form>
     </div>
 {% endblock %}
