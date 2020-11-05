@@ -30,15 +30,16 @@ class ContactBlockController extends BaseThemeApp
         $this->prepareNodeSourceAssignation($source, $source->getTranslation());
         $this->assignation = array_merge($this->assignation, $assignation);
 
-        $contactFormManager = $this->createContactFormManager()
+        $contactFormManager = $this->createContactFormManager();
+        // Do not forget to disable CSRF if you are using Varnish or just dropping cookies
+        $contactFormManager->disableCsrfProtection();
+        if (null !== $source->getNode()) {
             // Scroll to contactForm block after submit succeeded or failed
-            ->setOptions([
-                'action' => '#block-' . $source->getNode()->getNodeName()
-            ])
-            // When using Varnish or App Cache, CSRF could break form
-            // But you’ll need to POST form async with JSON Response
-            ->disableCsrfProtection()
-        ;
+            $contactFormManager->setOptions([
+                'action' => '#block-' . $source->getNode()->getNodeName(),
+            ]);
+        }
+
         /*
          * Do not call form builder methods BEFORE defining options.
          */
@@ -74,6 +75,6 @@ class ContactBlockController extends BaseThemeApp
         // Assign your form view to display it in Twig.
         $this->assignation['contactForm'] = $form->createView();
 
-        return $this->render('form-blocks/contactblock.html.twig', $this->assignation);
+        return $this->render('form_blocks/contact_block.html.twig', $this->assignation);
     }
 }

@@ -39,7 +39,7 @@ class CssController extends BaseThemeApp
         $response->setStatusCode(Response::HTTP_OK);
         $response->headers->set('Content-Type', 'text/css');
 
-        $response->setContent($this->getTwig()->render('css/dynamic-styles.css.twig', $this->assignation));
+        $response->setContent($this->getTwig()->render('css/dynamic_styles.css.twig', $this->assignation));
         $this->makeResponseCachable($request, $response, 60);
 
         return $response;

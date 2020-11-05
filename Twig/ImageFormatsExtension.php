@@ -11,7 +11,7 @@ class ImageFormatsExtension extends AbstractExtension implements GlobalsInterfac
     /**
      * @inheritDoc
      */
-    public function getGlobals()
+    public function getGlobals(): array
     {
         return [
             'imageFormats' => [

@@ -11,6 +11,7 @@
         lang: window.temp.locale,
         translations: [],
         apps: [
+            {% if bags.settings.get('matomo_url') and bags.settings.get('matomo_site_id') %}
             {
                 name: 'matomo',
                 title: '{% trans %}orejime.matomo.title{% endtrans %}',
@@ -30,6 +31,8 @@
                 default: true,
                 onlyOnce: true
             },
+            {% endif %}
+            {% if head.universalAnalyticsId or head.googleTagManagerId %}
             {
                 name: 'google',
                 title: '{% trans %}orejime.google.title{% endtrans %}',
@@ -50,6 +53,7 @@
                 default: true,
                 onlyOnce: true
             },
+            {% endif %}
             {
                 name: 'internal',
                 title: '{% trans %}orejime.internal.title{% endtrans %}',
@@ -57,7 +61,7 @@
                 purposes: ['security', 'usepref'],
                 required: true,
                 cookie: [
-                    window.temp.sessionCookieName,
+                    'roadiz_token',
                     'roadiz_remember_me'
                 ]
             }

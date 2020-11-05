@@ -1,0 +1,12 @@
+[
+    {
+        "name": "google_site_verification",
+        "visible": true,
+        "encrypted": false,
+        "settingGroup": {
+            "name": "APIs",
+            "inMenu": true
+        },
+        "type": 0
+    }
+]

@@ -21,16 +21,16 @@
     {% set headerImage = nodeSource.image[0] %}
 {% endif %}
 {% if not bodyClasses %}
-    {% set bodyClasses = [] %}
+    {% set bodyClasses = {} %}
 {% endif %}
 
 {% set headerTemplate = 'static' %}
 {% if node %}
-    {% set bodyClasses = bodyClasses|merge([
-        nodeTypeName|lower ~ '-detail',
-        nodeName,
-        formattedLocale
-    ]) %}
+    {% set bodyClasses = bodyClasses|merge({
+        (nodeTypeName|lower ~ '-detail'): true,
+        (nodeName): true,
+        (formattedLocale): true
+    }) %}
     {% set headerTemplate = nodeTypeName|lower %}
 {% endif %}
 
@@ -65,6 +65,10 @@
      #}
     {% if node %}
         <link rel="canonical" href="{{ url(nodeSource) }}" />
+    {% endif %}
+
+    {% if bags.settings.get('google_site_verification') %}
+        <meta name="google-site-verification" content="{{ bags.settings.get('google_site_verification')|escape('html_attr') }}" />
     {% endif %}
 
     {#
@@ -120,17 +124,32 @@
     <link rel="preload" href="{{ path('FontFaceCSS') }}" as="style">
     {# Fallback for Firefox, Safari #}
     <link rel="stylesheet" href="{{ path('FontFaceCSS') }}" />
-
     <style>
         [v-cloak],
         [v-cloak] > * {
             display: none;
         }
     </style>
+    {#
+    # Search bar in Google results
+    # https://developers.google.com/search/docs/data-types/sitelinks-searchbox?hl=fr
+    #}
+    {#<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "url": "{{ url('homePage') }}",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "{{ url('searchPageLocale', {'_locale': app.request.locale}) }}?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>#}
 {% endblock %}
 
 {% block body_attributes %}
-    {% if node %}class="{{ bodyClasses|join(' ') }}"
+    {% if node %}class="{{ html_classes(bodyClasses) }}"
     id="{{ nodeName }}"
     data-node-type="{{ nodeTypeName }}"
     {% if node and node.id == nodeHome.id %}
@@ -148,15 +167,18 @@
     {% endif %}
 
     <div data-router-wrapper>
-        {% set mainWrapperClass = [
-            'main-wrapper'
-        ] %}
-
-        {% set mainWrapperClass = mainWrapperClass|merge(['page-header--' ~ headerTemplate]) %}
-
+        {% set mainWrapperClass = {
+            ('main-wrapper'): true,
+            ('page-header--' ~ headerTemplate): true
+        } %}
         <div id="basetheme"
-             class="{{ mainWrapperClass|join(' ') }}"
+             class="{{ html_classes(mainWrapperClass) }}"
              data-router-view="{{ nodeTypeName }}">
+
+            {# Skip links #}
+            {% block skip %}
+                {% include '@BaseTheme/common/skip.html.twig' %}
+            {% endblock %}
 
             {# Main navigation #}
             {% block main_navigation %}
@@ -164,7 +186,7 @@
             {% endblock %}
 
             {# Content #}
-            <main>
+            <main id="content">
                 {% block content %}{% endblock %}
             </main>
 
@@ -175,7 +197,7 @@
         </div>
     </div>
 
-    {% if head.devMode %}
+    {% if is_dev_mode %}
         {% include '@BaseTheme/dev/dev.html.twig'%}
     {% endif %}
 
@@ -189,26 +211,56 @@
     <script>
         {# Passing server vars to JS framework #}
         window.temp = {
-            apiUrl: '{{ path('homePage') }}api/1.0',
-            devMode: {% if head.devMode %}true{% else %}false{% endif %},
+            devMode: {% if is_dev_mode %}true{% else %}false{% endif %},
             locale: '{{ request.locale }}',
-            vatPercent: {{ bags.settings.get('vat_percent')|default(20) }},
             resourcesUrl: '{{ asset('', 'BaseTheme') }}',
             privacyPolicy: {% if themeServices.nodeSourceLegals %}'{{ url(themeServices.nodeSourceLegals) }}'{% else %}''{% endif %},
             hasTrackers: {% if head.universalAnalyticsId or head.googleTagManagerId %}true{% else %}false{% endif %},
-            swPath: {% if head.devMode %}null{% else %}'{{ path('sw') }}'{% endif %}
+            swPath: {% if is_preview %}null{% else %}'{{ path('sw') }}'{% endif %}
         };
         // Pass server translation to your JS app.
         window.translations = {
             'share': "{% trans %}share{% endtrans %}"
         };
+        /**
+         * Override intervention request default configurations
+         * @type InterventionRequestConfigurations
+         * @see https://github.com/rezozero/intervention-request-js
+         */
+        window.interventionRequestJS = {
+            /**
+             * Enable debug mode
+             */
+            debug: {{ is_dev_mode ? 'true' : 'false' }},
+
+            /**
+             * Default loading type
+             */
+            loading: 'lazy',
+
+            /**
+             * Default media options
+             * Applied on every media if no props override provided
+             */
+            mediaOptions: {
+                quality: 80,
+                progressive: 1
+            },
+
+            /**
+             * Strategies config overrides
+             */
+            strategies: {
+                default: { baseUrl: '/assets' }
+            }
+        }
     </script>
 
     {% if head.universalAnalyticsId or
         head.googleTagManagerId or
         (bags.settings.get('matomo_url') and bags.settings.get('matomo_site_id')) %}
-        {% include '@BaseTheme/partials/orejime.html.twig' %}
-        <script src="https://unpkg.com/orejime@1.2.1/dist/orejime.js" async defer></script>
+        {% include '@BaseTheme/common/orejime.html.twig' %}
+        <script src="https://unpkg.com/orejime@1.2.3/dist/orejime.js" async defer></script>
     {% endif %}
 
     {% if head.universalAnalyticsId and not head.googleTagManagerId %}

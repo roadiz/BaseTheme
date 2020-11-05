@@ -422,7 +422,7 @@ $orejime-theme-color-light: #aaa !default;
     position: absolute;
     width: 43px;
     top: 30px;
-    overflow: ellipsis;
+    text-overflow: ellipsis;
     font-size: 0.6em;
     letter-spacing: 0.03em;
     text-align: center;

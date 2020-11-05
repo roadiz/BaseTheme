@@ -2,13 +2,13 @@
 <div class="row">
     {%
         set buttonType = {
-            'default': [''],
-            'black color' : [ 'btn-black-color' ],
-            'gold color' : [ 'btn-gold-color' ],
-            'silver color' : [ 'btn-silver-color' ],
-            'main blue bg' : [ 'btn-main-blue-bg', 'btn-white-color' ],
-            'gold bg' : [ 'btn-gold-bg', 'btn-white-color' ],
-            'silver bg' : [ 'btn-silver-bg', 'btn-white-color' ]
+            'default': {},
+            'black color' : {'btn-black-color': true},
+            'gold color' : {'btn-gold-color': true},
+            'silver color' : {'btn-silver-color': true},
+            'main blue bg' : {'btn-main-blue-bg': true, 'btn-white-color': true},
+            'gold bg' : {'btn-gold-bg': true, 'btn-white-color': true},
+            'silver bg' : {'btn-silver-bg': true, 'btn-white-color': true}
         }
     %}
 
@@ -42,7 +42,7 @@
                 'icon': 'link-external',
                 'externalLink': 'https://www.rezo-zero.com',
                 'head': head,
-                'class': type|merge([ 'btn-medium' ])
+                'class': type|merge({'btn-medium': true})
             } only %}
 
             {% include 'common/link.html.twig' with {
@@ -50,7 +50,7 @@
                 'icon': 'link-internal',
                 'externalLink': 'https://www.rezo-zero.com',
                 'head': head,
-                'class': type|merge([ 'btn-large' ])
+                'class': type|merge({'btn-large': true})
             } only %}
         </div>
     {% endfor %}

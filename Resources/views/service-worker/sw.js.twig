@@ -1,46 +1,76 @@
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js')
 
-const CACHE_NAME = "cache-roadiz"
-const CACHE_ONE_WEEK = 7 * 24 * 60 * 60;
-const OFFLINE_URL = '/offline.html';
+// Set cache name with project and Theme Version
+{% set cacheName = [
+    head.themeName ?? 'roadiz',
+    app.debug ? 'debug' : 'prod',
+    head.themeVersion ?? '0.1.0'
+] %}
+const CACHE_NAME = "{{ cacheName|join('_')|u.snake }}"
+const OFFLINE_URL = '/offline.html'
 const PAGES_TO_PRELOAD = [
-{% for page in pages|filter(p => p.translation.Available) %}
+    {% for page in pages|filter(p => p.translation.Available and not p.node.Home) %}
     '{{ path(page) }}',
-{% endfor %}
-    '/offline.html'
-];
+    {% endfor %}
+    // OFFLINE_URL
+]
 
 if (workbox) {
-    console.log(`Yay! Workbox is loaded 🎉`)
+    console.debug(`[ServiceWorker] Workbox is loaded 🎉`)
+
+    self.addEventListener('install', event => {
+        event.waitUntil(
+            caches.open(CACHE_NAME).then(cache => {
+                return cache.addAll(PAGES_TO_PRELOAD).then(() => self.skipWaiting())
+            })
+        )
+    })
+
+    self.addEventListener('activate', event => {
+        event.waitUntil(self.clients.claim());
+    });
+
+    self.addEventListener('fetch', event => {
+        event.respondWith(
+            caches.match(event.request).then(response => {
+                if (response) {
+                    console.debug("[ServiceWorker] Found in Cache", event.request.url, response);
+                    return response;
+                } else {
+                    return fetch(event.request)
+                }
+            })
+        )
+    })
+
+   const strategy = new workbox.strategies.CacheFirst({
+        cacheName: CACHE_NAME,
+        plugins: [
+            new workbox.expiration.ExpirationPlugin({
+                maxEntries: 30,
+                maxAgeSeconds: 24 * 60 * 60 // 1 day
+            }),
+            new workbox.cacheableResponse.CacheableResponsePlugin({
+                statuses: [0, 200]
+            })
+        ]
+    })
+
+    const imgStrategy = new workbox.strategies.CacheFirst({
+        cacheName: CACHE_NAME + '_img',
+        plugins: [
+            new workbox.expiration.ExpirationPlugin({
+                maxEntries: 60,
+                maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
+            }),
+            new workbox.cacheableResponse.CacheableResponsePlugin({
+                statuses: [0, 200]
+            })
+        ]
+    })
+
+    workbox.routing.registerRoute(/^\/(?!rz\-admin|api|preview\.php)/, strategy)
+    workbox.routing.registerRoute(/\.(?:png|gif|jpg|jpeg|svg|webp)$/, imgStrategy)
 } else {
-    console.log(`Boo! Workbox didn't load 😬`)
+    console.debug(`[ServiceWorker] Workbox didn't load 😬`)
 }
-
-self.addEventListener('install', event => {
-    event.waitUntil(
-        caches.open(CACHE_NAME).then(cache => {
-            return cache.addAll(PAGES_TO_PRELOAD).then(() => self.skipWaiting())
-        })
-    )
-})
-
-self.addEventListener('activate', event => {
-    event.waitUntil(self.clients.claim());
-});
-
-const strategy = new workbox.strategies.NetworkFirst({
-    cacheName: CACHE_NAME,
-    plugins: [
-        new workbox.expiration.Plugin({
-            maxAgeSeconds: CACHE_ONE_WEEK
-        })
-    ]
-})
-
-workbox.routing.registerRoute(new RegExp('/'), ({ event }) => {
-    return strategy
-        .handle({ event })
-        .then(response => response || caches.match(OFFLINE_URL))
-        .catch((e) => caches.match(OFFLINE_URL))
-});
-
