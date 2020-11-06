@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Themes\BaseTheme\Controllers;
 
+use RZ\Roadiz\Core\Kernel;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -32,7 +33,7 @@ class ServiceWorkerController extends AbstractSitemapController
         /** @var Kernel $kernel */
         $kernel = $this->get('kernel');
         if (!$kernel->isPreview()) {
-            $this->assignation['pages'] = $this->getListableNodeSources();
+            $this->assignation['pages'] = $this->getListableNodeSources($this->translation);
         } else {
             // do not preload nor cache previews
             $this->assignation['pages'] = [];

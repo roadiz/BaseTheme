@@ -4,7 +4,8 @@ importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox
 {% set cacheName = [
     head.themeName ?? 'roadiz',
     app.debug ? 'debug' : 'prod',
-    head.themeVersion ?? '0.1.0'
+    head.themeVersion ?? '0.1.0',
+    translation.locale ?? ''
 ] %}
 const CACHE_NAME = "{{ cacheName|join('_')|u.snake }}"
 const OFFLINE_URL = '/offline.html'

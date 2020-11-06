@@ -24,9 +24,13 @@ sitemap:
         _controller: Themes\BaseTheme\Controllers\SitemapController::sitemapAction
 
 sw:
-    path: /sw.js
+    path: /{_locale}/sw.js
     defaults:
         _controller: Themes\BaseTheme\Controllers\ServiceWorkerController::serviceWorkerAction
+        _locale: fr
+    requirements:
+        # Use every 2 letter codes (quick and dirty)
+        _locale: "[a-z]{2}"
 
 offline:
     path: /offline.html
