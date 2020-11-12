@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Themes\BaseTheme\TreeWalker\Definition;
 
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use RZ\Roadiz\Core\Entities\NodesSources;
 use RZ\TreeWalker\Definition\ContextualDefinitionTrait;
 use RZ\TreeWalker\WalkerContextInterface;
@@ -23,7 +24,11 @@ final class SingleTypeChildrenDefinition
         $this->context = $context;
     }
 
-    public function __invoke(NodesSources $source): array
+    /**
+     * @param NodesSources $source
+     * @return array|Paginator
+     */
+    public function __invoke(NodesSources $source)
     {
         if ($this->context instanceof NodeSourceWalkerContext) {
             $this->context->getStopwatch()->start(static::class);
