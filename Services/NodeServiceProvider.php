@@ -8,7 +8,6 @@ use Pimple\ServiceProviderInterface;
 use RZ\Roadiz\Core\Entities\Translation;
 
 /**
- * Class NodeServiceProvider
  * @package Themes\BaseTheme\Services
  */
 class NodeServiceProvider implements ServiceProviderInterface
@@ -23,7 +22,6 @@ class NodeServiceProvider implements ServiceProviderInterface
     protected $coreServices;
 
     /**
-     * NodeServiceProvider constructor.
      * @param Container $coreServices
      * @param Translation|null $translation
      */

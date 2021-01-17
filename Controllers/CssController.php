@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Themes\BaseTheme\BaseThemeApp;
 
 /**
- * Class CssController
  * @package Themes\BaseTheme\Controllers
  */
 class CssController extends BaseThemeApp

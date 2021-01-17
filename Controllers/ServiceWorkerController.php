@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class ServiceWorkerController
  * @package Themes\BaseTheme\Controllers
  */
 class ServiceWorkerController extends AbstractSitemapController

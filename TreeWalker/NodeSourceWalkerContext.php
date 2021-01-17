@@ -31,8 +31,6 @@ class NodeSourceWalkerContext implements WalkerContextInterface
     private $nodeSourceApi;
 
     /**
-     * NodeSourceWalkerContext constructor.
-     *
      * @param Stopwatch                     $stopwatch
      * @param NodeTypes                     $nodeTypesBag
      * @param NodeSourceApi                 $nodeSourceApi

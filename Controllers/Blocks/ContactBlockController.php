@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Themes\BaseTheme\BaseThemeApp;
 
 /**
- * Class ContactBlockController
  * @package Themes\BaseTheme\Controllers\Blocks
  */
 class ContactBlockController extends BaseThemeApp

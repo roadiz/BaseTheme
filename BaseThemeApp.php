@@ -196,13 +196,4 @@ class BaseThemeApp extends FrontendController
             }
         }
     }
-
-    /**
-     * @param Container $container
-     * @return void
-     */
-    public static function setupDependencyInjection(Container $container)
-    {
-        parent::setupDependencyInjection($container);
-    }
 }

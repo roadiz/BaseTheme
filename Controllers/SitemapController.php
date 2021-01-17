@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class SitemapController
  * @package Themes\BaseTheme\Controllers
  */
 class SitemapController extends AbstractSitemapController
