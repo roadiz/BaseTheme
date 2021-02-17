@@ -149,36 +149,38 @@ class BaseThemeApp extends FrontendController
         /*
          * Register services
          */
-        $this->themeContainer->register(new Services\NodeServiceProvider($this->getContainer(), $this->translation));
+        if (null !== $this->themeContainer) {
+            $this->themeContainer->register(new Services\NodeServiceProvider($this->getContainer(), $this->translation));
+            $this->assignation['themeServices'] = $this->themeContainer;
 
-        $this->assignation['themeServices'] = $this->themeContainer;
-        $this->assignation['head']['themeName'] = static::$themeName;
-        $this->assignation['head']['themeVersion'] = static::VERSION;
-
-        /*
-         * BLOCKS
-         */
-        if (null !== $this->nodeSource) {
-            $this->blockWalker = BlockNodeSourceWalker::build(
-                $this->nodeSource,
+            /*
+             * BLOCKS
+             */
+            if (null !== $this->nodeSource) {
+                $this->blockWalker = BlockNodeSourceWalker::build(
+                    $this->nodeSource,
+                    $this->get(NodeSourceWalkerContext::class),
+                    4,
+                    $this->get('nodesSourcesUrlCacheProvider')
+                );
+                $this->assignation['blockWalker'] = $this->blockWalker;
+            }
+            /*
+             * NAVIGATION walker
+             *
+             * This is used for main navigation AND breadcrumbs as Walkers can go backwards.
+             */
+            $this->navigationWalker = NodeSourceWalker::build(
+                $this->themeContainer['nodeSourceMenu'],
                 $this->get(NodeSourceWalkerContext::class),
-                4,
+                2,
                 $this->get('nodesSourcesUrlCacheProvider')
             );
-            $this->assignation['blockWalker'] = $this->blockWalker;
+            $this->assignation['navigationWalker'] = $this->navigationWalker;
         }
-        /*
-         * NAVIGATION walker
-         *
-         * This is used for main navigation AND breadcrumbs as Walkers can go backwards.
-         */
-        $this->navigationWalker = NodeSourceWalker::build(
-            $this->themeContainer['nodeSourceMenu'],
-            $this->get(NodeSourceWalkerContext::class),
-            2,
-            $this->get('nodesSourcesUrlCacheProvider')
-        );
-        $this->assignation['navigationWalker'] = $this->navigationWalker;
+
+        $this->assignation['head']['themeName'] = static::$themeName;
+        $this->assignation['head']['themeVersion'] = static::VERSION;
 
         /*
          * Get social networks url from Roadiz parameters.
