@@ -1,0 +1,47 @@
+{% set itemClasses = {'nav-item': true} %}
+{% set linkClasses = {'nav-link': true} %}
+
+{% if source.node != home %}
+    <li class="{{ html_classes(itemClasses, {
+        'active': source.node.id == active.id or source.node.id == active.parent.id,
+        'dropdown': navigationWalker|length,
+        'has-children': navigationWalker|length,
+    }) }}"
+        id="nav-item-{{ source.node.nodeName }}"
+        data-node-id="{{ source.node.id }}">
+
+        {% if source.node.nodeType.Reachable %}
+            <a class="{{ html_classes(linkClasses, {
+                'active': source.node.id == active.id or source.node.id == active.parent.id,
+                'dropdown': navigationWalker|length,
+                'has-children': navigationWalker|length,
+            }) }}"
+               id="nav-link-{{ source.node.nodeName }}"
+               {% if source.externalLink %}target="_blank" rel="noopener nofollow" {% endif %}
+               href="{{ path(source) }}">{{ source.title|default(source.node.nodeName) }}</a>
+        {% elseif navigationWalker and navigationWalker|length %}
+            <span class="{{ html_classes(linkClasses, {
+                'active': source.node.id == active.id or source.node.id == active.parent.id,
+                'dropdown': navigationWalker|length,
+                'has-children': navigationWalker|length,
+            }) }}"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  id="nav-link-{{ source.node.nodeName }}">{{ source.title|default(source.node.nodeName) }}</span>
+        {% endif %}
+
+        {% if navigationWalker|length %}
+            <ul class="dropdown-menu nav-children" aria-labelledby="nav-link-{{ source.node.nodeName }}">
+                {% for subWalker in navigationWalker %}
+                    {% include '@BaseTheme/common/nav_item.html.twig' with {
+                        'source': subWalker.item,
+                        'active': active,
+                        'home': home,
+                        'navigationWalker': subWalker,
+                    } only %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </li>
+{% endif %}

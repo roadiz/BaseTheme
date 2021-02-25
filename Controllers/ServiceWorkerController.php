@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Themes\BaseTheme\Controllers;
 
+use RZ\Roadiz\Core\Kernel;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class ServiceWorkerController
  * @package Themes\BaseTheme\Controllers
  */
 class ServiceWorkerController extends AbstractSitemapController
@@ -29,7 +29,14 @@ class ServiceWorkerController extends AbstractSitemapController
         /*
          * Add your own nodes grouped by their type.
          */
-        $this->assignation['pages'] = $this->getListableNodeSources();
+        /** @var Kernel $kernel */
+        $kernel = $this->get('kernel');
+        if (!$kernel->isPreview()) {
+            $this->assignation['pages'] = $this->getListableNodeSources($this->translation);
+        } else {
+            // do not preload nor cache previews
+            $this->assignation['pages'] = [];
+        }
 
         $response = new Response(
             trim($this->getTwig()->render('service-worker/sw.js.twig', $this->assignation)),

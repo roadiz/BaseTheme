@@ -5,18 +5,24 @@ namespace Themes\BaseTheme;
 
 use Pimple\Container;
 use RZ\Roadiz\CMS\Controllers\FrontendController;
+use RZ\Roadiz\Core\Entities\NodesSources;
 use RZ\Roadiz\Core\Entities\Translation;
+use RZ\Roadiz\Core\Handlers\NodesSourcesHandler;
+use RZ\TreeWalker\WalkerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use RZ\Roadiz\Core\Repositories\TranslationRepository;
 use Themes\BaseTheme\Services;
+use Themes\BaseTheme\TreeWalker\BlockNodeSourceWalker;
+use Themes\BaseTheme\TreeWalker\NodeSourceWalker;
+use Themes\BaseTheme\TreeWalker\NodeSourceWalkerContext;
 
 /**
  * BaseThemeApp class
  */
 class BaseThemeApp extends FrontendController
 {
-    const VERSION = '1.5.0';
+    const VERSION = '1.6.0';
 
     protected static $themeName = 'Base theme';
     protected static $themeAuthor = 'Rezo Zero';
@@ -24,10 +30,18 @@ class BaseThemeApp extends FrontendController
     protected static $themeDir = 'BaseTheme';
     protected static $backendTheme = false;
     public static $priority = 10;
+    /**
+     * @var WalkerInterface
+     */
+    protected $navigationWalker;
+    /**
+     * @var WalkerInterface
+     */
+    protected $blockWalker;
 
     /**
      * @param Request $request
-     * @param null $_locale
+     * @param string|null $_locale
      * @return Response
      */
     public function homeAction(
@@ -40,23 +54,22 @@ class BaseThemeApp extends FrontendController
          *
          * You MUST enable force locale in URL setting to redirect users.
          */
-        // if ($_locale === null) {
-        //     /** @var TranslationRepository $transRepository */
-        //     $transRepository = $this->get('em')->getRepository(Translation::class);
-        //     $redirectLocale = $request->getPreferredLanguage($transRepository->getAvailableLocales());
-        //     $translation = $transRepository->findOneByLocaleAndAvailable($redirectLocale);
-        //     if (null === $translation) {
-        //         $translation = $this->get('defaultTranslation');
-        //     }
-        //
-        //     $response = $this->redirect(
-        //         $this->generateUrl('homePageLocale', ['_locale'=>$translation->getPreferredLocale()]),
-        //         Response::HTTP_MOVED_PERMANENTLY
-        //     );
-        //     $response->setPrivate();
-        //     return $response;
-        // }
-
+//        if ($_locale === null) {
+//            /** @var TranslationRepository $transRepository */
+//            $transRepository = $this->get('em')->getRepository(Translation::class);
+//            $redirectLocale = $request->getPreferredLanguage($transRepository->getAvailableLocales()) ?? 'en';
+//            $translation = $transRepository->findOneByLocaleAndAvailable($redirectLocale);
+//            if (null === $translation) {
+//                $translation = $this->get('defaultTranslation');
+//            }
+//
+//            $response = $this->redirect(
+//                $this->generateUrl('homePageLocale', ['_locale' => $translation->getPreferredLocale()]),
+//                Response::HTTP_MOVED_PERMANENTLY
+//            );
+//            $response->setPrivate();
+//            return $response;
+//        }
         /*
          * If you use a static route for Home page
          * we need to grab manually language.
@@ -136,9 +149,36 @@ class BaseThemeApp extends FrontendController
         /*
          * Register services
          */
-        $this->themeContainer->register(new Services\NodeServiceProvider($this->getContainer(), $this->translation));
+        if (null !== $this->themeContainer) {
+            $this->themeContainer->register(new Services\NodeServiceProvider($this->getContainer(), $this->translation));
+            $this->assignation['themeServices'] = $this->themeContainer;
 
-        $this->assignation['themeServices'] = $this->themeContainer;
+            /*
+             * BLOCKS
+             */
+            if (null !== $this->nodeSource) {
+                $this->blockWalker = BlockNodeSourceWalker::build(
+                    $this->nodeSource,
+                    $this->get(NodeSourceWalkerContext::class),
+                    4,
+                    $this->get('nodesSourcesUrlCacheProvider')
+                );
+                $this->assignation['blockWalker'] = $this->blockWalker;
+            }
+            /*
+             * NAVIGATION walker
+             *
+             * This is used for main navigation AND breadcrumbs as Walkers can go backwards.
+             */
+            $this->navigationWalker = NodeSourceWalker::build(
+                $this->themeContainer['nodeSourceMenu'],
+                $this->get(NodeSourceWalkerContext::class),
+                2,
+                $this->get('nodesSourcesUrlCacheProvider')
+            );
+            $this->assignation['navigationWalker'] = $this->navigationWalker;
+        }
+
         $this->assignation['head']['themeName'] = static::$themeName;
         $this->assignation['head']['themeVersion'] = static::VERSION;
 
@@ -157,14 +197,5 @@ class BaseThemeApp extends FrontendController
                 ];
             }
         }
-    }
-
-    /**
-     * @param Container $container
-     * @return void
-     */
-    public static function setupDependencyInjection(Container $container)
-    {
-        parent::setupDependencyInjection($container);
     }
 }

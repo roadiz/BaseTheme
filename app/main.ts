@@ -10,7 +10,7 @@ import './scss/application.scss'
 
 // Import some utils
 import './utils/passive-supported'
-import './utils/register-service-worker'
+// import './utils/register-service-worker'
 import './utils/register-svg'
 
 // GSAP

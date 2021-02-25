@@ -8,7 +8,9 @@ use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Translation\Translator;
+use Themes\BaseTheme\TreeWalker\NodeSourceWalkerContext;
 use Themes\BaseTheme\Event\LinkPathGeneratingEventListener;
+use Themes\BaseTheme\Event\PageIndexingEventSubscriber;
 use Themes\BaseTheme\Twig\ImageFormatsExtension;
 
 class BaseThemeServiceProvider implements ServiceProviderInterface
@@ -33,12 +35,13 @@ class BaseThemeServiceProvider implements ServiceProviderInterface
             return $translator;
         });
 
-        $container->extend('dispatcher', function (EventDispatcherInterface $dispatcher) {
+        $container->extend('dispatcher', function (EventDispatcherInterface $dispatcher, Container $c) {
             /*
              * Path generating subscriber to transform NSLink URL in their linked node Path
              * or manually defined URLs
              */
             $dispatcher->addSubscriber(new LinkPathGeneratingEventListener());
+            $dispatcher->addSubscriber(new PageIndexingEventSubscriber($c));
             return $dispatcher;
         });
 
@@ -46,5 +49,14 @@ class BaseThemeServiceProvider implements ServiceProviderInterface
             $extensions->add(new ImageFormatsExtension());
             return $extensions;
         });
+
+        $container[NodeSourceWalkerContext::class] = function ($c) {
+            return new NodeSourceWalkerContext(
+                $c['stopwatch'],
+                $c['nodeTypesBag'],
+                $c['nodeSourceApi'],
+                $c['securityAuthorizationChecker']
+            );
+        };
     }
 }

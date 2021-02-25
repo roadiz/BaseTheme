@@ -66,6 +66,10 @@
                 <source>skip.footer</source>
                 <target>Skip to footer</target>
             </trans-unit>
+            <trans-unit id="contact_form.user_consent">
+                <source>contact_form.user_consent</source>
+                <target>I consent to the data collected being processed by XXXXX for a maximum period of 6 months.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

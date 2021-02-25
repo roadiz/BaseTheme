@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-{#  {% include '@BaseTheme/sitemap/sitemap-element.xml.twig' with {'element': home} only %}#}
-
-
+{#  {% include '@BaseTheme/sitemap/sitemap_element.xml.twig' with {'element': home} only %}#}
 
 {% for page in pages|filter(p => p.translation.Available) %}
-    {% include '@BaseTheme/sitemap/sitemap-element.xml.twig' with {'element': page} only %}
+    {% include '@BaseTheme/sitemap/sitemap_element.xml.twig' with {'element': page} only %}
 {% endfor %}
 
 {# Static pages

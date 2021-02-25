@@ -30,14 +30,13 @@
                 </li>
             {% endif %}
 
-            {% if themeServices.navigation and themeServices.navigation|length %}
-                {% for source in themeServices.navigation %}
-                    {% include '@BaseTheme/common/nav-item.html.twig' with {
-                        'source' : source,
+            {% if navigationWalker and navigationWalker|length %}
+                {% for subWalker in navigationWalker %}
+                    {% include '@BaseTheme/common/nav_item.html.twig' with {
+                        'source' : subWalker.item,
                         'active' : node,
                         'home' : home,
-                        'themeServices':themeServices,
-                        'level' : 1
+                        'navigationWalker':subWalker,
                     } only %}
                 {% endfor %}
             {% endif %}

@@ -5,16 +5,15 @@ namespace Themes\BaseTheme\Services;
 
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
-use RZ\Roadiz\Core\Entities\Translation;
+use RZ\Roadiz\Core\AbstractEntities\TranslationInterface;
 
 /**
- * Class NodeServiceProvider
  * @package Themes\BaseTheme\Services
  */
 class NodeServiceProvider implements ServiceProviderInterface
 {
     /**
-     * @var Translation|null
+     * @var TranslationInterface|null
      */
     protected $translation;
     /**
@@ -23,11 +22,10 @@ class NodeServiceProvider implements ServiceProviderInterface
     protected $coreServices;
 
     /**
-     * NodeServiceProvider constructor.
      * @param Container $coreServices
-     * @param Translation|null $translation
+     * @param TranslationInterface|null $translation
      */
-    public function __construct(Container $coreServices, Translation $translation = null)
+    public function __construct(Container $coreServices, TranslationInterface $translation = null)
     {
         $this->coreServices = $coreServices;
         $this->translation = $translation;
@@ -50,26 +48,6 @@ class NodeServiceProvider implements ServiceProviderInterface
                     'node.nodeType' => $this->coreServices['nodeTypesBag']->get('Neutral'),
                     'translation' => $this->translation,
                 ]);
-        };
-
-        /*
-         * Register Main navigation
-         * This is nodeSources !
-         */
-        $container['navigation'] = function ($c) {
-            if ($c['nodeSourceMenu'] !== null) {
-                return $this->coreServices['nodeSourceApi']
-                    ->getBy(
-                        [
-                            'node.parent' => $c['nodeSourceMenu']->getNode(),
-                            'node.visible' => true,
-                            'translation' => $this->translation,
-                        ],
-                        ['node.position' => 'ASC']
-                    );
-            }
-
-            return null;
         };
 
         /*

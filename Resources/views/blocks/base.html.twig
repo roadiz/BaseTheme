@@ -13,18 +13,24 @@
     {% set blockId = node.nodeName %}
 {% endif %}
 
-{% set blockClasses = [
-    'page-block',
-    blockClassPrefix
-] %}
+{% set blockClasses = {
+    ('page-block'): true,
+    (blockClassPrefix): true
+} %}
 
-<div class="{% block blockClasses %}{{ blockClasses|join(' ') }}{% endblock %}"
+<div class="{% block blockClasses %}{{ html_classes(blockClasses) }}{% endblock %}"
      id="block-{{ blockId }}"
      {% if loop %} data-index="{{ loop.index0 }}"{% endif %}
      data-node-type="{{ nodeTypeName }}">
     {% block innerContent %}
         <div class="container">
-            <h2 class="page-block-title {{ blockClassPrefix }}-title">{{ nodeSource.title }}</h2>
+            {% if blockWalker and blockWalker.currentLevel == 1 %}
+                <h2 class="page-block-title {{ blockClassPrefix }}-title">{{ nodeSource.title }}</h2>
+            {% elseif blockWalker and blockWalker.currentLevel == 2 %}
+                <h3 class="page-block-title {{ blockClassPrefix }}-title">{{ nodeSource.title }}</h3>
+            {% else %}
+                <h4 class="page-block-title {{ blockClassPrefix }}-title">{{ nodeSource.title }}</h4>
+            {% endif %}
             <div class="page-block-content {{ blockClassPrefix }}-content">
                 {{ nodeSource.content|markdown }}
             </div>

@@ -1,21 +1,16 @@
 {% extends '@BaseTheme/layout.html.twig' %}
 
-{% set classes = classes|default([
-    'page-content',
-]) %}
-
-{% if node.home %}
-    {% set classes = classes|merge(['home-container']) %}
-{% endif %}
-
-{% if head.ajax %}
-    {% set classes = classes|merge(['page-content-ajax']) %}
-{% endif %}
+{% set classes = classes|default({
+    'page-content': true,
+}) %}
 
 {% block content %}
 <section
     {% block section_attributes %}
-    class="{{ classes|join(' ') }}"
+    class="{{ html_classes(classes, {
+        'home-container': node.home,
+        'page-content-ajax': head.ajax
+    }) }}"
     id="page-content-{{ nodeName }}"
     data-title="{{ title }}"
     data-node-type="{{ nodeTypeName }}"
@@ -33,33 +28,29 @@
     {% endblock %}
 
     {% block inner_content %}
-        <div class="container">
-            {% if content %}<div class="page-text">{{ content|markdown }}</div>{% endif %}
-        </div>
-
-        {% if nodeSource %}
+        {% block inner_content_before_blocks %}
+            <div class="container">
+                {% if content %}<div class="page-text">{{ content|markdown }}</div>{% endif %}
+            </div>
+        {% endblock %}
+        {% if blockWalker %}
             <div class="page-blocks">
-                {% if not blocks %}
-                    {# Page blocks pattern implementation #}
-                    {% set blocks = nodeSource|children({
-                        'node.nodeType.reachable': false,
-                        'node.visible': true,
-                    }) %}
-                {% endif %}
-                {% for singleBlock in blocks %}
-                    {% include '@BaseTheme/blocks/' ~ singleBlock.nodeTypeName|lower ~ '.html.twig' ignore missing with {
-                        'nodeSource': singleBlock,
+                {% for subWalker in blockWalker %}
+                    {% include '@BaseTheme/blocks/' ~ subWalker.item.nodeTypeName|u.snake ~ '.html.twig' ignore missing with {
+                        'nodeSource': subWalker.item,
                         'parentNodeSource': nodeSource,
                         'themeServices': themeServices,
                         'head': head,
-                        'node': singleBlock.node,
-                        'nodeType': singleBlock.node.nodeType,
+                        'node': subWalker.item.node,
+                        'nodeType': subWalker.item.node.nodeType,
                         'loop': loop,
-                        'blocksLength':blocks|length
+                        'blockWalker': subWalker,
+                        'blocksLength':blockWalker|length
                     } only %}
                 {% endfor %}
             </div>
         {% endif %}
+        {% block inner_content_after_blocks %}{% endblock %}
     {% endblock %}
 </section>
 {% endblock %}
