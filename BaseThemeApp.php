@@ -22,7 +22,7 @@ use Themes\BaseTheme\TreeWalker\NodeSourceWalkerContext;
  */
 class BaseThemeApp extends FrontendController
 {
-    const VERSION = '1.5.0';
+    const VERSION = '1.6.0';
 
     protected static $themeName = 'Base theme';
     protected static $themeAuthor = 'Rezo Zero';

@@ -4,17 +4,17 @@ declare(strict_types=1);
 namespace Themes\BaseTheme\Controllers;
 
 use Doctrine\ORM\QueryBuilder;
+use RZ\Roadiz\Core\AbstractEntities\TranslationInterface;
 use RZ\Roadiz\Core\Entities\NodeType;
-use RZ\Roadiz\Core\Entities\Translation;
 use Themes\BaseTheme\BaseThemeApp;
 
 abstract class AbstractSitemapController extends BaseThemeApp
 {
     /**
-     * @param Translation|null $translation
+     * @param TranslationInterface|null $translation
      * @return \IteratorAggregate|array
      */
-    protected function getListableNodeSources(?Translation $translation = null)
+    protected function getListableNodeSources(?TranslationInterface $translation = null)
     {
         /** @var QueryBuilder $qb */
         $qb = $this->get('em')

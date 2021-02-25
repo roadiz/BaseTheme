@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Themes\BaseTheme\Controllers;
 
 use GeneratedNodeSources\NSContactBlock;
+use RZ\Roadiz\Core\AbstractEntities\TranslationInterface;
 use RZ\Roadiz\Core\Entities\Node;
-use RZ\Roadiz\Core\Entities\Translation;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Themes\BaseTheme\BaseThemeApp;
@@ -15,7 +15,7 @@ abstract class AbstractBlockAwareController extends BaseThemeApp
     /**
      * @param Request          $request
      * @param Node|null        $node
-     * @param Translation|null $translation
+     * @param TranslationInterface|null $translation
      *
      * @return Response
      * @throws \Twig\Error\RuntimeError
@@ -23,7 +23,7 @@ abstract class AbstractBlockAwareController extends BaseThemeApp
     public function indexAction(
         Request $request,
         Node $node = null,
-        Translation $translation = null
+        TranslationInterface $translation = null
     ) {
         $this->prepareThemeAssignation($node, $translation);
 
