@@ -32,7 +32,7 @@
     "raf": "^3.4.1",
     "sanitize.css": "^11.0.0",
     "showdown": "^1.9.1",
-    "swiper": "^5.3.1",
+    "swiper": "^6.5.1",
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",
     "vue-property-decorator": "^8.3.0",
