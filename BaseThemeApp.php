@@ -24,20 +24,15 @@ class BaseThemeApp extends FrontendController
 {
     const VERSION = '1.6.0';
 
-    protected static $themeName = 'Base theme';
-    protected static $themeAuthor = 'Rezo Zero';
-    protected static $themeCopyright = 'Rezo Zero';
-    protected static $themeDir = 'BaseTheme';
-    protected static $backendTheme = false;
-    public static $priority = 10;
-    /**
-     * @var WalkerInterface
-     */
-    protected $navigationWalker;
-    /**
-     * @var WalkerInterface
-     */
-    protected $blockWalker;
+    protected static string $themeName = 'Base theme';
+    protected static string $themeAuthor = 'Rezo Zero';
+    protected static string $themeCopyright = 'Rezo Zero';
+    protected static string $themeDir = 'BaseTheme';
+    protected static bool $backendTheme = false;
+    public static int $priority = 10;
+
+    protected ?WalkerInterface $navigationWalker = null;
+    protected ?WalkerInterface $blockWalker = null;
 
     /**
      * @param Request $request
