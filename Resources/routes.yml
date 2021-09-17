@@ -37,10 +37,12 @@ offline:
     defaults:
         _controller: Themes\BaseTheme\Controllers\ServiceWorkerController::offlineAction
 
-defaultRemoveTrailingSlash:
-    path: /{url}
-    defaults:
-        _controller: Themes\BaseTheme\BaseThemeApp::removeTrailingSlashAction
-    requirements:
-        url: ".*/$"
-    methods: [GET]
+# This conflict with Symfony 4.1+ autoredirections
+# https://symfony.com/doc/4.1/routing.html#redirecting-urls-with-trailing-slashes
+#defaultRemoveTrailingSlash:
+#    path: /{url}
+#    defaults:
+#        _controller: Themes\BaseTheme\BaseThemeApp::removeTrailingSlashAction
+#    requirements:
+#        url: ".*/$"
+#    methods: [GET]

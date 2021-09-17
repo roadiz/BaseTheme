@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Themes\BaseTheme;
 
-use Pimple\Container;
 use RZ\Roadiz\CMS\Controllers\FrontendController;
 use RZ\Roadiz\Core\Entities\NodesSources;
 use RZ\Roadiz\Core\Entities\Translation;
@@ -33,6 +32,19 @@ class BaseThemeApp extends FrontendController
 
     protected ?WalkerInterface $navigationWalker = null;
     protected ?WalkerInterface $blockWalker = null;
+
+    /**
+     * @return array<string, string>
+     */
+    public static function getSubscribedServices()
+    {
+        if (is_callable('parent::getSubscribedServices')) {
+            return array_merge(parent::getSubscribedServices(), [
+                NodeSourceWalkerContext::class => NodeSourceWalkerContext::class,
+            ]);
+        }
+        return [];
+    }
 
     /**
      * @param Request $request
@@ -145,7 +157,11 @@ class BaseThemeApp extends FrontendController
          * Register services
          */
         if (null !== $this->themeContainer) {
-            $this->themeContainer->register(new Services\NodeServiceProvider($this->getContainer(), $this->translation));
+            $this->themeContainer->register(new Services\NodeServiceProvider(
+                $this->get('nodeTypesBag'),
+                $this->get('nodeSourceApi'),
+                $this->translation
+            ));
             $this->assignation['themeServices'] = $this->themeContainer;
 
             /*
