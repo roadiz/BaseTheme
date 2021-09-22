@@ -58,7 +58,7 @@ class ContactBlockController extends BaseThemeApp
          * Define custom receiver.
          * If node-type declare one
          */
-        if ($source instanceof NSContactBlock && $source->getContactAddress() !== '') {
+        if ($source instanceof NSContactBlock && !empty($source->getContactAddress())) {
             $contactFormManager->setReceiver($source->getContactAddress());
         }
 
