@@ -115,7 +115,6 @@ class BaseThemeApp extends FrontendController
         $this->assignation['title'] = $this->get('translator')->trans('error404.title');
         $this->assignation['content'] = $this->get('translator')->trans('error404.message');
 
-
         $this->get('stopwatch')->start('twigRender');
         return new Response(
             $this->renderView('@BaseTheme/pages/404.html.twig', $this->assignation),
