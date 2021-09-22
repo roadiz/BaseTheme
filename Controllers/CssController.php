@@ -49,12 +49,10 @@ class CssController extends BaseThemeApp
      */
     protected function getPages()
     {
-        $pages = $this->get('nodeSourceApi')
+        return $this->get('nodeSourceApi')
             ->getBy([
                 'node.nodeType' => $this->get('nodeTypesBag')->get('Page'),
                 'translation' => $this->translation
             ]);
-
-        return $pages;
     }
 }

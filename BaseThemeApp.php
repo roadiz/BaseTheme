@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Themes\BaseTheme;
 
-use Pimple\Container;
 use RZ\Roadiz\CMS\Controllers\FrontendController;
 use RZ\Roadiz\Core\Entities\NodesSources;
 use RZ\Roadiz\Core\Entities\Translation;
@@ -22,22 +21,30 @@ use Themes\BaseTheme\TreeWalker\NodeSourceWalkerContext;
  */
 class BaseThemeApp extends FrontendController
 {
-    const VERSION = '1.6.0';
+    const VERSION = '1.7.0';
 
-    protected static $themeName = 'Base theme';
-    protected static $themeAuthor = 'Rezo Zero';
-    protected static $themeCopyright = 'Rezo Zero';
-    protected static $themeDir = 'BaseTheme';
-    protected static $backendTheme = false;
-    public static $priority = 10;
+    protected static string $themeName = 'Base theme';
+    protected static string $themeAuthor = 'Rezo Zero';
+    protected static string $themeCopyright = 'Rezo Zero';
+    protected static string $themeDir = 'BaseTheme';
+    protected static bool $backendTheme = false;
+    public static int $priority = 10;
+
+    protected ?WalkerInterface $navigationWalker = null;
+    protected ?WalkerInterface $blockWalker = null;
+
     /**
-     * @var WalkerInterface
+     * @return array<string, string>
      */
-    protected $navigationWalker;
-    /**
-     * @var WalkerInterface
-     */
-    protected $blockWalker;
+    public static function getSubscribedServices()
+    {
+        if (is_callable('parent::getSubscribedServices')) {
+            return array_merge(parent::getSubscribedServices(), [
+                NodeSourceWalkerContext::class => NodeSourceWalkerContext::class,
+            ]);
+        }
+        return [];
+    }
 
     /**
      * @param Request $request
@@ -108,7 +115,6 @@ class BaseThemeApp extends FrontendController
         $this->assignation['title'] = $this->get('translator')->trans('error404.title');
         $this->assignation['content'] = $this->get('translator')->trans('error404.message');
 
-
         $this->get('stopwatch')->start('twigRender');
         return new Response(
             $this->renderView('@BaseTheme/pages/404.html.twig', $this->assignation),
@@ -150,7 +156,11 @@ class BaseThemeApp extends FrontendController
          * Register services
          */
         if (null !== $this->themeContainer) {
-            $this->themeContainer->register(new Services\NodeServiceProvider($this->getContainer(), $this->translation));
+            $this->themeContainer->register(new Services\NodeServiceProvider(
+                $this->get('nodeTypesBag'),
+                $this->get('nodeSourceApi'),
+                $this->translation
+            ));
             $this->assignation['themeServices'] = $this->themeContainer;
 
             /*

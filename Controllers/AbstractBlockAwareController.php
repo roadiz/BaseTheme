@@ -53,9 +53,11 @@ abstract class AbstractBlockAwareController extends BaseThemeApp
      */
     protected function getTtl(): int
     {
-        $contactBlocks = $this->blockWalker->getWalkersOfType(NSContactBlock::class);
-        if (count($contactBlocks) > 0) {
-            return 0;
+        if (null !== $this->blockWalker) {
+            $contactBlocks = $this->blockWalker->getWalkersOfType(NSContactBlock::class);
+            if (count($contactBlocks) > 0) {
+                return 0;
+            }
         }
         if (null !== $this->node) {
             return $this->node->getTtl();

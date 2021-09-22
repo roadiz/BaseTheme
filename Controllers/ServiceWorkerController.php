@@ -23,7 +23,7 @@ class ServiceWorkerController extends AbstractSitemapController
      */
     public function serviceWorkerAction(
         Request $request,
-        $_locale = 'fr'
+        string $_locale = 'fr'
     ) {
         $this->prepareThemeAssignation(null, $this->bindLocaleFromRoute($request, $_locale));
         /*
@@ -66,7 +66,7 @@ class ServiceWorkerController extends AbstractSitemapController
      */
     public function offlineAction(
         Request $request,
-        $_locale = 'fr'
+        string $_locale = 'fr'
     ) {
         $this->prepareThemeAssignation(null, $this->bindLocaleFromRoute($request, $_locale));
 

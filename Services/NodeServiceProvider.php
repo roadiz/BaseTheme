@@ -6,29 +6,26 @@ namespace Themes\BaseTheme\Services;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 use RZ\Roadiz\Core\AbstractEntities\TranslationInterface;
+use RZ\Roadiz\Core\Bags\NodeTypes;
+use RZ\Roadiz\CMS\Utils\NodeSourceApi;
 
 /**
  * @package Themes\BaseTheme\Services
  */
 class NodeServiceProvider implements ServiceProviderInterface
 {
-    /**
-     * @var TranslationInterface|null
-     */
-    protected $translation;
-    /**
-     * @var Container
-     */
-    protected $coreServices;
+    protected ?TranslationInterface $translation;
+    private NodeTypes $nodeTypes;
+    private NodeSourceApi $nodeSourceApi;
 
-    /**
-     * @param Container $coreServices
-     * @param TranslationInterface|null $translation
-     */
-    public function __construct(Container $coreServices, TranslationInterface $translation = null)
-    {
-        $this->coreServices = $coreServices;
+    public function __construct(
+        NodeTypes $nodeTypes,
+        NodeSourceApi $nodeSourceApi,
+        TranslationInterface $translation = null
+    ) {
         $this->translation = $translation;
+        $this->nodeTypes = $nodeTypes;
+        $this->nodeSourceApi = $nodeSourceApi;
     }
 
     /**
@@ -42,10 +39,10 @@ class NodeServiceProvider implements ServiceProviderInterface
          * whatever its translation.
          */
         $container['nodeSourceMenu'] = function () {
-            return $this->coreServices['nodeSourceApi']
+            return $this->nodeSourceApi
                 ->getOneBy([
                     'node.nodeName' => 'main-menu',
-                    'node.nodeType' => $this->coreServices['nodeTypesBag']->get('Neutral'),
+                    'node.nodeType' => $this->nodeTypes->get('Neutral'),
                     'translation' => $this->translation,
                 ]);
         };
@@ -54,9 +51,9 @@ class NodeServiceProvider implements ServiceProviderInterface
          * Register legals page
          */
         $container['nodeSourceLegals'] = function () {
-            return $this->coreServices['nodeSourceApi']
+            return $this->nodeSourceApi
                 ->getOneBy([
-                    'node.nodeType' => $this->coreServices['nodeTypesBag']->get('Page'),
+                    'node.nodeType' => $this->nodeTypes->get('Page'),
                     'node.nodeName' => 'legal',
                     'node.visible' => true,
                     'translation' => $this->translation,

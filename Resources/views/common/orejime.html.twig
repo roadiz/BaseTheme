@@ -3,7 +3,7 @@
         elementID: 'orejime',
         appElement: '#basetheme',
         cookieName: 'orejime',
-        cookieExpiresAfterDays: 365,
+        cookieExpiresAfterDays: 180,
         privacyPolicy: window.temp.privacyPolicy,
         default: true,
         mustConsent: false,
@@ -48,6 +48,25 @@
                     '__utmz'
                 ],
                 purposes: ['analytics'],
+                required: false,
+                optOut: false,
+                default: true,
+                onlyOnce: true
+            },
+            {% endif %}
+            {% if head.googleAdsenseId %}
+            {
+                name: 'adsense',
+                title: '{% trans %}orejime.adsense.title{% endtrans %}',
+                description: '{% trans %}orejime.adsense.description{% endtrans %}',
+                cookies: [
+                    '_gcl_au',
+                    'google_adsense_settings',
+                    'google_ama_settings',
+                    'google_ama_config',
+                    'google_pub_config',
+                ],
+                purposes: ['marketing', 'tracking'],
                 required: false,
                 optOut: false,
                 default: true,
@@ -107,6 +126,10 @@
             title: '{% trans %}orejime.google.title{% endtrans %}',
             description: '{% trans %}orejime.google.description{% endtrans %}',
         },
+        adsense: {
+            title: '{% trans %}orejime.adsense.title{% endtrans %}',
+            description: '{% trans %}orejime.adsense.description{% endtrans %}',
+        },
         internal: {
             title: '{% trans %}orejime.internal.title{% endtrans %}',
             description: '{% trans %}orejime.internal.description{% endtrans %}',
@@ -116,6 +139,8 @@
         purposes: {
             analytics: '{% trans %}orejime.purposes.analytics{% endtrans %}',
             security: '{% trans %}orejime.purposes.security{% endtrans %}',
+            marketing: '{% trans %}orejime.purposes.marketing{% endtrans %}',
+            tracking: '{% trans %}orejime.purposes.tracking{% endtrans %}',
             usepref: '{% trans %}orejime.purposes.usepref{% endtrans %}'
         }
     };
