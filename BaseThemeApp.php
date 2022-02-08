@@ -36,7 +36,7 @@ class BaseThemeApp extends FrontendController
     /**
      * @return array<string, string>
      */
-    public static function getSubscribedServices()
+    public static function getSubscribedServices(): array
     {
         if (is_callable('parent::getSubscribedServices')) {
             return array_merge(parent::getSubscribedServices(), [
